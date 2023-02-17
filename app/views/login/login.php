@@ -1,8 +1,8 @@
 <?php
-require __DIR__ . '/../views/header.php';
+require __DIR__ . '/../header.php';
 ?>
 
-<form action="loginprogress" method="POST">
+<form action="login/loginprogress" method="POST">
   <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" name="username" placeholder="Username">
@@ -16,5 +16,5 @@ require __DIR__ . '/../views/header.php';
 </form>
 
 <?php
-require __DIR__ . '/../views/footer.php';
+require __DIR__ . '/../footer.php';
 ?>
