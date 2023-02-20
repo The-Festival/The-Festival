@@ -17,20 +17,7 @@ class SwitchRouter {
                     require __DIR__ . '/controllers/homecontroller.php';
                     $controller = new HomeController();
                     $controller->about();
-                    break;
-            
-            case 'login':
-                require __DIR__ . '/controllers/logincontroller.php';
-                $controller = new LoginController();
-                $controller->login();
-                break;
-
-            case 'loginprogress':
-                require __DIR__ . '/controllers/logincontroller.php';
-                $controller = new LoginController();
-                $controller->loginProgress();
-                break;
-                
+                    break;               
             
 
             default: 

@@ -8,8 +8,7 @@ class LoginController{
     {
         $this->loginService = new LoginService();
     }
-    public function login(){
-
+    public function index(){
         require __DIR__ . '/../views/login/login.php';
     }
 
