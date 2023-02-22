@@ -1,0 +1,33 @@
+#div1 {
+    border-right: 3px solid #B9BBC3;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    margin-right: 5px;
+    color: #D0D4E2;
+  }
+#container {
+    border-bottom: 1px solid #B9BBC3;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+#footer {
+    background-color: #4F5469;
+    color:#D0D4E2;
+    font-family: 'Poppins';
+}
+#solutionsText{
+    font-weight: 700;
+    font-size: 32px;
+    color: rgb(211,103,227);
+    color: linear-gradient(90deg, rgba(211,103,227,1) 31%, rgba(235,141,16,1) 62%, rgba(79,187,209,1) 94%);
+}
+#rightsText{
+    font-size: smaller;
+}
+
+  h1 {
+    font-size: 32px;
+  }
+
+
+
