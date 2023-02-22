@@ -18,7 +18,7 @@ class LoginController{
             $username = htmlspecialchars($_POST['username']);
             $password = htmlspecialchars($_POST['password']);
         
-        $model = $this->loginService->checkPassword($usesname, $password);
+        $model = $this->loginService->checkPassword($username, $password);
         }
     }
 }
