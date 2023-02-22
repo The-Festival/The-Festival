@@ -1,0 +1,57 @@
+.container{
+    min-width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+#header{
+    background-color: #6716C7;
+    min-height: 64px;
+    max-height: 64px;
+    position: fixed;
+    top: 0;
+}
+.nav-link{
+    color:rgb(237, 237, 237);
+    font-size: large;
+}
+.nav-item a:hover{
+    color:#c290ff;
+}
+.nav-item{
+    background-color: #6716C7;
+    padding-left: 3%;
+}
+.navbar-brand{
+    color:white;
+}
+a:hover{
+    color: white;
+}
+#logo{
+    max-height:25px;
+    position: fixed;
+    top: 20px;
+    padding-left: 3%;
+    background-color: #6716C7;
+}
+#language{
+    max-height: 20px;
+    padding-left: 10px;
+}
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url('/img/dropdown.png');
+    max-height: 25px;
+    max-width: 25px;
+    position:sticky;
+    /* position: absolute; */
+    top: 20px;
+    right: 3%;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
