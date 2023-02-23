@@ -1,0 +1,163 @@
+header{
+    background: #6AD9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+body{
+    font-family: 'Itim'; 
+    background-color: #ECDFCD;
+    font-family: 'Itim';
+    font-style: normal;
+    font-weight: 300;
+    color: #444444;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo{
+    max-width: 180px;
+    max-height: 120px;
+
+}
+#headerText{
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: 'Itim';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 43px;
+    color: #444444;
+    text-align: center;
+}
+#greetingText{
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: 'Itim';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    text-align: center;
+}
+#whiteBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    background: #FFFFFF;
+    border-radius: 25px;
+}
+#redText{
+text-align: center;
+font-family: 'Itim';
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+color: #F6454F;
+}
+#floorplanDiv{
+    margin-top:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: 'Itim';
+    font-size: 25px;
+}
+#floorplan{
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+#redCircle1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+    top: 650px;
+    left: 450px;
+}
+#redCircle2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+    left:550px;
+    top: 380px;
+}
+#redCircle3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+    top: 135px;
+    left: 450px;
+}
+#redCircle4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+    left: 830px;
+    top: 135px;
+}
+#redCircle5{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+    top: 580px;
+    left: 680px;
+}
+#redCircle6{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+    top: 240px;
+    left:80px;
+}

@@ -13,7 +13,7 @@ class KidsController
         // Load appropriate file based on screen size
             if($screenSize === 'mobile') {
                 // load kids app on mobile
-                require __DIR__ . '/../views/kids/mobile/mobileApp.php';
+                require __DIR__ . '/../views/kids/mobile/mobileAppHomePage.php';
             } else {
                 // load info page on desktop
                 require __DIR__ . '/../views/kids/desktop/infoDesktop.php';
