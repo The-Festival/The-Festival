@@ -12,7 +12,7 @@
 </head>
 <body>
  
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
   <div class="container" id="header">
     <a class="navbar-brand" href="/"> <img  id="logo" src="img/logo.png" /></a>
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
