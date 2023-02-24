@@ -15,17 +15,16 @@ class LoginService {
         foreach($users as $user){
             if(password_verify($password, $user->hashedPassword)){
                 //password correct
+                unset($user->hasedPassword);
                 $_SESSION['user'] = serialize($user);
-                header("Location: http://www.example.com/another-page.php");
-                return ;
+                return true;
             }
                 //password incorrect
-
-            header("Location:login");
-            return ;
+            unset($user->hasedPassword);
+            return false;
         }
         //username incorrect
-        header("Location:login");
+        return false;
     }
 
     

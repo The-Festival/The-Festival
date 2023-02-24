@@ -18,6 +18,11 @@ class LoginController{
             $password = htmlspecialchars($_POST['password']);
         
             $model = $this->loginService->checkPassword($username, $password);
+            if($model == true){
+                header("Location: http://localhost/home");
+                return;
+            }
+            header("Location: http://localhost/login?errorMessage=password or username wrong");
         }
     }
 }

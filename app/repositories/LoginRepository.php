@@ -10,7 +10,6 @@ class LoginRepository extends Repository {
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
             $result = $stmt->fetchAll();
-            var_dump($result);
             return $result;
 
         } catch (PDOException $e)
