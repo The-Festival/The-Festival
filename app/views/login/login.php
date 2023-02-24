@@ -16,5 +16,7 @@ require __DIR__ . '/../header.php';
 </form>
 
 <?php
-require __DIR__ . '/../footer.php';
+
+echo "alles root";
+require __DIR__ . '/../footer/footer.php';
 ?>
