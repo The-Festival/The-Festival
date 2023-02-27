@@ -34,6 +34,15 @@
         <li class="nav-item">
           <a class="nav-link" href="/home/about">History</a>
         </li>
+        <?php if(isset($_SESSION['user'])){ ?>
+        <li class="nav-item">
+          <a href="/login/logout" class="nav-link">logout</a>
+        </li>
+        <?php }else {?>
+          <li class="nav-item">
+          <a href="/login" class="nav-link">login/register</a>
+        </li>
+        <?php } ?>
         <li class="nav-item">
           <a class="nav-link" ><img  id="language" src="img/taal.png"/></a>
         </li>
