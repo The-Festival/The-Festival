@@ -16,7 +16,8 @@ class LoginService {
             if(password_verify($password, $user->hashedPassword)){
                 //password correct
                 unset($user->hasedPassword);
-                $_SESSION['user'] = serialize($user);
+                $array = array($user->userID, $user->username, $user->email);
+                $_SESSION['user'] = $array;
                 return true;
             }
                 //password incorrect

@@ -25,4 +25,14 @@ class LoginController{
             header("Location: http://localhost/login?errorMessage=password or username wrong");
         }
     }
+
+    public function signin(){
+        require __DIR__ . '/../views/login/signin.php';
+
+    }
+
+    public function logout(){
+        session_destroy();
+        header("Location: http://localhost/home");
+    }
 }
