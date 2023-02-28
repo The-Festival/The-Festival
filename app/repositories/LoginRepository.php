@@ -3,7 +3,7 @@ require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/User.php';
 
 class LoginRepository extends Repository {
-    public function checkUser($username){
+    public function getUserWithUsername($username){
         try {
             $stmt = $this->connection->prepare("SELECT * FROM Users WHERE username = :name");
             $stmt->bindParam(':name', $username);

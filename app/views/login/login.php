@@ -2,7 +2,7 @@
 require __DIR__ . '/../header.php';
 ?>
 
-<form action="login/loginprogress" method="POST">
+<form action="login/loginVerification" method="POST">
   <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" name="username" placeholder="Username">
