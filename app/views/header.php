@@ -26,7 +26,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/article">Dance</a></li>
         <li class="nav-item">
-          <a class="nav-link" href="/home/about">Jazz</a>
+          <a class="nav-link" href="/jazz">Jazz</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/home/about">Yummy</a>
