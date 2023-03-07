@@ -20,4 +20,8 @@ class KidsController
             }
     }
 
+    public function activityOne(){
+                require __DIR__ . '/../views/kids/mobile/activity1.php';     
+    }
+
 }
