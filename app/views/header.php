@@ -17,17 +17,40 @@
  
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-0" id="nav">
   <div class="container" id="header">
-    <a class="navbar-brand" href="/"> <img  id="logo" src="img/logo.png" /></a>
+    <a class="navbar-brand" href="/"> <img id="logo" src="/img/logo.png" /></a>
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav" >
       <ul class=" d-flex justify-content-end navbar-nav me-auto w-100">
-        <li class="nav-item"><a class="nav-link text-white" href="/article">Dance</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/home/about">Jazz</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/yummy/yummy">Yummy</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/home/about">History</a></li>
-        <li class="nav-item"><a class="nav-link text-white" ><img  id="language" src="img/taal.png"/></a></li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/article">Dance</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/about">Jazz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/yummy/yummy">Yummy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/about">History</a>
+        </li>
+        <?php if(isset($_SESSION['user'])){ ?>
+        <li class="nav-item">
+          <a href="/login/logout" class="nav-link">logout</a>
+        </li>
+        <?php }else {?>
+          <li class="nav-item">
+          <a href="/login" class="nav-link">login/register</a>
+        </li>
+        <?php } ?>
+        <li class="nav-item">
+          <a class="nav-link" ><img  id="language" src="/img/taal.png"/></a>
+        </li>
       </ul>   
         
     </div>

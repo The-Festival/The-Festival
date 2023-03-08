@@ -1,5 +1,7 @@
 <?php
 require __DIR__ . '/../repositories/LoginRepository.php';
+session_start();
+
 
 class LoginService {
     public function checkUser($username){
@@ -8,23 +10,23 @@ class LoginService {
     }
 
     public function checkPassword($username, $password){
-                    $users = $this->checkUser($username);
+        $users = $this->checkUser($username);
 
-            foreach($users as $user){
-                if(password_verify($password, $user->hashedPassword)){
-                    //password correct
-                    session_start();
-                    $_SESSION['user'] = serialize($user);
-                    header("Location:home");
-                    return ;
-                }
-                //password incorrect
-                header("Location:login");
-                return ;
+        foreach($users as $user){
+            if(password_verify($password, $user->hashedPassword)){
+                //password correct
+                unset($user->hasedPassword);
+                $array = array($user->userID, $user->username, $user->email);
+                $_SESSION['user'] = $array;
+                return true;
             }
-            //username incorrect
-            header("Location:login");
+                //password incorrect
+            unset($user->hasedPassword);
+            return false;
         }
+        //username incorrect
+        return false;
+    }
 
     
     
