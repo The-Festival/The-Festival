@@ -23,7 +23,7 @@
               General history
             </li>
             <li>
-              The windmills
+              The windmill
             </li>
         </div>
         <!--Grid column-->
