@@ -3,25 +3,39 @@ class KidsController
 {
     public function index()
     {
-        // Detect screen size
-            if(strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
-                $screenSize = 'mobile';
-            } else {
-                $screenSize = 'desktop';
-            }
-  
-        // Load appropriate file based on screen size
-            if($screenSize === 'mobile') {
-                // load kids app on mobile
-                require __DIR__ . '/../views/kids/mobile/mobileAppHomePage.php';
-            } else {
-                // load info page on desktop
-                require __DIR__ . '/../views/kids/desktop/infoDesktop.php';
-            }
+      require __DIR__ . '/../views/kids/desktop/infoDesktop.php';
+    }
+
+    public function app(){
+        require __DIR__ . '/../views/kids/mobile/mobileAppHomePage.php';
     }
 
     public function activityOne(){
-                require __DIR__ . '/../views/kids/mobile/activity1.php';     
+           require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity1.php';     
     }
+
+    public function activityTwo(){
+        require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity2.php'; 
+    }
+    public function activityThree(){
+        require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity3.php';
+    }
+
+    public function activityFour(){
+        require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity4.php';
+    }
+
+    public function activityFive(){
+        require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity5.php';
+    }
+
+    public function activitySix(){
+        require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity6.php';
+    }
+
+    public function theeggproblem(){
+        require __DIR__ . '/../views/kids/mobile/theeggproblem/theggproblemMain.php';
+    }
+
 
 }

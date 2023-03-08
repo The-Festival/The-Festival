@@ -5,7 +5,8 @@ include __DIR__ . '/../../header.php';
 <style>
 <?php include 'infoDesktopStyle.css'; ?>
 </style>
-
+<body>
+    
 
 <div class="container">
 	<div class="row">
@@ -22,4 +23,9 @@ include __DIR__ . '/../../header.php';
             <img class="mx-auto img-fluid" src="img/mobileDesign.png" alt="mobile design">
         </div>
 	</div>
+    <div class = "col">
+            <button id = "buttonApp"><a href="/kids/app">Go to mobile app!</a></button>
+        </div>
 </div>
+    
+</body>

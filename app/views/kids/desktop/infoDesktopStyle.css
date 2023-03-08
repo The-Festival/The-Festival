@@ -6,3 +6,20 @@ body {
     padding-top: 80px;
 }
 
+#buttonApp{
+ width: 290px;
+height: 37px;
+left: 50px;
+top: 385px;
+background: #F6454F;
+border-radius: 5px;
+font-family: inherit;
+}
+
+@media (max-width: 767px) {
+
+    #divImage{
+        display:none !important; 
+    }
+  }
+
