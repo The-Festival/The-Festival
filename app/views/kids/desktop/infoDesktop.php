@@ -19,7 +19,7 @@ include __DIR__ . '/../../header.php';
         <p>For the special scavenger hunt that we made for the kids the only thing you need to do is to enter this website on your mobile. For more information about the other activities  you check the other pages on the your desktop or laptop.</p>
         </div>
         <div id = "divImage" class="col d-flex align-items-center">
-            <img class="mx-auto img-fluid" src="img/mobileDesign.png" alt="mobile design">
+            <img class="mx-auto img-fluid" src="/img/mobileDesign.png" alt="mobile design">
         </div>
 	</div>
 </div>
