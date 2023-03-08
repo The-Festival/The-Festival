@@ -5,7 +5,7 @@
     ?>
 
     <!-- Hero with "The Festival" and a count down timer -->
-    
+
     <div style="height:100%; background-color: coral; background: url(img/jazzhero.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
         <h1 style="text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: 'Lobster Two'; font-style: normal; font-weight: 400; font-size: 280px; line-height: 280px; color: #F7EDFA; text-shadow: -20px 4px 4px rgba(0, 0, 0, 0.75);">The Festival</h1>
     </div>
