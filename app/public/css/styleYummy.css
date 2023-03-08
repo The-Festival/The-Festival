@@ -1,0 +1,14 @@
+.carousel-item {
+  height: 200px;
+  min-height: 400px;
+  display:block;
+  background-color: aquamarine;
+  background: no-repeat center center scroll;
+}
+.container-fluid {
+  background-color: blueviolet;
+}
+#title{
+    font-size: 800%;
+    color: white;
+}
