@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" style="height: 100%;">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/../css/jazzstylesheet.css">
-    <title>Jazz</title>
-</head>
-
 <body>
-
     <?php
+    $var = 1;
     include __DIR__ . '/../header.php';
     ?>
 
@@ -81,5 +70,3 @@
     include __DIR__ . '/../footer/footer.php';
     ?>
 </body>
-
-</html>
