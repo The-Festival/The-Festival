@@ -5,7 +5,7 @@
 <header>
 <div class="">
     <div class="">
-        <img id="logo" class="" src="img/logo.png" alt="mobile design">
+        <img id="logo" class="" src="/img/logo.png" alt="mobile design">
     </div>
 </div>
 </header>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div id = "floorplanDiv" class="col-md-4 text-center">
-        <img id="floorplan" class="" src="img/Floorplan.png" alt="mobile design">
+        <img id="floorplan" class="" src="/img/Floorplan.png" alt="mobile design">
         <div id = "redCircle1" class = "">1</div>
         <div id = "redCircle2" class = "">2</div> 
         <div id = "redCircle3" class = "">3</div> 
@@ -38,7 +38,7 @@
 <footer>
     <div class="row justify-content-between align-items-center">
         <div class="col-md-6">
-            <img id="logo" class="img-fluid" src="img/logo.png" alt="mobile design">
+            <img id="logo" class="img-fluid" src="/img/logo.png" alt="mobile design">
         </div>
         <div class="col-md-6 text-center">
             The Festival | Developed by Snowflake
