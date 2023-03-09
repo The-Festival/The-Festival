@@ -65,4 +65,15 @@ class KidsController
     public function eggproblempage(){
         require __DIR__ . '/../views/kids/mobile/theeggproblem/eggproblem.php';
     }
+
+    public function eggfound(){
+        require __DIR__ . '/../views/kids/mobile/theeggproblem/eggfound.php';
+    }
+    public function wrongAnswer(){
+        require __DIR__ . '/../views/kids/mobile/theeggproblem/wrongAnswer.php';
+    }
+
+    public function allfacts(){
+        require __DIR__ . '/../views/kids/mobile/theeggproblem/drfeatherfacts/allfacts.php';
+    }
 }

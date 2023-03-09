@@ -71,3 +71,12 @@
         font-size: 40px;
         line-height: 43px;
     }
+
+    #goodjobtext{
+        font-size: 80px;
+    }
+
+    .factdiv{
+        background: #FFFFFF;
+        border-radius: 10px;
+    }

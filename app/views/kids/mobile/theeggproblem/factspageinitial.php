@@ -30,6 +30,6 @@
         <div class = "col-6"><img id = "drFeathersInverted"src="/../img/Dr.Feathers.png" alt=""></div>
     </div>
 </div>
-<button class = "button" onclick="window.location.href='/kids/eggproblemfacts'">Next fact</button>
+<button class = "button" onclick="window.location.href='/kids/facttwo'">Next fact</button>
 <button class = "button">Skip facts</button>
 </body>
