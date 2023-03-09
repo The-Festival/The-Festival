@@ -15,10 +15,10 @@
         <h1>Help Prof. Digit find the hidden numbers and solve the mystery of The Lost Calculator!</h1>
       </div>
       <div>
-      <div>
-          <button> <a href="">Find numbers</a></button>
+      <div onclick="window.location.href = '/kids/lostcalculator'">
+          <button>Find numbers</button>
       </div>
-        <button id = "buttonBack"><a href="/kids/app">BACK</a></button>
+        <button id = "buttonBack" onclick="window.location.href = '/kids/app'">BACK</button>
       </div>
   </div>
 </div>

@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div id = "floorplanDiv" class="col-md-4 text-center">
+    <div id = "floorplanDiv" >
         <img id="floorplan" class="" src="/../img/Floorplan.png" alt="mobile design">
         <div id = "redCircle1" class = "" onclick="window.location.href='/kids/activityone'">1</div>
         <div id = "redCircle2" class = "" onclick="window.location.href='/kids/activitytwo'">2</div> 

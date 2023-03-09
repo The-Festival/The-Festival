@@ -10,6 +10,8 @@ class KidsController
         require __DIR__ . '/../views/kids/mobile/mobileAppHomePage.php';
     }
 
+    // Egg problem
+
     public function activityOne(){
            require __DIR__ . '/../views/kids/mobile/activitylinkpages/activity1.php';     
     }
@@ -75,5 +77,23 @@ class KidsController
 
     public function allfacts(){
         require __DIR__ . '/../views/kids/mobile/theeggproblem/drfeatherfacts/allfacts.php';
+    }
+
+    // Lost Calculator
+
+    public function lostcalculator(){
+        require __DIR__ . '/../views/kids/mobile/lostcalculator/profdigit.php';
+    }
+
+    public function proffacts(){
+        require __DIR__ . '/../views/kids/mobile/lostcalculator/factspage.php';
+    }
+
+    public function profproblem(){
+        require __DIR__ . '/../views/kids/mobile/lostcalculator/profproblem.php';
+    }
+
+    public function foundcalculator(){
+        require __DIR__ . '/../views/kids/mobile/lostcalculator/foundcalculator.php';
     }
 }

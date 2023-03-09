@@ -1,0 +1,131 @@
+body {
+    text-align: center;
+    font-family: 'Itim'; 
+    background-color: #ECDFCD;
+    font-style: normal;
+    font-weight: 300;
+    color: #444444;
+    margin: 0 !important;
+}
+
+header {
+    background: #6AD9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    font-size: 5rem;
+}
+h3{
+    font-size: 3rem;
+}
+.imgInverted {
+    transform: scaleX(-1);
+}
+
+img {
+    min-height: 200px;
+}
+
+.image-container img {
+    max-width: 100%;
+    margin: 10px;
+}
+
+.button{
+    background-color: #F6454F;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 40px;
+    margin: 20px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    min-width: 80%;
+}
+#buttonReady{
+    border-radius: 35px !important;
+}
+
+#readytext{
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 30px;
+    text-align: center;
+    color: #F6454F;
+
+}
+
+#welldoneText{
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 35px;
+}
+#elementContainer{
+    background: #6AD9D9;
+    border-radius: 50px;
+}
+
+#goodJobContainer{
+    background: #FFFFFF;
+box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+}
+
+#profDigit{
+    min-width: 30%;
+}
+
+#profDigitRotate{
+    transform: rotate(-6.51deg);
+}
+
+.paddingbox{
+    padding: 5%;
+}
+.redCircle{
+    color: white;
+    font-size: 30px;
+    margin-top: 1550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: #F6454F;
+    position: absolute;
+
+}
+
+#floorplan{
+    object-fit: cover;
+    width: 100%;
+}
+#redCircle1{ 
+    top: 650px;
+    left: 450px;
+}
+#redCircle2{
+    left:550px;
+    top: 380px;
+}
+#redCircle3{
+    top: 135px;
+    left: 450px;
+}
+#redCircle4{
+    left: 830px;
+    top: 135px;
+}
+#redCircle5{
+    top: 580px;
+    left: 680px;
+}
+#redCircle6{
+    top: 240px;
+    left:80px;
+}
