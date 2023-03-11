@@ -1,3 +1,4 @@
+<script><?php include 'mobileAppHomeScript.js'?></script>
 <link href='https://fonts.googleapis.com/css?family=Itim' rel='stylesheet'>
 <style>
 <?php include 'mobileStyle.css'; ?>
@@ -25,12 +26,20 @@
     </div>
     <div id = "floorplanDiv" >
         <img id="floorplan" class="" src="/../img/Floorplan.png" alt="mobile design">
-        <div id = "redCircle1" class = "" onclick="window.location.href='/kids/activityone'">1</div>
-        <div id = "redCircle2" class = "" onclick="window.location.href='/kids/activitytwo'">2</div> 
-        <div id = "redCircle3" class = "" onclick="window.location.href='/kids/activitythree'">3</div> 
-        <div id = "redCircle4" class = "" onclick="window.location.href='/kids/activityfour'">4</div> 
-        <div id = "redCircle5" class = "" onclick="window.location.href='/kids/activityfive'">5</div> 
-        <div id = "redCircle6" class = "" onclick="window.location.href='/kids/activitysix'">6</div> 
+        <div id = "redCircle1" onclick="window.location.href='/kids/activityone'">1</div>
+        <div id = "redCircle2" onclick="window.location.href='/kids/activitytwo'" style = "<?php 
+        if(isset($_SESSION['activityTwoComplete'])) {
+            echo "background: #057D38; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);";
+        }
+        ?>">2</div> 
+        <div id = "redCircle3" onclick="window.location.href='/kids/activitythree'" style = "<?php 
+        if(isset($_SESSION['activityThreeComplete'])) {
+            echo "background: #057D38; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);";
+        }
+        ?>">3</div> 
+        <div id = "redCircle4" onclick="window.location.href='/kids/activityfour'">4</div> 
+        <div id = "redCircle5" onclick="window.location.href='/kids/activityfive'">5</div> 
+        <div id = "redCircle6" onclick="window.location.href='/kids/activitysix'">6</div> 
     </div>
   </div>
 </div>

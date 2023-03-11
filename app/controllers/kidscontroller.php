@@ -7,6 +7,7 @@ class KidsController
     }
 
     public function app(){
+        session_start();
         require __DIR__ . '/../views/kids/mobile/mobileAppHomePage.php';
     }
 
@@ -76,7 +77,12 @@ class KidsController
     }
 
     public function allfacts(){
+        $this->start_session_if_not_started();
+
+        // check if session is set
+        $_SESSION['activityTwoComplete'] = 'true';
         require __DIR__ . '/../views/kids/mobile/theeggproblem/drfeatherfacts/allfacts.php';
+
     }
 
     // Lost Calculator
@@ -94,6 +100,17 @@ class KidsController
     }
 
     public function foundcalculator(){
+
+        // start session
+        $this->start_session_if_not_started();
+        // check if session is set
+        $_SESSION['activityThreeComplete'] = 'true';
         require __DIR__ . '/../views/kids/mobile/lostcalculator/foundcalculator.php';
     }
+
+    function start_session_if_not_started() {
+        if (session_status() === PHP_SESSION_NONE) {
+          session_start();
+        }
+      }
 }

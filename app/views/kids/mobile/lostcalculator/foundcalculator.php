@@ -29,42 +29,42 @@
     <div class="col-12 button "><h1>FACTS</h1></div>
     </div>
     <div class="row mt-5">
-        <div id = "goodJobContainer" class = "col-12 mt-5">
+        <div class = "col-12 mt-5 factContainer">
             <div class = "paddingbox">
             <div>
                 <h3>The word “hundred” comes from the old Norse term, “hundrath”, which actually means 120 and not 100.</h3>
             </div>
             </div>        
         </div>
-        <div id = "goodJobContainer" class = "col-12 mt-5">
+        <div class = "col-12 mt-5 factContainer">
             <div class = "paddingbox">
             <div>
                 <h3>In a room of 23 people there’s a 50% chance that two people have the same birthday.</h3>
             </div>
             </div>        
         </div>
-        <div id = "goodJobContainer" class = "col-12 mt-5">
+        <div class = "col-12 mt-5 factContainer">
             <div class = "paddingbox">
             <div>
                 <h3>“Forty” is the only number that is spelt with letters arranged in alphabetical order.</h3>
             </div>
             </div>        
         </div>
-        <div id = "goodJobContainer" class = "col-12 mt-5">
+        <div class = "col-12 mt-5 factContainer">
             <div class = "paddingbox">
             <div>
                 <h3>From 0 to 1000, the only number that has the letter “a” in it is “one thousand”.</h3>
             </div>
             </div>        
         </div>
-        <div id = "goodJobContainer" class = "col-12 mt-5">
+        <div class = "col-12 mt-5 factContainer">
             <div class = "paddingbox">
             <div>
                 <h3>The word “mathematics” only appears in one Shakespearean play, “The Taming of the Shrew”.</h3>
             </div>
             </div>        
         </div>
-        <div id = "goodJobContainer" class = "col-12 mt-5">
+        <div class = "col-12 mt-5 factContainer">
             <div class = "paddingbox">
             <div>
                 <h3>If you shuffle a deck of cards properly, it’s more than likely that the exact order of the cards you get has never been seen before in the whole history of the universe.</h3>

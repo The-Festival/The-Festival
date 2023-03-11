@@ -1,3 +1,4 @@
+<script><?php include 'eggproblemScript.js'?></script>
 <link href='https://fonts.googleapis.com/css?family=Itim' rel='stylesheet'>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
@@ -32,11 +33,11 @@
     </div>
     <div class="row mt-5">
         <div class = "col-6"><button onclick="window.location.href='/kids/allfacts'" class = "button">Thousands</button></div>
-        <div class = "col-6"><button class = "button">Hundereds</button></div>
+        <div class = "col-6"><button id = "hundered" onclick = "makeElementWiggle('hundered')" class = "button">Hundereds</button></div>
     </div>
     <div class="row mt-5">
-        <div class = "col-6"><button class = "button">Tens</button></div>
-        <div class = "col-6"><button class = "button">Millions</button></div>
+        <div id = "" class = "col-6"><button id = "tens" onclick = "makeElementWiggle('tens')" class = "button">Tens</button></div>
+        <div id = "" class = "col-6"><button id = "million" onclick = "makeElementWiggle('million')" class = "button">Millions</button></div>
     </div>
 </div>
 </body>

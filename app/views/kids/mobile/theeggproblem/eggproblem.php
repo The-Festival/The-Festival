@@ -3,6 +3,7 @@
 <style>
 <?php include 'theeggproblemStyle.css'; ?>
 </style>
+<script> <?php include 'eggproblemScript.js'; ?></script>
 <body>
 <header>
 <div>

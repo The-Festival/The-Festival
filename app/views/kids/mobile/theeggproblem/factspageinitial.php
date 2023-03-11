@@ -31,5 +31,5 @@
     </div>
 </div>
 <button class = "button" onclick="window.location.href='/kids/facttwo'">Next fact</button>
-<button class = "button">Skip facts</button>
+<button class = "button" onclick= "window.location.href='/kids/factfinished'">Skip facts</button>
 </body>
