@@ -32,6 +32,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav" >
       <ul class=" d-flex justify-content-end navbar-nav me-auto w-100">
+        <li class="nav-item">
+          <a class="nav-link" href="/article">Dance</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/about">Jazz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/about">Yummy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home/about">History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/kids">Kids</a>
+        </li>
+        <?php if(isset($_SESSION['user'])){ ?>
+        <li class="nav-item">
+          <a href="/login/logout" class="nav-link">logout</a>
+        </li>
+        <?php }else {?>
           <li class="nav-item">
             <a class="nav-link" href="/article">Dance</a>
           </li>
