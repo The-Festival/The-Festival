@@ -1,0 +1,41 @@
+.artist-hero {
+    height: 100%;
+    max-height: 100vh;
+    background: url(/img/artist-hero.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -2;
+}
+
+.artist-hero img:first-child {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.artist-hero img:last-child {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.artist-h2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 128.5%;
+    color: #000000;
+}
+
+.artist-p, p.artist-p ul li {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 128.5%;
+    color: #1D3588;
+}
