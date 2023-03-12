@@ -11,8 +11,17 @@
   <link type="text/css" rel="stylesheet" href="/css/footer-style.css" />
   <?php
   if (isset($var)) {
-    if ($var == 'artist')
-      echo '<link type="text/css" rel="stylesheet" href="/css/artistsstylesheet.css"/>';
+    switch ($var) {
+      case 'artist':
+        echo '<link type="text/css" rel="stylesheet" href="/css/artistsstylesheet.css"/>';
+        break;
+      case 'jazz':
+        echo '<link type="text/css" rel="stylesheet" href="/css/jazzstylesheet.css"/>';
+        break;
+
+      default:
+        break;
+    }
   }
   ?>
 </head>
@@ -36,7 +45,7 @@
             <a class="nav-link" href="/article">Dance</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/artists">Jazz</a>
+            <a class="nav-link" href="/jazz">Jazz</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="/yummy/yummy">Yummy</a>

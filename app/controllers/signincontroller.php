@@ -5,6 +5,5 @@ class SigninController{
     public function index(){
         require __DIR__ . '/../views/login/signin.php';
     }
-
 }
 ?>

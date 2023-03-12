@@ -1,0 +1,95 @@
+    body {
+        text-align: center;
+        font-family: 'Itim'; 
+        background-color: #ECDFCD;
+        font-style: normal;
+        font-weight: 300;
+        color: #444444;
+        margin: 0 !important;
+    }
+
+    header {
+        background: #6AD9D9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    h1{
+        font-size: 5rem;
+    }
+    h3{
+        font-size: 3rem;
+    }
+    .imgInverted {
+        transform: scaleX(-1);
+    }
+
+    img {
+        min-height: 200px;
+    }
+
+    #grassAndDrfeathers {
+        min-width: 140% !important;
+    }
+
+    #grass{
+        margin-left: 55;
+        margin-top: 110;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        margin: 10px;
+    }
+    #drFeathersInverted{
+    transform: scaleX(-1);
+
+    }
+    .button{
+        background-color: #F6454F;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        display: inline-block;
+        font-size: 40px;
+        margin: 20px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        min-width: 80%;
+    }
+
+    #factsFinishedText{
+        font-size: 40px;
+        line-height: 43px;
+    }
+
+    #goodjobtext{
+        font-size: 80px;
+    }
+
+    .factdiv{
+        background: #FFFFFF;
+        border-radius: 10px;
+    }
+
+    @keyframes wiggle {
+        0% { transform: rotate(0deg); }
+        20% { transform: rotate(-10deg); }
+        40% { transform: rotate(10deg); }
+        60% { transform: rotate(-10deg); }
+        80% { transform: rotate(10deg); }
+        100% { transform: rotate(0deg); }
+      }
+      
+      .wiggle {
+        animation: wiggle 1s ease;
+      }

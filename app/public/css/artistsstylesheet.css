@@ -31,7 +31,16 @@
     color: #000000;
 }
 
-.artist-p, p.artist-p ul li {
+.artist-p  {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 128.5%;
+    color: #1D3588;
+}
+
+p.artist-p ul li{
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
