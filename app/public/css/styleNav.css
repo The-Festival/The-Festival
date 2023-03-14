@@ -1,3 +1,8 @@
+body {
+    height: 100%;
+    background: linear-gradient(96.09deg, #CFB8FF 15.59%, #FFC0F5 47.73%, #FFE9B0 80.81%);
+}
+
 .container{
     min-width: 100%;
     padding-left: 2%;
@@ -7,6 +12,7 @@
     top: 0px;
     position: -webkit-sticky;
     position: sticky;
+    z-index: 9999;
 }
 #header{
     background-color: #6716C7;

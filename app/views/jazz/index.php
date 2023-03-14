@@ -1,13 +1,15 @@
 <body>
     <?php
-    $var = 1;
+    $var = 'jazz';
     include __DIR__ . '/../header.php';
     ?>
 
     <!-- Hero with "The Festival" and a count down timer -->
 
     <div class="hero">
-        <h1 class="hero-title">The Festival</h1>
+        <a href="/artists">
+            <h1 class="hero-title">The Festival</h1>
+        </a>
     </div>
 
     <!-- Intro -->
@@ -42,25 +44,25 @@
                     <button class="btn btn-primary card-button">Add to Cart +</button>
                 </div>
             </div>
-            <div class="card col-sm card-wrapper" >
+            <div class="card col-sm card-wrapper">
                 <div class="card-body">
-                    <h4 class="card-heading" >Day pass <br> Friday</h4>
-                    <p class="card-paragraph" >All-Access pass for <br> Friday <br> Time: 18:00 - 22:00 <br> Price: €35</p>
-                    <button class="btn btn-primary card-button" >Add to Cart +</button>
+                    <h4 class="card-heading">Day pass <br> Friday</h4>
+                    <p class="card-paragraph">All-Access pass for <br> Friday <br> Time: 18:00 - 22:00 <br> Price: €35</p>
+                    <button class="btn btn-primary card-button">Add to Cart +</button>
                 </div>
             </div>
-            <div class="card col-sm card-wrapper" >
+            <div class="card col-sm card-wrapper">
                 <div class="card-body">
-                    <h4 class="card-heading" >Day pass <br> Saturday</h4>
-                    <p class="card-paragraph" >All-Access pass for <br> Saturday <br> Time: 18:00 - 22:00 <br> Price: €35</p>
-                    <button class="btn btn-primary card-button" >Add to Cart +</button>
+                    <h4 class="card-heading">Day pass <br> Saturday</h4>
+                    <p class="card-paragraph">All-Access pass for <br> Saturday <br> Time: 18:00 - 22:00 <br> Price: €35</p>
+                    <button class="btn btn-primary card-button">Add to Cart +</button>
                 </div>
             </div>
-            <div class="card col-sm card-wrapper" >
+            <div class="card col-sm card-wrapper">
                 <div class="card-body">
-                    <h4 class="card-heading" >All-access <br> pass</h4>
-                    <p class="card-paragraph" >All-Access pass for <br> Thu-Fri-Sat-Sun. <br> Time: 18:00 - 22:00 <br> Price: €80</p>
-                    <button class="btn btn-primary card-button" >Add to Cart +</button>
+                    <h4 class="card-heading">All-access <br> pass</h4>
+                    <p class="card-paragraph">All-Access pass for <br> Thu-Fri-Sat-Sun. <br> Time: 18:00 - 22:00 <br> Price: €80</p>
+                    <button class="btn btn-primary card-button">Add to Cart +</button>
                 </div>
             </div>
         </div>
