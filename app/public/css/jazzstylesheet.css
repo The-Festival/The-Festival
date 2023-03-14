@@ -64,6 +64,7 @@
     background: #A8A1FF;
     box-shadow: 20px 10px 4px rgba(0, 0, 0, 0.5);
     border-radius: 83px;
+    max-width: 359px;
 }
 
 .card-heading {
