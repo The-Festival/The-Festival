@@ -53,6 +53,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/home/about">History</a>
           </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/article">My Program</a>
+        </li>
           <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
               <a href="/login/logout" class="nav-link">logout</a>

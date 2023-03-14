@@ -39,37 +39,57 @@ include __DIR__ . '/../header.php';
     </div>
     <div class="row justify-content-center">
         <div class="col-4">
-            <button class="buttonNav">Jazz</button>
+            <a><button class="buttonNav">Jazz</button></a>
         </div>
         <div class="col-4">
-            <button class="buttonNav">Kids</button>
+            <a href="/yummy/yummy"><button class="buttonNav">Yummy</button></a>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-4">
-            <button class="buttonNav">History</button>
+            <a><button class="buttonNav">History</button></a>
         </div>
         <div class="col-4">
-            <button class="buttonNav">Food</button>
+            <a><button class="buttonNav">Kids</button></a>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-10" id="eventCalender">
             <h3 class="heading">What's happening each day</h3>
             <div class="row justify-content-center">
-                <div class="col-4">
-                    <article class="events">event</article>
+                <div class="col-4 events">
+                    <h class="event-heading">Thursday 27th June</h>
+                    <ul>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                    </ul>
                 </div>
-                <div class="col-4">
-                    <article class="events">event</article>
+                <div class="col-4 events">
+                    <h class="event-heading">Friday 28th June</h>
+                    <ul>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                    </ul>
                 </div>
     	    </div>
             <div class="row justify-content-center">
-                <div class="col-4">
-                    <article class="events">event</article>
+                <div class="col-4 events">
+                    <h class="event-heading">Saturday 29th June</h>
+                    <ul>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                    </ul>
                 </div>
-                <div class="col-4">
-                    <article class="events">event</article>
+                <div class="col-4 events">
+                    <h class="event-heading">Sunday 30th June</h>
+                    <ul>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                        <li class="event">event</li>
+                    </ul>
                 </div>
     	    </div>
             <button id="btnCreateProgram">CREATE YOUR OWN PROGRAM</button>
@@ -80,10 +100,15 @@ include __DIR__ . '/../header.php';
             <h3 class="heading">Where are the events?</h3>
             <div class="row justify-content-center">
                 <div class="col-7">
-                    map
+                    <img src="/img/mapHome.png" alt="map" id="map">
                 </div>
                 <div class="col-3">
-                    info
+                    <h4 id="locations">Locations</h4>
+                    <ol>
+                        <li class="location"><b>St. Bavo Kerk </b>(St Bavo Church) Grote Markt 22, 2011 RD Haarlem</li>
+                        <li class="location"><b>Patronaat</b> (Zijlsingel 2 2013 DN Haarlem)</br> (18:00 - 22:00)</li>
+                        <li class="location"><b>Teylers Museum</b> (Spaarne 16, 2011 CH Haarlem)</br>(10:00 - 17:00)</li>
+                    </ol>
                 </div>
                 </div>
         </div>
