@@ -9,6 +9,10 @@
     <link type="text/css"
         rel = "stylesheet"
         href = "/css/styleNav.css"/> 
+
+        <link type="text/css"
+        rel = "stylesheet"
+        href = "/css/historyStyle.css"/> 
 </head>
 <body>
  
@@ -32,7 +36,7 @@
           <a class="nav-link" href="/home/about">Yummy</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/home/about">History</a>
+          <a class="nav-link" href="/history">History</a>
         </li>
         <?php if(isset($_SESSION['user'])){ ?>
         <li class="nav-item">
