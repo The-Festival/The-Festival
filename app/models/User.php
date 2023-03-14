@@ -1,14 +1,12 @@
 <?php
 
 class User {
-    public int $userID;
-    public string $fullName;
-    
-    public string $username;
-    public string $hashedPassword;
-    public string $email;
-    public string $role;
-    public DateTime $dateOfRegistration;
+        public $user_id;
+        public $fullname;
+        public $email;
+        public $password;
+        public $role;
+        public $registration_date;
 
 }
 ?>

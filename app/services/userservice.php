@@ -23,18 +23,24 @@ class UserService {
         return $repository->getUserById($id);
     }
 
+    public function searchUserByName($name){
+        $repository = new UserRepository();
+        return $repository->searchUserByName($name);
+    }
+
     public function addUser($fullname, $email, $password, $role , $dateOfRegistration){
         $repository = new UserRepository();
         return $repository->addUser($fullname, $email, $password, $role , $dateOfRegistration);
     }
 
-    public function updateUser($id, $fullname, $email, $password, $role , $dateOfRegistration){
+    public function updateUser($id, $fullname, $email, $role , $dateOfRegistration){
         $repository = new UserRepository();
-        return $repository->updateUser($id, $fullname, $email, $password, $role , $dateOfRegistration);
+        return $repository->updateUser($id, $fullname, $email, $role , $dateOfRegistration);
     }
 
     public function deleteUserbyId($id){
         $repository = new UserRepository();
         return $repository->deleteUserbyId($id);
     }
+
 }
