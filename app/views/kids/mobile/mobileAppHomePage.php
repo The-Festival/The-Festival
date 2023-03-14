@@ -1,15 +1,16 @@
+<script><?php include 'mobileAppHomeScript.js'?></script>
 <link href='https://fonts.googleapis.com/css?family=Itim' rel='stylesheet'>
 <style>
 <?php include 'mobileStyle.css'; ?>
 </style>
 <header>
+<body>
 <div class="">
     <div class="">
-        <img id="logo" class="" src="/img/logo.png" alt="mobile design">
+        <img id="logo" class="" src="/../img/logo.png" alt="mobile design">
     </div>
 </div>
 </header>
-<body>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-4 text-center">
@@ -23,14 +24,22 @@
         </div>
       </div>
     </div>
-    <div id = "floorplanDiv" class="col-md-4 text-center">
-        <img id="floorplan" class="" src="/img/Floorplan.png" alt="mobile design">
-        <div id = "redCircle1" class = "">1</div>
-        <div id = "redCircle2" class = "">2</div> 
-        <div id = "redCircle3" class = "">3</div> 
-        <div id = "redCircle4" class = "">4</div> 
-        <div id = "redCircle5" class = "">5</div> 
-        <div id = "redCircle6" class = "">6</div> 
+    <div id = "floorplanDiv" >
+        <img id="floorplan" class="" src="/../img/Floorplan.png" alt="mobile design">
+        <div id = "redCircle1" onclick="window.location.href='/kids/activityone'">1</div>
+        <div id = "redCircle2" onclick="window.location.href='/kids/activitytwo'" style = "<?php 
+        if(isset($_SESSION['activityTwoComplete'])) {
+            echo "background: #057D38; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);";
+        }
+        ?>">2</div> 
+        <div id = "redCircle3" onclick="window.location.href='/kids/activitythree'" style = "<?php 
+        if(isset($_SESSION['activityThreeComplete'])) {
+            echo "background: #057D38; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);";
+        }
+        ?>">3</div> 
+        <div id = "redCircle4" onclick="window.location.href='/kids/activityfour'">4</div> 
+        <div id = "redCircle5" onclick="window.location.href='/kids/activityfive'">5</div> 
+        <div id = "redCircle6" onclick="window.location.href='/kids/activitysix'">6</div> 
     </div>
   </div>
 </div>
@@ -38,7 +47,7 @@
 <footer>
     <div class="row justify-content-between align-items-center">
         <div class="col-md-6">
-            <img id="logo" class="img-fluid" src="/img/logo.png" alt="mobile design">
+            <img id="logo" class="img-fluid" src="/../img/logo.png" alt="mobile design">
         </div>
         <div class="col-md-6 text-center">
             The Festival | Developed by Snowflake
