@@ -4,6 +4,7 @@
 
 namespace Composer\Autoload;
 
+
 class ComposerStaticInit998cd3dbc5de15cf491b09dd98ca3609
 {
     public static $prefixLengthsPsr4 = array (
