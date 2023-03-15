@@ -3,8 +3,7 @@ include __DIR__ . '/../header.php';
 
 ?>
 </head>
-  <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+  <meta charset="UTF-8"
         rel="stylesheet" 
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
         crossorigin="anonymous">
@@ -66,16 +65,18 @@ include __DIR__ . '/../header.php';
                     <img src="/img/Yummy1.png" id="to-know-img"></img>
                 </div>
     </div>
+    
     <div class="row justify-content-center">
-        <div class="col-10" >
+        <div class="col-10" > 
             <h2 class="header-large" >Our selection</h2>
             <div class="row justify-content-center">
-                
+            <div id="carouselExample" class="carousel slide">
+ 
                 <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" ></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -86,17 +87,17 @@ include __DIR__ . '/../header.php';
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="/img/ratatouille1.jpg" class="d-block w-100" alt="...">
+                        <img src="/img/ratatouille1.jpg" class="d-block w-100" alt="Ratatouille">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                            <h5> 2222 slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="/img/ratatouille1.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-item ">
+                        <img src="/img/ratatouille1.jpg" class="d-block w-100" alt="Ratatouille">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            <h5>333 slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                 </div>
@@ -110,7 +111,6 @@ include __DIR__ . '/../header.php';
                 </button>
                 </div>
             </div>
-        </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-10">
@@ -118,16 +118,20 @@ include __DIR__ . '/../header.php';
         </div>
     </div>
 </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
     <script>
-        var myCarousel = document.querySelector('#carouselExampleCaptions')
-        var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 2000,
-        wrap: false
-        })</script>
+        // var myCarousel = document.querySelector('#carouselExampleCaptions')
+        // var carousel = new bootstrap.Carousel(myCarousel, {
+        // interval: 2000,
+        // wrap: false
+        // })
+    </script>
 
     <?php
     include __DIR__ . '/../footer/footer.php';
     ?>
 </body>
-
-

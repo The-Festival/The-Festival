@@ -1,0 +1,37 @@
+.formPasswd{
+    display: block;
+    margin: 5%;
+    background-color: rgb(255, 255, 255, .3);
+    padding: 2%;
+    max-width: 40%;
+    align-self: center;
+}
+.form-label{
+    color:#6716C7;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 200%;
+    text-align: center;
+    line-height: 50px;
+    margin: 10px;
+}
+.inputField{
+    border-radius: 10px;
+    max-width: 90%;
+    margin: 10px;
+}
+.submit-btn{
+    background-color: #6716C7;
+    color: white;
+    border-radius: 10px;
+    border: 0px;
+    max-width: 100%;
+    margin: 2%;
+    color:#ffffff;
+    font-size: 130%;
+    background-color: #F969B5;
+    padding:3px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
