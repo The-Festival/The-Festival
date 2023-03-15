@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 13, 2023 at 07:42 PM
+-- Generation Time: Mar 14, 2023 at 02:45 PM
 -- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
 -- PHP Version: 8.0.25
 
@@ -218,12 +218,21 @@ CREATE TABLE `Tour` (
 
 CREATE TABLE `User` (
   `user_id` int(11) NOT NULL,
-  `fullname` int(128) NOT NULL,
+  `fullname` varchar(128) NOT NULL,
   `email` varchar(320) NOT NULL,
-  `paswword` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
   `role` varchar(20) NOT NULL,
   `registration_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `User`
+--
+
+INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registration_date`) VALUES
+(1, 'Mutti', 'mutti123@gmail.com', '$2y$10$U2C8GzuGPEkNs5BF0TvQMu1rtGuBlMoMWBqzZoXzfXBJNVH.0Hjry', 'customer', '2023-03-01'),
+(2, 'Frank', 'frankie12345@hotmail.com', '$2y$10$U2C8GzuGPEkNs5BF0TvQMu1rtGuBlMoMWBqzZoXzfXBJNVH.0Hjry', 'admin', '2022-04-03'),
+(6, 'Usman', 'muttalip9801@gmail.com', '$2y$10$3a5G7f6I7Z6/XWJXLG.mrerYugDEi0DTTcK62SbBmZ/brLgRr2Pn6', 'customer', '2023-03-14');
 
 --
 -- Indexes for dumped tables
@@ -343,6 +352,12 @@ ALTER TABLE `Event Jazz`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `Foto`
+--
+ALTER TABLE `Foto`
+  MODIFY `foto_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `Guide`
 --
 ALTER TABLE `Guide`
@@ -395,6 +410,12 @@ ALTER TABLE `Session`
 --
 ALTER TABLE `Tour`
   MODIFY `tour_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `User`
+--
+ALTER TABLE `User`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
