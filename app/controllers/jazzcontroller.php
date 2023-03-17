@@ -5,6 +5,7 @@ require __DIR__ . '/../services/jazzservice.php';
 class JazzController
 {
     private $jazzService;
+    public $artistList;
 
     function __construct()
     {
@@ -14,5 +15,10 @@ class JazzController
     public function index()
     {
         require __DIR__ . '/../views/jazz/index.php';
+    }
+
+    private function getAllArtists()
+    {
+        $artistlist = $this->jazzService->getAllArtists();
     }
 }

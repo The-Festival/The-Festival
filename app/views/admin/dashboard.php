@@ -61,7 +61,7 @@ include __DIR__ . '/../header.php';
             var dashboardContentText;
             switch (this.innerText) {
                 case 'Jazz':
-                    dashboardContentText = '<h2>Jazz Dashboard</h2>';
+                    dashboardContentText = '<?php include __DIR__ . '/jazz.php' ?>';
                     break;
                 case 'Yummy':
                     dashboardContentText = '<h2>Yummy Dashboard</h2>';
