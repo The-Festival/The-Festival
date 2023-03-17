@@ -15,7 +15,9 @@ include __DIR__ . '/../header.php';
 
 <!-- This part of the dashboard needs to be dynamically loaded depending on what button is active -->
 
-<div id="dashboard-content"></div>
+<div id="dashboard-content">
+    <?php include __DIR__ . "/jazz.php"; ?>
+</div>
 
 <!-- End -->
 
@@ -61,7 +63,7 @@ include __DIR__ . '/../header.php';
             var dashboardContentText;
             switch (this.innerText) {
                 case 'Jazz':
-                    dashboardContentText = '<?php include __DIR__ . '/jazz.php' ?>';
+                    dashboardContentText = "\<?php include __DIR__ . "/jazz.php"; ?>";
                     break;
                 case 'Yummy':
                     dashboardContentText = '<h2>Yummy Dashboard</h2>';
