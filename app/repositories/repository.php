@@ -1,6 +1,6 @@
 <?php
 
-class Repository
+class BaseRepository
 {
     protected $connection;
 
