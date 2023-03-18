@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/repository.php';
+require __DIR__ . '/baserepository.php';
 require __DIR__ . '/../models/User.php';
 
 class LoginRepository extends BaseRepository {
