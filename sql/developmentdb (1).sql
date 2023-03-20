@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 20, 2023 at 11:50 AM
+-- Generation Time: Mar 20, 2023 at 11:56 AM
 -- Server version: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
 -- PHP Version: 8.0.25
 
@@ -133,6 +133,17 @@ CREATE TABLE `Location` (
   `postalcode` varchar(6) NOT NULL,
   `city` varchar(64) NOT NULL,
   `housenumber` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Main_Page`
+--
+
+CREATE TABLE `Main_Page` (
+  `mainpage_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -333,6 +344,12 @@ ALTER TABLE `Location`
   ADD PRIMARY KEY (`location_id`);
 
 --
+-- Indexes for table `Main_Page`
+--
+ALTER TABLE `Main_Page`
+  ADD PRIMARY KEY (`mainpage_id`);
+
+--
 -- Indexes for table `Order`
 --
 ALTER TABLE `Order`
@@ -436,6 +453,12 @@ ALTER TABLE `Language`
 --
 ALTER TABLE `Location`
   MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Main_Page`
+--
+ALTER TABLE `Main_Page`
+  MODIFY `mainpage_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Order`
