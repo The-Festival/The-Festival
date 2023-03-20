@@ -15,12 +15,12 @@ include __DIR__ . '/../header.php';
 <body>
     <div class="container-fluid text-center">
         <div class="row justify-content-center">
-            <form class="formPasswd" action="/resetpasswd" method="POST">
+            <form class="formPasswd" action="resetpasswd/newpasswd" method="POST">
                 <div class="form-group">
-                    <label class="form-label" for="email">Enter your email</label>
-                    <input type="email" class="form-control inputField" name="email" placeholder="Email">
+                    <label class="form-label" for="email">Enter your code</label>
+                    <input type="code" class="form-control inputField" name="code" placeholder="Code">
                 </div>
-                <button type="submit" class="btn btn-primary submit-btn" name="buttonReset">Send mail</button>
+                <button type="submit" class="btn btn-primary submit-btn" name="buttonCheck">Check code</button>
             </form>
         </div>
     </div>
