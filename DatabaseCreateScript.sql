@@ -173,7 +173,6 @@ CREATE TABLE `Restaurant` (
   `name` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
-  `restaurant_type` varchar(128) NOT NULL,
   `star_rating` int(11) NOT NULL,
   `cuisine` varchar(128) NOT NULL,
   `email` varchar(320) NOT NULL,
