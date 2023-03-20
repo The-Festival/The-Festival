@@ -1,8 +1,8 @@
 <?php
-require __DIR__ . '/baserepository.php';
+require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/User.php';
 
-class LoginRepository extends BaseRepository {
+class LoginRepository extends Repository {
     public function checkUser($username){
         try {
             $stmt = $this->connection->prepare("SELECT * FROM Users WHERE username = :name");

@@ -1,8 +1,8 @@
 <?php
-require __DIR__ . '/baserepository.php';
+require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/article.php';
 
-class ArticleRepository extends BaseRepository {
+class ArticleRepository extends Repository {
 
     function getAll() {
         try {
