@@ -11,6 +11,7 @@ require __DIR__ . '/../header.php';
     <label for="password">Password</label>
     <input type="password" class="form-control" name="password" placeholder="Password">
     <small id="emailHelp" class="form-text text-muted">dont have an account, press <a href="/signin">Here</a></small>
+    <small id="emailHelp" class="form-text text-muted"><a href="/resetpasswd">Forgot password?</a></small>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

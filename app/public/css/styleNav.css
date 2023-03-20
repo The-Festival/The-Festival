@@ -1,20 +1,30 @@
+body {
+    height: 100%;
+    background: linear-gradient(96.09deg, #CFB8FF 15.59%, #FFC0F5 47.73%, #FFE9B0 80.81%);
+}
+
 .container{
     min-width: 100%;
     padding-left: 2%;
     padding-right: 2%;
 }
+#nav{
+    top: 0px;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 99999;
+}
 #header{
     background-color: #6716C7;
     min-height: 64px;
     max-height: 64px;
-    top: 0;
 }
 .nav-link{
-    color:rgb(237, 237, 237);
+    color:rgb(237, 237, 237)!important;
     font-size: large;
 }
 .nav-item a:hover{
-    color:#c290ff;
+    color:#c290ff !important;
 }
 .nav-item{
     background-color: #6716C7;
@@ -28,7 +38,7 @@ a:hover{
 }
 #logo{
     max-height:25px;
-    position: fixed;
+    position: absolute;
     top: 20px;
     padding-left: 3%;
     background-color: #6716C7;
@@ -41,8 +51,6 @@ a:hover{
     background-image: url('/img/dropdown.png');
     max-height: 25px;
     max-width: 25px;
-    position:sticky;
-    /* position: absolute; */
     top: 20px;
     right: 3%;
 }
@@ -52,5 +60,4 @@ a:hover{
     outline: none;
     box-shadow: none;
 }
-
 
