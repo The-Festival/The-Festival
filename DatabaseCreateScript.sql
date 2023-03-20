@@ -165,10 +165,10 @@ CREATE TABLE `Reservation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Restraurant`
+-- Table structure for table `Restaurant`
 --
 
-CREATE TABLE `Restraurant` (
+CREATE TABLE `Restaurant` (
   `restaurant_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` text NOT NULL,
@@ -304,9 +304,9 @@ ALTER TABLE `Reservation`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `Restraurant`
+-- Indexes for table `Restaurant`
 --
-ALTER TABLE `Restraurant`
+ALTER TABLE `Restaurant`
   ADD PRIMARY KEY (`restaurant_id`);
 
 --
@@ -394,9 +394,9 @@ ALTER TABLE `Reservation`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Restraurant`
+-- AUTO_INCREMENT for table `Restaurant`
 --
-ALTER TABLE `Restraurant`
+ALTER TABLE `Restaurant`
   MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -450,7 +450,7 @@ ALTER TABLE `Reservation`
 -- Constraints for table `Session`
 --
 ALTER TABLE `Session`
-  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restraurant` (`restaurant_id`);
+  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restaurant` (`restaurant_id`);
 
 --
 -- Constraints for table `Tour`
