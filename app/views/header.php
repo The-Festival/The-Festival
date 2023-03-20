@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
         href = "/css/historyStyle.css"/> 
 </head>
 <body>
- 
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-0">
   <div class="container" id="header">
     <a class="navbar-brand" href="/"> <img id="logo" src="/img/logo.png" /></a>
