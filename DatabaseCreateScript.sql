@@ -165,18 +165,17 @@ CREATE TABLE `Reservation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Restraurant`
+-- Table structure for table `Restaurant`
 --
 
-CREATE TABLE `Restraurant` (
+CREATE TABLE `Restaurant` (
   `restaurant_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
-  `restaurant_type` varchar(128) NOT NULL,
   `star_rating` int(11) NOT NULL,
   `cuisine` varchar(128) NOT NULL,
-  `email` varchar(320) NOT NULL,
+  `website` varchar(320) NOT NULL,
   `phonenumber` varchar(15) NOT NULL,
   `total_seats` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -232,7 +231,9 @@ CREATE TABLE `User` (
 INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registration_date`) VALUES
 (1, 'Mutti', 'mutti123@gmail.com', '$2y$10$U2C8GzuGPEkNs5BF0TvQMu1rtGuBlMoMWBqzZoXzfXBJNVH.0Hjry', 'customer', '2023-03-01'),
 (2, 'Frank', 'frankie12345@hotmail.com', '$2y$10$U2C8GzuGPEkNs5BF0TvQMu1rtGuBlMoMWBqzZoXzfXBJNVH.0Hjry', 'admin', '2022-04-03'),
-(6, 'Usman', 'muttalip9801@gmail.com', '$2y$10$3a5G7f6I7Z6/XWJXLG.mrerYugDEi0DTTcK62SbBmZ/brLgRr2Pn6', 'customer', '2023-03-14');
+(6, 'Usman', 'muttalip9801@gmail.com', '$2y$10$3a5G7f6I7Z6/XWJXLG.mrerYugDEi0DTTcK62SbBmZ/brLgRr2Pn6', 'customer', '2023-03-14'),
+(7, 'Yara ', 'yaar.2b@gmail.com', 'test', 'admin', '2023-03-19');
+--
 
 --
 -- Indexes for dumped tables
@@ -304,9 +305,9 @@ ALTER TABLE `Reservation`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `Restraurant`
+-- Indexes for table `Restaurant`
 --
-ALTER TABLE `Restraurant`
+ALTER TABLE `Restaurant`
   ADD PRIMARY KEY (`restaurant_id`);
 
 --
@@ -394,9 +395,9 @@ ALTER TABLE `Reservation`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Restraurant`
+-- AUTO_INCREMENT for table `Restaurant`
 --
-ALTER TABLE `Restraurant`
+ALTER TABLE `Restaurant`
   MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -450,7 +451,7 @@ ALTER TABLE `Reservation`
 -- Constraints for table `Session`
 --
 ALTER TABLE `Session`
-  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restraurant` (`restaurant_id`);
+  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restaurant` (`restaurant_id`);
 
 --
 -- Constraints for table `Tour`
@@ -462,3 +463,12 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `Restaurant` (`restaurant_id`, `name`, `description`, `price`, `price_kids`, `restaurant_type`, `star_rating`, `cuisine`, `website`, `phonenumber`, `total_seats`) VALUES
+(1, 'Urban Frenchy Bistro Toujours', 'For a cozy and beautiful dinner, Toujours is the place to be. It’s located is the center of Haarlem, right across from the Grote kerk. It’s a french restaurant with two open kitchens and a cozy styled interior. ', 35, 17.5, 'iets?', 4, 'French', 'https://restauranttoujours.nl/', '023 5321699', 48),
+(2, 'Fris', 'Fris a modern french restaurant in the city center of Haarlem, by Rick May.  the restaurant has a relaxed atmosphere with high quality dishes, made with fresh seasonal products. Fris received in 2022 a Michelin star. ', 45, 22.5, 'geeen ideee', 4, 'French', 'https://www.restaurantfris.nl/', '023 5310717', 45),
+(3, 'Specktakel', 'Specktakel is a unique world restaurant centrally located in the heart of Haarlem. With a special covered courtyard and a terrace with a view of the historic Vleeshal and the centuries-old Bavo church.', 35, 17.5, 'wat moet hier', 3, 'World', 'https://specktakel.nl/', '023-5323841', 36),
+(4, 'Ratatouille', 'This restaurant is a star in Haarlem. It is one of the few restaurants in this city with a Michelin star. It provides a sophisticated theme with a traditional French decor. Here you can also taste some top of the line seafood with a rich and complex flavor.', 45, 22.5, 'French....', 4, 'French, European', 'https://ratatouillefoodandwine.nl/', '023 542 7270', 52),
+(5, 'Mr. & Mrs.', 'Restaurant Mr. and Mrs. serves small luxury dishes, with the size of a starter, so you can try a lot of different combinations. You can choose between hot and cold dishes and they always have a matching glass of wine with your dish.', 45, 22.5, 'tja', 4, 'European', 'https://www.restaurantmrandmrs.nl/', '023 531 5935', 40),
+(6, 'ML', 'Restaurant ML is located in historical Hotel ML. It is a french restaurant with surprising flavor combinations in their dishes, but with the right combination between traditional and new products and flavors.', 45, 22.5, 'e', 4, 'International', 'https://www.mlinhaarlem.nl/', '023 5123910', 60),
+(7, 'Grand Cafe Brinkmann', 'Grand Cafe Brinkmann has been known since 1879 in Haarlem and surroundings.  Located on the Grote Markt in the center of Haarlem. The various menu has for everyone something to offer, prepared with fresh ingredients. ', 35, 17.5, 'r', 4, 'Dutch', 'https://www.grandcafebrinkmann.nl/', '023 532 3111', 100);

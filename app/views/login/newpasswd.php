@@ -15,13 +15,13 @@ include __DIR__ . '/../header.php';
 <body>
 <div class="container-fluid text-center">
     <div class="row justify-content-center">
-        <form class="formPasswd" action="resetpasswd/newpasswd" method="POST">
+        <form class="formPasswd" action="/login" method="POST">
             <div class="form-group">
                 <label class="form-label" for="password">New Password</label>
                 <input type="password" class="form-control inputField" name="password" placeholder="New password">
                 <input type="password" class="form-control inputField" name="password" placeholder="Repeat new password">
             </div>
-            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+            <button type="submit" class="btn btn-primary submit-btn " name="buttonNewPasswd">Submit</button>
         </form>
     </div>
 </div>
