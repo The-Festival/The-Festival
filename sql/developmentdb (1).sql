@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Gegenereerd op: 20 mrt 2023 om 09:42
--- Serverversie: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
--- PHP-versie: 8.0.25
+-- Generation Time: Mar 20, 2023 at 11:50 AM
+-- Server version: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `About`
+-- Table structure for table `About`
 --
 
 CREATE TABLE `About` (
@@ -35,7 +35,7 @@ CREATE TABLE `About` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `About`
+-- Dumping data for table `About`
 --
 
 INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
@@ -53,13 +53,12 @@ INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Artist`
+-- Table structure for table `Artist`
 --
 
 CREATE TABLE `Artist` (
   `artist_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `about` text NOT NULL,
   `price` float NOT NULL,
   `link` varchar(128) NOT NULL,
   `event_id` int(11) NOT NULL,
@@ -70,22 +69,22 @@ CREATE TABLE `Artist` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Event_Jazz`
+-- Table structure for table `Event_Jazz`
 --
 
 CREATE TABLE `Event_Jazz` (
   `event_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `about` text NOT NULL,
-  `general_info` text NOT NULL,
-  `bannerfilepath` varchar(264) NOT NULL,
+  `artist_id` int(11) NOT NULL,
+  `hall` varchar(128) NOT NULL,
+  `seats` int(11) NOT NULL,
+  `seats_left` int(11) NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Foto`
+-- Table structure for table `Foto`
 --
 
 CREATE TABLE `Foto` (
@@ -99,7 +98,7 @@ CREATE TABLE `Foto` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Guide`
+-- Table structure for table `Guide`
 --
 
 CREATE TABLE `Guide` (
@@ -111,19 +110,19 @@ CREATE TABLE `Guide` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Language`
+-- Table structure for table `Language`
 --
 
 CREATE TABLE `Language` (
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `available_spaces` int(11) NOT NULL
+  `spaces_left` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Location`
+-- Table structure for table `Location`
 --
 
 CREATE TABLE `Location` (
@@ -139,23 +138,34 @@ CREATE TABLE `Location` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Pass`
+-- Table structure for table `Order`
+--
+
+CREATE TABLE `Order` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `order_time` datetime NOT NULL,
+  `payment_method` varchar(50) NOT NULL,
+  `totall_price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Order';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Pass`
 --
 
 CREATE TABLE `Pass` (
   `pass_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `description` varchar(64) NOT NULL,
-  `price` float NOT NULL,
-  `startingTime` time NOT NULL,
-  `finishTime` time NOT NULL,
-  `event_id` int(11) NOT NULL
+  `days` varchar(64) NOT NULL,
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Point_of_interest`
+-- Table structure for table `Point_of_interest`
 --
 
 CREATE TABLE `Point_of_interest` (
@@ -164,7 +174,7 @@ CREATE TABLE `Point_of_interest` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `Point_of_interest`
+-- Dumping data for table `Point_of_interest`
 --
 
 INSERT INTO `Point_of_interest` (`poi_id`, `name`) VALUES
@@ -174,7 +184,7 @@ INSERT INTO `Point_of_interest` (`poi_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Reservation`
+-- Table structure for table `Reservation`
 --
 
 CREATE TABLE `Reservation` (
@@ -189,7 +199,7 @@ CREATE TABLE `Reservation` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Restraurant`
+-- Table structure for table `Restraurant`
 --
 
 CREATE TABLE `Restraurant` (
@@ -201,14 +211,13 @@ CREATE TABLE `Restraurant` (
   `star_rating` int(11) NOT NULL,
   `cuisine` varchar(128) NOT NULL,
   `email` varchar(320) NOT NULL,
-  `phonenumber` varchar(15) NOT NULL,
-  `total_seats` int(11) NOT NULL
+  `phonenumber` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Session`
+-- Table structure for table `Session`
 --
 
 CREATE TABLE `Session` (
@@ -216,13 +225,29 @@ CREATE TABLE `Session` (
   `restaurant_id` int(11) NOT NULL,
   `start_datetime` datetime NOT NULL,
   `duration` time NOT NULL,
-  `seats_left` int(11) NOT NULL
+  `seats_left` int(11) NOT NULL,
+  `total_seats` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Tour`
+-- Table structure for table `Ticket`
+--
+
+CREATE TABLE `Ticket` (
+  `ticket_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `event_type` varchar(50) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `ischecked` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Tour`
 --
 
 CREATE TABLE `Tour` (
@@ -230,14 +255,13 @@ CREATE TABLE `Tour` (
   `language_id` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
   `start_location` varchar(150) NOT NULL,
-  `seats_left` int(11) NOT NULL,
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `User`
+-- Table structure for table `User`
 --
 
 CREATE TABLE `User` (
@@ -250,7 +274,7 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `User`
+-- Dumping data for table `User`
 --
 
 INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registration_date`) VALUES
@@ -261,68 +285,73 @@ INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registr
 (8, 'henk', 'henk@gmail.com', '$2y$10$SOk.60rek5ngz8K4ML.6T.aDppi62BvIUf6sduxAzow6kZ0dQrdiy', 'customer', '2023-03-20');
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `About`
+-- Indexes for table `About`
 --
 ALTER TABLE `About`
   ADD PRIMARY KEY (`about_id`);
 
 --
--- Indexen voor tabel `Artist`
+-- Indexes for table `Artist`
 --
 ALTER TABLE `Artist`
   ADD PRIMARY KEY (`artist_id`),
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexen voor tabel `Event_Jazz`
+-- Indexes for table `Event_Jazz`
 --
 ALTER TABLE `Event_Jazz`
   ADD PRIMARY KEY (`event_id`);
 
 --
--- Indexen voor tabel `Foto`
+-- Indexes for table `Foto`
 --
 ALTER TABLE `Foto`
   ADD PRIMARY KEY (`foto_id`);
 
 --
--- Indexen voor tabel `Guide`
+-- Indexes for table `Guide`
 --
 ALTER TABLE `Guide`
   ADD PRIMARY KEY (`guide_id`),
   ADD KEY `tour_id` (`tour_id`);
 
 --
--- Indexen voor tabel `Language`
+-- Indexes for table `Language`
 --
 ALTER TABLE `Language`
   ADD PRIMARY KEY (`language_id`);
 
 --
--- Indexen voor tabel `Location`
+-- Indexes for table `Location`
 --
 ALTER TABLE `Location`
   ADD PRIMARY KEY (`location_id`);
 
 --
--- Indexen voor tabel `Pass`
+-- Indexes for table `Order`
 --
-ALTER TABLE `Pass`
-  ADD PRIMARY KEY (`pass_id`),
-  ADD KEY `event_id` (`event_id`);
+ALTER TABLE `Order`
+  ADD PRIMARY KEY (`order_id`);
 
 --
--- Indexen voor tabel `Point_of_interest`
+-- Indexes for table `Pass`
+--
+ALTER TABLE `Pass`
+  ADD PRIMARY KEY (`pass_id`);
+
+--
+-- Indexes for table `Point_of_interest`
 --
 ALTER TABLE `Point_of_interest`
   ADD PRIMARY KEY (`poi_id`);
 
 --
--- Indexen voor tabel `Reservation`
+-- Indexes for table `Reservation`
 --
 ALTER TABLE `Reservation`
   ADD PRIMARY KEY (`reservation_id`),
@@ -330,156 +359,181 @@ ALTER TABLE `Reservation`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexen voor tabel `Restraurant`
+-- Indexes for table `Restraurant`
 --
 ALTER TABLE `Restraurant`
   ADD PRIMARY KEY (`restaurant_id`);
 
 --
--- Indexen voor tabel `Session`
+-- Indexes for table `Session`
 --
 ALTER TABLE `Session`
   ADD PRIMARY KEY (`session_id`),
   ADD KEY `restaurant_id` (`restaurant_id`);
 
 --
--- Indexen voor tabel `Tour`
+-- Indexes for table `Ticket`
+--
+ALTER TABLE `Ticket`
+  ADD PRIMARY KEY (`ticket_id`),
+  ADD KEY `FK_ticket_order_orderId` (`order_id`);
+
+--
+-- Indexes for table `Tour`
 --
 ALTER TABLE `Tour`
   ADD PRIMARY KEY (`tour_id`),
   ADD KEY `language_id` (`language_id`);
 
 --
--- Indexen voor tabel `User`
+-- Indexes for table `User`
 --
 ALTER TABLE `User`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `About`
+-- AUTO_INCREMENT for table `About`
 --
 ALTER TABLE `About`
   MODIFY `about_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT voor een tabel `Artist`
+-- AUTO_INCREMENT for table `Artist`
 --
 ALTER TABLE `Artist`
   MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Event_Jazz`
+-- AUTO_INCREMENT for table `Event_Jazz`
 --
 ALTER TABLE `Event_Jazz`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Foto`
+-- AUTO_INCREMENT for table `Foto`
 --
 ALTER TABLE `Foto`
   MODIFY `foto_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Guide`
+-- AUTO_INCREMENT for table `Guide`
 --
 ALTER TABLE `Guide`
   MODIFY `guide_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Language`
+-- AUTO_INCREMENT for table `Language`
 --
 ALTER TABLE `Language`
   MODIFY `language_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Location`
+-- AUTO_INCREMENT for table `Location`
 --
 ALTER TABLE `Location`
   MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Pass`
+-- AUTO_INCREMENT for table `Order`
+--
+ALTER TABLE `Order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Pass`
 --
 ALTER TABLE `Pass`
   MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Point_of_interest`
+-- AUTO_INCREMENT for table `Point_of_interest`
 --
 ALTER TABLE `Point_of_interest`
   MODIFY `poi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT voor een tabel `Reservation`
+-- AUTO_INCREMENT for table `Reservation`
 --
 ALTER TABLE `Reservation`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Restraurant`
+-- AUTO_INCREMENT for table `Restraurant`
 --
 ALTER TABLE `Restraurant`
   MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Session`
+-- AUTO_INCREMENT for table `Session`
 --
 ALTER TABLE `Session`
   MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `Tour`
+-- AUTO_INCREMENT for table `Ticket`
+--
+ALTER TABLE `Ticket`
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Tour`
 --
 ALTER TABLE `Tour`
   MODIFY `tour_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `User`
+-- AUTO_INCREMENT for table `User`
 --
 ALTER TABLE `User`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Beperkingen voor geëxporteerde tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Beperkingen voor tabel `Artist`
+-- Constraints for table `Artist`
 --
 ALTER TABLE `Artist`
   ADD CONSTRAINT `Artist_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event_Jazz` (`event_id`);
 
 --
--- Beperkingen voor tabel `Guide`
+-- Constraints for table `Guide`
 --
 ALTER TABLE `Guide`
   ADD CONSTRAINT `Guide_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `Tour` (`tour_id`);
 
 --
--- Beperkingen voor tabel `Pass`
+-- Constraints for table `Order`
 --
-ALTER TABLE `Pass`
-  ADD CONSTRAINT `Pass_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event_Jazz` (`event_id`);
+ALTER TABLE `Order`
+  ADD CONSTRAINT `FK_order_user_id` FOREIGN KEY (`order_id`) REFERENCES `User` (`user_id`);
 
 --
--- Beperkingen voor tabel `Reservation`
+-- Constraints for table `Reservation`
 --
 ALTER TABLE `Reservation`
   ADD CONSTRAINT `Reservation_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `Session` (`session_id`),
   ADD CONSTRAINT `Reservation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`);
 
 --
--- Beperkingen voor tabel `Session`
+-- Constraints for table `Session`
 --
 ALTER TABLE `Session`
   ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restraurant` (`restaurant_id`);
 
 --
--- Beperkingen voor tabel `Tour`
+-- Constraints for table `Ticket`
+--
+ALTER TABLE `Ticket`
+  ADD CONSTRAINT `FK_ticket_order_orderId` FOREIGN KEY (`order_id`) REFERENCES `Order` (`order_id`);
+
+--
+-- Constraints for table `Tour`
 --
 ALTER TABLE `Tour`
   ADD CONSTRAINT `Tour_ibfk_1` FOREIGN KEY (`language_id`) REFERENCES `Language` (`language_id`);
