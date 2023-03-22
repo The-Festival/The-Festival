@@ -41,7 +41,7 @@
                 <div class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
                     <div class="card-title g-0 w-100 artist-card-title"><?= $artist->getName() ?></div>
                     <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
-                        <img class="artist-image mb-3 align-self-center" src="/img/artist-subhero.png" alt="Img">
+                        <img class="artist-image mb-3 align-self-center" src="/img/Gumbo_Kings_Profile_Picture.png" alt="Img">
                         <p><strong>Time:</strong> 20:00 - 21:00</p>
                         <p><strong>Location:</strong> Patronaat</p>
                         <p><strong>Hall:</strong> Main Hall</p>

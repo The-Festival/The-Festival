@@ -21,4 +21,10 @@ class JazzController
     {
         return $this->artistService->getAllArtists();
     }
+
+    public function artist($id)
+    {
+        $artist = $this->artistService->getArtistByID($id);
+        require __DIR__ . '/../views/jazz/artist.php';
+    }
 }

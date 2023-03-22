@@ -41,7 +41,7 @@ CREATE TABLE `About` (
 INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
 (1, 1, 'history', 'Take a 2 hour tour the City of Haarlem to immerse yourself into the history of one of the oldest cities in the Netherlands. An amazing walk of discovery covering nine historic landmarks starting at St. Bavo Kerk the walk shows how much the city has changed from the 13th Century. Refreshments will be available at the iconic Jopenkerk. Do not miss on on this great opportunity for the whole family'),
 (2, 2, 'history', 'Reformed Protestant church and former Catholic cathedral located on the central market square (Grote Markt).\r\nFirst mention of a church on this spot was made in 1307, but the wooden structure burned in the 14th century. The church was rebuilt and promoted to chapter church in 1479 and only became a cathedral in 1559.'),
-(3, 2, 'history', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers\' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church. This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
+(3, 2, 'history', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers\' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church.This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
 (4, 2, 'history', 'Frans Hals Museum - Hal (formally: De Hallen Haarlem) is one of the two locations of the Frans Hals Museum, located on the Grote Markt, where modern and contemporary art is on display in alternating presentations. The emphasis is on contemporary photograph and video presentations, with the focus on Man and society. '),
 (5, 2, 'history', 'Founded in 1707 by the city council to house elderly men. The main buildings are from the 14th century\r\nUnlike hofjes that were meant for poor elderly women, the homes around this courtyard are much larger, because the inhabitants were men who actually paid the rent as opposed to hofje inhabitants who had no income to spend on rent.'),
 (6, 2, 'history', 'Since 1992 Jopenkerk aims to promote the traditional beers of Haarlem. Two \'recipes\' were found useful for brewing again. A recipe from 1407 yielded Koyt , a gruit beer . The recipe for the beer that came on the market as Hoppenbier dates back to 1501. In 1994, both beers could be presented on the occasion of the city\'s 750th anniversary.'),
@@ -61,7 +61,6 @@ CREATE TABLE `Artist` (
   `name` varchar(128) NOT NULL,
   `price` float NOT NULL,
   `link` varchar(128) NOT NULL,
-  `event_id` int(11) NOT NULL,
   `genre` varchar(256) NOT NULL,
   `track` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -309,8 +308,7 @@ ALTER TABLE `About`
 -- Indexes for table `Artist`
 --
 ALTER TABLE `Artist`
-  ADD PRIMARY KEY (`artist_id`),
-  ADD KEY `event_id` (`event_id`);
+  ADD PRIMARY KEY (`artist_id`);
 
 --
 -- Indexes for table `Event_Jazz`
@@ -517,12 +515,6 @@ ALTER TABLE `User`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `Artist`
---
-ALTER TABLE `Artist`
-  ADD CONSTRAINT `Artist_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event_Jazz` (`event_id`);
 
 --
 -- Constraints for table `Guide`
