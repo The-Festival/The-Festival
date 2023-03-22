@@ -33,6 +33,25 @@
         </div>
     </div>
 
+    <!-- -->
+
+    <div class="container">
+        <div class="row gap-3 my-3 d-flex justify-content-center">
+            <div class="card p-0 col d-flex align-items-center justify-content-center artist-card">
+                <div class="card-title g-0 w-100 artist-card-title">Miles Sanko</div>
+                <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
+                    <img class="artist-image mb-3 align-self-center" src="/img/artist-subhero.png" alt="Img">
+                    <p><strong>Time:</strong> 20:00 - 22:00</p>
+                    <p><strong>Location:</strong> Patronaat</p>
+                    <p><strong>Hall:</strong> Main Hall</p>
+                    <p><strong>Price:</strong> €15</p>
+                    <a href="#">Discover more!</a>
+                    <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 4 Cards that represents the passes -->
 
     <div class="container">
