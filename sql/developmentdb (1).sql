@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 14, 2023 at 02:45 PM
--- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
+-- Generation Time: Mar 20, 2023 at 11:56 AM
+-- Server version: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
 -- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,6 +34,22 @@ CREATE TABLE `About` (
   `about` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `About`
+--
+
+INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
+(1, 1, 'history', 'Take a 2 hour tour the City of Haarlem to immerse yourself into the history of one of the oldest cities in the Netherlands. An amazing walk of discovery covering nine historic landmarks starting at St. Bavo Kerk the walk shows how much the city has changed from the 13th Century. Refreshments will be available at the iconic Jopenkerk. Do not miss on on this great opportunity for the whole family'),
+(2, 2, 'history', 'Reformed Protestant church and former Catholic cathedral located on the central market square (Grote Markt).\r\nFirst mention of a church on this spot was made in 1307, but the wooden structure burned in the 14th century. The church was rebuilt and promoted to chapter church in 1479 and only became a cathedral in 1559.'),
+(3, 2, 'history', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers\' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church. This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
+(4, 2, 'history', 'Frans Hals Museum - Hal (formally: De Hallen Haarlem) is one of the two locations of the Frans Hals Museum, located on the Grote Markt, where modern and contemporary art is on display in alternating presentations. The emphasis is on contemporary photograph and video presentations, with the focus on Man and society. '),
+(5, 2, 'history', 'Founded in 1707 by the city council to house elderly men. The main buildings are from the 14th century\r\nUnlike hofjes that were meant for poor elderly women, the homes around this courtyard are much larger, because the inhabitants were men who actually paid the rent as opposed to hofje inhabitants who had no income to spend on rent.'),
+(6, 2, 'history', 'Since 1992 Jopenkerk aims to promote the traditional beers of Haarlem. Two \'recipes\' were found useful for brewing again. A recipe from 1407 yielded Koyt , a gruit beer . The recipe for the beer that came on the market as Hoppenbier dates back to 1501. In 1994, both beers could be presented on the occasion of the city\'s 750th anniversary.'),
+(7, 2, 'history', 'Oldest church in Haarlem, built in 1348. The Walloon church was a real refugee church: in the 16th century, Flemish Protestants had fled from the ruling Catholic Spaniards. The Spanish government gave them a choice: convert to the Catholic faith or leave. More than a hundred thousand Protestants chose the latter option. '),
+(8, 2, 'history', 'The windmill was built on the foundations of the Goevrouwetoren by Adriaan de Booys, an industrial producer from Amsterdam. The windmill that burnt down in 1932 and was rebuilt in 2002. The original windmill dates from 1779 and the mill has been a distinctive part of the skyline of Haarlem for centuries.'),
+(9, 2, 'history', 'Created in 1355 and is the only remaining city gate from the defenses of Haarlem. Until the 17th century it was the city gate used for traffic by land eastwards towards Spaarnwoude over the Laeghe weg (now Oude weg). In 1631 the Haarlemmertrekvaart was dug, which shortened the waterway from Haarlem to\r\nAmsterdam considerably.'),
+(10, 2, 'history', 'Founded in 1395 it is the oldest hofje in the Netherlands. The earliest mention of it in town records is from the History of Haarlem by Samuel Ampzing  Initially, the hofje consisted of 13 houses for 20 women, then one of the buildings was converted into a regent\'s room , after which there was still room for 12 women.');
+
 -- --------------------------------------------------------
 
 --
@@ -43,7 +59,6 @@ CREATE TABLE `About` (
 CREATE TABLE `Artist` (
   `artist_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `about` text NOT NULL,
   `price` float NOT NULL,
   `link` varchar(128) NOT NULL,
   `event_id` int(11) NOT NULL,
@@ -54,15 +69,15 @@ CREATE TABLE `Artist` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Event Jazz`
+-- Table structure for table `Event_Jazz`
 --
 
-CREATE TABLE `Event Jazz` (
+CREATE TABLE `Event_Jazz` (
   `event_id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `about` text NOT NULL,
-  `general_info` text NOT NULL,
-  `bannerfilepath` varchar(264) NOT NULL,
+  `artist_id` int(11) NOT NULL,
+  `hall` varchar(128) NOT NULL,
+  `seats` int(11) NOT NULL,
+  `seats_left` int(11) NOT NULL,
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -101,7 +116,7 @@ CREATE TABLE `Guide` (
 CREATE TABLE `Language` (
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `available_spaces` int(11) NOT NULL
+  `spaces_left` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -123,29 +138,59 @@ CREATE TABLE `Location` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Main_Page`
+--
+
+CREATE TABLE `Main_Page` (
+  `mainpage_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Order`
+--
+
+CREATE TABLE `Order` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `order_time` datetime NOT NULL,
+  `payment_method` varchar(50) NOT NULL,
+  `totall_price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Order';
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Pass`
 --
 
 CREATE TABLE `Pass` (
   `pass_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `description` varchar(64) NOT NULL,
-  `price` float NOT NULL,
-  `startingTime` time NOT NULL,
-  `finishTime` time NOT NULL,
-  `event_id` int(11) NOT NULL
+  `days` varchar(64) NOT NULL,
+  `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Point of interest`
+-- Table structure for table `Point_of_interest`
 --
 
-CREATE TABLE `Point of interest` (
+CREATE TABLE `Point_of_interest` (
   `poi_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Point_of_interest`
+--
+
+INSERT INTO `Point_of_interest` (`poi_id`, `name`) VALUES
+(1, 'history home page'),
+(2, 'history home');
 
 -- --------------------------------------------------------
 
@@ -165,19 +210,19 @@ CREATE TABLE `Reservation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Restaurant`
+-- Table structure for table `Restraurant`
 --
 
-CREATE TABLE `Restaurant` (
+CREATE TABLE `Restraurant` (
   `restaurant_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
+  `restaurant_type` varchar(128) NOT NULL,
   `star_rating` int(11) NOT NULL,
   `cuisine` varchar(128) NOT NULL,
-  `website` varchar(320) NOT NULL,
-  `phonenumber` varchar(15) NOT NULL,
-  `total_seats` int(11) NOT NULL
+  `email` varchar(320) NOT NULL,
+  `phonenumber` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -191,7 +236,23 @@ CREATE TABLE `Session` (
   `restaurant_id` int(11) NOT NULL,
   `start_datetime` datetime NOT NULL,
   `duration` time NOT NULL,
-  `seats_left` int(11) NOT NULL
+  `seats_left` int(11) NOT NULL,
+  `total_seats` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Ticket`
+--
+
+CREATE TABLE `Ticket` (
+  `ticket_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `event_type` varchar(50) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `ischecked` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -205,7 +266,6 @@ CREATE TABLE `Tour` (
   `language_id` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
   `start_location` varchar(150) NOT NULL,
-  `seats_left` int(11) NOT NULL,
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -232,8 +292,8 @@ INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registr
 (1, 'Mutti', 'mutti123@gmail.com', '$2y$10$U2C8GzuGPEkNs5BF0TvQMu1rtGuBlMoMWBqzZoXzfXBJNVH.0Hjry', 'customer', '2023-03-01'),
 (2, 'Frank', 'frankie12345@hotmail.com', '$2y$10$U2C8GzuGPEkNs5BF0TvQMu1rtGuBlMoMWBqzZoXzfXBJNVH.0Hjry', 'admin', '2022-04-03'),
 (6, 'Usman', 'muttalip9801@gmail.com', '$2y$10$3a5G7f6I7Z6/XWJXLG.mrerYugDEi0DTTcK62SbBmZ/brLgRr2Pn6', 'customer', '2023-03-14'),
-(7, 'Yara ', 'yaar.2b@gmail.com', 'test', 'admin', '2023-03-19');
---
+(7, 'Thijs Moerland', 'Moerland8@gmail.com', '$2y$10$/hl0X1lVbEwtbuT5LwAtIuB.KjZHKK7k8gjD5ONsZY7oqp4JGbzii', 'customer', '2023-03-15'),
+(8, 'henk', 'henk@gmail.com', '$2y$10$SOk.60rek5ngz8K4ML.6T.aDppi62BvIUf6sduxAzow6kZ0dQrdiy', 'customer', '2023-03-20');
 
 --
 -- Indexes for dumped tables
@@ -253,9 +313,9 @@ ALTER TABLE `Artist`
   ADD KEY `event_id` (`event_id`);
 
 --
--- Indexes for table `Event Jazz`
+-- Indexes for table `Event_Jazz`
 --
-ALTER TABLE `Event Jazz`
+ALTER TABLE `Event_Jazz`
   ADD PRIMARY KEY (`event_id`);
 
 --
@@ -284,16 +344,27 @@ ALTER TABLE `Location`
   ADD PRIMARY KEY (`location_id`);
 
 --
+-- Indexes for table `Main_Page`
+--
+ALTER TABLE `Main_Page`
+  ADD PRIMARY KEY (`mainpage_id`);
+
+--
+-- Indexes for table `Order`
+--
+ALTER TABLE `Order`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `Pass`
 --
 ALTER TABLE `Pass`
-  ADD PRIMARY KEY (`pass_id`),
-  ADD KEY `event_id` (`event_id`);
+  ADD PRIMARY KEY (`pass_id`);
 
 --
--- Indexes for table `Point of interest`
+-- Indexes for table `Point_of_interest`
 --
-ALTER TABLE `Point of interest`
+ALTER TABLE `Point_of_interest`
   ADD PRIMARY KEY (`poi_id`);
 
 --
@@ -305,9 +376,9 @@ ALTER TABLE `Reservation`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `Restaurant`
+-- Indexes for table `Restraurant`
 --
-ALTER TABLE `Restaurant`
+ALTER TABLE `Restraurant`
   ADD PRIMARY KEY (`restaurant_id`);
 
 --
@@ -316,6 +387,13 @@ ALTER TABLE `Restaurant`
 ALTER TABLE `Session`
   ADD PRIMARY KEY (`session_id`),
   ADD KEY `restaurant_id` (`restaurant_id`);
+
+--
+-- Indexes for table `Ticket`
+--
+ALTER TABLE `Ticket`
+  ADD PRIMARY KEY (`ticket_id`),
+  ADD KEY `FK_ticket_order_orderId` (`order_id`);
 
 --
 -- Indexes for table `Tour`
@@ -338,7 +416,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT for table `About`
 --
 ALTER TABLE `About`
-  MODIFY `about_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `about_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `Artist`
@@ -347,9 +425,9 @@ ALTER TABLE `Artist`
   MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Event Jazz`
+-- AUTO_INCREMENT for table `Event_Jazz`
 --
-ALTER TABLE `Event Jazz`
+ALTER TABLE `Event_Jazz`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -377,16 +455,28 @@ ALTER TABLE `Location`
   MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `Main_Page`
+--
+ALTER TABLE `Main_Page`
+  MODIFY `mainpage_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Order`
+--
+ALTER TABLE `Order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `Pass`
 --
 ALTER TABLE `Pass`
   MODIFY `pass_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Point of interest`
+-- AUTO_INCREMENT for table `Point_of_interest`
 --
-ALTER TABLE `Point of interest`
-  MODIFY `poi_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Point_of_interest`
+  MODIFY `poi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `Reservation`
@@ -395,9 +485,9 @@ ALTER TABLE `Reservation`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Restaurant`
+-- AUTO_INCREMENT for table `Restraurant`
 --
-ALTER TABLE `Restaurant`
+ALTER TABLE `Restraurant`
   MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -405,6 +495,12 @@ ALTER TABLE `Restaurant`
 --
 ALTER TABLE `Session`
   MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Ticket`
+--
+ALTER TABLE `Ticket`
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Tour`
@@ -416,7 +512,7 @@ ALTER TABLE `Tour`
 -- AUTO_INCREMENT for table `User`
 --
 ALTER TABLE `User`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -426,7 +522,7 @@ ALTER TABLE `User`
 -- Constraints for table `Artist`
 --
 ALTER TABLE `Artist`
-  ADD CONSTRAINT `Artist_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event Jazz` (`event_id`);
+  ADD CONSTRAINT `Artist_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event_Jazz` (`event_id`);
 
 --
 -- Constraints for table `Guide`
@@ -435,10 +531,10 @@ ALTER TABLE `Guide`
   ADD CONSTRAINT `Guide_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `Tour` (`tour_id`);
 
 --
--- Constraints for table `Pass`
+-- Constraints for table `Order`
 --
-ALTER TABLE `Pass`
-  ADD CONSTRAINT `Pass_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event Jazz` (`event_id`);
+ALTER TABLE `Order`
+  ADD CONSTRAINT `FK_order_user_id` FOREIGN KEY (`order_id`) REFERENCES `User` (`user_id`);
 
 --
 -- Constraints for table `Reservation`
@@ -451,7 +547,13 @@ ALTER TABLE `Reservation`
 -- Constraints for table `Session`
 --
 ALTER TABLE `Session`
-  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restaurant` (`restaurant_id`);
+  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restraurant` (`restaurant_id`);
+
+--
+-- Constraints for table `Ticket`
+--
+ALTER TABLE `Ticket`
+  ADD CONSTRAINT `FK_ticket_order_orderId` FOREIGN KEY (`order_id`) REFERENCES `Order` (`order_id`);
 
 --
 -- Constraints for table `Tour`
@@ -463,12 +565,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-INSERT INTO `Restaurant` (`restaurant_id`, `name`, `description`, `price`, `price_kids`, `restaurant_type`, `star_rating`, `cuisine`, `website`, `phonenumber`, `total_seats`) VALUES
-(1, 'Urban Frenchy Bistro Toujours', 'For a cozy and beautiful dinner, Toujours is the place to be. It’s located is the center of Haarlem, right across from the Grote kerk. It’s a french restaurant with two open kitchens and a cozy styled interior. ', 35, 17.5, 'iets?', 4, 'French', 'https://restauranttoujours.nl/', '023 5321699', 48),
-(2, 'Fris', 'Fris a modern french restaurant in the city center of Haarlem, by Rick May.  the restaurant has a relaxed atmosphere with high quality dishes, made with fresh seasonal products. Fris received in 2022 a Michelin star. ', 45, 22.5, 'geeen ideee', 4, 'French', 'https://www.restaurantfris.nl/', '023 5310717', 45),
-(3, 'Specktakel', 'Specktakel is a unique world restaurant centrally located in the heart of Haarlem. With a special covered courtyard and a terrace with a view of the historic Vleeshal and the centuries-old Bavo church.', 35, 17.5, 'wat moet hier', 3, 'World', 'https://specktakel.nl/', '023-5323841', 36),
-(4, 'Ratatouille', 'This restaurant is a star in Haarlem. It is one of the few restaurants in this city with a Michelin star. It provides a sophisticated theme with a traditional French decor. Here you can also taste some top of the line seafood with a rich and complex flavor.', 45, 22.5, 'French....', 4, 'French, European', 'https://ratatouillefoodandwine.nl/', '023 542 7270', 52),
-(5, 'Mr. & Mrs.', 'Restaurant Mr. and Mrs. serves small luxury dishes, with the size of a starter, so you can try a lot of different combinations. You can choose between hot and cold dishes and they always have a matching glass of wine with your dish.', 45, 22.5, 'tja', 4, 'European', 'https://www.restaurantmrandmrs.nl/', '023 531 5935', 40),
-(6, 'ML', 'Restaurant ML is located in historical Hotel ML. It is a french restaurant with surprising flavor combinations in their dishes, but with the right combination between traditional and new products and flavors.', 45, 22.5, 'e', 4, 'International', 'https://www.mlinhaarlem.nl/', '023 5123910', 60),
-(7, 'Grand Cafe Brinkmann', 'Grand Cafe Brinkmann has been known since 1879 in Haarlem and surroundings.  Located on the Grote Markt in the center of Haarlem. The various menu has for everyone something to offer, prepared with fresh ingredients. ', 35, 17.5, 'r', 4, 'Dutch', 'https://www.grandcafebrinkmann.nl/', '023 532 3111', 100);
