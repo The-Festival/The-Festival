@@ -24,8 +24,6 @@ class AdminController{
 
     public function Jazz()
     {
-        $this->artistService = new ArtistService();
-        $artists = $this->artistService->getAllArtists();
         include __DIR__ . '/../views/admin/jazz.php';
     }
 

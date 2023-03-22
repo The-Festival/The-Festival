@@ -2,7 +2,7 @@
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/User.php';
 
-class UserRepository extends BaseRepository {
+class UserRepository extends Repository {
     public function checkUser($username){
         try {
             $stmt = $this->connection->prepare("SELECT * FROM Users WHERE username = :name");

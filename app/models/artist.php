@@ -1,15 +1,30 @@
 <?php
 
-class Artist {
+class Artist{
+
     private $id;
     private $name;
-    private $description;
+    private $about;
     private $price;
-    
-    public function __construct($id, $name, $description, $price) {
+    private $genre;
+
+    public function __construct($id, $name, $about, $price, $genre){
         $this->id = $id;
         $this->name = $name;
-        $this->description = $description;
+        $this->about = $about;
         $this->price = $price;
+        $this->genre = $genre;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getAbout(){
+        return $this->about;
+    }
+    
+    public function getPrice(){
+        return $this->price;
     }
 }

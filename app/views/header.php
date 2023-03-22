@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" style="height:100%">
 
@@ -37,9 +38,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class=" d-flex justify-content-end navbar-nav me-auto w-100">
-          <li class="nav-item">
-            <a class="nav-link" href="/article">Dance</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/jazz">Jazz</a>
           </li>
@@ -47,7 +46,10 @@
             <a class="nav-link text-white" href="/yummy/yummy">Yummy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/home/about">History</a>
+            <a class="nav-link" href="/history">History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/kids">Kids</a>
           </li>
           <li class="nav-item">
           <a class="nav-link" href="/article">My Program</a>

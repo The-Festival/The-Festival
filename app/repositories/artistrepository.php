@@ -2,7 +2,7 @@
 
 require __DIR__ . '/repository.php';
 
-class ArtistRepository extends BaseRepository{
+class ArtistRepository extends Repository{
 
     public function getAllArtists(){
         try {
