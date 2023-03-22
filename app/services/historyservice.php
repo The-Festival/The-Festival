@@ -10,6 +10,9 @@ class HistoryService{
     public function getPointOfInterestData($id){
         return $this->historyRepository->getPointOfInterestData($id);
     }
+    public function getTourInfo(){
+        return $this->historyRepository->getTourInfo();
+    }
 }
 
 ?>

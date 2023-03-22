@@ -2,6 +2,7 @@
 
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/POI.php';
+require __DIR__ . '/../models/tour.php';
 
 class HistoryRepository extends Repository{
     public function getPointOfInterestData($id){
@@ -10,6 +11,19 @@ class HistoryRepository extends Repository{
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'POI');
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+
+    public function getTourInfo(){
+        try {
+            $stmt = $this->connection->prepare("SELECT T.datetime, L.name, L.spaces_left FROM `Tour` AS T INNER JOIN Language AS L ON L.tour_id=T.tour_id ORDER BY T.tour_id;");
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Tour');
             $result = $stmt->fetchAll();
             
             return $result;
