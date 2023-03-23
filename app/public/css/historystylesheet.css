@@ -116,3 +116,39 @@ body {
   opacity: 1!important;
 }
 
+.tourBTN {
+  background-color: #9747FF;
+  border-radius: 5px;
+  padding: 1rem;
+  color :white;
+  max-height: 60px;
+  margin: auto
+}
+
+.tourInfoBox {
+  background-color: rgba(255, 251, 251, 0.3);
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.to-know{
+  padding: 2%;
+  background: #6716C7;
+  border-radius: 83px;
+  margin: 3%;
+}
+.to-know-list{
+  color: white;
+  float: left;
+  font-family: 'Poppins';
+  text-align: left;
+  font-size: 130%;
+  max-width: 40%;
+  font-weight: 400;
+  line-height:40px;
+  margin-top:2%;
+}
+#to-know-img{
+  float: right;
+  max-width: 40%;
+  max-height: 361px;
+}

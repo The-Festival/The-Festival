@@ -19,54 +19,94 @@ $poi = $POI[0];
 
   <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1QwRf-NzzYyQ-awbVT88sfzkIro1xAT8&ehbc=2E312F"class="w-100" height="480"></iframe>
 
-    <div class="block-1">
+  <div class="block-1 mb-5">
     
     <div class="slideshow-container">
 
 <!-- Full-width images with number and caption text -->
-<?php for($i = 0; $i < count($slider); $i++){?>
+      <?php for($i = 0; $i < count($slider); $i++){?>
 
-   <div class="mySlides fade">
-      <p><?php echo $slider[$i]->getText(); ?></p>
-      <div class="text">Caption Text</div>
-   </div>
+        <div class="mySlides fade">
+            <p><?php echo $slider[$i]->getText(); ?></p>
+            <div class="text">Caption Text</div>
+        </div>
 
-<?php } ?>
-
-<style></style>
-
-<!-- <div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="img2.jpg" style="width:100%">
-  <div class="text">Caion Two</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="img3.jpg" style="width:100%">
-  <div class="text">Caption Three</div>
-</div> -->
+      <?php } ?>
 
 <!-- Next and previous buttons -->
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
 
 <!-- The dots/circles -->
-<div style="text-align:center">
+    <div style="text-align:center">
 
-   <?php for($i = 0; $i < count($slider); $i++){?> 
+      <?php for($i = 0; $i < count($slider); $i++){?> 
 
-      <span class="dot" onclick="currentSlide(<?php echo $i+1;?>)"></span>
+          <span class="dot" onclick="currentSlide(<?php echo $i+1;?>)"></span>
 
-   <?php } ?>
-<!-- <span class="dot" onclick="currentSlide(2)"></span>
-<span class="dot" onclick="currentSlide(3)"></span> -->
+      <?php } ?>
+    </div>
+
+  </div>
+
+  <table class="table mb-5">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Available languages</th>
+      <th scope="col">Available spaces</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($tourInfo as $tour) {
+      $datetime = explode(" ", $tour->getDatetime());
+      ?>
+      <tr>
+        <td><?php echo $datetime[0]; ?></td>
+        <td><?php echo $datetime[1]; ?></td>
+        <td><?php echo $tour->getName(); ?></td>
+        <td><?php echo $tour->getSpacesLeft(); ?></td>
+      </tr>
+    <?php } ?>
+  </tbody>
+</table>
+
+<div class="container-fluid text-center">
+        <div class="row justify-content-center">
+          <div class="d-flex w-50 mx-auto justify-content-center tourInfoBox align-middle p-3">
+            <div class="m-auto">
+            <p>Starting location: <b>St. Bavo Church</b></p>
+            <p>Price per person: <b>&euro;17.50</b></p>
+            <p class="mb-0">Family up to 4 people: <b>&euro;60,00</b></p>
+            </div>
+            <button class="tourBTN">BOOK A TOUR</button>
+          </div>
+            
+                
+        </div>
+    </div>
+
 </div>
 
-   </div>
-</div>
+<div class="row justify-content-center to-know-background">
+        <div class="col-8 to-know">
+                <h3 class="display-3 bold text-white font-weight-bold">Good to know:</h3>
+                <ul class="to-know-list">
+                    <li >Children under 12 years have 50% off at every restaurant</li>
+                    <li >Reservation is mandatory. A reservation fee of €10/person will be charged when a reservation is made on the Haarlem Festival site</li>
+                    <li >All restaurants are located in Haarlem, Netherlands</li>
+                </ul>
+                <img src="/img/Yummy1.png" id="to-know-img"></img>
+        </div>     
+    </div>
+
+
+
+<?php
+include __DIR__ . '/../footer/footer.php';
+?>
 <script>
 let slideIndex = 1;
 showSlides(slideIndex);
@@ -97,5 +137,3 @@ function showSlides(n) {
 </script>
 
 
-
-</div> -->
