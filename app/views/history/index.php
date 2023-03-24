@@ -28,6 +28,7 @@ $poi = $POI[0];
 
         <div class="mySlides fade">
             <p><?php echo $slider[$i]->getText(); ?></p>
+            <img src="<?php $slider[$i]->getPhoto(); ?>" alt="">
             <div class="text">Caption Text</div>
         </div>
 
@@ -94,9 +95,11 @@ $poi = $POI[0];
         <div class="col-8 to-know">
                 <h3 class="display-3 bold text-white font-weight-bold">Good to know:</h3>
                 <ul class="to-know-list">
-                    <li >Children under 12 years have 50% off at every restaurant</li>
-                    <li >Reservation is mandatory. A reservation fee of €10/person will be charged when a reservation is made on the Haarlem Festival site</li>
-                    <li >All restaurants are located in Haarlem, Netherlands</li>
+                    <li >Due to the nature of this walk participants must be a minimum of 12 years
+old and no strollers are allowed.</li>
+                    <li >
+Groups will consist of 12 participants + 1
+ guide</li>
                 </ul>
                 <img src="/img/Yummy1.png" id="to-know-img"></img>
         </div>     
