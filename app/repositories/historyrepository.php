@@ -22,7 +22,7 @@ class HistoryRepository extends Repository{
 
     public function getPhotosByPOIID($id){
         try {
-            $stmt = $this->connection->prepare("SELECT `foto_id`,`poi_id`,`filepath`,`isBanner` FROM `Foto` WHERE poi_id = :id;");
+            $stmt = $this->connection->prepare("SELECT `foto_id`,`poi_id`,`filepath`,`isBanner` FROM `Foto` WHERE poi_id = :id AND isBanner = 0;");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'IMG');
@@ -39,6 +39,19 @@ class HistoryRepository extends Repository{
             $stmt = $this->connection->prepare("SELECT T.tour_id AS tour_ID, T.datetime, GROUP_CONCAT(DISTINCT L.name SEPARATOR ', ') AS name, GROUP_CONCAT(L.spaces_left SEPARATOR ', ') AS spaces_left FROM `Tour` AS T INNER JOIN Language AS L ON L.tour_id=T.tour_id ORDER BY T.tour_id;");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Tour');
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+    public function getPageBanner($id){
+        try {
+            $stmt = $this->connection->prepare("SELECT `foto_id`,`poi_id`,`filepath`,`isBanner` FROM `Foto` WHERE poi_id = :id AND isBanner = 1;");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'IMG');
             $result = $stmt->fetchAll();
             
             return $result;

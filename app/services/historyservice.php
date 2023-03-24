@@ -10,7 +10,9 @@ class HistoryService{
     public function getPointOfInterestDataWithoutIMG($id){
         return $this->historyRepository->getPointOfInterestDataWithoutIMG($id);
     }
-
+    public function getPageBanner($id){
+        return $this->historyRepository->getPageBanner($id);
+    }
     public function getPointOfInterestData($id){
         $poi = $this->historyRepository->getPointOfInterestDataWithoutIMG($id);
         $img = $this->historyRepository->getPhotosByPOIID($id);

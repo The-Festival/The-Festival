@@ -18,7 +18,10 @@ class HistoryController {
     }
 
     function detailpage(){
-        
+        $id = htmlspecialchars($_GET["id"]);
+        $banner = $this->historyService->getPageBanner($id);
+        $pagePOI = $this->historyService->getPointOfInterestData($id);
+        require __DIR__ . '/../views/history/detailpage.php';
     }
 
 }
