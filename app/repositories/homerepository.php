@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . '/repository.php');
+require_once(__DIR__ . '/../models/location.php');
 class HomeRepository extends Repository
 {
 
@@ -40,8 +41,7 @@ class HomeRepository extends Repository
         ");
             $stmt->bindParam(':date', $date);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } catch (PDOException $e)
         {
@@ -52,10 +52,10 @@ class HomeRepository extends Repository
     public function getToursOnDate($date)
     {
         try{
-            $stmt = $this->connection->prepare("SELECT tour_id, datetime AS start_time, start_location FROM Tour WHERE DATE(datetime) = :date;");
+            $stmt = $this->connection->prepare("SELECT tour_id, datetime AS start_time, start_location FROM Tour WHERE DATE(datetime) = :date  ORDER BY start_time ASC;");
             $stmt->bindParam(':date', $date);
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             return $result;
         } catch (PDOException $e)
@@ -63,7 +63,18 @@ class HomeRepository extends Repository
             echo $e;
         }
     }
+    
+    public function getLocations(){
+        try{
+            $stmt = $this->connection->prepare("SELECT `location_id`, `detail_id`, `type`, `place_name`, `streetname`, `postalcode`, `city`, `housenumber` FROM `Location`;");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Location');
 
-
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
 }
 ?>

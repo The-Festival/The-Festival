@@ -17,6 +17,7 @@ class HomeController
         $dateTour = "2023-05-01";//date('Y-m-d');
         $tours = $this->homeService->getToursOnDate($dateTour);
         $tourString = $this->homeService->getTourString($tours);
+        $locations = $this->homeService->getLocations();
         require __DIR__ . '/../views/home/index.php';
     }
 

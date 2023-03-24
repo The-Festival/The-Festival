@@ -24,30 +24,39 @@ class HomeService
     }
 
     public function getToursOnDate($date)
-    {   var_dump($this->homeRepository->getToursOnDate($date));
+    {   //var_dump($this->homeRepository->getToursOnDate($date));
         return $this->homeRepository->getToursOnDate($date);
     }
 
-    function getJazzEventString($jazzEvent) {
-        $html = '<li class="event">Jazz: ';
-        if (isset($jazzEvent['first_session'])) {
-            $html .= 'First event ' . date('H:i', strtotime($jazzEvent['first_session'])) . ' Last event ' . date('H:i', strtotime($jazzEvent['last_session'])) . '<br>';
-            $html .= 'Hall: ' . $jazzEvent['first_session_hall'] . ' | ' . $jazzEvent['last_session_hall'];
-        } else {
-            $html .= 'No events';
+    function getJazzEventString($jazzEvents) {
+        $html = '<br><b>Haarlem Jazz</b>';
+        foreach ($jazzEvents as $jazzEvent) {
+            $html .= '<li class="event">';
+            if (isset($jazzEvent['first_session'])) {
+                $html .= 'First event ' . date('H:i', strtotime($jazzEvent['first_session'])) . ' Last event ' . date('H:i', strtotime($jazzEvent['last_session'])) . '<br>';
+                $html .= 'Hall: ' . $jazzEvent['first_session_hall'] . ' | ' . $jazzEvent['last_session_hall'];
+            } else {
+                $html .= 'No events';
+            }
+            $html .= '</li>';
         }
-        $html .= '</li>';
         return $html;
     }
 
-    function getTourString($tour) {
-        $html = '<li class="event">Tour: ';
-        $html .= date('Y-m-d', strtotime($tour['start_time'])) . ' ' . date('H:i', strtotime($tour['start_time'])) . ' ' . $tour['start_location'];
+
+   function getTourString($tours) {
+    $html = '<br><b>A Stroll trough History</b>';
+    foreach ($tours as $tour) {
+        $html .= '<li class="event">Tours at: ';
+        $html .= ' ' . date('H:i', strtotime($tour['start_time'])) . ' ' . $tour['start_location'];
         $html .= '</li>';
-        return $html;
+    }
+    return $html;
     }
     
-    
-
+    function getLocations(){
+        //var_dump($this->homeRepository->getLocations());
+        return $this->homeRepository->getLocations();
+    }
 }
 ?>

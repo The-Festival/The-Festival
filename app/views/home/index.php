@@ -63,7 +63,6 @@ include __DIR__ . '/../../models/User.php';
                     <ul>
                          <?php echo $jazzEventString?>
                          <?php echo $tourString?>
-                        <li class="event">event</li>
                     </ul>
                 </div>
                 <div class="col-4 events">
@@ -106,9 +105,9 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-3">
                     <h4 id="locations">Locations</h4>
                     <ol>
-                        <li class="location"><b>St. Bavo Kerk </b>(St Bavo Church) Grote Markt 22, 2011 RD Haarlem</li>
-                        <li class="location"><b>Patronaat</b> (Zijlsingel 2 2013 DN Haarlem)</br> (18:00 - 22:00)</li>
-                        <li class="location"><b>Teylers Museum</b> (Spaarne 16, 2011 CH Haarlem)</br>(10:00 - 17:00)</li>
+                        <?php foreach($locations as $location) {
+                            echo "<li class='location'><b>" . $location->getPlace_name() . "</b> " . $location->getStreetname() . " ". $location->getHousenumber() . ", " . $location->getPostalcode() ." " .$location->getCity()."</li>";
+                        }?>
                     </ol>
                 </div>
                 </div>
