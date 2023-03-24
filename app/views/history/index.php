@@ -28,7 +28,7 @@ $poi = $POI[0];
 
         <div class="mySlides fade">
             <p><?php echo $slider[$i]->getText(); ?></p>
-            <img src="<?php $slider[$i]->getPhoto(); ?>" alt="">
+            <img src="<?php echo $slider[$i]->getPhoto(); ?>" alt="">
             <div class="text">Caption Text</div>
         </div>
 

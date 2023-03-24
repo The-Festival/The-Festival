@@ -6,6 +6,7 @@ class POI{
     private $location;
     private $photo;
 
+    //getters
     public function getPointOfInterest(){
         return $this->pointOfInterest;
     }
@@ -20,6 +21,11 @@ class POI{
 
     public function getPhoto(){
         return $this->photo;
+    }
+
+    //setter
+    public function setPhoto($photo){
+        $this->photo = $photo;
     }
 
     

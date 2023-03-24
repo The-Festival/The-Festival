@@ -2,15 +2,30 @@
 
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/POI.php';
+require __DIR__ . '/../models/IMG.php';
 require __DIR__ . '/../models/tour.php';
 
 class HistoryRepository extends Repository{
-    public function getPointOfInterestData($id){
+    public function getPointOfInterestDataWithoutIMG($id){
         try {
-            $stmt = $this->connection->prepare("SELECT PO.poi_id AS pointOfInterest, A.about AS text, null AS location, F.filepath AS photo FROM `Point_of_interest` AS PO inner join About AS A on A.detail_id=PO.poi_id inner join Foto AS F on F.detail_id=PO.poi_id WHERE PO.poi_id = :id;");
+            $stmt = $this->connection->prepare("SELECT PO.poi_id AS pointOfInterest, A.about AS text, null AS location, null AS photo FROM `Point_of_interest` AS PO inner join About AS A on A.poi_id=PO.poi_id WHERE PO.poi_id = :id;");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'POI');
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+
+    public function getPhotosByPOIID($id){
+        try {
+            $stmt = $this->connection->prepare("SELECT `foto_id`,`poi_id`,`filepath`,`isBanner` FROM `Foto` WHERE poi_id = :id;");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'IMG');
             $result = $stmt->fetchAll();
             
             return $result;
