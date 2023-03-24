@@ -63,14 +63,14 @@
         <tbody>
             <?php foreach($users as $user): ?>
                 <tr>
-                    <td><?php echo $user->user_id; ?></td>
-                    <td><?php echo $user->fullname; ?></td>
-                    <td><?php echo $user->email; ?></td>
-                    <td><?php echo $user->role; ?></td>
-                    <td><?php echo $user->registration_date; ?></td>
+                    <td><?php echo $user->getUserID(); ?></td>
+                    <td><?php echo $user->getFullname(); ?></td>
+                    <td><?php echo $user->getEmail(); ?></td>
+                    <td><?php echo $user->getRole(); ?></td>
+                    <td><?php echo $user->getRegistrationDate(); ?></td>
                     <td>
-                        <a href="/admin/edituser?id=<?php echo $user->user_id; ?>" class="btn btn-primary">Edit</a>
-                        <a href="/admin/userdashboard?delete=<?php echo $user->user_id; ?>" class="btn btn-danger">Delete</a>    
+                        <a href="/admin/edituser?id=<?php echo $user->getUserID(); ?>" class="btn btn-primary">Edit</a>
+                        <a href="/admin/userdashboard?delete=<?php echo $user->getUserId(); ?>" class="btn btn-danger">Delete</a>    
                 </tr>
             <?php endforeach; ?>
         

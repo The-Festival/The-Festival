@@ -30,12 +30,12 @@ include __DIR__ . '/../../models/User.php';
     </div>
     <div class="row justify-content-center">
         <div class="col-10" >
-            <h3 class="heading">Welcome to ............. database input</h3>
+            <h3 class="heading">Welcome to The Fesitval</h3>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-10">
-            <a id="genInfo">Database input info tekst</a>
+            <a id="genInfo"><?php echo $data['about'] ?></a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -61,8 +61,8 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-4 events">
                     <h class="event-heading">Thursday 27th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                         <?php echo $jazzEventString?>
+                         <?php echo $tourString?>
                         <li class="event">event</li>
                     </ul>
                 </div>

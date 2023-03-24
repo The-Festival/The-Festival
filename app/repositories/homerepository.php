@@ -1,0 +1,69 @@
+<?php
+require_once(__DIR__ . '/repository.php');
+class HomeRepository extends Repository
+{
+
+    public function getAboutText()
+    {
+        try{
+            $stmt = $this->connection->prepare("SELECT about FROM About WHERE detail_id = 1 AND type = 'main'");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
+
+    public function updateAboutText($aboutText)
+    {
+        try{
+            $stmt = $this->connection->prepare("UPDATE About SET about = :about WHERE detail_id = 1 AND type = 'main'");
+            $stmt->bindParam(':about', $aboutText);
+            $stmt->execute();
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
+
+    public function getJazzEventsDaily($date)
+    {
+        try{
+            $stmt = $this->connection->prepare("SELECT MIN(datetime) AS first_session, MAX(datetime) AS last_session,
+            (SELECT hall FROM Event_Jazz WHERE datetime = MIN(e.datetime)) AS first_session_hall,
+            (SELECT hall FROM Event_Jazz WHERE datetime = MAX(e.datetime)) AS last_session_hall
+            FROM Event_Jazz e
+            WHERE DATE(datetime) = :date;
+        ");
+            $stmt->bindParam(':date', $date);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
+
+    public function getToursOnDate($date)
+    {
+        try{
+            $stmt = $this->connection->prepare("SELECT tour_id, datetime AS start_time, start_location FROM Tour WHERE DATE(datetime) = :date;");
+            $stmt->bindParam(':date', $date);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
+
+
+}
+?>
