@@ -152,3 +152,27 @@ body {
   max-width: 40%;
   max-height: 361px;
 }
+.detailSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.detailSection > * {
+  max-width: 50%;
+  font-size: 1.5rem;
+}
+
+.detailSection > img{
+  width: 550px;
+  max-height: 361px;
+  object-fit: cover;
+}
+.detailSection > p {
+  background: rgba(217, 217, 217, 0.3);
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+}
+.detailSection:nth-child(even) {
+  flex-direction: row-reverse;
+}
