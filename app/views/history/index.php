@@ -1,7 +1,6 @@
 <?php
 $var = 'history';
 require __DIR__ . '/../header.php';
-$poi = $POI[0];
 ?>
 <div class="hero-image">
   <div class="hero-text">
@@ -14,7 +13,7 @@ $poi = $POI[0];
   <div class="block-1">
 
 
-    <p><?php echo $poi->getText(); ?></p>
+    <p>Take a 2 hour tour the City of Haarlem to immerse yourself into the history of one of the oldest cities in the Netherlands. An amazing walk of discovery covering nine historic landmarks starting at St. Bavo Kerk the walk shows how much the city has changed from the 13th Century. Refreshments will be available at the iconic Jopenkerk. Do not miss on on this great opportunity for the whole family</p>
   </div>
 
   <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1QwRf-NzzYyQ-awbVT88sfzkIro1xAT8&ehbc=2E312F"class="w-100" height="480"></iframe>

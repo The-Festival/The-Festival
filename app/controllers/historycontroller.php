@@ -11,9 +11,8 @@ class HistoryController {
     }
 
     function index(){
-        $POI = $this->historyService->getPointOfInterestDataWithoutIMG(1);
+        $slider = $this->historyService->getSliderData();
         $tourInfo = $this->historyService->getTourInfo();
-        $slider = $this->historyService->getPointOfInterestData(2);
         require __DIR__ . '/../views/history/index.php';
     }
 

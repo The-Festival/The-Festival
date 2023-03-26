@@ -1,17 +1,19 @@
 <?php
 
 require __DIR__ . '/../services/adminservice.php';
+require __DIR__ . '/../services/historyservice.php';
 
 require __DIR__ . '/../services/userservice.php';
 
 class AdminController{
     
     private $adminService;
-
+    private $historyService;
     private $userService;
 
     public function __construct()
     {
+        $this->historyService = new HistoryService();
         $this->adminService = new AdminService();
     }
 
@@ -19,6 +21,16 @@ class AdminController{
     {
         //$this->checkLogin();
         include __DIR__ . '/../views/admin/dashboard.php';
+    }
+
+    public function historyDashboard()
+    {
+        $data = $this->historyService->getSliderData();
+        include __DIR__ . '/../views/admin/history/historyDashboard.php';
+    }
+    public function addHistoricalPlace()
+    {
+        include __DIR__ . '/../views/admin/history/createHistoryEvent.php';
     }
 
     public function userDashboard(){

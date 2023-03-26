@@ -4,6 +4,8 @@ require __DIR__ . '/../header.php';
 ?>
 <div class="hero-image mb-3" id="hero-image"></div>
 
+<h1 class="display-2 text-white text-center"><?php echo $pagePOI[1]->getName(); ?></h1>
+
 <?php foreach($pagePOI as $poi) { ?>
     <div class="detailSection containter w-75 mx-auto mb-5">
         <p class="detailTXT"><?php echo $poi->getText(); ?></p>

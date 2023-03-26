@@ -2,6 +2,7 @@
 
 class POI{
     private $pointOfInterest;
+    private $name;
     private $text;
     private $location;
     private $photo;
@@ -9,6 +10,10 @@ class POI{
     //getters
     public function getPointOfInterest(){
         return $this->pointOfInterest;
+    }
+
+    public function getName(){
+        return $this->name;
     }
 
     public function getText(){
