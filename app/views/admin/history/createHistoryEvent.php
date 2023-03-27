@@ -14,51 +14,101 @@ include __DIR__ . '/../../header.php';
 
 </div>
 
-    <h1 class = "d-flex justify-content-center">Edit User</h1>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
+    <h1 class = "d-flex justify-content-center">Create Historical Event</h1>
 
     <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <form action="/admin/userdashboard" method="POST">
         <div class="mb-3">
-          <label for="fullname" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="fullname" name="fullname" value="" required>
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" value="" required>
         </div>
         <div class="mb-3">
-          <label for="fullname" class="form-label">Password</label>
-          <input type="text" class="form-control" id="fullname" name="password" value="" required>
+          <label for="sliderText" class="form-label">Slider Text</label>
+          <textarea name="sliderText" id="sliderText" cols="30" rows="5" class="form-control" required></textarea>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" name="email" value="" required>
+          <label for="sliderImage" class="form-label">Slider Image</label>
+          <input type="file" class="form-control" id="sliderImage" name="sliderImage" value="" required>
         </div>
         <div class="mb-3">
-          <label for="role" class="form-label">Role</label>
-          <select class="form-select" id="role" name="role" multiple required>
-            <option value="admin">Admin</option>
-            <option value="employee">Employee</option>
-            <option value="customer">Customer</option>
-          </select>
+          <label for="location" class="form-label">Location</label>
+          <input type="text" class="form-control" id="location" name="location" value="" required>
         </div>
-        <div class="mb-3">
-          <label for="registration_date" class="form-label">Registration Date</label>
-          <input type="date" class="form-control" id="registration_date" name="registration_date" value="<?php echo date('Y-m-d'); ?>" required>
+
+        
+
+        <div class="mb-3" id="pageContainer">
+          <h2 class="text-primary">Page Text and image's</h2>
+    
+          <div class="mb-3">
+            <label for="pageText" class="form-label">Page Text</label>
+            <textarea name="pageText" id="pageText" cols="30" rows="5" class="form-control" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="pageIMG" class="form-label">Page Image</label>
+            <input type="file" class="form-control" id="pageIMG" name="pageIMG" value="" required>
+          </div>
+
         </div>
-        <button type="submit" name="add" class="btn btn-primary">Submit</button>
-        <button class="btn btn-danger" onclick="window.location.href='/admin/userDashboard'">Back</button>
+        
+        <a href="#pageContainer" id="addPageData" class=" btn btn-success mb-3 mx-auto w-100">Add page text and image</a>
+        <br>
+        <button type="submit" name="add" class="btn btn-primary w-50 float-left">Submit</button>
+        <button class="btn btn-danger w-50 float-right" onclick="window.location.href='/admin/userDashboard'">Back</button>
       </form>
     </div>
   </div>
 </div>
   </body>
 </html>
+
+<script>
+
+  var container = document.getElementById('pageContainer');
+  document.getElementById('addPageData').addEventListener('click', ()=>{
+    var pageText = document.getElementById('pageText');
+    var pageIMG = document.getElementById('pageIMG');
+    if(container.childElementCount >= 10){
+      return;
+    }
+    if(pageText.value == '' || pageIMG.value == ''){
+      alert("please fill in the page text and image before adding another");
+      return;
+    }
+    var group = document.createElement('div');
+    group.classList.add('mb-3');
+
+    var label = document.createElement('label');
+    label.classList.add('form-label');
+    label.value = 'Page Text';
+    var pageText = document.createElement('textarea');
+    pageText.classList.add('form-control');
+    pageText.setAttribute("name","pageText");
+    pageText.setAttribute("rows","5")
+
+
+    group.appendChild(label);
+    group.appendChild(pageText);
+
+    container.appendChild(group);
+
+    var group = document.createElement('div');
+    group.classList.add('mb-3');
+
+    var labelimg = document.createElement('label');
+    labelimg.classList.add('form-label');
+    labelimg.value = 'Page Image';
+    var pageIMG = document.createElement('input');
+    pageIMG.classList.add('form-control');
+    pageIMG.setAttribute("name","pageIMG");
+    pageIMG.setAttribute("type","file");
+
+    group.appendChild(labelimg);
+    group.appendChild(pageIMG);
+
+    container.appendChild(group);
+  })
+</script>
