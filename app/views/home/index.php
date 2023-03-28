@@ -46,16 +46,13 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-4 events">
                     <h class="event-heading">Thursday 27th June</h>
                     <ul>
-                         <?php echo $jazzEventString?>
-                         <?php echo $tourString?>
+                         <?php echo $events1;?>
                     </ul>
                 </div>
                 <div class="col-4 events">
                     <h class="event-heading">Friday 28th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                        <?php echo $events2;?>
                     </ul>
                 </div>
     	    </div>
@@ -63,17 +60,13 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-4 events">
                     <h class="event-heading">Saturday 29th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                        <?php echo $events3;?>
                     </ul>
                 </div>
                 <div class="col-4 events">
                     <h class="event-heading">Sunday 30th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                        <?php echo $events4;?>
                     </ul>
                 </div>
     	    </div>
