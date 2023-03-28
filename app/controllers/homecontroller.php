@@ -10,14 +10,16 @@ class HomeController
     }
     public function index()
     {   
-        $date = "2023-04-01";//date('Y-m-d');
-        $jazzEvent = $this->homeService->getJazzEventsDaily($date);
-        $jazzEventString = $this->homeService->getJazzEventString($jazzEvent);
-        $data = $this->homeService->getAboutText();
-        $dateTour = "2023-05-01";//date('Y-m-d');
-        $tours = $this->homeService->getToursOnDate($dateTour);
-        $tourString = $this->homeService->getTourString($tours);
+        $date1 = "2023-06-27";
+        $date2 = "2023-06-28";
+        $date3 = "2023-06-29";
+        $date4 = "2023-06-30";
         $locations = $this->homeService->getLocations();
+        $data = $this->homeService->getAboutText();
+        $events1 = $this->homeService->getAllEventStringsOnDate($date1);
+        $events2 = $this->homeService->getAllEventStringsOnDate($date2);
+        $events3 = $this->homeService->getAllEventStringsOnDate($date3);
+        $events4 = $this->homeService->getAllEventStringsOnDate($date4);
         require __DIR__ . '/../views/home/index.php';
     }
 

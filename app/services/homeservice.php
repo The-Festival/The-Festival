@@ -28,6 +28,16 @@ class HomeService
         return $this->homeRepository->getToursOnDate($date);
     }
 
+    public function getAllEventStringsOnDate($date)
+    {   
+        $jazzEventOnDate = $this->homeRepository->getJazzEventsDaily($date);
+        $toursOnDate = $this->homeRepository->getToursOnDate($date);
+        $stringJazzEvent = $this->getJazzEventString($jazzEventOnDate);
+        $stringTours = $this->getTourString($toursOnDate);
+        $string = $stringJazzEvent . $stringTours;
+        return $string;
+    }
+
     function getJazzEventString($jazzEvents) {
         $html = '<br><b>Haarlem Jazz</b>';
         foreach ($jazzEvents as $jazzEvent) {
@@ -36,7 +46,7 @@ class HomeService
                 $html .= 'First event ' . date('H:i', strtotime($jazzEvent['first_session'])) . ' Last event ' . date('H:i', strtotime($jazzEvent['last_session'])) . '<br>';
                 $html .= 'Hall: ' . $jazzEvent['first_session_hall'] . ' | ' . $jazzEvent['last_session_hall'];
             } else {
-                $html .= 'No events';
+                $html .= 'No events today';
             }
             $html .= '</li>';
         }
@@ -46,6 +56,9 @@ class HomeService
 
    function getTourString($tours) {
     $html = '<br><b>A Stroll trough History</b>';
+    if(!isset($tours['tour_id'])){
+        $html .= '<li class="event">No tours today</li>';
+    }
     foreach ($tours as $tour) {
         $html .= '<li class="event">Tours at: ';
         $html .= ' ' . date('H:i', strtotime($tour['start_time'])) . ' ' . $tour['start_location'];
