@@ -30,30 +30,15 @@ include __DIR__ . '/../../models/User.php';
     </div>
     <div class="row justify-content-center">
         <div class="col-10" >
-            <h3 class="heading">Welcome to ............. database input</h3>
+            <h3 class="heading">Welcome to The Fesitval</h3>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-10">
-            <a id="genInfo">Database input info tekst</a>
+            <a id="genInfo"><?php echo $data['about'] ?></a>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <a><button class="buttonNav">Jazz</button></a>
-        </div>
-        <div class="col-4">
-            <a href="/yummy/yummy"><button class="buttonNav">Yummy</button></a>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <a><button class="buttonNav">History</button></a>
-        </div>
-        <div class="col-4">
-            <a><button class="buttonNav">Kids</button></a>
-        </div>
-    </div>
+<?php include __DIR__ . '/cards.php';?>
     <div class="row justify-content-center">
         <div class="col-10" id="eventCalender">
             <h3 class="heading">What's happening each day</h3>
@@ -61,17 +46,13 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-4 events">
                     <h class="event-heading">Thursday 27th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                         <?php echo $events1;?>
                     </ul>
                 </div>
                 <div class="col-4 events">
                     <h class="event-heading">Friday 28th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                        <?php echo $events2;?>
                     </ul>
                 </div>
     	    </div>
@@ -79,17 +60,13 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-4 events">
                     <h class="event-heading">Saturday 29th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                        <?php echo $events3;?>
                     </ul>
                 </div>
                 <div class="col-4 events">
                     <h class="event-heading">Sunday 30th June</h>
                     <ul>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
-                        <li class="event">event</li>
+                        <?php echo $events4;?>
                     </ul>
                 </div>
     	    </div>
@@ -106,9 +83,9 @@ include __DIR__ . '/../../models/User.php';
                 <div class="col-3">
                     <h4 id="locations">Locations</h4>
                     <ol>
-                        <li class="location"><b>St. Bavo Kerk </b>(St Bavo Church) Grote Markt 22, 2011 RD Haarlem</li>
-                        <li class="location"><b>Patronaat</b> (Zijlsingel 2 2013 DN Haarlem)</br> (18:00 - 22:00)</li>
-                        <li class="location"><b>Teylers Museum</b> (Spaarne 16, 2011 CH Haarlem)</br>(10:00 - 17:00)</li>
+                        <?php foreach($locations as $location) {
+                            echo "<li class='location'><b>" . $location->getPlace_name() . "</b> " . $location->getStreetname() . " ". $location->getHousenumber() . ", " . $location->getPostalcode() ." " .$location->getCity()."</li>";
+                        }?>
                     </ol>
                 </div>
                 </div>
