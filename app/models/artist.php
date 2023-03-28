@@ -6,14 +6,12 @@ class Artist{
     private $name;
     private $about;
     private $price;
-    private $genre;
 
-    public function __construct($id, $name, $about, $price, $genre){
+    public function __construct($id, $name, $about, $price, ){
         $this->id = $id;
         $this->name = $name;
         $this->about = $about;
         $this->price = $price;
-        $this->genre = $genre;
     }
 
     public function getName(){
@@ -26,5 +24,9 @@ class Artist{
     
     public function getPrice(){
         return $this->price;
+    }
+
+    public function formatPrice(){
+        return "€" . number_format($this->getPrice(), 2, ',', '.');
     }
 }

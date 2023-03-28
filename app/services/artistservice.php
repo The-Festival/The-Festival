@@ -29,7 +29,7 @@ class ArtistService
     // Converts an array to an Artist object
     private function convertToArtist($result)
     {
-        return new Artist($result['artist_id'], $result['name'], $result['about'], $result['price'], $result['genre']);
+        return new Artist($result['artist_id'], $result['name'], $result['about'], $result['price']);
     }
 
     // Converts an array of artists to an array of Artist objects

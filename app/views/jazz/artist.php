@@ -3,10 +3,7 @@ $var = 'artist';
 include __DIR__ . '/../header.php';
 ?>
 
-<div class="artist-hero">
-    <img src="/img/artist-subhero.png" alt="Artist">
-    <img src="/img/artist-subhero2.png" alt="Artist">
-</div>
+<div class="artist-hero"></div>
 <div class="container">
     <div class="row">
         <article class="col-lg-6">
