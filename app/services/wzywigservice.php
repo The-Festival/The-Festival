@@ -14,7 +14,7 @@ class WzywigService {
         }
 
         if(isset($_POST['events'])){
-            $this->replace_file_content("/views/home/cards.php", $_POST['content']);
+            $this->replace_file_content(__DIR__ . "/../views/home/cards.php", $_POST['content']);
         }
     }
 
@@ -79,6 +79,7 @@ class WzywigService {
                 // Respond to the successful upload with JSON. 
                 // Use a location key to specify the path to the saved image resource. 
                 // { location : '/your/uploaded/image/file'} 
+                $this->homeService->insertImg(1, "home", $filetowrite, 0);
                 echo json_encode(array('location' => $filetowrite)); 
             }else{ 
                 header("HTTP/1.1 400 Upload failed."); 

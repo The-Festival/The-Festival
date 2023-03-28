@@ -13,7 +13,7 @@ class WzywigController{
 
     public function index(){
         $aboutText = $this->homeService->getAboutText();
-
+        $this->wzywigService->checkRequests();
         require __DIR__ . '/../views/wzywig/index.php';
     }
 

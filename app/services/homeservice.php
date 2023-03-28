@@ -71,5 +71,9 @@ class HomeService
         //var_dump($this->homeRepository->getLocations());
         return $this->homeRepository->getLocations();
     }
+
+    function insertImg($detail_id,$type,$source,$isBanner){
+        $this->homeRepository->insertImg($detail_id, $type, $source,$isBanner);
+    }
 }
 ?>

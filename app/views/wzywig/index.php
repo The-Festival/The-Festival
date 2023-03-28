@@ -81,22 +81,7 @@
     <form method="POST" >
       <input type="hidden" name = "events">
         <textarea class="col-10" id = "editor" name = "content">
-              <div class="row justify-content-center">
-                <div class="col-4">
-                    <a><button class="buttonNav">Jazz</button></a>
-                </div>
-              <div class="col-4">
-                    <a href="/yummy/yummy"><button class="buttonNav">Yummy</button></a>
-              </div>
-              </div>
-              <div class="row justify-content-center">
-                  <div class="col-4">
-                      <a><button class="buttonNav">History</button></a>
-                  </div>
-                  <div class="col-4">
-                      <a><button class="buttonNav">Kids</button></a>
-              </div>
-          </div>
+              <?php echo file_get_contents(__DIR__ . "/../home/cards.php") ?>
         </textarea>
     <input class = "btn btn-success m-2" type="submit" value="Submit Changes">
     </form>

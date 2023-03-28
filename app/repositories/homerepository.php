@@ -76,5 +76,19 @@ class HomeRepository extends Repository
             echo $e;
         }
     }
+
+    function insertImg($detail_id, $type, $source,$isBanner) {
+        try{
+            $stmt = $this->connection->prepare("INSERT INTO `Foto` (`detail_id`, `type`, `filepath`, `isBanner`) VALUES (:detail_id, :type, :source, :isBanner);");
+            $stmt->bindParam(':detail_id', $detail_id);
+            $stmt->bindParam(':type', $type);
+            $stmt->bindParam(':source', $source);
+            $stmt->bindParam(':isBanner', $isBanner);
+            $stmt->execute();
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
 }
 ?>
