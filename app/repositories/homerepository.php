@@ -66,7 +66,7 @@ class HomeRepository extends Repository
     
     public function getLocations(){
         try{
-            $stmt = $this->connection->prepare("SELECT `location_id`, `detail_id`, `type`, `place_name`, `streetname`, `postalcode`, `city`, `housenumber` FROM `Location`;");
+            $stmt = $this->connection->prepare("SELECT `location_id`, `detail_id`, `type`, `streetname`, `postalcode`, `city`, `housenumber` FROM `Location`;");
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Location');
 
