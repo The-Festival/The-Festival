@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 20, 2023 at 11:56 AM
--- Server version: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
--- PHP Version: 8.0.25
+-- Generation Time: Mar 28, 2023 at 07:51 PM
+-- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
+-- PHP Version: 8.0.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `developmentdb`
 --
+CREATE DATABASE IF NOT EXISTS `developmentdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `developmentdb`;
 
 -- --------------------------------------------------------
 
@@ -41,14 +43,14 @@ CREATE TABLE `About` (
 INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
 (1, 1, 'history', 'Take a 2 hour tour the City of Haarlem to immerse yourself into the history of one of the oldest cities in the Netherlands. An amazing walk of discovery covering nine historic landmarks starting at St. Bavo Kerk the walk shows how much the city has changed from the 13th Century. Refreshments will be available at the iconic Jopenkerk. Do not miss on on this great opportunity for the whole family'),
 (2, 2, 'history', 'Reformed Protestant church and former Catholic cathedral located on the central market square (Grote Markt).\r\nFirst mention of a church on this spot was made in 1307, but the wooden structure burned in the 14th century. The church was rebuilt and promoted to chapter church in 1479 and only became a cathedral in 1559.'),
-(3, 2, 'history', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers\' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church. This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
+(3, 2, 'history', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers'' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church. This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
 (4, 2, 'history', 'Frans Hals Museum - Hal (formally: De Hallen Haarlem) is one of the two locations of the Frans Hals Museum, located on the Grote Markt, where modern and contemporary art is on display in alternating presentations. The emphasis is on contemporary photograph and video presentations, with the focus on Man and society. '),
 (5, 2, 'history', 'Founded in 1707 by the city council to house elderly men. The main buildings are from the 14th century\r\nUnlike hofjes that were meant for poor elderly women, the homes around this courtyard are much larger, because the inhabitants were men who actually paid the rent as opposed to hofje inhabitants who had no income to spend on rent.'),
-(6, 2, 'history', 'Since 1992 Jopenkerk aims to promote the traditional beers of Haarlem. Two \'recipes\' were found useful for brewing again. A recipe from 1407 yielded Koyt , a gruit beer . The recipe for the beer that came on the market as Hoppenbier dates back to 1501. In 1994, both beers could be presented on the occasion of the city\'s 750th anniversary.'),
+(6, 2, 'history', 'Since 1992 Jopenkerk aims to promote the traditional beers of Haarlem. Two ''recipes'' were found useful for brewing again. A recipe from 1407 yielded Koyt , a gruit beer . The recipe for the beer that came on the market as Hoppenbier dates back to 1501. In 1994, both beers could be presented on the occasion of the city''s 750th anniversary.'),
 (7, 2, 'history', 'Oldest church in Haarlem, built in 1348. The Walloon church was a real refugee church: in the 16th century, Flemish Protestants had fled from the ruling Catholic Spaniards. The Spanish government gave them a choice: convert to the Catholic faith or leave. More than a hundred thousand Protestants chose the latter option. '),
 (8, 2, 'history', 'The windmill was built on the foundations of the Goevrouwetoren by Adriaan de Booys, an industrial producer from Amsterdam. The windmill that burnt down in 1932 and was rebuilt in 2002. The original windmill dates from 1779 and the mill has been a distinctive part of the skyline of Haarlem for centuries.'),
 (9, 2, 'history', 'Created in 1355 and is the only remaining city gate from the defenses of Haarlem. Until the 17th century it was the city gate used for traffic by land eastwards towards Spaarnwoude over the Laeghe weg (now Oude weg). In 1631 the Haarlemmertrekvaart was dug, which shortened the waterway from Haarlem to\r\nAmsterdam considerably.'),
-(10, 2, 'history', 'Founded in 1395 it is the oldest hofje in the Netherlands. The earliest mention of it in town records is from the History of Haarlem by Samuel Ampzing  Initially, the hofje consisted of 13 houses for 20 women, then one of the buildings was converted into a regent\'s room , after which there was still room for 12 women.');
+(10, 2, 'history', 'Founded in 1395 it is the oldest hofje in the Netherlands. The earliest mention of it in town records is from the History of Haarlem by Samuel Ampzing  Initially, the hofje consisted of 13 houses for 20 women, then one of the buildings was converted into a regent''s room , after which there was still room for 12 women.');
 
 -- --------------------------------------------------------
 
@@ -59,17 +61,39 @@ INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
 CREATE TABLE `Artist` (
   `artist_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
+  `about` text NOT NULL,
   `price` float NOT NULL,
-  `link` varchar(128) NOT NULL,
-  `event_id` int(11) NOT NULL,
-  `genre` varchar(256) NOT NULL,
-  `track` varchar(256) NOT NULL
+  `event_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Artist`
+--
+
+INSERT INTO `Artist` (`artist_id`, `name`, `about`, `price`, `event_id`) VALUES
+(1, 'Gumbo Kings', 'The Gumbo Kings are a five-piece band who combine the groove of New Orleans with rugged delta blues and the melody of soul from old Memphis. The band is their love baby, and their aim is to convey their passion for music through an energetic live show.', 15, 1),
+(2, 'Evolve', 'EVOLVE is the downtempo chillout project of artist/producer Red Broad. The first album, HAPPY HOUR IN THE GENE POOL has enjoyed great success within the downtempo chillout and lounge genres with iconic tracks', 15, 1),
+(3, 'Ntjam Rosie', 'Ntjam Rosie, born as Rosie Boei, is a Dutch-Cameroonian singer/songwriter from Rotterdam, The Netherlands. Her style is a mix of pop music, jazz and soul.', 15, 1),
+(4, 'Wicked Jazz Sounds', 'Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music. Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.', 10, 1),
+(5, 'Tom Thomsom Assemble', 'Doesn''t exist?', 10, 1),
+(6, 'Jonna Frazer', 'Jonna Fraser is a rapper and singer, but above all a particularly driven performer. The Rotterdam-born storyteller has been living in Zaandam for more than half his life. At age 11, he was introduced to rap and then never let go of the microphone.', 10, 1),
+(7, 'Fox & The Mayors', 'Doesn''t exist?', 15, 1),
+(8, 'Uncle Sue', 'Uncle Sue is a seven-piece Haarlem Funk and Soul Band with its own story, soul diva and swinging horn section. Quirky repertoire, from their own studio and slightly less obvious gems by our musical heroes. A sound that harks back to the 60s and 70s. That''s where Uncle Sue feels at home', 15, 1),
+(9, 'Chris Allen', 'Doesn''t exist?', 15, 1),
+(10, 'Myles Sanko', 'He began his musical career singing and rapping alongside disc jockeys in nightclubs. Since then he toured across Europe and worked with the likes of Gregory Porter, Martha High, Mousse T, Speedometer, Billy Wooten, China Mosses, Ben l''Oncle Soul, Sarah McKenzie, Miss Kelly Marie, Mo'' Horizons, Ed Meme, Chris Read, Robin Mullarkey, Ben Lamdin (Nostalgia 77) and many more.', 10, 1),
+(11, 'Ruis Soundsystem', 'Doesn''t exist?', 10, 1),
+(12, 'The Family XL', 'Doesn''t exist?', 10, 1),
+(13, 'Gare du Nord', 'Gare du Nord is a Dutch-Belgian jazz band, originally consisting of Doc and Inca. Doc played guitar and Inca played saxophone, while both performed vocal duties. After the pair split up in 2013, the band continued to work and tour with a different line-up', 15, 1),
+(14, 'Rilan & The Bombadiers', 'With a sold out first clubtour, a booming festival season and tracks that have already been featured in a number of big Hollywood productions, (Netflix / HULU / FOX: Shooter, Shut Eye and Rosewood) this band has certainly been keeping busy. Both nationally and abroad.', 15, 1),
+(15, 'Soul Six', 'Doesn''t exist?', 15, 1),
+(16, 'Han Bennink', 'Drummer & visual artist Han Bennink reached the age of 80 this year and has been in the business for more than 60 years. He travelled all over the world and is now celebrating his anniversary close to home, on the border of Drenthe and Friesland, with the festival HANBENNINK80 in Fryslân. Multi-talented Han gives concerts on four different stages/galleries during his exhibitions.', 10, 1),
+(17, 'The Nordanians', 'When Oene van Geel viola, Mark Tuinstra guitar and Niti Ranjan Biswas tabla virtuoso played together for the first time there where immediately fireworks, roaring u-turns and cinematic tearjerkers. Then they started writing songs together based on traditional ragas, smashing funk and delicate chamber music.', 10, 1),
+(18, 'Lilith Merlot', 'Dutch singer and songwriter Lilith Merlot is known for her warm and deep voice with a timeless feel.', 10, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Event_Jazz`
+-- Table structure for table `Event Jazz`
 --
 
 CREATE TABLE `Event_Jazz` (
@@ -81,6 +105,12 @@ CREATE TABLE `Event_Jazz` (
   `datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `Event Jazz`
+--
+
+INSERT INTO `Event_Jazz` (`event_id`, `artist_id`, `hall`, `seats`, `seats_left`, `datetime`) VALUES
+(1, 1, "First Hall", 300, 300, "2020-01-01 19:00:00");
 -- --------------------------------------------------------
 
 --
@@ -116,7 +146,7 @@ CREATE TABLE `Guide` (
 CREATE TABLE `Language` (
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `spaces_left` int(11) NOT NULL
+  `available_spaces` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -145,20 +175,6 @@ CREATE TABLE `Main_Page` (
   `mainpage_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Order`
---
-
-CREATE TABLE `Order` (
-  `order_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `order_time` datetime NOT NULL,
-  `payment_method` varchar(50) NOT NULL,
-  `totall_price` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Order';
 
 -- --------------------------------------------------------
 
@@ -224,6 +240,7 @@ CREATE TABLE `Restraurant` (
   `email` varchar(320) NOT NULL,
   `phonenumber` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
@@ -350,12 +367,6 @@ ALTER TABLE `Main_Page`
   ADD PRIMARY KEY (`mainpage_id`);
 
 --
--- Indexes for table `Order`
---
-ALTER TABLE `Order`
-  ADD PRIMARY KEY (`order_id`);
-
---
 -- Indexes for table `Pass`
 --
 ALTER TABLE `Pass`
@@ -422,19 +433,13 @@ ALTER TABLE `About`
 -- AUTO_INCREMENT for table `Artist`
 --
 ALTER TABLE `Artist`
-  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `Event_Jazz`
 --
 ALTER TABLE `Event_Jazz`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Foto`
---
-ALTER TABLE `Foto`
-  MODIFY `foto_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Guide`
@@ -459,12 +464,6 @@ ALTER TABLE `Location`
 --
 ALTER TABLE `Main_Page`
   MODIFY `mainpage_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `Order`
---
-ALTER TABLE `Order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Pass`
@@ -497,12 +496,6 @@ ALTER TABLE `Session`
   MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Ticket`
---
-ALTER TABLE `Ticket`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `Tour`
 --
 ALTER TABLE `Tour`
@@ -531,12 +524,6 @@ ALTER TABLE `Guide`
   ADD CONSTRAINT `Guide_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `Tour` (`tour_id`);
 
 --
--- Constraints for table `Order`
---
-ALTER TABLE `Order`
-  ADD CONSTRAINT `FK_order_user_id` FOREIGN KEY (`order_id`) REFERENCES `User` (`user_id`);
-
---
 -- Constraints for table `Reservation`
 --
 ALTER TABLE `Reservation`
@@ -548,12 +535,6 @@ ALTER TABLE `Reservation`
 --
 ALTER TABLE `Session`
   ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restraurant` (`restaurant_id`);
-
---
--- Constraints for table `Ticket`
---
-ALTER TABLE `Ticket`
-  ADD CONSTRAINT `FK_ticket_order_orderId` FOREIGN KEY (`order_id`) REFERENCES `Order` (`order_id`);
 
 --
 -- Constraints for table `Tour`

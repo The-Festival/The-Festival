@@ -1,13 +1,14 @@
 <?php
 
 require __DIR__ . '/../services/adminservice.php';
-
+require __DIR__ . '/../services/artistservice.php';
 require __DIR__ . '/../services/userservice.php';
+
 
 class AdminController{
     
     private $adminService;
-
+    private $artistService;
     private $userService;
 
     public function __construct()
@@ -19,6 +20,11 @@ class AdminController{
     {
         //$this->checkLogin();
         include __DIR__ . '/../views/admin/dashboard.php';
+    }
+
+    public function Jazz()
+    {
+        include __DIR__ . '/../views/admin/jazz.php';
     }
 
     public function userDashboard(){
