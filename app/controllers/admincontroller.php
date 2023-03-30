@@ -1,18 +1,18 @@
 <?php
 
-require __DIR__ . '/../services/adminservice.php';
+include_once (__DIR__ . '/../services/orderservice.php');
 
-require __DIR__ . '/../services/userservice.php';
+include_once (__DIR__ . '/../services/userservice.php');
 
 class AdminController{
     
-    private $adminService;
+    private $orderService;
 
     private $userService;
 
     public function __construct()
     {
-        $this->adminService = new AdminService();
+        $this->orderService = new OrderService();
     }
 
     public function index()
@@ -68,6 +68,22 @@ class AdminController{
             $users = $this->userService->getAll();
         }
         include __DIR__ . '/../views/admin/userDashboard.php';
+    }
+
+    public function orderDashboard(){
+        $this->orderService->checkRequests();
+        $orders = $this->orderService->getOrders();
+        include __DIR__ . '/../views/admin/order/orderDashboard.php';
+    }
+
+    public function ticketDashboard(){
+        $this->orderService->checkTicketRequests();
+    }
+    public function editorder(){
+        $this->orderService->checkRequests();
+    }
+    public function editTicket(){
+        $this->orderService->checkRequests();
     }
 
     public function edituser(){

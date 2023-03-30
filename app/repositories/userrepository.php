@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/repository.php';
-require __DIR__ . '/../models/User.php';
+include_once( __DIR__ . '/repository.php');
+include_once(__DIR__ . '/../models/User.php');
 
 class UserRepository extends Repository {
     public function checkUser($username){
