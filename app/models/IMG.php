@@ -2,7 +2,7 @@
 
 class IMG {
     private $foto_id;
-    private $poi_id;
+    private $detail_id;
     private $filepath;
     private $isBanner;
 
@@ -10,7 +10,7 @@ class IMG {
         return $this->foto_id;
     }
     public function getPOIID(){
-        return $this->poi_id;
+        return $this->detail_id;
     }
     public function getFilepath(){
         return $this->filepath;

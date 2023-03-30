@@ -19,7 +19,9 @@ include __DIR__ . '/../../header.php';
     <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form action="/admin/userdashboard" method="POST">
+
+      <form action="/admin/processHistoryEvent" method="POST" enctype="multipart/form-data">
+
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" class="form-control" id="name" name="name" value="" required>
@@ -33,82 +35,32 @@ include __DIR__ . '/../../header.php';
           <input type="file" class="form-control" id="sliderImage" name="sliderImage" value="" required>
         </div>
         <div class="mb-3">
-          <label for="location" class="form-label">Location</label>
-          <input type="text" class="form-control" id="location" name="location" value="" required>
+          <label for="place" class="form-label">Place</label>
+          <input type="text" class="form-control" id="place" name="place" value="Haarlem" required>
         </div>
-
-        
-
-        <div class="mb-3" id="pageContainer">
-          <h2 class="text-primary">Page Text and image's</h2>
-    
-          <div class="mb-3">
-            <label for="pageText" class="form-label">Page Text</label>
-            <textarea name="pageText" id="pageText" cols="30" rows="5" class="form-control" required></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="pageIMG" class="form-label">Page Image</label>
-            <input type="file" class="form-control" id="pageIMG" name="pageIMG" value="" required>
-          </div>
-
+        <div class="mb-3">
+          <label for="postalCode" class="form-label">Postal Code</label>
+          <input type="text" class="form-control" id="postalCode" name="postalCode" value="" required>
+        </div>
+        <div class="mb-3">
+          <label for="streetName" class="form-label">Street Name</label>
+          <input type="text" class="form-control" id="streetName" name="streetName" value="" required>
+        </div>
+        <div class="mb-3">
+          <label for="number" class="form-label">Number</label>
+          <input type="number" class="form-control" id="number" name="number" value="" required>
         </div>
         
-        <a href="#pageContainer" id="addPageData" class=" btn btn-success mb-3 mx-auto w-100">Add page text and image</a>
-        <br>
+        
+
         <button type="submit" name="add" class="btn btn-primary w-50 float-left">Submit</button>
-        <button class="btn btn-danger w-50 float-right" onclick="window.location.href='/admin/userDashboard'">Back</button>
+        <a class="btn btn-danger w-50 float-right" onclick="window.location.href='/admin/historyDashboard'">Back</a>
+
       </form>
+
     </div>
   </div>
 </div>
   </body>
 </html>
 
-<script>
-
-  var container = document.getElementById('pageContainer');
-  document.getElementById('addPageData').addEventListener('click', ()=>{
-    var pageText = document.getElementById('pageText');
-    var pageIMG = document.getElementById('pageIMG');
-    if(container.childElementCount >= 10){
-      return;
-    }
-    if(pageText.value == '' || pageIMG.value == ''){
-      alert("please fill in the page text and image before adding another");
-      return;
-    }
-    var group = document.createElement('div');
-    group.classList.add('mb-3');
-
-    var label = document.createElement('label');
-    label.classList.add('form-label');
-    label.value = 'Page Text';
-    var pageText = document.createElement('textarea');
-    pageText.classList.add('form-control');
-    pageText.setAttribute("name","pageText");
-    pageText.setAttribute("rows","5")
-
-
-    group.appendChild(label);
-    group.appendChild(pageText);
-
-    container.appendChild(group);
-
-    var group = document.createElement('div');
-    group.classList.add('mb-3');
-
-    var labelimg = document.createElement('label');
-    labelimg.classList.add('form-label');
-    labelimg.value = 'Page Image';
-    var pageIMG = document.createElement('input');
-    pageIMG.classList.add('form-control');
-    pageIMG.setAttribute("name","pageIMG");
-    pageIMG.setAttribute("type","file");
-
-    group.appendChild(labelimg);
-    group.appendChild(pageIMG);
-
-    container.appendChild(group);
-  })
-</script>

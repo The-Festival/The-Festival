@@ -19,8 +19,12 @@ class HistoryService{
     public function getPointOfInterestData($id){
         $poiArray = $this->getPointOfInterestDataWithoutIMG($id);
         $imgArray = $this->historyRepository->getPhotosByPOIID($id);
+        $locationArray = $this->historyRepository->getLocationByPOIID($id);
+        $location = $locationArray[0]->getStreetName() . " " . $locationArray[0]->getHousenumber() . ", " . $locationArray[0]->getPostalCode() . " " . $locationArray[0]->getCity();
         for($i = 0; $i < count($poiArray); $i++){
             $poiArray[$i]->setPhoto($imgArray[$i]->getFilepath());
+            $poiArray[$i]->setLocation($location);
+
         }
         return $poiArray;
     }
@@ -32,7 +36,14 @@ class HistoryService{
     public function getSliderData(){
         $poiArray = $this->historyRepository->getSliderData();
         $imgArray = $this->historyRepository->getSliderIMG();
+        $locationArray = $this->historyRepository->getLocations();
         for($i = 0; $i < count($poiArray); $i++){
+                foreach($locationArray as $location){
+                    if($location->getPOIID() == $poiArray[$i]->getPointOfInterest()){
+                        $locationstring = $location->getStreetName() . " " . $location->getHousenumber() . ", " . $location->getPostalCode() . " " . $location->getCity();
+                        $poiArray[$i]->setLocation($locationstring); 
+                    }
+                }
             $poiArray[$i]->setPhoto($imgArray[$i]->getFilepath());
         }
         return $poiArray;

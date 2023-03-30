@@ -19,7 +19,6 @@ class POI{
     public function getText(){
         return $this->text;
     }
-
     public function getLocation(){
         return $this->location;
     }
@@ -31,6 +30,9 @@ class POI{
     //setter
     public function setPhoto($photo){
         $this->photo = $photo;
+    }
+    public function setLocation($location){
+        $this->location = $location;
     }
 
     

@@ -32,6 +32,20 @@ class AdminController{
     {
         include __DIR__ . '/../views/admin/history/createHistoryEvent.php';
     }
+    public function processHistoryEvent(){
+        $this->adminService->processHistoryEvent();
+    }
+    public function editHistoryEvent(){
+        $id = htmlspecialchars($_GET["id"]);
+        $banner = $this->historyService->getPageBanner($id);
+        $slider = $this->historyService->getSliderData();
+        $data = $this->historyService->getPointOfInterestData($id);
+        include __DIR__ . '/../views/admin/history/editHistoryEvent.php';
+    }
+    public function uploadBanner(){
+        $this->adminService->uploadBanner();
+    }
+
 
     public function userDashboard(){
         $this->userService = new UserService();

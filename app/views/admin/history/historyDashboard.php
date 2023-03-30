@@ -69,7 +69,7 @@ include __DIR__ . '/../../header.php';
                     <td><?php echo $poi->getLocation(); ?></td>
                     <td><?php echo $poi->getPhoto(); ?></td>
                     <td>
-                        <a href="/admin/edituser?id=<?php echo $poi->getPointOfInterest(); ?>" class="btn btn-primary">Edit</a>
+                        <a href="/admin/editHistoryEvent?id=<?php echo $poi->getPointOfInterest(); ?>" class="btn btn-primary">Edit</a>
                         <a href="/admin/userdashboard?delete=<?php echo $poi->getPointOfInterest(); ?>" class="btn btn-danger">Delete</a>    
                 </tr>
             <?php } ?>
