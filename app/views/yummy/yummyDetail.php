@@ -15,19 +15,16 @@ include __DIR__ . '/../header.php';
 
 <body>
 <div class="container-fluid text-center">
+    <?php if($restaurant != null): ?>
     <div class="row justify-content-center">
         <div class="col-lg-12 top">
-            <h1 id="title">Naam</h1>
+            <h1 id="title"><?= $restaurant->getName()?></h1>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-10" >
-        <h3 id="sub-title">onderTitel</h3>
-        </div>
-    <div class="row justify-content-center">
         <div class="col-4 description-box" >
             <h3 class="heading">Description</h3>
-            <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam vitae ullam deleniti nemo. Vitae est libero tempore tenetur excepturi dolor cum distinctio modi laudantium nisi reprehenderit facere quasi, illo veritatis!</p>
+            <p class="text-black"><?= $restaurant->getDescription()?></p>
         </div>
         <div class="col-6 img-1" >
             <img src="" alt="plaatje">
@@ -37,10 +34,10 @@ include __DIR__ . '/../header.php';
         <div class="col-4 info-box" id="details-box">
             <h3 class="title-white">Details</h3>
                 <ul class="detail-list">
-                    <li>Price:</li>
-                    <li>Cuisine:</li>
-                    <li>Type:</li>
-                    <li>Rating:</li>
+                    <li>Price: €<?= $restaurant->getPrice()?></li>
+                    <li>Price kids (-12): €<?= $restaurant->getPrice_kids()?></li>
+                    <li>Cuisine: <?= $restaurant->getCuisine()?></li>
+                    <li>Rating: <?= $restaurant->getStar_rating()?>/5 stars</li>
                 </ul>
         </div>
         <div class="col-2 img-2">
@@ -49,9 +46,10 @@ include __DIR__ . '/../header.php';
         <div class="col-4 info-box" id="contact-box">
             <h3 class="title-white">Contact</h3>
                 <ul class="detail-list">
-                    <li>Address:</li>
-                    <li>Phone:</li>
-                    <li>Email:</li>
+                    <li>Address: <?= $restaurant->getStreetname()?> <?=$restaurant->getHousenumber()?> <?=$restaurant->getPostalcode()?> <?=$restaurant->getCity() ?></li>
+                    <li>Phone: 
+                        <?= $restaurant->getPhonenumber()?> </li>
+                    <li>Website: <a href="<?= $restaurant->getWebsite()?>"><?= $restaurant->getWebsite()?></a></li>
                 </ul>
         </div>        
     </div>
@@ -65,17 +63,19 @@ include __DIR__ . '/../header.php';
 
                 <label class="formLabel" for="nrPeople">Number of people:</label>
                 <input class="formField" type="number" name="nrPeople" id="nrPeople">
-
+<!-- 
                 <label class="formLabel" for="day">Choose your day:</label>
                     <select class="formField" name="day" id="day">
                         //php opties
                         <option value="">Monday</option>
-                    </select>
+                    </select> -->
 
                 <label class="formLabel" for="time">Choose your session:</label>
                     <select class="formField" name="time" id="time">
                         //php opties
-                        <option value="">Session 1: 17:00-18:30</option>
+                        <?php foreach ($sessionsList as $session) : ?>
+                            <option value="<?= $session->getSession_id() ?>"><?= $session->getDate() ?> </option>
+                        <?php endforeach; ?>
                     </select>
 
                 <label class="formLabel" for="requests">Additional requests:</label>
@@ -84,9 +84,13 @@ include __DIR__ . '/../header.php';
                 <div><button class="make-reservation-button">Make reservation</button></div>
         </div>
     </div>
+    <?php else: ?>
+        <h1>Restaurant not found</h1></php>
+        <?php endif; ?>
 </div>
 
     <?php
     include __DIR__ . '/../footer/footer.php';
     ?>
-</body>
+</body> 
+</html> 	

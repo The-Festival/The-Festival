@@ -12,7 +12,7 @@ class newPasswordRepository extends Repository {
         return $result;
     }
     public function newPassword($password, $email){
-        $stmt = $this->connection->prepare("UPDATE User SET password = :password WHERE email = :email");
+        $stmt = $this->connection->prepare("UPDATE User SET password = :password WHERE email = :email;");
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':email', $email);
         $stmt->execute();

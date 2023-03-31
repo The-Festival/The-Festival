@@ -173,6 +173,7 @@ CREATE TABLE `Restaurant` (
   `name` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
+  `price_kids` float NOT NULL,
   `star_rating` int(11) NOT NULL,
   `cuisine` varchar(128) NOT NULL,
   `website` varchar(320) NOT NULL,
@@ -464,11 +465,20 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-INSERT INTO `Restaurant` (`restaurant_id`, `name`, `description`, `price`, `price_kids`, `restaurant_type`, `star_rating`, `cuisine`, `website`, `phonenumber`, `total_seats`) VALUES
-(1, 'Urban Frenchy Bistro Toujours', 'For a cozy and beautiful dinner, Toujours is the place to be. It’s located is the center of Haarlem, right across from the Grote kerk. It’s a french restaurant with two open kitchens and a cozy styled interior. ', 35, 17.5, 'iets?', 4, 'French', 'https://restauranttoujours.nl/', '023 5321699', 48),
-(2, 'Fris', 'Fris a modern french restaurant in the city center of Haarlem, by Rick May.  the restaurant has a relaxed atmosphere with high quality dishes, made with fresh seasonal products. Fris received in 2022 a Michelin star. ', 45, 22.5, 'geeen ideee', 4, 'French', 'https://www.restaurantfris.nl/', '023 5310717', 45),
-(3, 'Specktakel', 'Specktakel is a unique world restaurant centrally located in the heart of Haarlem. With a special covered courtyard and a terrace with a view of the historic Vleeshal and the centuries-old Bavo church.', 35, 17.5, 'wat moet hier', 3, 'World', 'https://specktakel.nl/', '023-5323841', 36),
-(4, 'Ratatouille', 'This restaurant is a star in Haarlem. It is one of the few restaurants in this city with a Michelin star. It provides a sophisticated theme with a traditional French decor. Here you can also taste some top of the line seafood with a rich and complex flavor.', 45, 22.5, 'French....', 4, 'French, European', 'https://ratatouillefoodandwine.nl/', '023 542 7270', 52),
-(5, 'Mr. & Mrs.', 'Restaurant Mr. and Mrs. serves small luxury dishes, with the size of a starter, so you can try a lot of different combinations. You can choose between hot and cold dishes and they always have a matching glass of wine with your dish.', 45, 22.5, 'tja', 4, 'European', 'https://www.restaurantmrandmrs.nl/', '023 531 5935', 40),
-(6, 'ML', 'Restaurant ML is located in historical Hotel ML. It is a french restaurant with surprising flavor combinations in their dishes, but with the right combination between traditional and new products and flavors.', 45, 22.5, 'e', 4, 'International', 'https://www.mlinhaarlem.nl/', '023 5123910', 60),
-(7, 'Grand Cafe Brinkmann', 'Grand Cafe Brinkmann has been known since 1879 in Haarlem and surroundings.  Located on the Grote Markt in the center of Haarlem. The various menu has for everyone something to offer, prepared with fresh ingredients. ', 35, 17.5, 'r', 4, 'Dutch', 'https://www.grandcafebrinkmann.nl/', '023 532 3111', 100);
+INSERT INTO `Restaurant` (`restaurant_id`, `name`, `description`, `price`, `price_kids`, `star_rating`, `cuisine`, `website`, `phonenumber`, `total_seats`) VALUES
+(1, 'Urban Frenchy Bistro Toujours', 'For a cozy and beautiful dinner, Toujours is the place to be. It’s located is the center of Haarlem, right across from the Grote kerk. It’s a french restaurant with two open kitchens and a cozy styled interior. ', 35, 17.5, 4, 'French', 'https://restauranttoujours.nl/', '023 5321699', 48),
+(2, 'Fris', 'Fris a modern french restaurant in the city center of Haarlem, by Rick May.  the restaurant has a relaxed atmosphere with high quality dishes, made with fresh seasonal products. Fris received in 2022 a Michelin star. ', 45, 22.5, 4, 'French', 'https://www.restaurantfris.nl/', '023 5310717', 45),
+(3, 'Specktakel', 'Specktakel is a unique world restaurant centrally located in the heart of Haarlem. With a special covered courtyard and a terrace with a view of the historic Vleeshal and the centuries-old Bavo church.', 35, 17.5, 3, 'World', 'https://specktakel.nl/', '023-5323841', 36),
+(4, 'Ratatouille', 'This restaurant is a star in Haarlem. It is one of the few restaurants in this city with a Michelin star. It provides a sophisticated theme with a traditional French decor. Here you can also taste some top of the line seafood with a rich and complex flavor.', 45, 22.5, 4, 'French, European', 'https://ratatouillefoodandwine.nl/', '023 542 7270', 52),
+(5, 'Mr. & Mrs.', 'Restaurant Mr. and Mrs. serves small luxury dishes, with the size of a starter, so you can try a lot of different combinations. You can choose between hot and cold dishes and they always have a matching glass of wine with your dish.', 45, 22.5, 4, 'European', 'https://www.restaurantmrandmrs.nl/', '023 531 5935', 40),
+(6, 'ML', 'Restaurant ML is located in historical Hotel ML. It is a french restaurant with surprising flavor combinations in their dishes, but with the right combination between traditional and new products and flavors.', 45, 22.5, 4, 'International', 'https://www.mlinhaarlem.nl/', '023 5123910', 60),
+(7, 'Grand Cafe Brinkmann', 'Grand Cafe Brinkmann has been known since 1879 in Haarlem and surroundings.  Located on the Grote Markt in the center of Haarlem. The various menu has for everyone something to offer, prepared with fresh ingredients. ', 35, 17.5, 4, 'Dutch', 'https://www.grandcafebrinkmann.nl/', '023 532 3111', 100);
+
+INSERT INTO `Location` (`location_id`, `detail_id`, `type`, `streetname`, `postalcode`, `city`, `housenumber`) VALUES
+(1, 1, 'Restaurant', 'Oude Groenmarkt', '2011HL', 'Haarlem', '10-12'),
+(2, 2, 'Restaurant', 'Twijnderslaan', '2021BG', 'Haarlem', '7'),
+(3, 3, 'Restaurant', 'Spekstraat', '2011HM', 'Haarlem', '4'),
+(4, 4, 'Restaurant', 'Spaarne', '2011CL', 'Haarlem', '96'),
+(5, 5, 'Restaurant', 'Lange Veerstraat', '2011DB', 'Haarlem', '4'),
+(6, 6, 'Restaurant', 'Klokhuisplein', '2011HK', 'Haarlem', '9'),
+(7, 7, 'Restaurant', 'Grote Markt', '2011RC', 'Haarlem', '13');
