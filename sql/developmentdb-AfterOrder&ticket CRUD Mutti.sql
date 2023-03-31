@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 30, 2023 at 11:15 PM
--- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
+-- Generation Time: Mar 31, 2023 at 12:02 PM
+-- Server version: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
 -- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -156,6 +156,7 @@ INSERT INTO `Language` (`language_id`, `name`, `spaces_left`) VALUES
 CREATE TABLE `Location` (
   `location_id` int(11) NOT NULL,
   `detail_id` int(11) NOT NULL,
+  `place_name` varchar(128) NOT NULL,
   `type` varchar(20) NOT NULL,
   `streetname` varchar(128) NOT NULL,
   `postalcode` varchar(6) NOT NULL,
@@ -191,7 +192,7 @@ CREATE TABLE `Order` (
   `order_id` int(11) NOT NULL,
   `client_name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `phonenumber` int(12) NOT NULL,
+  `phonenumber` varchar(15) NOT NULL,
   `emailaddress` varchar(320) NOT NULL,
   `order_time` datetime NOT NULL,
   `payment_method` varchar(50) NOT NULL,
@@ -204,9 +205,7 @@ CREATE TABLE `Order` (
 --
 
 INSERT INTO `Order` (`order_id`, `client_name`, `address`, `phonenumber`, `emailaddress`, `order_time`, `payment_method`, `total_vat`, `total_price`) VALUES
-(1, 'John Smithasdas', '123 Main St', 5551234, 'john.smith@example.com', '2023-03-29 10:30:00', 'credit card', 10.5, 110.5),
-(2, 'Jane Doe', '456 Oak Ave', 5555678, 'jane.doe@example.com', '2023-03-29 11:15:00', 'PayPal', 15, 125),
-(3, 'Bob Johnson', '789 Elm St', 5559012, 'bob.johnson@example.com', '2023-03-29 12:00:00', 'cash', 8.5, 88.5);
+(8, 'Bob', 'Bijdroplaan 15', '+31612345678', 'bob1234@gmail.com', '2023-10-10 12:00:00', 'paypal', 441, 2100);
 
 -- --------------------------------------------------------
 
@@ -330,17 +329,9 @@ CREATE TABLE `Ticket` (
 --
 
 INSERT INTO `Ticket` (`ticket_id`, `order_id`, `event_type`, `event_id`, `vat_percentage`, `quantity`, `ischecked`) VALUES
-(8, 1, 'theater', 5678, 6, 1, 0),
-(9, 1, 'concert', 1234, 21, 2, 0),
-(10, 1, 'theater', 5678, 6, 1, 0),
-(11, 1, 'concert', 1234, 21, 2, 0),
-(12, 1, 'theater', 5678, 6, 1, 0),
-(13, 1, 'concert', 1234, 21, 2, 0),
-(20, 1, 'yummy', 1, 9, 1, 0),
-(23, 1, 'jazz', 1, 9, 1, 0),
-(25, 1, 'history', 1, 9, 1, 0),
-(26, 1, 'yummy', 1, 21, 1, 1),
-(27, 1, 'jazz', 1, 21, 2, 1);
+(51, 8, 'yummy', 1, 21, 10, 0),
+(52, 8, 'history', 2, 21, 15, 0),
+(53, 8, 'jazz', 2, 21, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -559,7 +550,7 @@ ALTER TABLE `Main_Page`
 -- AUTO_INCREMENT for table `Order`
 --
 ALTER TABLE `Order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `Pass`
@@ -595,7 +586,7 @@ ALTER TABLE `Session`
 -- AUTO_INCREMENT for table `Ticket`
 --
 ALTER TABLE `Ticket`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `Tour`
