@@ -8,7 +8,8 @@ include __DIR__ . '/../header.php';
 <div class="row dashboard-button-background">
     <button class="col active text-light dashboard-button ">Jazz</button>
     <button class="col text-light dashboard-button ">Yummy</button>
-    <button class="col text-light dashboard-button ">History</button>
+    <a href="admin/historyDashboard" class="col text-light dashboard-button ">History</a>
+
 </div>
 
 <!-- End -->
@@ -23,27 +24,7 @@ include __DIR__ . '/../header.php';
 
 <!-- This part needs to go to it's own file in the future -->
 
-<style>
-    .card-background {
-        background: rgba(255, 251, 251, 0.3);
-        box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 0px;
-    }
 
-    .dashboard-button {
-        background: none;
-        border: 0;
-        height: 3em;
-    }
-
-    .dashboard-button-background {
-        background: #6716C7;
-    }
-
-    .active {
-        background-color: rgba(0, 0, 0, 0.25);
-    }
-</style>
 
 <script>
     var buttons = document.getElementsByClassName('dashboard-button');
@@ -68,9 +49,9 @@ include __DIR__ . '/../header.php';
                 case 'Yummy':
                     dashboardContentText = '<h2>Yummy Dashboard</h2>';
                     break;
-                case 'History':
-                    dashboardContentText = '<h2>History Dashboard</h2>';
-                    break;
+                // case 'History':
+                //     dashboardContentText = '<h2>History Dashboard</h2>';
+                //     break;
                 default:
                     dashboardContentText = '<h2>Unknown Dashboard!<br>Please try to log in again</h2>';
             }
