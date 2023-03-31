@@ -8,7 +8,7 @@ class ArtistsController
 
     public function __construct()
     {
-        $this->artistsService = new ArtistsService();
+        $this->artistsService = new ArtistService();
     }
 
     public function index()

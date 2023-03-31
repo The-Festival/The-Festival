@@ -33,6 +33,67 @@
         </div>
     </div>
 
+    <!-- Artist cards -->
+
+    <div class="container">
+        <div class="row gap-3 my-3 d-flex justify-content-center">
+            <?php foreach ($artistList as $artist) : ?>
+                <div class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
+                    <div class="card-title g-0 w-100 artist-card-title"><?= $artist->getName() ?></div>
+                    <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
+                        <img class="artist-image mb-3 align-self-center" src="/img/artists/<?=$artist->getName()?>/artist.png" alt="<?=$artist->getName()?>">
+                        <p><strong>Time:</strong> 20:00 - 21:00</p>
+                        <p><strong>Location:</strong> Patronaat</p>
+                        <p><strong>Hall:</strong> Main Hall</p>
+                        <p><strong>Price:</strong> <?= $artist->formatPrice() ?></p>
+                        <a href="#">Discover more!</a>
+                        <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <style>
+        .artist-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 7px solid #000000;
+            max-width: 300px;
+        }
+
+        .artist-card-title {
+            background: #6716C7;
+            border-bottom: 7px solid #000000;
+            font-family: 'Lobster Two';
+            font-weight: 400;
+            font-size: 37px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .artist-card-btn {
+            background: #0C60DD;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25), inset 4px 4px 7px rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+        }
+
+        .artist-image {
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .artist-card-body {
+            font-family: 'Poppins';
+            font-size: 1.25rem;
+            line-height: 100%;
+        }
+    </style>
+
+    <!-- End -->
+
     <!-- 4 Cards that represents the passes -->
 
     <div class="container">
