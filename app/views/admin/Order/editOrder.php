@@ -53,8 +53,11 @@
           <input type="datetime-local" class="form-control" id="order_time" name="order_time" value="<?php echo $order->getOrderTime(); ?>" required>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Payment Method</label>
-          <input type="text" class="form-control" id="payment Method" name="payment_method" value="<?php echo $order->getPaymentMethod(); ?>" required>
+        <select name="payment_method" class="form-control">
+            <option value="paypal"<?php if ($order->getPaymentMethod() == 'paypal') echo ' selected'; ?>>Paypal</option>
+            <option value="ideal"<?php if ($order->getPaymentMethod() == 'ideal') echo ' selected'; ?>>Ideal</option>
+            <option value="creditcard"<?php if ($order->getPaymentMethod() == 'creditcard') echo ' selected'; ?>>Creditcard</option>
+      </select>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Total Price</label>
@@ -65,6 +68,7 @@
           <input type="number" step = "0.01" class="form-control" id="payment Method" name="total_vat" value="<?php echo $order->getTotalVat(); ?>" readonly>
         </div>
         <button type="submit" name="editOrder" class="btn btn-primary">Submit</button>
+        <button class = "btn btn-danger" onclick = "window.location.href = '/admin/orderdashboard'">Back</button>
       </form>
     </div>
   </div>

@@ -115,15 +115,15 @@ class OrderRepository extends Repository {
 
     public function addOrder($order){
         try{
-            $stmt = $this->connection->prepare("INSERT INTO `Order`(`client_name`, `address`, `phonenumber`, `emailaddress`, `order_time`, `payment_method`, `total_price`, `total_vat`) VALUES (':client_name',':address',':phonenumber',':emailaddress',':order_time',':payment_method',':total_price',':total_vat')");
-            $stmt->bindParam(':client_name', $order->getClientName());
-            $stmt->bindParam(':address', $order->getAddress());
-            $stmt->bindParam(':phonenumber', $order->getPhonenumber());
-            $stmt->bindParam(':emailaddress', $order->getEmailaddress());
-            $stmt->bindParam(':order_time', $order->getOrderTime());
-            $stmt->bindParam(':payment_method', $order->getPaymentMethod());
-            $stmt->bindParam(':total_price', $order->getTotalPrice());
-            $stmt->bindParam(':total_vat', $order->getTotalVat());
+            $stmt = $this->connection->prepare("INSERT INTO `Order`(`client_name`, `address`, `phonenumber`, `emailaddress`, `order_time`, `payment_method`, `total_price`, `total_vat`) VALUES (:client_name,:address,:phonenumber,:emailaddress,:order_time,:payment_method,:total_price,:total_vat)");
+            $stmt->bindValue(':client_name', $order->getClientName());
+            $stmt->bindValue(':address', $order->getAddress());
+            $stmt->bindValue(':phonenumber', $order->getPhonenumber());
+            $stmt->bindValue(':emailaddress', $order->getEmailaddress());
+            $stmt->bindValue(':order_time', $order->getOrderTime());
+            $stmt->bindValue(':payment_method', $order->getPaymentMethod());
+            $stmt->bindValue(':total_price', $order->getTotalPrice());
+            $stmt->bindValue(':total_vat', $order->getTotalVat());
             $stmt->execute();
             return true;
         } catch(PDOException $e){
@@ -285,6 +285,68 @@ class OrderRepository extends Repository {
             return false;
         }
     }
+
+    public function getPriceAndQuantityOnHistoryEvent($event_id){
+        try {
+            $stmt = $this->connection->prepare("SELECT `spaces_left` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.language_id = l.language_id WHERE :event_id;");
+            $stmt->bindValue(':event_id', $event_id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+
+    public function getPriceAndQuantityOnJazzEvent($event_id){
+        try {
+            $stmt = $this->connection->prepare("SELECT `seats_left` , `price` FROM `Event_Jazz` JOIN Artist ON Artist.artist_id = Event_Jazz.artist_id WHERE Event_Jazz.event_id = :event_id;");
+            $stmt->bindValue(':event_id', $event_id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+
+    public function getPriceAndQuantityOnYummyEvent($reservation_id){
+        try {
+            $stmt = $this->connection->prepare("SELECT r.reservation_fee as price, s.seats_left FROM Reservation r JOIN Session s ON r.session_id = s.session_id JOIN Restraurant re ON s.restaurant_id = re.restaurant_id WHERE r.reservation_id = :reservation_id;");
+            $stmt->bindValue(':reservation_id', $reservation_id);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+
+    public function updateOrderPriceAndVat($order_id, $totalPrice, $totalVat){
+        try {
+            $stmt = $this->connection->prepare("UPDATE `Order` SET `total_price` = :totalPrice, `total_vat` = :totalVat WHERE `order_id` = :order_id;");
+            $stmt->bindValue(':totalPrice', $totalPrice);
+            $stmt->bindValue(':totalVat', $totalVat);
+            $stmt->bindValue(':order_id', $order_id);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+
+
+
+
+
 
 
 

@@ -82,6 +82,11 @@ class AdminController{
     public function editorder(){
         $this->orderService->checkRequests();
     }
+
+    public function createorder(){
+        include __DIR__ . '/../views/admin/order/createorder.php';
+    }
+
     public function editTicket(){
         $this->orderService->checkRequests();
     }

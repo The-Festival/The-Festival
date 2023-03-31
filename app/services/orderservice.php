@@ -24,6 +24,20 @@ class OrderService{
             $order->setTotalVat($_POST['total_vat']);
             $this->updateOrder($order);
         }
+        if(isset($_POST['createOrder'])){
+            $initialTotalPrice = 0;
+            $initialTotalVat = 0;
+            $order = new Order();
+            $order->setClientName($_POST['client_name']);
+            $order->setAddress($_POST['address']);
+            $order->setEmailaddress($_POST['email']);
+            $order->setPhonenumber($_POST['phone']);
+            $order->setOrderTime($_POST['order_time']);
+            $order->setPaymentMethod($_POST['payment_method']);
+            $order->setTotalPrice($initialTotalPrice);
+            $order->setTotalVat($initialTotalVat);
+            $this->addOrder($order);
+        }
         if(isset($_GET['deleteOrder'])){
             $this->deleteOrderPlusAllTicketsOnOrder($_GET['deleteOrder']);
         }
@@ -31,6 +45,7 @@ class OrderService{
             $order = $this->getOrderById($_GET['editOrder']);
             include __DIR__ . '/../views/admin/order/editOrder.php';
         }
+
     }
     
     public function checkTicketRequests(){
@@ -117,6 +132,7 @@ class OrderService{
     }
 
     public function deleteTicket($ticket_id){
+        $this->calculateTotalPriceOfOrderOnTicketDelete($this->getTicketById($ticket_id));
         return $this->orderRepository->deleteTicket($ticket_id);
     }
 
@@ -129,7 +145,15 @@ class OrderService{
     }
 
     public function addTicket($ticket){
-        return $this->orderRepository->addTicket($ticket->getOrderId(), $ticket->getEventType(), $ticket->getEventId(), $ticket->getVatPercentage(), $ticket->getQuantity(), $ticket->getIsChecked());
+        if($this->checkTicketQuantity($ticket)){
+            
+            $this->orderRepository->addTicket($ticket->getOrderId(), $ticket->getEventType(), $ticket->getEventId(), $ticket->getVatPercentage(), $ticket->getQuantity(), $ticket->getIsChecked());
+            $this->calculatePriceAndVatOfTicketOnAdd($ticket);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function updateOrder($order){
@@ -172,5 +196,51 @@ class OrderService{
         return $this->orderRepository->getAllYummyEvents();
     }
 
-  
+    public function checkTicketQuantity($ticket){
+        $quantityAndPrice = $this->getQuantityAndPrice($ticket);
+        if($quantityAndPrice['seats_left'] < $ticket->getQuantity()){
+            return false;
+        }
+        return true;
+    }
+
+    public function calculatePriceAndVatOfTicketOnAdd($ticket){
+        $tickets = $this->getTicketsByOrderId($ticket->getOrderId());
+        $totalPrice = 0;
+        $totalVat = 0;
+        foreach($tickets as $ticket){
+            $quantityAndPrice = $this->getQuantityAndPrice($ticket);
+            $totalPrice += $quantityAndPrice['price'] * $ticket->getQuantity();
+            $totalVat += $quantityAndPrice['price'] * $ticket->getQuantity() * $ticket->getVatPercentage() / 100;
+        }
+        $this->orderRepository->updateOrderPriceAndVat($ticket->getOrderId(), $totalPrice, $totalVat);
+    }
+
+    public function calculateTotalPriceOfOrderOnTicketDelete($ticket){
+        //get ticket price and quantitty 
+        $quantityAndPrice = $this->getQuantityAndPrice($ticket);
+        //calculate the total price of the order
+        $order = $this->getOrderById($ticket->getOrderId());
+        $totalPrice = $order->getTotalPrice() - ($quantityAndPrice['price'] * $ticket->getQuantity());
+        $totalVat = $order->getTotalVat() - ($quantityAndPrice['price'] * $ticket->getQuantity() * $ticket->getVatPercentage() / 100);
+        $this->orderRepository->updateOrderPriceAndVat($ticket->getOrderId(), $totalPrice, $totalVat);
+
+    }
+
+    public function getQuantityAndPrice($ticket){
+        switch ($ticket->getEventType()) {
+            case "yummy":
+                return $quantityAndPrice = $this->orderRepository->getPriceAndQuantityOnYummyEvent($ticket->getEventId());
+                break;
+            case "jazz":
+                return $quantityAndPrice =$this->orderRepository->getPriceAndQuantityOnJazzEvent($ticket->getEventId());
+                break;
+            case "history":
+                return $quantityAndPrice =$this->orderRepository->getPriceAndQuantityOnHistoryEvent($ticket->getEventId());
+                break;
+            default:
+                break;
+        }
+    }
+
 }
