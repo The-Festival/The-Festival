@@ -1,5 +1,6 @@
 <?php
 $var = 'history';
+$name = $slider[$_GET['id']-1]->getName();
 require __DIR__ . '/../../header.php';
 ?>
 <div class="hero-image mb-3" id="hero-image"></div>
@@ -8,28 +9,46 @@ require __DIR__ . '/../../header.php';
 
   <form action="test" method="POST" class="border border-dark p-3 mb-5">
     <label for="newName" class="form-label text-primary display-6">Edit Event Name</label>
-
-    <?php 
-    if(isset($data[0])){ ?>
-      <input type="text" class="form-control" name="newName" value="<?php echo $data[0]->getName(); ?>">
-    <?php } else { ?>
-      <input type="text" class="form-control" name="newName" value="">
-    <?php } ?>
-
+    <input type="text" class="form-control" name="newName" value="<?php echo $name; ?>">
     <button class="btn btn-primary">submit</button>
   </form>
 
-  <form action="test" method="POST" class="border border-dark p-3 mb-5">
-    <label for="newText" class="form-label text-primary display-6">Edit Event Text</label>
+  <?php 
+  if($data != null){
+    foreach($data as $dat){ ?>
+      <form action="/admin/editTextAndImage" method="POST" class="border border-dark p-3 mb-5">
 
-    <?php if(isset($data[0])){ ?>
-      <textarea class="form-control" name="newText" rows="3"><?php echo $data[0]->getText(); ?></textarea>
-    <?php } else { ?>
-      <textarea class="form-control" name="newText" rows="3"></textarea>
-    <?php } ?>
+        <input type="hidden" name="id" value="<?php echo $dat->getPointOfInterest(); ?>">
 
-    <button class="btn btn-primary">submit</button>
-  </form>
+        <label for="newText" class="form-label text-primary display-6">Edit Event Text / Image</label>
+    
+        <div class="detailSection containter w-75 mx-auto mb-5">
+          <textarea class="form-control" name="newText" rows="3"><?php echo $dat->getText(); ?></textarea>
+          <img src="<?php echo $dat->getPhoto(); ?>" alt="image" class="detailIMG">
+        </div>
+        <label for="newFile">upload new image</label>
+        <input type="file" class="form-control" name="newFile">
+  
+     
+  
+      <button class="btn btn-primary">submit</button>
+    </form>
+    <?php } 
+  } else { ?>
+    <form action="test" method="post" enctype="multipart/form-data" class="border border-dark p-3 mb-5">
+      <label for="newText" class="form-label text-primary display-6">Edit Event Text / Image</label>
+  
+      <div class="d-flex gap-3 flex-row containter">
+        <textarea class="form-control" name="newText" rows="3"></textarea>
+        <input type="file" class="form-control float-right" name="newFile">
+      </div>
+  
+      <button class="btn btn-primary">submit</button>
+    </form>
+  <?php } ?>
+  
+
+  
 </div>
 
 
@@ -76,7 +95,6 @@ require __DIR__ . '/../../footer/footer.php';
 </script>
 <?php } ?>
 <?php if(isset($banner) != null){ 
-  var_dump($banner);
   ?>
   <script>
     function heroBackground2() {

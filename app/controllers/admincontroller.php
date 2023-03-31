@@ -38,7 +38,27 @@ class AdminController{
     }
     
     public function processHistoryEvent(){
-        $this->adminService->processHistoryEvent();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $name = htmlspecialchars($_POST["name"]);
+            $sliderText = htmlspecialchars($_POST["sliderText"]);
+            $sliderImage = $this->verifyFile($_FILES["sliderImage"]);
+            $place = htmlspecialchars($_POST["place"]);
+            $postalCode = htmlspecialchars($_POST["postalCode"]);
+            $streetName = htmlspecialchars($_POST["streetName"]);
+            $number = htmlspecialchars($_POST["number"]);
+            $id = $this->adminService->processHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number);
+            header('Location: /admin/editHistoryEvent?id='.$id[0]->getPointOfInterest());
+        }
+    }
+    
+    public function verifyFile($file){
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileType = $file['type'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        
+        return $this->adminService->verifyFile($fileName, $fileTmpName, $fileType, $fileSize, $fileError);
     }
     
     public function editHistoryEvent(){
@@ -50,7 +70,12 @@ class AdminController{
     }
     
     public function uploadBanner(){
-        $this->adminService->uploadBanner();
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $id = htmlspecialchars($_POST["id"]);
+            $bannerImage = $this->verifyFile($_FILES["bannerImage"]);
+            $this->adminService->uploadBanner();
+            header('Location: /admin/editHistoryEvent?id='.$id);
+        }
     }
 
     public function Jazz()
