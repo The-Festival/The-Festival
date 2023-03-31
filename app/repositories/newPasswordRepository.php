@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/repository.php';
+require_once __DIR__ . '/repository.php';
 
 class newPasswordRepository extends Repository {
     private $db;

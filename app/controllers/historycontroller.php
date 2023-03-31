@@ -11,10 +11,18 @@ class HistoryController {
     }
 
     function index(){
-        $POI = $this->historyService->getPointOfInterestData(1);
-        $slider = $this->historyService->getPointOfInterestData(2);
+        $slider = $this->historyService->getSliderData();
+        $tourInfo = $this->historyService->getTourInfo();
         require __DIR__ . '/../views/history/index.php';
     }
+
+    function detailpage(){
+        $id = htmlspecialchars($_GET["id"]);
+        $banner = $this->historyService->getPageBanner($id);
+        $pagePOI = $this->historyService->getPointOfInterestData($id);
+        require __DIR__ . '/../views/history/detailpage.php';
+    }
+
 }
 
 ?>

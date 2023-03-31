@@ -1,24 +1,94 @@
 <?php
 
 include_once (__DIR__ . '/../services/orderservice.php');
-
 include_once (__DIR__ . '/../services/userservice.php');
+require __DIR__ . '/../services/adminservice.php';
+require __DIR__ . '/../services/historyservice.php';
+require __DIR__ . '/../services/artistservice.php';
+
+
 
 class AdminController{
     
+
     private $orderService;
+    private $adminService;
+    private $historyService;
+    private $artistService;
 
     private $userService;
 
     public function __construct()
     {
+
         $this->orderService = new OrderService();
+        $this->historyService = new HistoryService();
+        $this->adminService = new AdminService();
+
     }
 
     public function index()
     {
         //$this->checkLogin();
         include __DIR__ . '/../views/admin/dashboard.php';
+    }
+
+
+    public function historyDashboard()
+    {
+        $data = $this->historyService->getSliderData();
+        include __DIR__ . '/../views/admin/history/historyDashboard.php';
+    }
+    
+    public function addHistoricalPlace()
+    {
+        include __DIR__ . '/../views/admin/history/createHistoryEvent.php';
+    }
+    
+    public function processHistoryEvent(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $name = htmlspecialchars($_POST["name"]);
+            $sliderText = htmlspecialchars($_POST["sliderText"]);
+            $sliderImage = $this->verifyFile($_FILES["sliderImage"]);
+            $place = htmlspecialchars($_POST["place"]);
+            $postalCode = htmlspecialchars($_POST["postalCode"]);
+            $streetName = htmlspecialchars($_POST["streetName"]);
+            $number = htmlspecialchars($_POST["number"]);
+            $id = $this->adminService->processHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number);
+            header('Location: /admin/editHistoryEvent?id='.$id[0]->getPointOfInterest());
+        }
+    }
+    
+    public function verifyFile($file){
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileType = $file['type'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        
+        return $this->adminService->verifyFile($fileName, $fileTmpName, $fileType, $fileSize, $fileError);
+    }
+    
+    public function editHistoryEvent(){
+        $id = htmlspecialchars($_GET["id"]);
+        $banner = $this->historyService->getPageBanner($id);
+        $slider = $this->historyService->getSliderData();
+        $data = $this->historyService->getPointOfInterestData($id);
+        include __DIR__ . '/../views/admin/history/editHistoryEvent.php';
+    }
+    
+    public function uploadBanner(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $id = htmlspecialchars($_POST["id"]);
+            $bannerImage = $this->verifyFile($_FILES["bannerImage"]);
+            $this->adminService->uploadBanner();
+            header('Location: /admin/editHistoryEvent?id='.$id);
+        }
+    }
+
+    public function Jazz()
+    {
+        include __DIR__ . '/../views/admin/jazz.php';
     }
 
     public function userDashboard(){
