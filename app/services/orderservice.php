@@ -64,10 +64,25 @@ class OrderService{
             $historyTickets = $this->getAllTicketByTypeHistory($order_id);
             include __DIR__ . '/../views/admin/order/ticket/tickets.php';
         }
+        else if (isset($_GET['editTicket']) && isset($_GET['order'])){
+            $ticket = $this->getTicketById($_GET['editTicket']);
+            include __DIR__ . '/../views/admin/order/ticket/editTicket.php';
+        }
+        else if(isset($_POST['editTicket'])){
+            $ticket = new Ticket();
+            $ticket->setTicketId($_POST['ticket_id']);
+            $ticket->setOrderId($_POST['order_id']);
+            $ticket->setEventId($_POST['event_id']);
+            $ticket->setEventType($_POST['event_type']);
+            $ticket->setVatPercentage($_POST['vat_percentage']);
+            $ticket->setQuantity($_POST['quantity']);
+            $ticket->setIsChecked($_POST['is_checked']);
+            $this->updateTicket($ticket);
+            header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
+        }
         else if(isset($_GET['addYummyTicketToOrder'])){
             $order_id = $_GET['addYummyTicketToOrder'];
             $yummyEvents = $this->getAllYummyEvents();
-            var_dump($yummyEvents);
             include __DIR__ . '/../views/admin/order/ticket/addYummyTicket.php';
         }
         else if(isset($_POST['addYummyTicketToOrder'])){
@@ -84,7 +99,6 @@ class OrderService{
         else if(isset($_GET['addJazzTicketToOrder'])){
             $order_id = $_GET['addJazzTicketToOrder'];
             $jazzEvents = $this->getAllJazzEvents();
-            var_dump($jazzEvents);
             include __DIR__ . '/../views/admin/order/ticket/addJazzTicket.php';
         }
         else if(isset($_POST['addJazzTicketToOrder'])){
@@ -161,6 +175,7 @@ class OrderService{
     }
 
     public function updateTicket($ticket){
+        $this->calculateTotalPriceOfOrderOnTicketEdit($ticket);
         return $this->orderRepository->updateTicket($ticket);
     }
 
@@ -205,7 +220,19 @@ class OrderService{
     }
 
     public function calculatePriceAndVatOfTicketOnAdd($ticket){
-        $tickets = $this->getTicketsByOrderId($ticket->getOrderId());
+        $this->calculateAndUpdateTotalPriceOfOrder($this->getOrderById($ticket->getOrderId()));
+    }
+
+    public function calculateTotalPriceOfOrderOnTicketDelete($ticket){
+        $this->calculateAndUpdateTotalPriceOfOrder($this->getOrderById($ticket->getOrderId()));
+    }
+
+    public function calculateTotalPriceOfOrderOnTicketEdit($ticket){
+        $this->calculateAndUpdateTotalPriceOfOrder($this->getOrderById($ticket->getOrderId()));
+    }
+
+    public function calculateAndUpdateTotalPriceOfOrder($order){
+        $tickets = $this->getTicketsByOrderId($order->getOrderId());
         $totalPrice = 0;
         $totalVat = 0;
         foreach($tickets as $ticket){
@@ -213,18 +240,7 @@ class OrderService{
             $totalPrice += $quantityAndPrice['price'] * $ticket->getQuantity();
             $totalVat += $quantityAndPrice['price'] * $ticket->getQuantity() * $ticket->getVatPercentage() / 100;
         }
-        $this->orderRepository->updateOrderPriceAndVat($ticket->getOrderId(), $totalPrice, $totalVat);
-    }
-
-    public function calculateTotalPriceOfOrderOnTicketDelete($ticket){
-        //get ticket price and quantitty 
-        $quantityAndPrice = $this->getQuantityAndPrice($ticket);
-        //calculate the total price of the order
-        $order = $this->getOrderById($ticket->getOrderId());
-        $totalPrice = $order->getTotalPrice() - ($quantityAndPrice['price'] * $ticket->getQuantity());
-        $totalVat = $order->getTotalVat() - ($quantityAndPrice['price'] * $ticket->getQuantity() * $ticket->getVatPercentage() / 100);
-        $this->orderRepository->updateOrderPriceAndVat($ticket->getOrderId(), $totalPrice, $totalVat);
-
+        $this->orderRepository->updateOrderPriceAndVat($order->getOrderId(), $totalPrice, $totalVat);
     }
 
     public function getQuantityAndPrice($ticket){

@@ -55,6 +55,7 @@
                         <td><?php echo $yummyTicket["ischecked"]?></td>
                         <td>
                             <a href="/admin/ticketdashboard?deleteTicket=<?php echo $yummyTicket["ticket_id"] ?>&order=<?php echo $order_id ?>" class="btn btn-danger">Delete</a>
+                            <a href="/admin/ticketdashboard?editTicket=<?php echo $yummyTicket["ticket_id"] ?>&order=<?php echo $order_id ?>" class="btn btn-info">Edit</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -92,6 +93,7 @@
                         <td><?php echo$jazzTicket["ischecked"]?></td>
                         <td>
                             <a href="/admin/ticketdashboard?deleteTicket=<?php echo $jazzTicket["ticket_id"]?>&order=<?php echo $order_id ?>" class="btn btn-danger">Delete</a>
+                            <a href="/admin/ticketdashboard?editTicket=<?php echo $jazzTicket["ticket_id"] ?>&order=<?php echo $order_id ?>" class="btn btn-info">Edit</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -107,8 +109,9 @@
             <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Name</th>
+                                            <th>Language</th>
                                             <th>Start Date And Time</th>
+                                            <th>Start Location</th>
                                             <th>Quantity</th>
                                             <th>Price</th>
                                             <th>Is Checked</th>
@@ -122,10 +125,12 @@
                         <td><?php echo $historyTicket["name"]?></td>
                         <td><?php echo $historyTicket["datetime"]?></td>
                         <td><?php echo $historyTicket["start_location"]?></td>
+                        <td><?php echo $historyTicket["quantity"]?></td>
                         <td><?php echo $historyTicket["price"]?></td>
                         <td><?php echo $historyTicket["ischecked"]?></td>
                         <td>
                             <a href="/admin/ticketdashboard?deleteTicket=<?php echo $historyTicket["ticket_id"]?>&order=<?php echo $order_id ?>" class="btn btn-danger">Delete</a>
+                            <a href="/admin/ticketdashboard?editTicket=<?php echo $historyTicket["ticket_id"] ?>&order=<?php echo $order_id ?>" class="btn btn-info">Edit</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

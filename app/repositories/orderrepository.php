@@ -153,14 +153,14 @@ class OrderRepository extends Repository {
 
     public function updateTicket($ticket){
         try{
-            $stmt = $this->connection->prepare("UPDATE `Ticket` SET `order_id`=':order_id',`event_type`=':event_type',`event_id`=':event_id',`vat_percentage`=':vat_percentage',`quantity`=':quantity',`ischecked`=':isChecked' WHERE ticket_id = :ticket_id");
-            $stmt->bindParam(':ticket_id', $ticket->getTicketId());
-            $stmt->bindParam(':order_id', $ticket->getOrderId());
-            $stmt->bindParam(':event_type', $ticket->getEventType());
-            $stmt->bindParam(':event_id', $ticket->getEventId());
-            $stmt->bindParam(':vat_percentage', $ticket->getVatPercentage());
-            $stmt->bindParam(':quantity', $ticket->getQuantity());
-            $stmt->bindParam(':isChecked', $ticket->getIsChecked());
+            $stmt = $this->connection->prepare("UPDATE `Ticket` SET `order_id`=:order_id,`event_type`=:event_type,`event_id`=:event_id,`vat_percentage`=:vat_percentage,`quantity`=:quantity,`ischecked`=:isChecked WHERE ticket_id = :ticket_id");
+            $stmt->bindValue(':ticket_id', $ticket->getTicketId());
+            $stmt->bindValue(':order_id', $ticket->getOrderId());
+            $stmt->bindValue(':event_type', $ticket->getEventType());
+            $stmt->bindValue(':event_id', $ticket->getEventId());
+            $stmt->bindValue(':vat_percentage', $ticket->getVatPercentage());
+            $stmt->bindValue(':quantity', $ticket->getQuantity());
+            $stmt->bindValue(':isChecked', $ticket->getIsChecked());
             $stmt->execute();
             return true;
         } catch(PDOException $e){
@@ -230,7 +230,7 @@ class OrderRepository extends Repository {
 
     public function getAllTicketOnTypeHistory($order_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`start_location` , `price`, `ischecked`
+            $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`quantity` ,`start_location`, `price`, `ischecked`
             FROM Ticket
             JOIN Tour ON Ticket.event_id = Tour.tour_id
             JOIN Language ON Tour.language_id = Language.language_id
