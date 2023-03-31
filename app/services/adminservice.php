@@ -9,38 +9,16 @@ class AdminService{
         $this->adminRepository = new AdminRepository();
     }
 
-    public function processHistoryEvent(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $name = htmlspecialchars($_POST["name"]);
-            $sliderText = htmlspecialchars($_POST["sliderText"]);
-            $sliderImage = $this->verifyFile($_FILES["sliderImage"]);
-            $place = htmlspecialchars($_POST["place"]);
-            $postalCode = htmlspecialchars($_POST["postalCode"]);
-            $streetName = htmlspecialchars($_POST["streetName"]);
-            $number = htmlspecialchars($_POST["number"]);
-            $this->adminRepository->addHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number);
-            $id = $this->adminRepository->getHistoryEventIdByName($name);
-            header('Location: /admin/editHistoryEvent?id='.$id[0]->getPointOfInterest());
-        }
-        
+    public function processHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number){
+        $this->adminRepository->addHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number);
+        return $this->adminRepository->getHistoryEventIdByName($name);
     }
 
     public function uploadBanner(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $id = htmlspecialchars($_POST["id"]);
-            $bannerImage = $this->verifyFile($_FILES["bannerImage"]);
-            $this->adminRepository->uploadBanner($id, $bannerImage);
-            header('Location: /admin/editHistoryEvent?id='.$id);
-        }
+        $this->adminRepository->uploadBanner($id, $bannerImage);
     }
 
-    private function verifyFile($file) {
-        $fileName = $file['name'];
-        $fileTmpName = $file['tmp_name'];
-        $fileType = $file['type'];
-        $fileSize = $file['size'];
-        $fileError = $file['error'];
-
+    public function verifyFile($fileName, $fileTmpName, $fileType, $fileSize, $fileError) {
         $fileExtension = $this->verifyPictureExtension($fileName);
         $this->checkForError($fileError);
         $this->checkFileSize($fileSize);
@@ -50,7 +28,6 @@ class AdminService{
         $fileDestination = "/../public/img/$newFileName";
 
         move_uploaded_file($fileTmpName, __DIR__.$fileDestination);
-    
         return "/images/$newFileName";
     }
 
