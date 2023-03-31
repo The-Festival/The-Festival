@@ -26,7 +26,7 @@ class AdminRepository extends Repository{
     }
     public function getHistoryEventIdByName($name){
         try {
-            $stmt = $this->connection->prepare("SELECT poi_id AS pointOfInterest, $, name, null AS text, null AS location, null AS photo FROM Point_of_interest WHERE name = :name");
+            $stmt = $this->connection->prepare("SELECT poi_id AS pointOfInterest, null as about_id, null as photo_id, null as location_id, name, null AS text, null AS location, null AS photo FROM Point_of_interest WHERE name = :name");
             $stmt->bindParam(':name', $name);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'POI');

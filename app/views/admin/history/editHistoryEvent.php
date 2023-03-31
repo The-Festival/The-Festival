@@ -2,7 +2,6 @@
 $var = 'history';
 $name = $slider[$_GET['id']-1]->getName();
 require __DIR__ . '/../../header.php';
-echo $data[0]->getLocationID();
 ?>
 <div class="hero-image mb-3" id="hero-image"></div>
 
