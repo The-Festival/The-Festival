@@ -32,27 +32,27 @@
         <form action="/admin/userdashboard" method="POST">
           <div class="mb-3">
             <label for="ID" class="form-label">User ID</label>
-            <input type="text" class="form-control" id="id" name="id" value="<?php echo $user->user_id; ?>" readonly>
+            <input type="text" class="form-control" id="id" name="id" value="<?php echo $user->getUserId(); ?>" readonly>
           </div>
           <div class="mb-3">
             <label for="fullname" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $user->fullname; ?>" required>
+            <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $user->getFullName(); ?>" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?php echo $user->email; ?>" required>
+            <input type="email" class="form-control" id="email" name="email" value="<?php echo $user->getEmail(); ?>" required>
           </div>
           <div class="mb-3">
             <label for="role" class="form-label">Role</label>
             <select class="form-select" id="role" name="role" multiple required>
-              <option value="admin" <?php if ($user->role === 'admin') echo 'selected'; ?>>Admin</option>
-              <option value="employee" <?php if ($user->role === 'employee') echo 'selected'; ?>>Employee</option>
-              <option value="customer" <?php if ($user->role === 'customer') echo 'selected'; ?>>Customer</option>
+              <option value="admin" <?php if ($user->getRole() === 'admin') echo 'selected'; ?>>Admin</option>
+              <option value="employee" <?php if ($user->getRole() === 'employee') echo 'selected'; ?>>Employee</option>
+              <option value="customer" <?php if ($user->getRole() === 'customer') echo 'selected'; ?>>Customer</option>
             </select>
           </div>
           <div class="mb-3">
             <label for="registration_date" class="form-label">Registration Date</label>
-            <input type="date" class="form-control" id="registration_date" name="registration_date" value="<?php echo $user->registration_date; ?>" required>
+            <input type="date" class="form-control" id="registration_date" name="registration_date" value="<?php echo $user->getRegistrationDate(); ?>" required>
           </div>
           <button type="submit" name="update" class="btn btn-primary">Submit</button>
         </form>
