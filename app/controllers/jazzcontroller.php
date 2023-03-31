@@ -1,18 +1,30 @@
 <?php
 
-require __DIR__ . '/../services/jazzservice.php';
+require __DIR__ . '/../services/artistservice.php';
 
 class JazzController
 {
-    private $jazzService;
+    private $artistService;
 
     function __construct()
     {
-        $this->jazzService = new JazzService();
+        $this->artistService = new ArtistService();
     }
 
     public function index()
     {
+        $artistList = $this->getAllArtists();
         require __DIR__ . '/../views/jazz/index.php';
+    }
+
+    private function getAllArtists()
+    {
+        return $this->artistService->getAllArtists();
+    }
+
+    public function artist($id)
+    {
+        $artist = $this->artistService->getArtistByID($id);
+        require __DIR__ . '/../views/jazz/artist.php';
     }
 }
