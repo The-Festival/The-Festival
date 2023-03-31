@@ -2,6 +2,7 @@
 $var = 'history';
 $name = $slider[$_GET['id']-1]->getName();
 require __DIR__ . '/../../header.php';
+echo $data[0]->getLocationID();
 ?>
 <div class="hero-image mb-3" id="hero-image"></div>
 
@@ -16,9 +17,10 @@ require __DIR__ . '/../../header.php';
   <?php 
   if($data != null){
     foreach($data as $dat){ ?>
-      <form action="/admin/editTextAndImage" method="POST" class="border border-dark p-3 mb-5">
+      <form action="/admin/editTextAndImage" method="POST" enctype="multipart/form-data" class="border border-dark p-3 mb-5">
 
-        <input type="hidden" name="id" value="<?php echo $dat->getPointOfInterest(); ?>">
+        <input type="hidden" name="textID" value="<?php echo $dat->getAboutID();?>">
+        <input type="hidden" name="imgID" value="<?php echo $dat->getPhotoID();?>">
 
         <label for="newText" class="form-label text-primary display-6">Edit Event Text / Image</label>
     

@@ -1,5 +1,6 @@
 <?php 
 require_once(__DIR__ . '/../models/POI.php');
+require_once(__DIR__ . '/../models/IMG.php');
 require_once(__DIR__ . '/repository.php');
 class AdminRepository extends Repository{
     public function addHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number){
@@ -25,7 +26,7 @@ class AdminRepository extends Repository{
     }
     public function getHistoryEventIdByName($name){
         try {
-            $stmt = $this->connection->prepare("SELECT poi_id AS pointOfInterest, name, null AS text, null AS location, null AS photo FROM Point_of_interest WHERE name = :name");
+            $stmt = $this->connection->prepare("SELECT poi_id AS pointOfInterest, $, name, null AS text, null AS location, null AS photo FROM Point_of_interest WHERE name = :name");
             $stmt->bindParam(':name', $name);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'POI');
@@ -42,6 +43,20 @@ class AdminRepository extends Repository{
             $stmt = $this->connection->prepare("INSERT INTO Foto(`detail_id`,`type`,`filepath`,`isBanner`) VALUES (:id, (SELECT name FROM Point_of_interest WHERE poi_id = :id), :bannerImage, 1)");
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':bannerImage', $bannerImage);
+            $stmt->execute();
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+
+    public function editTextAndImage($textID, $imageID, $text, $image){
+        try {
+            $stmt = $this->connection->prepare("UPDATE About SET about = :text WHERE about_id = :textID;
+            UPDATE Foto SET filepath = :image WHERE foto_id = :imageID;");
+            $stmt->bindParam(':textID', $textID);
+            $stmt->bindParam(':imageID', $imageID);
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':image', $image);
             $stmt->execute();
         }catch(PDOException $e){
             echo $e;

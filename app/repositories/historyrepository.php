@@ -9,7 +9,7 @@ require_once __DIR__ . '/../models/location.php';
 class HistoryRepository extends Repository{
     public function getPointOfInterestDataWithoutIMG($id){
         try {
-            $stmt = $this->connection->prepare("SELECT PO.poi_id AS pointOfInterest, PO.name, A.about AS text, null AS location, null AS photo FROM `Point_of_interest` AS PO inner join About AS A on A.detail_id=PO.poi_id WHERE PO.poi_id = :id LIMIT 10 OFFSET 1;");
+            $stmt = $this->connection->prepare("SELECT PO.poi_id AS pointOfInterest, A.about_id, null as photo_id, null as location_id, PO.name, A.about AS text, null AS location, null AS photo FROM `Point_of_interest` AS PO inner join About AS A on A.detail_id=PO.poi_id WHERE PO.poi_id = :id LIMIT 10 OFFSET 1;");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'POI');
