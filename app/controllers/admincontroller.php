@@ -1,5 +1,4 @@
 <?php
-
 require __DIR__ . '/../services/adminservice.php';
 require __DIR__ . '/../services/historyservice.php';
 require __DIR__ . '/../services/artistservice.php';
@@ -50,6 +49,14 @@ class AdminController{
             header('Location: /admin/editHistoryEvent?id='.$id[0]->getPointOfInterest());
         }
     }
+
+    public function editTextAndImage(){
+        $textID = htmlspecialchars($_POST["textID"]);
+        $imageID = htmlspecialchars($_POST["imgID"]);
+        $text = htmlspecialchars($_POST["newText"]);
+        $image = $this->verifyFile($_FILES["newFile"]);
+        $this->adminService->editTextAndImage($textID, $imageID, $text, $image);
+    }
     
     public function verifyFile($file){
         $fileName = $file['name'];
@@ -65,6 +72,7 @@ class AdminController{
         $id = htmlspecialchars($_GET["id"]);
         $banner = $this->historyService->getPageBanner($id);
         $slider = $this->historyService->getSliderData();
+        // $data = $this->adminService->getPageData($id);
         $data = $this->historyService->getPointOfInterestData($id);
         include __DIR__ . '/../views/admin/history/editHistoryEvent.php';
     }

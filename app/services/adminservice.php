@@ -18,6 +18,10 @@ class AdminService{
         $this->adminRepository->uploadBanner($id, $bannerImage);
     }
 
+    public function editTextAndImage($textID, $imageID, $text, $image){
+        $this->adminRepository->editTextAndImage($textID, $imageID, $text, $image);
+    }
+
     public function verifyFile($fileName, $fileTmpName, $fileType, $fileSize, $fileError) {
         $fileExtension = $this->verifyPictureExtension($fileName);
         $this->checkForError($fileError);
@@ -28,7 +32,7 @@ class AdminService{
         $fileDestination = "/../public/img/$newFileName";
 
         move_uploaded_file($fileTmpName, __DIR__.$fileDestination);
-        return "/images/$newFileName";
+        return "/img/$newFileName";
     }
 
     private function verifyPictureExtension($fileName){
