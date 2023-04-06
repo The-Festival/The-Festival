@@ -40,11 +40,11 @@ class resetpasswdcontroller{
         if (isset($_POST['buttonCheck']))
         {
             $code = htmlspecialchars($_POST['code']);
-            if ($code == $_SESSION['rndCode']){
+
+            if ($_SESSION['rndCode'] == $code){
                 $this->newpasswd();
                 return;
             }
-            header("Location: http://localhost/resetpasswd?errorMessage=Code not correct");
         }
         require __DIR__ . '/../views/login/checkcode.php';
     }
@@ -54,12 +54,17 @@ class resetpasswdcontroller{
         {
             $password = htmlspecialchars($_POST['password']);
             $password2 = htmlspecialchars($_POST['password2']);
+
             if ($password == $password2){
-                $this->passwdService->newPassword($password, $_SESSION['email']);
-                require __DIR__ . '/../views/yummy/yummy.php';
-                return;
+                if(strlen($password) < 7){
+                    require __DIR__ . '/../views/login/newpasswd.php';
+                }
+                else{
+                    $this->passwdService->newPassword($password, $_SESSION['email']);
+                    include(__DIR__ . '/../views/login/login.php');
+                    return;
+                }
             }
-            header("Location: http://localhost/resetpasswd?errorMessage=Passwords not the same");
         }
         require __DIR__ . '/../views/login/newpasswd.php';
     }

@@ -168,6 +168,23 @@ CREATE TABLE `Location` (
 -- --------------------------------------------------------
 
 --
+-- Gegevens worden geëxporteerd voor tabel `Location`
+--
+
+INSERT INTO `Location` (`location_id`, `detail_id`, `type`, `streetname`, `postalcode`, `city`, `housenumber`) VALUES
+(1, 1, 'Restaurant', 'Oude Groenmarkt', '2011HL', 'Haarlem', '10-12'),
+(2, 2, 'Restaurant', 'Twijnderslaan', '2021BG', 'Haarlem', '7'),
+(3, 3, 'Restaurant', 'Spekstraat', '2011HM', 'Haarlem', '4'),
+(4, 4, 'Restaurant', 'Spaarne', '2011CL', 'Haarlem', '96'),
+(5, 5, 'Restaurant', 'Lange Veerstraat', '2011DB', 'Haarlem', '4'),
+(6, 6, 'Restaurant', 'Klokhuisplein', '2011HK', 'Haarlem', '9'),
+(7, 7, 'Restaurant', 'Grote Markt', '2011RC', 'Haarlem', '13'),
+(8, 8, 'Restaurant', 'test00', 'test', 'test', '2'),
+(9, 9, 'Restaurant', 'test00', 'test', 'test', '2'),
+(10, 24, 'Restaurant', 'straat', '1234AB', 'alkmaar', '34');
+
+
+--
 -- Table structure for table `Main_Page`
 --
 
@@ -226,23 +243,50 @@ CREATE TABLE `Reservation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Restraurant`
+-- Table structure for table `Restaurant`
 --
 
-CREATE TABLE `Restraurant` (
+CREATE TABLE `Restaurant` (
   `restaurant_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
-  `restaurant_type` varchar(128) NOT NULL,
+  `price_kids` float NOT NULL,
   `star_rating` int(11) NOT NULL,
   `cuisine` varchar(128) NOT NULL,
-  `email` varchar(320) NOT NULL,
-  `phonenumber` varchar(15) NOT NULL
+  `website` varchar(320) NOT NULL,
+  `phonenumber` varchar(15) NOT NULL,
+  `total_seats` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- --------------------------------------------------------
+--
+-- Gegevens worden geëxporteerd voor tabel `Restaurant`
+--
+
+INSERT INTO `Restaurant` (`restaurant_id`, `name`, `description`, `price`, `price_kids`, `star_rating`, `cuisine`, `website`, `phonenumber`, `total_seats`) VALUES
+(1, 'Urban Frenchy Bistro Toujours', 'For a cozy and beautiful dinner, Toujours is the place to be. It’s located is the center of Haarlem, right across from the Grote kerk. It’s a french restaurant with two open kitchens and a cozy styled interior. ', 35, 17.5, 4, 'French', 'https://restauranttoujours.nl/', '023 5321699', 48),
+(2, 'Fris', 'Fris a modern french restaurant in the city center of Haarlem, by Rick May.  the restaurant has a relaxed atmosphere with high quality dishes, made with fresh seasonal products. Fris received in 2022 a Michelin star. ', 45, 22.5, 4, 'French', 'https://www.restaurantfris.nl/', '023 5310717', 45),
+(3, 'Specktakel', 'Specktakel is a unique world restaurant centrally located in the heart of Haarlem. With a special covered courtyard and a terrace with a view of the historic Vleeshal and the centuries-old Bavo church.', 35, 17.5, 3, 'World', 'https://specktakel.nl/', '023-5323841', 36),
+(4, 'Ratatouille', 'This restaurant is a star in Haarlem. It is one of the few restaurants in this city with a Michelin star. It provides a sophisticated theme with a traditional French decor. Here you can also taste some top of the line seafood with a rich and complex flavor.', 45, 22.5, 4, 'French, European', 'https://ratatouillefoodandwine.nl/', '023 542 7270', 52),
+(5, 'Mr. & Mrs.', 'Restaurant Mr. and Mrs. serves small luxury dishes, with the size of a starter, so you can try a lot of different combinations. You can choose between hot and cold dishes and they always have a matching glass of wine with your dish.', 45, 22.5, 4, 'European', 'https://www.restaurantmrandmrs.nl/', '023 531 5935', 40),
+(6, 'ML', 'Restaurant ML is located in historical Hotel ML. It is a french restaurant with surprising flavor combinations in their dishes, but with the right combination between traditional and new products and flavors.', 45, 22.5, 4, 'International', 'https://www.mlinhaarlem.nl/', '023 5123910', 60),
+(7, 'Grand Cafe Brinkmann', 'Grand Cafe Brinkmann has been known since 1879 in Haarlem and surroundings.  Located on the Grote Markt in the center of Haarlem. The various menu has for everyone something to offer, prepared with fresh ingredients. ', 35, 17.5, 4, 'Dutch', 'https://www.grandcafebrinkmann.nl/', '023 532 3111', 100),
+(10, 'test3', 'leeeukkkkkkk', 33, 23, 3, 'fransig', 'iets.com', '0612345672', 12),
+(12, 'test5', 'leeeukkkkkkk', 33, 23, 3, 'fransig', 'iets.com', '0612345672', 12),
+(13, 'test6', 'leeeukkkkkkk', 33, 23, 3, 'fransig', 'iets.com', '0612345672', 12),
+(14, 'test7', 'leeeukkkkkkk', 33, 23, 2, 'fransig', 'iets.commm', '0612345672', 12),
+(15, 'test8', 'leeeukkkkkkk', 33, 23, 2, 'fransig', 'iets.commm', '0612345672', 12),
+(16, 'test9', 'leeeukkkkkkk', 33, 23, 2, 'fransig', 'iets.commm', '0612345672', 12),
+(17, 'test11', 'test', 2, 2, 3, 'fransig', 'iets.commm', '0612345672', 44),
+(18, 'test22', 'test', 2, 2, 3, 'test', 'test', '1234', 2),
+(19, 'test33', 'test', 2, 2, 3, 'test', 'test', '1234', 2),
+(20, 'test44', 'test', 2, 2, 3, 'test', 'test', '1234', 2),
+(21, 'test', 'test', 2, 2, 3, 'test', 'test', '1234', 2),
+(22, 'test', 'test', 2, 2, 3, 'test', 'test', '1234', 2),
+(23, 'test', 'test', 2, 2, 3, 'fransig', 'iets.commm', '0612345672', 44),
+(24, 'nog een restaurantje', 'leeeukkkkkkk', 33, 2, 2, 'zeevisjes', 'visvis.nl', '0612345672', 454);
 
 --
 -- Table structure for table `Session`
@@ -253,9 +297,74 @@ CREATE TABLE `Session` (
   `restaurant_id` int(11) NOT NULL,
   `start_datetime` datetime NOT NULL,
   `duration` time NOT NULL,
-  `seats_left` int(11) NOT NULL,
-  `total_seats` int(11) NOT NULL
+  `seats_left` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `Session`
+--
+
+INSERT INTO `Session` (`session_id`, `restaurant_id`, `start_datetime`, `duration`, `seats_left`) VALUES
+(1, 1, '2023-07-27 17:30:00', '01:30:00', 48),
+(2, 1, '2023-07-27 19:00:00', '01:30:00', 48),
+(3, 1, '2023-07-27 20:30:00', '01:30:00', 48),
+(4, 1, '2023-07-28 17:30:00', '01:30:00', 48),
+(5, 1, '2023-07-28 19:00:00', '01:30:00', 48),
+(6, 1, '2023-07-28 20:30:00', '01:30:00', 48),
+(7, 1, '2023-07-29 17:30:00', '01:30:00', 48),
+(8, 1, '2023-07-29 19:00:00', '01:30:00', 48),
+(9, 1, '2023-07-29 20:30:00', '01:30:00', 48),
+(10, 2, '2023-07-27 17:30:00', '01:30:00', 45),
+(11, 2, '2023-07-27 19:00:00', '01:30:00', 45),
+(12, 2, '2023-07-27 20:30:00', '01:30:00', 45),
+(13, 2, '2023-07-28 17:30:00', '01:30:00', 45),
+(14, 2, '2023-07-28 19:00:00', '01:30:00', 45),
+(15, 2, '2023-07-28 20:30:00', '01:30:00', 45),
+(16, 2, '2023-07-29 17:30:00', '01:30:00', 45),
+(17, 2, '2023-07-29 19:00:00', '01:30:00', 45),
+(18, 2, '2023-07-29 20:30:00', '01:30:00', 45),
+(19, 3, '2023-07-27 17:00:00', '01:30:00', 36),
+(20, 3, '2023-07-27 18:30:00', '01:30:00', 36),
+(21, 3, '2023-07-27 20:00:00', '01:30:00', 36),
+(22, 3, '2023-07-28 17:00:00', '01:30:00', 36),
+(23, 3, '2023-07-28 18:30:00', '01:30:00', 36),
+(24, 3, '2023-07-28 20:00:00', '01:30:00', 36),
+(25, 3, '2023-07-29 17:00:00', '01:30:00', 36),
+(26, 3, '2023-07-29 18:30:00', '01:30:00', 36),
+(27, 3, '2023-07-29 20:00:00', '01:30:00', 36),
+(31, 4, '2023-07-27 17:00:00', '02:00:00', 52),
+(32, 4, '2023-07-27 19:00:00', '02:00:00', 52),
+(33, 4, '2023-07-27 21:00:00', '02:00:00', 52),
+(34, 4, '2023-07-28 17:00:00', '02:00:00', 52),
+(35, 4, '2023-07-28 19:00:00', '02:00:00', 52),
+(36, 4, '2023-07-28 21:00:00', '02:00:00', 52),
+(37, 4, '2023-07-29 17:00:00', '02:00:00', 52),
+(38, 4, '2023-07-29 19:00:00', '02:00:00', 52),
+(39, 4, '2023-07-29 21:00:00', '02:00:00', 52),
+(40, 5, '2023-07-27 18:00:00', '01:30:00', 40),
+(41, 5, '2023-07-27 19:30:00', '01:30:00', 40),
+(42, 5, '2023-07-27 21:00:00', '01:30:00', 40),
+(43, 5, '2023-07-28 18:00:00', '01:30:00', 40),
+(44, 5, '2023-07-28 19:30:00', '01:30:00', 40),
+(45, 5, '2023-07-28 21:00:00', '01:30:00', 40),
+(46, 5, '2023-07-29 18:00:00', '01:30:00', 40),
+(47, 5, '2023-07-29 19:30:00', '01:30:00', 40),
+(48, 5, '2023-07-29 21:00:00', '01:30:00', 40),
+(49, 6, '2023-07-27 17:00:00', '02:00:00', 60),
+(50, 6, '2023-07-27 19:00:00', '02:00:00', 60),
+(51, 6, '2023-07-28 17:00:00', '02:00:00', 60),
+(52, 6, '2023-07-28 19:00:00', '02:00:00', 60),
+(53, 6, '2023-07-29 17:00:00', '02:00:00', 60),
+(54, 6, '2023-07-29 19:00:00', '02:00:00', 60),
+(55, 7, '2023-07-27 16:30:00', '01:30:00', 100),
+(56, 7, '2023-07-27 18:00:00', '01:30:00', 100),
+(57, 7, '2023-07-27 19:30:00', '01:30:00', 100),
+(58, 7, '2023-07-28 16:30:00', '01:30:00', 100),
+(59, 7, '2023-07-28 18:00:00', '01:30:00', 100),
+(60, 7, '2023-07-28 19:30:00', '01:30:00', 100),
+(61, 7, '2023-07-29 16:30:00', '01:30:00', 100),
+(62, 7, '2023-07-29 18:00:00', '01:30:00', 100),
+(63, 7, '2023-07-29 19:30:00', '01:30:00', 100);
 
 -- --------------------------------------------------------
 
@@ -387,9 +496,9 @@ ALTER TABLE `Reservation`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `Restraurant`
+-- Indexes for table `Restaurant`
 --
-ALTER TABLE `Restraurant`
+ALTER TABLE `Restaurant`
   ADD PRIMARY KEY (`restaurant_id`);
 
 --
@@ -484,9 +593,9 @@ ALTER TABLE `Reservation`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Restraurant`
+-- AUTO_INCREMENT for table `Restaurant`
 --
-ALTER TABLE `Restraurant`
+ALTER TABLE `Restaurant`
   MODIFY `restaurant_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -534,7 +643,7 @@ ALTER TABLE `Reservation`
 -- Constraints for table `Session`
 --
 ALTER TABLE `Session`
-  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restraurant` (`restaurant_id`);
+  ADD CONSTRAINT `Session_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `Restaurant` (`restaurant_id`);
 
 --
 -- Constraints for table `Tour`
