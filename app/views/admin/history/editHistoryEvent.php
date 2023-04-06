@@ -18,6 +18,7 @@ require __DIR__ . '/../../header.php';
     foreach($data as $dat){ ?>
       <form action="/admin/editTextAndImage" method="POST" enctype="multipart/form-data" class="border border-dark p-3 mb-5">
 
+        <input type="hidden" name="POIID" value="<?php echo $dat->getPointOfInterest();?>">
         <input type="hidden" name="textID" value="<?php echo $dat->getAboutID();?>">
         <input type="hidden" name="imgID" value="<?php echo $dat->getPhotoID();?>">
 
@@ -34,14 +35,30 @@ require __DIR__ . '/../../header.php';
   
       <button class="btn btn-primary">submit</button>
     </form>
-    <?php } 
-  } else { ?>
-    <form action="test" method="post" enctype="multipart/form-data" class="border border-dark p-3 mb-5">
-      <label for="newText" class="form-label text-primary display-6">Edit Event Text / Image</label>
+    <?php }  ?>
+
+    <form action="/admin/addTestAndImage" method="post" enctype="multipart/form-data" class="border border-dark p-3 mb-5">
+
+      <input type="hidden" name="POIID" value="<?php echo htmlspecialchars($_GET['id']);?>">
+      <label for="newText" class="form-label text-primary display-6">add Event Text / Image</label>
+
+      <div class="d-flex gap-3 flex-row containter">
+        <textarea class="form-control" name="newText" rows="3" required></textarea>
+        <input type="file" class="form-control float-right" name="newFile" required>
+      </div>
+
+      <button class="btn btn-primary">submit</button>
+    </form>
+
+  <?php } else { ?>
+    <form action="/admin/addTestAndImage" method="post" enctype="multipart/form-data" class="border border-dark p-3 mb-5">
+
+      <input type="hidden" name="POIID" value="<?php echo $_GET['id'];?>">
+      <label for="newText" class="form-label text-primary display-6">add Event Text / Image</label>
   
       <div class="d-flex gap-3 flex-row containter">
-        <textarea class="form-control" name="newText" rows="3"></textarea>
-        <input type="file" class="form-control float-right" name="newFile">
+        <textarea class="form-control" name="newText" rows="3" required></textarea>
+        <input type="file" class="form-control float-right" name="newFile" required>
       </div>
   
       <button class="btn btn-primary">submit</button>
@@ -97,10 +114,10 @@ require __DIR__ . '/../../footer/footer.php';
 <?php } ?>
 <?php if(isset($banner) != null){ 
   ?>
-  <script>
+  <script>  
     function heroBackground2() {
         document.getElementById("hero-image").style.backgroundImage = "url('<?php echo $banner[0]->getFilepath(); ?>')";
     }
-    window.onload = heroBackground2();
+    document.onload = heroBackground2();
   </script>
 <?php } ?>

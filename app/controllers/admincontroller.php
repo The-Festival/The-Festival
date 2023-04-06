@@ -60,11 +60,40 @@ class AdminController{
     }
 
     public function editTextAndImage(){
-        $textID = htmlspecialchars($_POST["textID"]);
-        $imageID = htmlspecialchars($_POST["imgID"]);
+        if($_FILES["newFile"]["name"] != ""){
+            var_dump($_FILES["newFile"]);
+            // echo "file";
+            $textID = htmlspecialchars($_POST["textID"]);
+            $imageID = htmlspecialchars($_POST["imgID"]);
+            $text = htmlspecialchars($_POST["newText"]);
+            $image = $this->verifyFile($_FILES["newFile"]);
+            $this->adminService->editTextAndImage($textID, $imageID, $text, $image);
+        } else {
+            $textID = htmlspecialchars($_POST["textID"]);
+            $text = htmlspecialchars($_POST["newText"]);
+            $this->adminService->editText($textID, $text);
+        }
+        header('Location: /admin/editHistoryEvent?id='.htmlspecialchars($_POST["POIID"]));
+    }
+
+    public function addTestAndImage(){
         $text = htmlspecialchars($_POST["newText"]);
+        $id = htmlspecialchars($_POST["POIID"]);
         $image = $this->verifyFile($_FILES["newFile"]);
-        $this->adminService->editTextAndImage($textID, $imageID, $text, $image);
+        $this->adminService->addTextAndImage($id, $text, $image);
+        header('Location: /admin/editHistoryEvent?id='.$id);
+    }
+
+    public function deleteHistoryEvent(){
+        $id = htmlspecialchars($_GET["id"]);
+        $this->adminService->deleteHistoryEvent($id);
+        header('Location: /admin/historyDashboard');
+    }
+
+    public function tourdashboard()
+    {
+        $tours = $this->historyService->getTourInfo();
+        include __DIR__ . '/../views/admin/history/tourDashboard.php';
     }
     
     public function verifyFile($file){
