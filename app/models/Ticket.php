@@ -1,17 +1,13 @@
 <?php 
 
 class Ticket{ 
+
     private $ticket_id;
     private $order_id;
-
     private $event_type;
-
     private $event_id;
-
     private $vat_percentage;
-
     private $quantity;
-
     private $ischecked;
     
     public function getTicketId(){
