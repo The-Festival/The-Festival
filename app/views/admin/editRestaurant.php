@@ -18,9 +18,9 @@
     <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form action="/yummy/editRestaurant" method="POST">
+      <form action="/yummy/updateRestaurant" method="POST">
       <div class="mb-3">
-          <label for="ID" class="form-label">User ID</label>
+          <label for="ID" class="form-label">Restaurant id</label>
           <input type="text" class="form-control" id="id" name="id" value="<?php echo $restaurant->restaurant_id; ?>" readonly>
         </div>
       <div class="mb-3">
@@ -42,12 +42,19 @@
         <div class="mb-3">
           <label for="role" class="form-label">Star rating</label>
           <select class="form-select" id="star_rating" name="star_rating" multiple required>
-            <option value="1 <?php if ($restaurant->star_rating === '1') echo 'selected'; ?>">1</option>
-            <option value="2 <?php if ($restaurant->star_rating === '2') echo 'selected'; ?>">2</option>
-            <option value="3 <?php if ($restaurant->star_rating === '3') echo 'selected'; ?>">3</option>
-            <option value="2 <?php if ($restaurant->star_rating === '4') echo 'selected'; ?>">4</option>
-            <option value="3 <?php if ($restaurant->star_rating === '5') echo 'selected'; ?>">5</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="2">4</option>
+            <option value="3">5</option>
           </select>
+          <script>
+            var star_rating = document.getElementById('star_rating');
+            star_rating.addEventListener('change', function() {
+              var selected = star_rating.options[star_rating.selectedIndex].value;
+              console.log(selected);
+            });
+            </script>
         </div>
         <div class="mb-3">
           <label for="cuisine" class="form-label">Cuisine</label>

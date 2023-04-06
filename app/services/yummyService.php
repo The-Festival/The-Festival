@@ -48,41 +48,19 @@ class yummyService
             $restaurantDetails['cuisine'], 
             $restaurantDetails['website'], 
             $restaurantDetails['phonenumber'], 
+            $restaurantDetails['total_seats'],
             $restaurantDetails['streetname'], 
             $restaurantDetails['postalcode'], 
             $restaurantDetails['city'], 
             $restaurantDetails['housenumber']);
     }
-    // public function getSessions($id)
-    // {
-    //     $repository = new yummyRepository();
-    //     return $this->convertToSessionsList($repository->getSessions($id));
-    // }
-    // private function convertToSession($session)
-    // {
-        
-    //     // return new Session('session_id', 'restaurant_id', 'start_datetime', 'duration', 'seats_left');
-    //     // return new Session($session_id, $restaurant_id, $start_datetime, $duration, $seats_left);
-    //     return new Session(
-    //         $session[0], 
-    //         $session[1], 
-    //         $session[2], 
-    //         $session[3], 
-    //         $session[4]);
-       
-    // }
-    // private function convertToSessionsList($sessions){
-    //     $sessionsList = [];
-
-    //     foreach ($sessions as $session) {
-    //         $sessionsList[] = $this->convertToSession($session);
-    //     }
-    //     return $sessionsList;
-    // }
+    public function getSessions($id)
+    {
+        return $this->repository->getSessions($id);
+    }
     public function getAllRestaurants()
     {
-        $repository = new yummyRepository();
-        return $this->convertToAllRestaurantsList($repository->getAllRestaurants());
+        return $this->convertToAllRestaurantsList($this->repository->getAllRestaurants());
     }
     public function convertToAllRestaurantsList($result){
         $restaurantList = [];
@@ -92,20 +70,22 @@ class yummyService
         }
         return $restaurantList;
     }
-    
+    //Reservation
+    public function makeReservation($user_id, $nrPeople, $session_id, $request){
+        $reservationFee = 10;
+        return $this->repository->makeReservation($user_id, $nrPeople, $session_id, $request, $reservationFee);
+    }
+    //CRUD
     public function deleteRestaurantbyId($id)
     {
-        $repository = new yummyRepository();
-        return $repository->deleteRestaurantbyId($id);
+        return $this->repository->deleteRestaurantbyId($id);
     }
-    public function addRestaurant($name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $streetname, $postalcode, $city, $housenumber)
+    public function addRestaurant($name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $total_seats, $streetname, $postalcode, $city, $housenumber)
     {
-        $repository = new yummyRepository();
-        return $repository->addRestaurant($name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $streetname, $postalcode, $city, $housenumber);
+        return $this->repository->addRestaurant($name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $total_seats, $streetname, $postalcode, $city, $housenumber);
     }
-    public function updateRestaurant($id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $streetname, $postalcode, $city, $housenumber)
+    public function updateRestaurant($id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $total_seats, $streetname, $postalcode, $city, $housenumber)
     {
-        $repository = new yummyRepository();
-        return $repository->updateRestaurant($id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $streetname, $postalcode, $city, $housenumber);
+        return $this->repository->updateRestaurant($id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $total_seats, $streetname, $postalcode, $city, $housenumber);
     }
 }

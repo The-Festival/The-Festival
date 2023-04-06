@@ -59,29 +59,24 @@ include __DIR__ . '/../header.php';
         </div>
         <div class="col-6 reservation" >
             <h3 class="title-white">Make a Reservation</h3>
-            <form id="reservation-form" action="">
+            <form id="reservation-form" action="/yummy/makeReservation">
 
                 <label class="formLabel" for="nrPeople">Number of people:</label>
-                <input class="formField" type="number" name="nrPeople" id="nrPeople">
-<!-- 
-                <label class="formLabel" for="day">Choose your day:</label>
-                    <select class="formField" name="day" id="day">
-                        //php opties
-                        <option value="">Monday</option>
-                    </select> -->
+                <input class="formField" type="number" name="nrPeople" id="nrPeople" min="1" max="<?= $restaurant->getTotal_seats() ?>" required>
 
                 <label class="formLabel" for="time">Choose your session:</label>
-                    <select class="formField" name="time" id="time">
-                        //php opties
+                    <select class="formField" name="session" id="time" required>
+                    <option value="" selected disabled hidden></option>
+                        <!-- php opties -->
                         <?php foreach ($sessionsList as $session) : ?>
-                            <option value="<?= $session->getSession_id() ?>"><?= $session->getDate() ?> </option>
+                            <option value="<?php echo $session->getSession_id();?>"> <?php echo $session->date?> </option>
                         <?php endforeach; ?>
                     </select>
 
                 <label class="formLabel" for="requests">Additional requests:</label>
                 <textarea class="formField" id="requests" name="requests" ></textarea>
 
-                <div><button class="make-reservation-button">Make reservation</button></div>
+                <div><button name="Reservation" class="make-reservation-button">Make reservation</button></div>
         </div>
     </div>
     <?php else: ?>

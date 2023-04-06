@@ -9,12 +9,14 @@ class RestaurantDetails{
     public $cuisine;
     public $website;
     public $phonenumber;
+    public $total_seats;
     public $streetname;
     public $postalcode;
     public $city;
     public $housenumber;
+
     
-    public function __construct($restaurant_id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $streetname, $postalcode, $city, $housenumber){
+    public function __construct($restaurant_id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $total_seats, $streetname, $postalcode, $city, $housenumber){
         $this->restaurant_id = $restaurant_id;
         $this->name = $name;
         $this->description = $description;
@@ -24,6 +26,7 @@ class RestaurantDetails{
         $this->cuisine = $cuisine;
         $this->website = $website;
         $this->phonenumber = $phonenumber;
+        $this->total_seats = $total_seats;
         $this->streetname = $streetname;
         $this->postalcode = $postalcode;
         $this->city = $city;
@@ -56,6 +59,9 @@ class RestaurantDetails{
     }
     public function getPhonenumber(){
         return $this->phonenumber;
+    }
+    public function getTotal_seats(){
+        return $this->total_seats;
     }
     public function getStreetname(){
         return $this->streetname;

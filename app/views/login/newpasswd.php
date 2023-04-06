@@ -18,8 +18,8 @@ include __DIR__ . '/../header.php';
         <form class="formPasswd" action="/resetpasswd/newpasswd" method="POST">
             <div class="form-group">
                 <label class="form-label" for="password">New Password</label>
-                <input type="password" class="form-control inputField" name="password" placeholder="New password">
-                <input type="password" class="form-control inputField" name="password2" placeholder="Repeat new password">
+                <input type="password" class="form-control inputField" name="password" placeholder="New password" required>
+                <input type="password" class="form-control inputField" name="password2" placeholder="Repeat new password" required>
             </div>
             <button type="submit" class="btn btn-primary submit-btn " name="buttonNewPasswd">Submit</button>
         </form>

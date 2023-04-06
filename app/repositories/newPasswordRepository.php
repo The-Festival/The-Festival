@@ -5,7 +5,7 @@ class newPasswordRepository extends Repository {
     private $db;
 
     public function checkEmail($email){
-        $stmt = $this->connection->prepare("SELECT * FROM User WHERE email = :email");
+        $stmt = $this->connection->prepare("SELECT user_id, fullname, email, password, role, registration_date FROM User WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

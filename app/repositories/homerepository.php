@@ -68,9 +68,8 @@ class HomeRepository extends Repository
         try{
             $stmt = $this->connection->prepare("SELECT `location_id`, `detail_id`, `type`, `streetname`, `postalcode`, `city`, `housenumber` FROM `Location`;");
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'Location');
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $result;
         } catch (PDOException $e)
         {
             echo $e;
