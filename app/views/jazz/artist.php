@@ -11,6 +11,7 @@ include __DIR__ . '/../header.php';
             <h2 class="artist-h2">Time / Date / Location</h2>
             <p class="artist-p">
             <ul>
+                <!--TODO: Make this dynamic -->
                 <li>Thursday, 27 July, 18:300 - 19:00 - Patronaat</li>
                 <li>Sunday, 30 July, 19:00 - 20:00 - Grote Markt</li>
             </ul>
@@ -28,14 +29,6 @@ include __DIR__ . '/../header.php';
                 }
                 ?>
             </div>
-            <style>
-                .album {
-                    width: 200px;
-                    height: 200px;
-                    object-fit: cover;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                }
-            </style>
             <h2 class="mt-3 artist-h2">Listen to the artist:</h2>
             <!-- Icon with play button -->
             <div class="d-flex justify-content-center align-items-center">
