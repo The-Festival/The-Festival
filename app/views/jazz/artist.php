@@ -3,16 +3,11 @@ $var = 'artist';
 include __DIR__ . '/../header.php';
 ?>
 
-<div class="artist-hero"></div>
 <div class="container">
     <div class="row">
         <article class="col-lg-6">
             <h2 class="artist-h2">About</h2>
-            <p class="artist-p">The Gumbo Kings are a five-piece band that combines the groove of New Orleans with rough delta blues and the melody of soul from ancient Memphis.</p>
-            <h2 class="artist-h2">Genre</h2>
-            <p class="artist-p">Blues / Alternative / Indie</p>
-            <h2 class="artist-h2">Important Tracks</h2>
-            <p class="artist-p">Hot Damn! / Here We Are / Four Walls / Changes Somehow</p>
+            <p class="artist-p"><?php echo $artist->getAbout() ?></p>
             <h2 class="artist-h2">Time / Date / Location</h2>
             <p class="artist-p">
             <ul>
@@ -21,14 +16,26 @@ include __DIR__ . '/../header.php';
             </ul>
             </p>
             <h2 class="artist-h2">Price</h2>
-            <p class="artist-p">€ 15.00</p>
+            <p class="artist-p"> <?php echo $artist->formatPrice() ?></p>
         </article>
         <aside class="d-flex align-items-center flex-column col-lg-6">
             <h2 class="artist-h2">Albums</h2>
             <div class="d-flex align-items-center gap-3">
-                <img src="/img/album-cover.png" alt="Album cover">
-                <img src="/img/album-cover-2.png" alt="Album cover">
+                <?php
+                for ($i = 1; $i < 4; $i++) {
+                    if (file_exists(__DIR__ . '/../../public/img/artists/' . $artist->getName() . '/album-' . $i . '.png'))
+                        echo '<img class="album" src="/img/artists/' . $artist->getName() . '/album-' . $i . '.png" alt="Album cover">';
+                }
+                ?>
             </div>
+            <style>
+                .album {
+                    width: 200px;
+                    height: 200px;
+                    object-fit: cover;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                }
+            </style>
             <h2 class="mt-3 artist-h2">Listen to the artist:</h2>
             <!-- Icon with play button -->
             <div class="d-flex justify-content-center align-items-center">
@@ -44,6 +51,7 @@ include __DIR__ . '/../header.php';
         </aside>
     </div>
 </div>
+
 <?php
 include __DIR__ . '/../footer/footer.php';
 ?>
