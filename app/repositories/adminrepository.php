@@ -62,41 +62,6 @@ class AdminRepository extends Repository{
             echo $e;
         }
     }
-    public function editText($textID, $text){
-        try {
-            $stmt = $this->connection->prepare("UPDATE About SET about = :text WHERE about_id = :textID;");
-            $stmt->bindParam(':textID', $textID);
-            $stmt->bindParam(':text', $text);
-            $stmt->execute();
-        }catch(PDOException $e){
-            echo $e;
-        }
-    }
-
-    public function addTextAndImage($id, $text, $image){
-        try {
-            $stmt = $this->connection->prepare("INSERT INTO About(`detail_id`,`type`,`about`) VALUES (:id, (SELECT name FROM Point_of_interest WHERE poi_id = :id), :text);
-            INSERT INTO Foto(`detail_id`,`type`,`filepath`,`isBanner`) VALUES (:id, (SELECT name FROM Point_of_interest WHERE poi_id = :id), :image, 0);");
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':text', $text);
-            $stmt->bindParam(':image', $image);
-            $stmt->execute();
-        }catch(PDOException $e){
-            echo $e;
-        }
-    }	
-    public function deleteHistoryEvent($id){
-        try {
-            $stmt = $this->connection->prepare("DELETE FROM Point_of_interest WHERE poi_id = :id;
-            DELETE FROM About WHERE detail_id = :id;
-            DELETE FROM Foto WHERE detail_id = :id;
-            DELETE FROM Location WHERE detail_id = :id;");
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
-        }catch(PDOException $e){
-            echo $e;
-        }
-    }
 }
 
 ?>

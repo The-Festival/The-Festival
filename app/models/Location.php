@@ -3,7 +3,6 @@
 class Location {
     private $location_id;
     private $detail_id;
-    private $type;
     private $streetname;
     private $postalcode;
     private $city;
@@ -14,9 +13,6 @@ class Location {
     }
     public function getPOIID(){
         return $this->detail_id;
-    }
-    public function getType(){
-        return $this->type;
     }
     public function getStreetName(){
         return $this->streetname;

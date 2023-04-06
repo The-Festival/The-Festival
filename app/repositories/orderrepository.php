@@ -115,7 +115,6 @@ class OrderRepository extends Repository {
 
     public function addOrder($order){
         try{
-            // var_dump($order);
             $stmt = $this->connection->prepare("INSERT INTO `Order`(`client_name`, `address`, `phonenumber`, `emailaddress`, `order_time`, `payment_method`, `total_price`, `total_vat`) VALUES (:client_name,:address,:phonenumber,:emailaddress,:order_time,:payment_method,:total_price,:total_vat)");
             $stmt->bindValue(':client_name', $order->getClientName());
             $stmt->bindValue(':address', $order->getAddress());
