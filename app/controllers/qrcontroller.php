@@ -37,18 +37,14 @@ class QrController
             ->setForegroundColor(new Color(0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255));
 
-        // Create generic label
-        $label = Label::create("Scan me")
-            ->setTextColor(new Color(0, 0, 0));
-
-        $result = $this->writer->write($qrCode, null, $label);
+        $result = $this->writer->write($qrCode);
 
         // Directly output the QR code
         header('Content-Type: ' . $result->getMimeType());
         echo $result->getString();
 
         // Save it to a file
-        $result->saveToFile(__DIR__ . '/public/img/qr/qrcode.png');
+        $result->saveToFile(__DIR__ . '/../public/img/qr/qrcode.png');
 
         // Generate a data URI to include image data inline (i.e. inside an <img> tag)
         $dataUri = $result->getDataUri();
