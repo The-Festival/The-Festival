@@ -1,6 +1,9 @@
+.container-fluid{
+    min-height: 70%;
+}
 .formPasswd{
     display: block;
-    margin: 5%;
+    margin: 10%;
     background-color: rgb(255, 255, 255, .3);
     padding: 2%;
     max-width: 40%;

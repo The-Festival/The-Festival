@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../header.php'; ?>
+<?php include __DIR__ . '/../../header.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="css/userDashboard.css">
+    <link type="text/css" rel="stylesheet" href="/css/adminstyle.css">
     <title>Yummy Dashboard</title>
 </head>
 
@@ -17,21 +17,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <div class="container">
-        <div class="col d-flex flex-row-reverse">
-            <div>
-                <form action="/yummy/yummyDashboard" method="POST">
-                    <button type="submit" class="btn btn-primary m-1">Search</button>
-            </div>
-            <div>
-                <input class="form-control form-control-dark w-100 m-1" type="text" placeholder="Search on name" name="search" aria-label="Search">
-                </form>
-            </div>
+        <div class="menu col d-flex flex-row-reverse ">
             <div>
                 <button type="button" onclick="window.location.href = '/yummy/addRestaurant'" class="btn btn-success m-1">Create Restaurant</button>
             </div>
         </div>
-        <div class="col d-flex justify-content-center">
-            <table class="table table-striped table-hover">
+        <div class=" col d-flex justify-content-center">
+            <table class="table table-bordered table-hover w-75">
                 <thead>
                     <tr>
                         <th>Restaurant id</th>
@@ -74,5 +66,5 @@
     </div>
 
 </body>
-
+<?php include __DIR__ . '/../../footer/footer.php'; ?>
 </html>

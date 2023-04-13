@@ -15,7 +15,7 @@ class RestaurantDetails{
     public $city;
     public $housenumber;
 
-    
+    //bevat join locations zodat het als 1 object kon worden gebruikt
     public function __construct($restaurant_id, $name, $description, $price, $price_kids, $star_rating, $cuisine, $website, $phonenumber, $total_seats, $streetname, $postalcode, $city, $housenumber){
         $this->restaurant_id = $restaurant_id;
         $this->name = $name;

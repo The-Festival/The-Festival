@@ -40,27 +40,27 @@ class yummyRepository extends repository{
             echo $e->getMessage();
         }
     }
-    public function makeReservation($user_id, $nrPeople, $session_id, $request, $reservationFee){
-        try{
-            var_dump($user_id, $nrPeople, $session_id, $request, $reservationFee);
-            $stmt = $this->connection->prepare(
-            "INSERT INTO Reservation (session_id, user_id, request, count_people, reservation_fee) 
-            VALUES (:session_id, :user_id, :request, :nrPeople, :reservationFee)");
-            $stmt->bindParam(':session_id', $session_id);
-            $stmt->bindParam(':user_id', $user_id);
-            $stmt->bindParam(':request', $request);
-            $stmt->bindParam(':nrPeople', $nrPeople);
-            $stmt->bindParam(':reservationFee', $reservationFee);
+    // public function makeReservation($user_id, $nrPeople, $session_id, $request, $reservationFee){
+    //     try{
+    //         var_dump($user_id, $nrPeople, $session_id, $request, $reservationFee);
+    //         $stmt = $this->connection->prepare(
+    //         "INSERT INTO Reservation (session_id, user_id, request, count_people, reservation_fee) 
+    //         VALUES (:session_id, :user_id, :request, :nrPeople, :reservationFee)");
+    //         $stmt->bindParam(':session_id', $session_id);
+    //         $stmt->bindParam(':user_id', $user_id);
+    //         $stmt->bindParam(':request', $request);
+    //         $stmt->bindParam(':nrPeople', $nrPeople);
+    //         $stmt->bindParam(':reservationFee', $reservationFee);
             
-            $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Reservation');
-            $result = $stmt->fetchAll();
-            return $result;
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
-    }
+    //         $stmt->execute();
+    //         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Reservation');
+    //         $result = $stmt->fetchAll();
+    //         return $result;
+    //     }
+    //     catch(PDOException $e){
+    //         echo $e->getMessage();
+    //     }
+    // }
     
     //admin
     public function getAllRestaurants(){
@@ -108,25 +108,23 @@ class yummyRepository extends repository{
             $stmt = $this->connection->prepare(
                 "UPDATE Restaurant 
                 SET 
-                `name` = :name ,
-                `description`= :description,
-                `price`= :price, 
-                `price_kids`= :price_kids, 
-                `star_rating` = :star_rating,  
-                `cuisine` = :cuisine,
-                `website` = :website,
-                `phonenumber` = :phonenumber,
-                `total_seats` = :total_seats,
-                WHERE `restaurant_id` = :restaurant_id;
-                UPDATE `Location`
+                name = :name ,
+                description= :description,
+                price= :price, 
+                price_kids= :price_kids, 
+                star_rating = :star_rating,  
+                cuisine = :cuisine,
+                website = :website,
+                phonenumber = :phonenumber,
+                total_seats = :total_seats
+                WHERE restaurant_id = :restaurant_id;
+                
+                UPDATE Location
                 SET
-                `streetname` = :streetname,
-                `postalcode` = :postalcode,
-                `city` = :city,
-                `housenumber` = :housenumber
-                WHERE `detail_id` = :restaurant_id;"); 
+                streetname = :streetname, postalcode = :postalcode, city = :city, housenumber = :housenumber,
+                WHERE detail_id = :restaurant_id;"); 
 
-            $stmt->bindParam(':id', $restaurant_id);
+            $stmt->bindParam(':restaurant_id', $restaurant_id);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':price', $price);

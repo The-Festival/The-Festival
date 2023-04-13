@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../header.php'; ?>
+<?php include __DIR__ . '/../../header.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3">
           <label for="text" class="form-label">Description</label>
-          <input type="textfield" class="form-control" id="description" name="description" value="<?php echo $restaurant->description; ?>" required>
+          <textarea type="textarea" class="form-control" id="description" name="description" value="" required><?php echo $restaurant->description; ?></textarea>
         </div>
         <div class="mb-3">
           <label for="int" class="form-label">Price adults</label>
@@ -42,19 +42,12 @@
         <div class="mb-3">
           <label for="role" class="form-label">Star rating</label>
           <select class="form-select" id="star_rating" name="star_rating" multiple required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="2">4</option>
-            <option value="3">5</option>
+            <option value="1" <?php if ($restaurant->getStar_rating() === 1) echo 'selected'; ?>>1</option>
+            <option value="2" <?php if ($restaurant->getStar_rating() === 2) echo 'selected'; ?>>2</option>
+            <option value="3" <?php if ($restaurant->getStar_rating() === 3) echo 'selected'; ?>>3</option>
+            <option value="2" <?php if ($restaurant->getStar_rating() === 4) echo 'selected'; ?>>4</option>
+            <option value="3" <?php if ($restaurant->getStar_rating() === 5) echo 'selected'; ?>>5</option>
           </select>
-          <script>
-            var star_rating = document.getElementById('star_rating');
-            star_rating.addEventListener('change', function() {
-              var selected = star_rating.options[star_rating.selectedIndex].value;
-              console.log(selected);
-            });
-            </script>
         </div>
         <div class="mb-3">
           <label for="cuisine" class="form-label">Cuisine</label>
@@ -95,3 +88,5 @@
 </div>
   </body>
 </html>
+
+<?php include __DIR__ . '/../../footer/footer.php'; ?>

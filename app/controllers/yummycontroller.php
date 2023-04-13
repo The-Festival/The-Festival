@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../services/yummyService.php';
+include_once(__DIR__ . '/../models/ReservationItem.php');
 
 class YummyController
 {
@@ -25,36 +26,23 @@ class YummyController
         }
         require __DIR__ . '/../views/yummy/yummyDetail.php';
     }
-    public function reloadYummyDetail()
-    {
-        $restaurant = $this->yummyService->getyummyDetail($this->id);
-        //sessions
-        $sessionsList = $this->yummyService->getSessions($this->id);
-        require __DIR__ . '/../views/yummy/yummyDetail.php';
-    }
+
     public function makeReservation()
     {
         if(isset($_POST['Reservation']))
         {
-            if($_SESSION['user'] == null)
-            {
-                require __DIR__ . '/../views/login/login.php';
-                return;
-            }
-            else{
-                $user_id = $_SESSION['user']->getId();
-                $nrPeople = htmlspecialchars($_POST['nrPeople']);
-                $session_id = htmlspecialchars($_POST['session']);
-                $request = htmlspecialchars($_POST['request']);
-                $this->yummyService->makeReservation($user_id, $nrPeople, $session_id, $request);
-                $this->reloadYummyDetail();
-                return;
-            }
+            $count_people = htmlspecialchars($_POST['nrPeople']);
+            $session_id = htmlspecialchars($_POST['session']);
+            $request = htmlspecialchars($_POST['requests']);
+            $reservation_fee = htmlspecialchars(10);
+            
+            $_SESSION['reservation'] = new ReservationItem($session_id, $request, $count_people, $reservation_fee);
+            $this->yummy();
         }
     }
     public function yummyDashboard(){
         $restaurantList = $this->yummyService->getAllRestaurants();
-        require __DIR__ . '/../views/admin/yummyDashboard.php';
+        require __DIR__ . '/../views/admin/yummy/yummyDashboard.php';
     }
     
     public function addRestaurant(){
@@ -76,7 +64,7 @@ class YummyController
             $this->yummyDashboard();
             return;
         }
-        require __DIR__ . '/../views/admin/createRestaurant.php';
+        require __DIR__ . '/../views/admin/yummy/createRestaurant.php';
     }
     public function deleteRestaurant(){
         if (isset($_POST['delete'])){
@@ -84,14 +72,14 @@ class YummyController
             $this->yummyService->deleteRestaurantbyId($id);
             $restaurantList = $this->yummyService->getAllRestaurants();
         }
-        require __DIR__ . '/../views/admin/yummyDashboard.php';
+        require __DIR__ . '/../views/admin/yummy/yummyDashboard.php';
     }
     public function editRestaurant(){
         if (isset($_POST['edit'])){
             $id = htmlspecialchars($_POST['edit']);
             $restaurant = $this->yummyService->getyummyDetail($id);
         }
-        require __DIR__ . '/../views/admin/editRestaurant.php';
+        require __DIR__ . '/../views/admin/yummy/editRestaurant.php';
     }
     public function updateRestaurant(){
         if (isset($_POST['update'])){
@@ -114,6 +102,10 @@ class YummyController
             $this->yummyDashboard();
             return;
         }
-        require __DIR__ . '/../views/admin/editRestaurant.php';
+        require __DIR__ . '/../views/admin/yummy/editRestaurant.php';
+    }
+    public function sessionDashboard(){
+        // $sessionsList = $this->yummyService->getAllSessions();
+        require __DIR__ . '/../views/admin/yummy/sessionDashboard.php';
     }
 }
