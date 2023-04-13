@@ -11,6 +11,7 @@
                 <li>
                     <!-- Name of the artist a edit button and a delete button -->
                     <h3><?= $artist->name ?></h3>
+                    
                     <a href="/admin/editArtist/<?= $artist->id ?>" class="btn btn-primary">Edit</a>
                     <a href="/admin/deleteArtist/<?= $artist->id ?>" class="btn btn-danger">Delete</a>
                 </li>
