@@ -19,6 +19,46 @@ class OrderRepository extends Repository {
         }
     }
 
+    public function getOrdersByColumn($columns){
+        try {
+            $columnsString = $this->getSelectedColumns($columns);
+            $stmt = $this->connection->prepare("SELECT ". $columnsString." FROM `Order` ");
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+
+    function getSelectedColumns($data) {
+        $columns = array(
+            'order_id',
+            'client_name',
+            'address',
+            'phonenumber',
+            'emailaddress',
+            'order_time',
+            'payment_method',
+            'total_vat',
+            'total_price'
+        );
+        $selectedColumns = array();
+        foreach ($columns as $column) {
+            if (isset($data[$column])) {
+                $selectedColumns[] = $column;
+            }
+        }
+        return implode(', ', array_map(function ($column) {
+            return "`$column`";
+        }, $selectedColumns));
+    }
+    
+
+
     public function getTickets(){
         try {
             $stmt = $this->connection->prepare("SELECT * FROM Ticket");
@@ -231,9 +271,9 @@ class OrderRepository extends Repository {
     public function getAllTicketOnTypeHistory($order_id){
         try {
             $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`quantity` ,`start_location`, `price`, `ischecked`
-            FROM Ticket
-            JOIN Tour ON Ticket.event_id = Tour.tour_id
-            JOIN Language ON Tour.language_id = Language.language_id
+            FROM Ticket 
+            JOIN Tour ON Ticket.event_id = Tour.tour_id 
+            JOIN Language ON Tour.tour_id = Language.tour_id
             WHERE Ticket.event_type = 'history' AND order_id = :order_id;");
             $stmt->bindParam(':order_id', $order_id);
             $stmt->execute();
@@ -262,7 +302,7 @@ class OrderRepository extends Repository {
 
     public function getAllJazzEvents(){
         try {
-            $stmt = $this->connection->prepare("SELECT `event_id`, `name`, `datetime`, `hall` FROM `Event_Jazz` JOIN Artist ON Artist.artist_id = Event_Jazz.artist_id;");
+            $stmt = $this->connection->prepare("SELECT Event_Jazz.event_id as event_id, name, datetime, hall FROM Event_Jazz JOIN Artist ON Artist.artist_id = Event_Jazz.artist_id;");
             $stmt->execute();
             $result = $stmt->fetchAll();
             return $result;
@@ -275,7 +315,7 @@ class OrderRepository extends Repository {
 
     public function getAllHistoryEvents(){
         try {
-            $stmt = $this->connection->prepare("SELECT `tour_id`, `name`, `datetime`, `start_location`, `price`FROM Tour t JOIN Language l ON t.language_id = l.language_id");
+            $stmt = $this->connection->prepare("SELECT t.tour_id as tour_id, `name`, `datetime`, `start_location`, `price`FROM Tour t JOIN Language l ON t.tour_id= l.tour_id;");
             $stmt->execute();
             $result = $stmt->fetchAll();
             return $result;
@@ -288,7 +328,7 @@ class OrderRepository extends Repository {
 
     public function getPriceAndQuantityOnHistoryEvent($event_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `spaces_left` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.language_id = l.language_id WHERE :event_id;");
+            $stmt = $this->connection->prepare("SELECT `available_spaces` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.tour_id = l.tour_id WHERE :event_id;");
             $stmt->bindValue(':event_id', $event_id);
             $stmt->execute();
             $result = $stmt->fetch();
@@ -342,6 +382,8 @@ class OrderRepository extends Repository {
             return false;
         }
     }
+
+    
 
 
 

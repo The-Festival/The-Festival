@@ -107,11 +107,12 @@
 						<table>
 							<tr>
 								<td class="title">
-									<img src="/img/Floorplan.png" style="width: 100%; max-width: 300px" />
+									<h3>The Haarlem <br></h3><h3>Festival</h3>
+										
 								</td>
 
 								<td>
-									Invoice #: <? echo $order->getOrderId()?><br />
+									Invoice #: <? echo $order->getOrderId();?><br />
 									Invoice Date: <?echo (new DateTime($order->getOrderTime()))->format('d-m-Y')?><br/>
 								</td>
 							</tr>

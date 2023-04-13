@@ -54,6 +54,23 @@ INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
 
 -- --------------------------------------------------------
 
+-- --------------------------------------------------------
+-- Table structure for table `Order`
+
+CREATE TABLE `Order` (
+  `order_id` int(11) NOT NULL,
+  `client_name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phonenumber` varchar(15) NOT NULL,
+  `emailaddress` varchar(320) NOT NULL,
+  `order_time` datetime NOT NULL,
+  `payment_method` varchar(50) NOT NULL,
+  `total_vat` float NOT NULL,
+  `total_price` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Order';
+
+
+
 --
 -- Table structure for table `Artist`
 --

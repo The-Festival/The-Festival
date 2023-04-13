@@ -20,6 +20,8 @@ class Order{
 
     private $total_vat;	
 
+    
+
     public function getOrderId(){
         return $this->order_id;
     }
