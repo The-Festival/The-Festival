@@ -20,7 +20,7 @@ class QrController
     function index()
     {
         $this->writer = new PngWriter();
-        $this->generateQRCode();
+        include __DIR__ . '/../views/qr/index.php';
     }
 
     function generateQRCode()
