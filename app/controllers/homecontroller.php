@@ -10,6 +10,8 @@ class HomeController
     }
     public function index()
     {   
+        // var_dump(glob(__DIR__ . '/../public/img/artists/Evolve/*.png'));
+
         $date1 = "2023-06-27";
         $date2 = "2023-06-28";
         $date3 = "2023-06-29";

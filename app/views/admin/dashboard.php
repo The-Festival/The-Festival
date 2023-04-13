@@ -5,10 +5,10 @@ include __DIR__ . '/../header.php';
 
 <!-- Buttons to switch what dashboard the admin wants to see -->
 
-<div class="row dashboard-button-background">
+<div class="row dashboard-button-background m-0 mw-100">
     <button class="col active text-light dashboard-button ">Jazz</button>
     <button class="col text-light dashboard-button ">Yummy</button>
-    <a href="admin/historyDashboard" class="col text-light dashboard-button ">History</a>
+    <a href="/admin/historyDashboard" class="col text-light dashboard-button ">History</a>
 
 </div>
 
