@@ -77,7 +77,7 @@ include __DIR__ . '/../header.php';
                     <h4 id="locations">Locations</h4>
                     <ol>
                         <?php foreach($locations as $location) {
-                            echo "<li class='location'><b>" . $location->getPlace_name() . "</b> " . $location->getStreetname() . " ". $location->getHousenumber() . ", " . $location->getPostalcode() ." " .$location->getCity()."</li>";
+                            echo "<li class='location'>" . $location->getStreetname() . " ". $location->getHousenumber() . ", " . $location->getPostalcode() ." " .$location->getCity()."</li>";
                         }?>
                     </ol>
                 </div>
