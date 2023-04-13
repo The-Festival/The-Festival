@@ -29,6 +29,7 @@ include __DIR__ . '/../header.php';
                 <h2 class="header-large">The Festival's Hottest</h2>
             </div>
         </div>
+        <form action="/yummy/yummyDetail" method="post">
         <div class="row justify-content-center">
             <div class="col-2 hottest-rest">
                 <div class="row hottest-text">
@@ -38,7 +39,7 @@ include __DIR__ . '/../header.php';
                 <div class="row hottest-text">
                     <p>€45/2 hrs</p>
                 </div>
-                <div class="row"><button class="reserve-button">Reserve</button></div>
+                <div class="row"><button type="submit" class="reserve-button" name="detail-page" value="4">Reserve</button></div>
             </div>
             <div class="col-2 hottest-rest">
                 <div class="row hottest-text">
@@ -48,7 +49,7 @@ include __DIR__ . '/../header.php';
                 <div class="row hottest-text">
                     <p>€45/2 hrs</p>
                 </div>
-                <div class="row"><button class="reserve-button">Reserve</button></div>
+                <div class="row"><button type="submit" class="reserve-button" name="detail-page" value="6">Reserve</button></div>
             </div>
             <div class="col-2 hottest-rest">
                 <div class="row hottest-text">
@@ -58,9 +59,10 @@ include __DIR__ . '/../header.php';
                 <div class="row hottest-text">
                     <p>€35/1.5 hrs</p>
                 </div>
-                <div class="row"><button class="reserve-button">Reserve</button></div>
+                <div class="row"><button type="submit" class="reserve-button" name="detail-page" value="3" >Reserve</button></div>
             </div>
         </div>
+        </form>
         <div class="row justify-content-center to-know-background">
             <div class="col-8 to-know">
                 <h3 class="title-white">Good to know:</h3>
@@ -76,22 +78,20 @@ include __DIR__ . '/../header.php';
         <div class="row justify-content-center">
             <div class="col-10">
                 <h2 class="header-large">Our selection</h2>
-                <div class="row justify-content-center">
-                <form action="/yummy/yummyDetail" method="post">
-                    <?php foreach ($restaurantList as $restaurant) : ?>
-                        <div class=float-child>
-                            <h5>Restaurant <?= $restaurant->getName() ?><h5>
-                            <p><?= $restaurant->getCuisine() ?></p>
-                            <button type="submit" class=btn id=btn-edit name="detail-page" value="<?= $restaurant->getRestaurant_id() ?>">More information</button>
-                        </div>
+                <div class="justify-content-center">
+                    <form class="container" action="/yummy/yummyDetail" method="post">
+                        <?php foreach ($restaurantList as $restaurant) : ?>
+                            <div class="card child" >
+                                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Restaurant <?= $restaurant->getName() ?></h5>
+                                    <p class="card-text"><?= $restaurant->getCuisine() ?></p>
+                                    <button type="submit" class="btn btn-primary" id="btn-edit" name="detail-page" value="<?= $restaurant->getRestaurant_id() ?>">More information</button>
+                                </div>
+                            </div>
                         <?php endforeach; ?>
-                </form>
+                    </form>
                 </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <a href="/yummy/yummyDetail"><button class="reserve-button-end">Reserve</button></a>
             </div>
         </div>
     </div>

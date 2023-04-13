@@ -58,8 +58,9 @@ include __DIR__ . '/../header.php';
             <img src="" alt="plaatje">
         </div>
         <div class="col-6 reservation" >
+            <!-- Reservation form -->
             <h3 class="title-white">Make a Reservation</h3>
-            <form id="reservation-form" action="/yummy/makeReservation">
+            <form id="reservation-form" action="/yummy/makeReservation" method="post">
 
                 <label class="formLabel" for="nrPeople">Number of people:</label>
                 <input class="formField" type="number" name="nrPeople" id="nrPeople" min="1" max="<?= $restaurant->getTotal_seats() ?>" required>
@@ -67,7 +68,7 @@ include __DIR__ . '/../header.php';
                 <label class="formLabel" for="time">Choose your session:</label>
                     <select class="formField" name="session" id="time" required>
                     <option value="" selected disabled hidden></option>
-                        <!-- php opties -->
+                        <!-- php opties sessions -->
                         <?php foreach ($sessionsList as $session) : ?>
                             <option value="<?php echo $session->getSession_id();?>"> <?php echo $session->date?> </option>
                         <?php endforeach; ?>
@@ -84,8 +85,6 @@ include __DIR__ . '/../header.php';
         <?php endif; ?>
 </div>
 
-    <?php
-    include __DIR__ . '/../footer/footer.php';
-    ?>
+<?php include __DIR__ . '/../footer/footer.php'; ?>
 </body> 
 </html> 	

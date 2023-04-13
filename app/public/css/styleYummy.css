@@ -10,10 +10,11 @@
   margin-bottom: 3%;
 }
 #title{
-  font-size: 900%;
+  font-size: auto;
   color: white;
   text-align: center;
   line-height: 500px;
+  
 }
 .heading{
   color:#6716C7;
@@ -77,20 +78,6 @@
   max-width: 80%;
   margin: auto;
 }
-.reserve-button-end{
-  display: block;
-  color:#ffffff;
-  font-size: 150%;
-  background-color: #F969B5;
-  padding: 5px;
-  border: 0px;
-  border-radius: 10px;
-  box-shadow: 1px 1px 2px  rgb(86, 86, 86);
-  min-width: 15%;
-  margin: auto;
-  margin-top: 3%;
-  margin-bottom: 5%;
-}
 a{
   text-decoration: none;
 }
@@ -125,21 +112,26 @@ a{
   max-width: 40%;
   max-height: 361px;
 }
-.carousel-item {
-  height: 400px;
-  min-height: 400px;
-  display:block;
-  background-color: aquamarine;
+.card{
+  background-color: rgb(255, 255, 255, .3);
+  max-width: 70%;
 }
-.carousel-caption{
-  background-color: rgb(103, 22, 199, .7);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-  margin-top: 5%;
-  margin-bottom: 0px;
+.container
+{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  flex-direction: row;
 }
-
+.child
+{
+  flex: 1;
+  padding: 2%;
+  margin: 2%;
+  min-width: 20%;
+  max-width: 20%;
+}
 
 #sub-title{
   display: block;
