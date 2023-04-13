@@ -68,9 +68,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/kids">Kids</a>
           </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
           <a class="nav-link" href="/article">My Program</a>
-        </li>
+        </li>-->
           <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
               <a href="/login/logout" class="nav-link">logout</a>
