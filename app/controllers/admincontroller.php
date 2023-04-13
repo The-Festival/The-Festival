@@ -17,8 +17,6 @@ class AdminController{
     private $userService;
     public $artists;
 
-    private $userService;
-
     public function __construct()
     {
 
