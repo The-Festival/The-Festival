@@ -117,9 +117,9 @@ class AdminController{
     
     public function uploadBanner(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $id = htmlspecialchars($_POST["id"]);
-            $bannerImage = $this->verifyFile($_FILES["bannerImage"]);
-            $this->adminService->uploadBanner();
+            $id = htmlspecialchars($_GET["id"]);
+            $bannerImage = $this->verifyFile($_FILES["file"]);
+            $this->adminService->uploadBanner($id, $bannerImage);
             header('Location: /admin/editHistoryEvent?id='.$id);
         }
     }

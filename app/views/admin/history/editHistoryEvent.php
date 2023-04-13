@@ -73,7 +73,9 @@ require __DIR__ . '/../../header.php';
 <?php 
 require __DIR__ . '/../../footer/footer.php';
 ?>
-<?php if($banner == null){ ?>
+<?php if($banner == null){ 
+  $id = htmlspecialchars($_GET['id']);
+  ?>
 <script>
   function heroBackground() {
     var hero = document.getElementById("hero-image");
@@ -82,7 +84,7 @@ require __DIR__ . '/../../footer/footer.php';
 
         var form = document.createElement("form");
         form.setAttribute('method', 'post');
-        form.setAttribute('action', '/admin/uploadBanner');
+        form.setAttribute('action', '/admin/uploadBanner?id=<?php echo $id; ?>');
         form.setAttribute('enctype', 'multipart/form-data');
 
         var div = document.createElement("div");

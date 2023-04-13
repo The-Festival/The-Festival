@@ -14,7 +14,7 @@ class AdminService{
         return $this->adminRepository->getHistoryEventIdByName($name);
     }
 
-    public function uploadBanner(){
+    public function uploadBanner($id, $bannerImage){
         $this->adminRepository->uploadBanner($id, $bannerImage);
     }
 

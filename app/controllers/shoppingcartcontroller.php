@@ -8,8 +8,10 @@ class ShoppingcartController{
         $this->shoppingcartService = new ShoppingcartService();
     }
     public function index(){
-        $order = $this->orderService->getOrders()
-        $bikes = $this->shoppingcartService->getShoppingCartBikes();
+        // $order = $this->orderService->getOrders()
+        $id = htmlspecialchars($_GET['id']);
+
+        $Tickets = $this->shoppingcartService->getTickets($id);
         require __DIR__ . "/../view/shoppingcart/index.php";
         
     }

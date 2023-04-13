@@ -1,3 +1,14 @@
+<?php
+
+include_once __DIR__ . '/../models/User.php';
+ if(isset($_SESSION['user'])){
+    $user = unserialize($_SESSION['user']);
+    echo "welcome ". $user->getFullname() . "<br>";
+    echo "Your role is: " .$user->getRole();
+ }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" style="height:100%">
 
