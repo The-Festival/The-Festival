@@ -5,6 +5,7 @@ class Tour{
     private $datetime;
     private $name;
     private $spaces_left;
+    private $guide;
 
     public function getTourID(){
         return $this->tour_ID;
@@ -17,5 +18,8 @@ class Tour{
     }
     public function getSpacesLeft(){
         return $this->spaces_left;
+    }
+    public function getGuide(){
+        return $this->guide;
     }
 }
