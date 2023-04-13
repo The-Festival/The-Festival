@@ -19,13 +19,13 @@ class QrController
 
     function index()
     {
-        $this->writer = new PngWriter();
         include __DIR__ . '/../views/qr/index.php';
     }
 
     function generateQRCode()
     {
-        !isset($_GET['link']) ? $qrLink = "http://62.250.182.52/" : $qrLink = $_GET['link'];
+        $this->writer = new PngWriter();
+        !isset($_POST['data']) ? $qrLink = "http://62.250.182.52/" : $qrLink = $_POST['data'];
         
         // Create QR code
         $qrCode = QrCode::create($qrLink)
