@@ -10,6 +10,7 @@ class resetpasswdservice{
 
     private $rndCode;
 
+    // inspiratie bron projectgroep 1   
     function generateCode(){
         $rndCode = rand(100000, 999999);
         return $rndCode;
@@ -27,6 +28,7 @@ class resetpasswdservice{
         return;
     }
 
+    // bron: https://packagist.org/packages/phpmailer/phpmailer
     function sendMail($rndCode, $email) {
         require '../vendor/autoload.php';
 

@@ -1,3 +1,9 @@
+<?php
+  include_once __DIR__ . '/../models/User.php';
+  if(isset($_SESSION['user'])){
+      $user = unserialize($_SESSION['user']);
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en" style="height:100%">
@@ -73,20 +79,21 @@
               <a href="/login" class="nav-link">login/register</a>
             </li>
           <?php } ?>
-          <div class="dropdown m-1">
-            <button class="btn dropdown-toggle btn-transparent text-white nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="/admin/userdashboard">Users</a></li>
-                <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
-                <li><a class="dropdown-item" href="">Yummy - Sessions</a></li>
-                <li><a class="dropdown-item" href="">Yummy - Reservations</a></li>
-            </ul>
+          
+          <?php if ((isset($_SESSION['user'])) && $user->getRole() == 'admin') : ?>
+            <div class="dropdown m-1">
+              <button class="btn dropdown-toggle btn-transparent text-white nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="/admin/userdashboard">Users</a></li>
+                  <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
+                  <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
+              </ul>
             </div>
+          <?php endif; ?>
           <li class="nav-item">
             <a class="nav-link"><img id="language" src="/img/taal.png" /></a>
           </li>
         </ul>
-
       </div>
     </div>
   </nav>

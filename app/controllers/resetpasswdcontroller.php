@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/../services/resetpasswdservice.php';
-session_start();
 
 class resetpasswdcontroller{
     private $passwdService;
@@ -21,6 +20,7 @@ class resetpasswdcontroller{
             else{
                 $_SESSION['email'] = $email;
                 try{
+                    // random nummer genereren om nieuw wachtwoord te kunnen instellen
                     $rndCode = $this->passwdService->generateCode();
                     $_SESSION['rndCode'] = $rndCode;
                     $this->passwdService->sendMail($rndCode, $email);
@@ -61,7 +61,7 @@ class resetpasswdcontroller{
                 }
                 else{
                     $this->passwdService->newPassword($password, $_SESSION['email']);
-                    include(__DIR__ . '/../views/login/login.php');
+                    require __DIR__ . '/../views/login/login.php';
                     return;
                 }
             }
