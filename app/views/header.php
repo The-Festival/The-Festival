@@ -1,4 +1,5 @@
 <?php
+
   include_once __DIR__ . '/../models/User.php';
   if(isset($_SESSION['user'])){
       $user = unserialize($_SESSION['user']);

@@ -9,7 +9,6 @@ include __DIR__ . '/../header.php';
    //  echo "welcome ". $user->getFullname();
  }
 
-
 ?>
 </head>
   <meta charset="UTF-8">

@@ -14,12 +14,24 @@ class AdminService{
         return $this->adminRepository->getHistoryEventIdByName($name);
     }
 
-    public function uploadBanner(){
+    public function uploadBanner($id, $bannerImage){
         $this->adminRepository->uploadBanner($id, $bannerImage);
     }
 
     public function editTextAndImage($textID, $imageID, $text, $image){
         $this->adminRepository->editTextAndImage($textID, $imageID, $text, $image);
+    }
+
+    public function editText($textID, $text){
+        $this->adminRepository->editText($textID, $text);
+    }
+
+    public function addTextAndImage($id, $text, $image){
+        $this->adminRepository->addTextAndImage($id, $text, $image);
+    }
+
+    public function deleteHistoryEvent($id){
+        $this->adminRepository->deleteHistoryEvent($id);
     }
 
     public function verifyFile($fileName, $fileTmpName, $fileType, $fileSize, $fileError) {

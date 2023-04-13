@@ -12,13 +12,13 @@ include __DIR__ . '/../../header.php';
     <a href="admin/historyDashboard" class="col text-light dashboard-button active">History</a>
 
 </div>
-    <h1 class = "d-flex justify-content-center">Historical Places</h1>
+    <h1 class = "d-flex justify-content-center">tour's</h1>
 
     <div class="container">
   <div class="col d-flex flex-row-reverse">
        
         <div>
-        <button type="button" onclick = "window.location.href = '/admin/addHistoricalPlace'" class="btn btn-success m-1">Create Historical Place</button>
+        <button type="button" onclick = "window.location.href = '/admin/addTour'" class="btn btn-success m-1">Add tour</button>
         </div>
         <div class="dropdown m-1">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,22 +37,22 @@ include __DIR__ . '/../../header.php';
         <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Text</th>
-                                        <th>Location</th>
-                                        <th>Image</th>
+                                        <th>Date Time</th>
+                                        <th>Languages</th>
+                                        <th>Spaces left</th>
+                                        <th>Guide</th>
                                     </tr>
         </thead>
         <tbody>
-            <?php foreach($data as $poi){ ?>
+            <?php foreach($tours as $tour){ ?>
                 <tr>
-                    <td><?php echo $poi->getPointOfInterest(); ?></td>
-                    <td><?php echo $poi->getName(); ?></td>
-                    <td><?php echo $poi->getText(); ?></td>
-                    <td><?php echo $poi->getLocation(); ?></td>
-                    <td><?php echo $poi->getPhoto(); ?></td>
+                    <td><?php echo $tour->getTourID(); ?></td>
+                    <td><?php echo $tour->getDatetime(); ?></td>
+                    <td><?php echo $tour->getName(); ?></td>
+                    <td><?php echo $tour->getSpacesLeft(); ?></td>
+                    <td><?php echo $tour->getGuide(); ?></td>
                     <td>
-                        <a href="/admin/editHistoryEvent?id=<?php echo $poi->getPointOfInterest(); ?>" class="btn btn-primary">Edit</a>
+                        <a href="/admin/editHistoryEvent?id=<?php echo $tour->getTourID(); ?>" class="btn btn-primary">Edit</a>
                         <a href="#" class="btn btn-danger" onclick="check();">Delete</a>    
                 </tr>
             <?php } ?>
@@ -64,7 +64,7 @@ include __DIR__ . '/../../header.php';
 <script>
     function check() {
         if(confirm('Are you sure you want to delete that?')){
-            window.location.href = '/admin/deleteHistoryEvent?id=<?php echo $poi->getPointOfInterest(); ?>'
+            window.location.href = '/admin/deleteHistoryEvent?id=<?php echo $tour->getTourID(); ?>'
         }
     }
 </script>
