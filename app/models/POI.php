@@ -1,6 +1,7 @@
 <?php
 
-class POI{
+class POI
+{
     private $pointOfInterest;
     private $about_id;
     private $photo_id;
@@ -11,52 +12,59 @@ class POI{
     private $photo;
 
     //getters
-    public function getPointOfInterest(){
+    public function getPointOfInterest()
+    {
         return $this->pointOfInterest;
     }
 
-    public function getAboutID(){
+    public function getAboutID()
+    {
         return $this->about_id;
     }
-    public function getPhotoID(){
+    public function getPhotoID()
+    {
         return $this->photo_id;
     }
-    public function getLocationID(){
+    public function getLocationID()
+    {
         return $this->location_id;
     }
 
 
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getText(){
+    public function getText()
+    {
         return $this->text;
     }
-    public function getLocation(){
+    public function getLocation()
+    {
         return $this->location;
     }
 
-    public function getPhoto(){
+    public function getPhoto()
+    {
         return $this->photo;
     }
 
     //setter
-    public function setPhoto($photo){
+    public function setPhoto($photo)
+    {
         $this->photo = $photo;
     }
-    public function setLocation($location){
+    public function setLocation($location)
+    {
         $this->location = $location;
     }
-    public function setlocationID($location_id){
+    public function setlocationID($location_id)
+    {
         $this->location_id = $location_id;
     }
-    public function setPhotoID($photo_id){
+    public function setPhotoID($photo_id)
+    {
         $this->photo_id = $photo_id;
     }
-
-    
 }
-
-
-?>

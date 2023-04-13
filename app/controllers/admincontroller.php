@@ -21,7 +21,7 @@ class AdminController
         $this->historyService = new HistoryService();
         $this->adminService = new AdminService();
         $this->artistService = new ArtistService();
-        $artists = $this->artistService->getAllArtists();
+        $this->artists = $this->artistService->getAllArtists();
     }
 
     public function index()
@@ -99,7 +99,7 @@ class AdminController
 
     public function jazz()
     {
-        include __DIR__ . '/../views/admin/jazz.php';
+        include __DIR__ . '/../views/admin/artist.php';
     }
 
     public function userDashboard()

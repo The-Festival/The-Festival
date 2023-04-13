@@ -1,24 +1,26 @@
 <?php
 
-class IMG {
+class IMG
+{
     private $foto_id;
     private $detail_id;
     private $filepath;
     private $isBanner;
 
-    public function getFotoID(){
+    public function getFotoID()
+    {
         return $this->foto_id;
     }
-    public function getPOIID(){
+    public function getPOIID()
+    {
         return $this->detail_id;
     }
-    public function getFilepath(){
+    public function getFilepath()
+    {
         return $this->filepath;
     }
-    public function getIsBanner(){
+    public function getIsBanner()
+    {
         return $this->isBanner;
     }
-
 }
-
-?>

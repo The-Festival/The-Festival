@@ -1,21 +1,26 @@
 <?php
 
-class Tour{
+class Tour
+{
     private $tour_ID;
     private $datetime;
     private $name;
     private $spaces_left;
 
-    public function getTourID(){
+    public function getTourID()
+    {
         return $this->tour_ID;
     }
-    public function getDatetime(){
+    public function getDatetime()
+    {
         return $this->datetime;
     }
-    public function getName(){
+    public function getName()
+    {
         return $this->name;
     }
-    public function getSpacesLeft(){
+    public function getSpacesLeft()
+    {
         return $this->spaces_left;
     }
 }

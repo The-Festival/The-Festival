@@ -1,6 +1,7 @@
 <?php
 
-class About {
+class About
+{
     private $about_id;
     private $detail_id;
     private $type;

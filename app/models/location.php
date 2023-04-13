@@ -1,29 +1,36 @@
 <?php
 
-class Location {
+class Location
+{
     private $location_id;
     private $detail_id;
     private $streetname;
     private $postalcode;
     private $city;
     private $housenumber;
-    
-    public function getLocationID(){
+
+    public function getLocationID()
+    {
         return $this->location_id;
     }
-    public function getPOIID(){
+    public function getPOIID()
+    {
         return $this->detail_id;
     }
-    public function getStreetName(){
+    public function getStreetName()
+    {
         return $this->streetname;
     }
-    public function getPostalCode(){
+    public function getPostalCode()
+    {
         return $this->postalcode;
     }
-    public function getCity(){
+    public function getCity()
+    {
         return $this->city;
     }
-    public function getHousenumber(){
+    public function getHousenumber()
+    {
         return $this->housenumber;
     }
 }
