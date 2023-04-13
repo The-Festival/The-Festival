@@ -10,11 +10,12 @@ require __DIR__ . '/../services/artistservice.php';
 
 class AdminController{
     
-
     private $orderService;
     private $adminService;
     private $historyService;
     private $artistService;
+    private $userService;
+    public $artists;
 
     private $userService;
 
@@ -24,6 +25,8 @@ class AdminController{
         $this->orderService = new OrderService();
         $this->historyService = new HistoryService();
         $this->adminService = new AdminService();
+        $this->artistService = new ArtistService();
+        $this->artists = $this->artistService->getAllArtists();
 
     }
 
