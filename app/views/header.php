@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" style="height:100%">
 
@@ -11,7 +10,7 @@
   <link type="text/css" rel="stylesheet" href="/css/styleNav.css" />
   <link type="text/css" rel="stylesheet" href="/css/footer-style.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
   <?php
@@ -62,8 +61,8 @@
             <a class="nav-link" href="/kids">Kids</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="/article">My Program</a>
-        </li>
+            <a class="nav-link" href="/article">My Program</a>
+          </li>
           <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
               <a href="/login/logout" class="nav-link">logout</a>
@@ -76,12 +75,12 @@
           <div class="dropdown m-1">
             <button class="btn dropdown-toggle btn-transparent text-white nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="/admin/userdashboard">Users</a></li>
-                <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
-                <li><a class="dropdown-item" href="">Yummy - Sessions</a></li>
-                <li><a class="dropdown-item" href="">Yummy - Reservations</a></li>
+              <li><a class="dropdown-item" href="/admin/userdashboard">Users</a></li>
+              <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
+              <li><a class="dropdown-item" href="">Yummy - Sessions</a></li>
+              <li><a class="dropdown-item" href="">Yummy - Reservations</a></li>
             </ul>
-            </div>
+          </div>
           <li class="nav-item">
             <a class="nav-link"><img id="language" src="/img/taal.png" /></a>
           </li>

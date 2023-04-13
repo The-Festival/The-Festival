@@ -1,30 +1,26 @@
 <?php
 
-include_once (__DIR__ . '/../services/orderservice.php');
-include_once (__DIR__ . '/../services/userservice.php');
+include_once(__DIR__ . '/../services/orderservice.php');
+include_once(__DIR__ . '/../services/userservice.php');
 require __DIR__ . '/../services/adminservice.php';
 require __DIR__ . '/../services/historyservice.php';
 require __DIR__ . '/../services/artistservice.php';
 
-
-
-class AdminController{
-    
-
+class AdminController
+{
     private $orderService;
     private $adminService;
     private $historyService;
     private $artistService;
-
     private $userService;
+    public $artists;
 
     public function __construct()
     {
-
         $this->orderService = new OrderService();
         $this->historyService = new HistoryService();
         $this->adminService = new AdminService();
-
+        $this->artistService = new ArtistService();
     }
 
     public function index()
@@ -39,14 +35,15 @@ class AdminController{
         $data = $this->historyService->getSliderData();
         include __DIR__ . '/../views/admin/history/historyDashboard.php';
     }
-    
+
     public function addHistoricalPlace()
     {
         include __DIR__ . '/../views/admin/history/createHistoryEvent.php';
     }
-    
-    public function processHistoryEvent(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    public function processHistoryEvent()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = htmlspecialchars($_POST["name"]);
             $sliderText = htmlspecialchars($_POST["sliderText"]);
             $sliderImage = $this->verifyFile($_FILES["sliderImage"]);
@@ -55,29 +52,32 @@ class AdminController{
             $streetName = htmlspecialchars($_POST["streetName"]);
             $number = htmlspecialchars($_POST["number"]);
             $id = $this->adminService->processHistoryEvent($name, $sliderText, $sliderImage, $place, $postalCode, $streetName, $number);
-            header('Location: /admin/editHistoryEvent?id='.$id[0]->getPointOfInterest());
+            header('Location: /admin/editHistoryEvent?id=' . $id[0]->getPointOfInterest());
         }
     }
 
-    public function editTextAndImage(){
+    public function editTextAndImage()
+    {
         $textID = htmlspecialchars($_POST["textID"]);
         $imageID = htmlspecialchars($_POST["imgID"]);
         $text = htmlspecialchars($_POST["newText"]);
         $image = $this->verifyFile($_FILES["newFile"]);
         $this->adminService->editTextAndImage($textID, $imageID, $text, $image);
     }
-    
-    public function verifyFile($file){
+
+    public function verifyFile($file)
+    {
         $fileName = $file['name'];
         $fileTmpName = $file['tmp_name'];
         $fileType = $file['type'];
         $fileSize = $file['size'];
         $fileError = $file['error'];
-        
+
         return $this->adminService->verifyFile($fileName, $fileTmpName, $fileType, $fileSize, $fileError);
     }
-    
-    public function editHistoryEvent(){
+
+    public function editHistoryEvent()
+    {
         $id = htmlspecialchars($_GET["id"]);
         $banner = $this->historyService->getPageBanner($id);
         $slider = $this->historyService->getSliderData();
@@ -85,106 +85,113 @@ class AdminController{
         $data = $this->historyService->getPointOfInterestData($id);
         include __DIR__ . '/../views/admin/history/editHistoryEvent.php';
     }
-    
-    public function uploadBanner(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    public function uploadBanner()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = htmlspecialchars($_POST["id"]);
             $bannerImage = $this->verifyFile($_FILES["bannerImage"]);
             $this->adminService->uploadBanner();
-            header('Location: /admin/editHistoryEvent?id='.$id);
+            header('Location: /admin/editHistoryEvent?id=' . $id);
         }
     }
 
-    public function Jazz()
+    public function jazz()
     {
+        $artists = $this->artistService->getAllArtists();
         include __DIR__ . '/../views/admin/jazz.php';
     }
 
-    public function userDashboard(){
+    public function userDashboard()
+    {
         $this->userService = new UserService();
-        if(isset($_GET["role"])){
+        if (isset($_GET["role"])) {
             $role = $_GET["role"];
             $users = $this->userService->getUsersOnRole($role);
-        }
-        else if (isset($_GET["id"])){
+        } else if (isset($_GET["id"])) {
             $id = $_GET["id"];
             $users = $this->userService->getUserById($id);
-        }
-        else if (isset($_GET["delete"])){
+        } else if (isset($_GET["delete"])) {
             $id = $_GET["delete"];
             $this->userService->deleteUserbyId($id);
             header('Location: /admin/userDashboard');
-        }
-        else if (isset($_POST["add"])){
+        } else if (isset($_POST["add"])) {
             $fullname = $_POST["fullname"];
             $email = $_POST["email"];
             $password = $_POST["password"];
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $role = $_POST["role"];
             $dateOfRegistration = $_POST["registration_date"];
-            $this->userService->addUser($fullname, $email, $hashedPassword, $role , $dateOfRegistration);
+            $this->userService->addUser($fullname, $email, $hashedPassword, $role, $dateOfRegistration);
             $users = $this->userService->getAll();
-        }
-        else if (isset($_POST["update"])){
+        } else if (isset($_POST["update"])) {
             $id = $_POST["id"];
             $fullname = $_POST["fullname"];
             $email = $_POST["email"];
             $role = $_POST["role"];
             $dateOfRegistration = $_POST["registration_date"];
-            $this->userService->updateUser($id, $fullname, $email,$role , $dateOfRegistration);
+            $this->userService->updateUser($id, $fullname, $email, $role, $dateOfRegistration);
             $users = $this->userService->getAll();
-        }
-        else if (isset($_POST["search"])){
+        } else if (isset($_POST["search"])) {
             $search = $_POST["search"];
-            if($search == ""){
+            if ($search == "") {
                 $users = $this->userService->getAll();
-            }
-            else{
+            } else {
                 $users = $this->userService->searchUserByName($search);
             }
-        }
-        else{
+        } else {
             $users = $this->userService->getAll();
         }
         include __DIR__ . '/../views/admin/userDashboard.php';
     }
 
-    public function orderDashboard(){
+    public function orderDashboard()
+    {
         $this->orderService->checkRequests();
         $orders = $this->orderService->getOrders();
         include __DIR__ . '/../views/admin/order/orderDashboard.php';
     }
 
-    public function ticketDashboard(){
+    public function ticketDashboard()
+    {
         $this->orderService->checkTicketRequests();
     }
-    public function editorder(){
+    public function editorder()
+    {
         $this->orderService->checkRequests();
     }
 
-    public function createorder(){
+    public function createorder()
+    {
         include __DIR__ . '/../views/admin/order/createorder.php';
     }
 
-    public function editTicket(){
+    public function editTicket()
+    {
         $this->orderService->checkRequests();
     }
 
-    public function edituser(){
+    public function edituser()
+    {
         $this->userService = new UserService();
         $id = $_GET["id"];
         $user = $this->userService->getUserById($id);
         include __DIR__ . '/../views/admin/edituser.php';
     }
 
-    public function createuser(){
+    public function createuser()
+    {
         include __DIR__ . '/../views/admin/createuser.php';
     }
 
     public function checkLogin()
     {
-        if(!isset($_SESSION['user'])){
+        if (!isset($_SESSION['user'])) {
             header('Location: /login');
         }
+
+        // if ($_SESSION['user']->getRole() != 'admin') {
+        //     header('Location: /login');
+        // }
     }
 }

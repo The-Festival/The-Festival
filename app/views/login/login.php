@@ -4,8 +4,8 @@ require __DIR__ . '/../header.php';
 
 <form action="login/loginprogress" method="POST">
   <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" name="username" placeholder="Username">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" placeholder="Username">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
@@ -17,7 +17,6 @@ require __DIR__ . '/../header.php';
 </form>
 
 <?php
-
-echo password_hash('Dolfijn1',PASSWORD_DEFAULT);
+echo password_hash('Dolfijn1', PASSWORD_DEFAULT);
 require __DIR__ . '/../footer/footer.php';
 ?>

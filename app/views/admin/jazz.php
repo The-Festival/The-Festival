@@ -7,7 +7,7 @@
     <div class="card-body">
         <h2 class="card-title">Artists</h2>
         <ul>
-            <? foreach ($artists as $artist) : ?>
+            <? foreach ($this->artists as $artist) : ?>
                 <li>
                     <!-- Name of the artist a edit button and a delete button -->
                     <h3><?= $artist->name ?></h3>
