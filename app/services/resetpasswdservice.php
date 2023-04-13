@@ -9,7 +9,6 @@ use PHPMailer\PHPMailer\Exception;
 class resetpasswdservice{
 
     private $rndCode;
-    private $repository;
 
     function generateCode(){
         $rndCode = rand(100000, 999999);
@@ -23,7 +22,9 @@ class resetpasswdservice{
 
     function newPassword($password, $email){
         $repository = new newPasswordRepository();
-        $repository->newPassword($password, $email);
+        $hashedPasswd = password_hash($password, PASSWORD_DEFAULT);
+        $repository->newPassword($hashedPasswd, $email);
+        return;
     }
 
     function sendMail($rndCode, $email) {

@@ -18,7 +18,7 @@ include __DIR__ . '/../header.php';
             <form class="formPasswd" action="/resetpasswd" method="POST">
                 <div class="form-group">
                     <label class="form-label" for="email">Enter your email</label>
-                    <input type="email" class="form-control inputField" name="email" placeholder="Email">
+                    <input type="email" class="form-control inputField" name="email" placeholder="Email" required>
                 </div>
                 <button type="submit" class="btn btn-primary submit-btn" name="buttonReset">Send mail</button>
             </form>
