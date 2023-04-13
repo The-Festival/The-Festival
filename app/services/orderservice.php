@@ -1,9 +1,11 @@
 <?php
 include_once (__DIR__ . '/../repositories/orderrepository.php');
+use Dompdf\Dompdf;
 
 class OrderService{
 
     private $orderRepository;
+    
 
     public function __construct()
     {
@@ -257,6 +259,44 @@ class OrderService{
             default:
                 break;
         }
+    }
+
+    //export order data as csv
+    public function exportOrderData(){
+        $orders = $this->getOrders();
+        $tickets = $this->getTickets();
+        $file = fopen("orderdata.csv", "w");
+        fputcsv($file, array('order_id', 'client_name', 'address', 'phonenumber', 'emailaddress', 'order_time', 'payment_method', 'total_price', 'total_vat'));
+        foreach($orders as $order){
+            fputcsv($file, array($order->getOrderId(), $order->getClientName(), $order->getAddress(), $order->getPhonenumber(), $order->getEmailaddress(), $order->getOrderTime(), $order->getPaymentMethod(), $order->getTotalPrice(), $order->getTotalVat()));
+        }
+        fputcsv($file, array('ticket_id', 'order_id', 'event_type', 'event_id', 'vat_percentage', 'quantity', 'is_checked'));
+        foreach($tickets as $ticket){
+            fputcsv($file, array($ticket->getTicketId(), $ticket->getOrderId(), $ticket->getEventType(), $ticket->getEventId(), $ticket->getVatPercentage(), $ticket->getQuantity(), $ticket->getIsChecked()));
+        }
+        fclose($file);
+        //put data in csv file and download this file as .csv
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="orderdata.csv";');
+        readfile('orderdata.csv');
+
+    }
+
+    public function orderPdf($body)
+    {
+        require '../vendor/autoload.php';
+            $dompdf = new Dompdf(true);
+            $html = file_get_contents(__DIR__ . '/../views/admin/order/orderpdf.php');
+            $dompdf->loadHtml($body);
+            
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('A4', 'landscape');
+
+            // Render the HTML as PDF
+            $dompdf->render();
+
+            // Output the generated PDF to Browser
+            $dompdf->stream();
     }
 
 }

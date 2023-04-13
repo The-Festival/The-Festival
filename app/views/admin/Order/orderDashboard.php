@@ -17,6 +17,7 @@
   <div class="col d-flex flex-row-reverse">
         <div>
         <button type="button" onclick = "window.location.href = '/admin/createorder'" class="btn btn-success m-1">Create Order</button>
+        <button type = "button" onclick = "window.location.href = '/admin/exportorder'" class = "btn btn-succsess">Export CSV</button>
         </div>
   </div>
 </div>
