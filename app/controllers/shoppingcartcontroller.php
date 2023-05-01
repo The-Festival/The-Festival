@@ -9,16 +9,15 @@ class ShoppingcartController{
     }
     public function index(){
         // $order = $this->orderService->getOrders()
-        $id = htmlspecialchars($_GET['id']);
+        // $id = htmlspecialchars($_GET['id']);
 
-        $Tickets = $this->shoppingcartService->getTickets($id);
-        require __DIR__ . "/../view/shoppingcart/index.php";
+        // $Tickets = $this->shoppingcartService->getTickets($id);
+        require __DIR__ . "/../views/shoppingcart/index.php";
         
     }
     public function add(){
         $this->shoppingcartService->addToShoppingcart();
-        $bikes = $this->shoppingcartService->getShoppingCartBikes();
-        require __DIR__ . "/../view/shoppingcart/index.php";
+        require __DIR__ . "/../views/shoppingcart/index.php";
 
     }
 }

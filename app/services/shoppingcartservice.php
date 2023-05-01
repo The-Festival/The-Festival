@@ -1,15 +1,18 @@
 <?php
 include_once(__DIR__ . '/../repositories/homerepository.php');
 include_once (__DIR__ . '/../services/orderservice.php');
+include_once (__DIR__ . '/../services/artistservice.php');
 
 class ShoppingcartService{
     
     private $repository;
     private $orderService;
+    private $artistService;
     
     function __CONSTRUCT(){
         $this->repository = new HomeRepository();
         $this->orderService = new OrderService();
+        $this->artistService = new ArtistService();
     }
 
     public function getTickets($id){
@@ -28,23 +31,11 @@ class ShoppingcartService{
         // }
     }
 
-    //public function getShoppingCartBikes(){
-    //     if(isset($_SESSION['ShoppingCart'])){
-    //         $item_array_id = array_column($_SESSION['ShoppingCart'], 'bikeID');
-            
-    //         $bikes = array();
-    //         for($i = 0; $i < count($item_array_id); $i++){
-    //             $bikes[$i] = $this->repository->getBikeByID($item_array_id[$i]);
-    //         }
-    //         return $bikes;
-    //     }else {
-    //         //shopping cart does not exist
-    //     }
-    // }
-    public function fillShoppingcart(){
-        
-    }
-    public function addToShoppingcart($ticket){
+    public function addToShoppingcart(){
+        $ticket = $this->orderService->getTicketByID(htmlspecialchars(53));
+        if($ticket->getEventType() == "jazz"){
+            $artist = $this->artistService->getArtistByID($ticket->getEventId());
+        }
         $_SESSION['ShoppingCart'][] = serialize($ticket);
     }
     // public function addToShoppingcart(){
