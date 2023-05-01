@@ -27,3 +27,15 @@ Or run:
 ```bash
 docker-compose down
 ```
+
+## Database scripts
+FINAL_SCRIPT.sql is the final script with all the tables and data and it is located in the folder sql.
+
+## Login credentials
+
+username: Yara
+password: wachtwoord
+
+## Website URL
+
+http://62.250.182.52/

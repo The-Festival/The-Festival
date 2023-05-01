@@ -1,9 +1,12 @@
 <?php
 include_once (__DIR__ . '/../repositories/orderrepository.php');
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class OrderService{
 
     private $orderRepository;
+    
 
     public function __construct()
     {
@@ -12,6 +15,7 @@ class OrderService{
 
     public function checkRequests(){
         if (isset($_POST['editOrder'])){
+            //add data to order through contuctor
             $order = new Order();
             $order->setOrderId($_POST['order_id']);
             $order->setClientName($_POST['client_name']);
@@ -257,6 +261,55 @@ class OrderService{
             default:
                 break;
         }
+    }
+
+    //export order data as csv based on column names dynamicly
+    public function exportOrderAsCsv($columns){
+       $orders = $this->orderRepository->getOrdersByColumn($columns);
+        $file = fopen("orderdata_".date('Y-m-d').".csv", "w");
+
+        // Get column headers dynamically from the first order
+        $orderKeys = array_keys($orders[0]);
+        fputcsv($file, $orderKeys);
+
+        // Write order data
+        foreach ($orders as $order) {
+            $orderValues = [];
+            foreach ($orderKeys as $key) {
+                // Only add the value if it hasn't been added already
+                if (!in_array($order[$key], $orderValues)) {
+                    $orderValues[] = $order[$key];
+                }
+            }
+            fputcsv($file, $orderValues);
+        }
+
+        fclose($file);
+
+        // Download the CSV file
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="orderdata.csv";');
+        readfile("orderdata_".date('Y-m-d').".csv");   
+    }
+
+    public function orderPdf($body , $order_id)
+    {
+        require '../vendor/autoload.php';
+            $order = $this->getOrderById($order_id);
+            $dompdf = new Dompdf(["chroot" => __DIR__]);
+            
+            $html = file_get_contents(__DIR__ . '/../views/admin/order/orderpdf.php');
+            $dompdf->loadHtml($body);
+            
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('A4', 'landscape');
+            // Render the HTML as PDF
+            $dompdf->render();
+
+            $dompdf->addInfo("Title", "Order ".$order->getClientName());
+
+            // Output the generated PDF to Browser
+            $dompdf->stream("Order ".$order->getClientName().".pdf");
     }
 
 }

@@ -15,10 +15,10 @@ include __DIR__ . '/../header.php';
 <body>
     <div class="container-fluid text-center">
         <div class="row justify-content-center">
-            <form class="formPasswd" action="resetpasswd/newpasswd" method="POST">
+            <form class="formPasswd" action="/resetpasswd/checkCode" method="POST">
                 <div class="form-group">
                     <label class="form-label" for="email">Enter your code</label>
-                    <input type="code" class="form-control inputField" name="code" placeholder="Code">
+                    <input type="code" class="form-control inputField" name="code" placeholder="Code" required>
                 </div>
                 <button type="submit" class="btn btn-primary submit-btn" name="buttonCheck">Check code</button>
             </form>

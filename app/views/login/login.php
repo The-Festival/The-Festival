@@ -17,7 +17,5 @@ require __DIR__ . '/../header.php';
 </form>
 
 <?php
-
-echo password_hash('Dolfijn1',PASSWORD_DEFAULT);
 require __DIR__ . '/../footer/footer.php';
 ?>

@@ -64,7 +64,7 @@ class HistoryRepository extends Repository{
 
     public function getTourInfo(){
         try {
-            $stmt = $this->connection->prepare("SELECT T.tour_id AS tour_ID, T.datetime, GROUP_CONCAT(DISTINCT L.name SEPARATOR ', ') AS name, GROUP_CONCAT(L.spaces_left SEPARATOR ', ') AS spaces_left, G.name as guide FROM `Tour` AS T INNER JOIN Language AS L ON L.tour_id=T.tour_id INNER JOIN Guide AS G on G.tour_id=T.tour_id ORDER BY T.tour_id;");
+            $stmt = $this->connection->prepare("SELECT T.tour_id AS tour_ID, T.datetime, GROUP_CONCAT(DISTINCT L.name SEPARATOR ', ') AS name, GROUP_CONCAT(L.available_spaces SEPARATOR ', ') AS spaces_left, G.name as guide FROM `Tour` AS T INNER JOIN Language AS L ON L.tour_id=T.tour_id INNER JOIN Guide AS G on G.tour_id=T.tour_id ORDER BY T.tour_id;");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Tour');
             $result = $stmt->fetchAll();
