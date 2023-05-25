@@ -1,15 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link type = "text/css" rel="stylesheet" href="css/userDashboard.css">
-    <title>User Dashboard</title>
-  </head>
+<?php include_once __DIR__ . "/../header.php"?>
   <body>
     <h1 class = "d-flex justify-content-center">User</h1>
 
@@ -25,7 +14,7 @@
     -->
     <div class="container">
   <div class="col d-flex flex-row-reverse">
-        <div> <form action="/admin/userdashboard" method = "POST">
+        <div> <form action="/users" method = "POST">
             <button type="submit" class="btn btn-primary m-1">Search</button>        
         </div>
         <div>
@@ -33,7 +22,7 @@
             </form>
         </div>
         <div>
-        <button type="button" onclick = "window.location.href = '/admin/createuser'" class="btn btn-success m-1">Create User</button>
+        <button type="button" onclick = "window.location.href = '/users/createuser'" class="btn btn-success m-1">Create User</button>
         </div>
         <div class="dropdown m-1">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -69,8 +58,8 @@
                     <td><?php echo $user->getRole(); ?></td>
                     <td><?php echo $user->getRegistrationDate(); ?></td>
                     <td>
-                        <a href="/admin/edituser?id=<?php echo $user->getUserId(); ?>" class="btn btn-primary">Edit</a>
-                        <a href="/admin/userdashboard?delete=<?php echo $user->getUserId(); ?>" class="btn btn-danger">Delete</a>    
+                        <a href="/users/edituser?id=<?php echo $user->getUserId(); ?>" class="btn btn-primary">Edit</a>
+                        <a href="/users?delete=<?php echo $user->getUserId(); ?>" class="btn btn-danger">Delete</a>    
                 </tr>
             <?php endforeach; ?>
     </div>

@@ -85,7 +85,7 @@
             <div class="dropdown m-1">
               <button class="btn dropdown-toggle btn-transparent text-white nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="/admin/userdashboard">Users</a></li>
+                  <li><a class="dropdown-item" href="/users">Users</a></li>
                   <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
                   <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
               </ul>

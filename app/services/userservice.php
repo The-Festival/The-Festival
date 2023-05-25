@@ -3,44 +3,43 @@ include_once (__DIR__ . '/../repositories/userrepository.php');
 
 
 class UserService {
+    private $userRepository;
+    
+    public function __construct(){
+        $this->userRepository = new UserRepository();
+    }
+
+
     public function checkUser($username){
-        $repository = new UserRepository();
-        return $repository->checkUser($username);
+        return $this->userRepository->checkUser($username);
     }
     
     public function getAll(){
-        $repository = new UserRepository();
-        return $repository->getAll();
+        return $this->userRepository->getAll();
     }
 
     public function getUsersOnRole($role){
-        $repository = new UserRepository();
-        return $repository->getUsersOnRole($role);
+        return $this->userRepository->getUsersOnRole($role);
     }
 
     public function getUserById($id){
-        $repository = new UserRepository();
-        return $repository->getUserById($id);
+        return $this->userRepository->getUserById($id);
     }
 
     public function searchUserByName($name){
-        $repository = new UserRepository();
-        return $repository->searchUserByName($name);
+        return $this->userRepository->searchUserByName($name);
     }
 
     public function addUser($fullname, $email, $password, $role , $dateOfRegistration){
-        $repository = new UserRepository();
-        return $repository->addUser($fullname, $email, $password, $role , $dateOfRegistration);
+        return $this->userRepository->addUser($fullname, $email, $password, $role , $dateOfRegistration);
     }
 
     public function updateUser($id, $fullname, $email, $role , $dateOfRegistration){
-        $repository = new UserRepository();
-        return $repository->updateUser($id, $fullname, $email, $role , $dateOfRegistration);
+        return $this->userRepository->updateUser($id, $fullname, $email, $role , $dateOfRegistration);
     }
 
     public function deleteUserbyId($id){
-        $repository = new UserRepository();
-        return $repository->deleteUserbyId($id);
+        return $this->userRepository->deleteUserbyId($id);
     }
 
 }
