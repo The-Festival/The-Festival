@@ -88,6 +88,7 @@
                   <li><a class="dropdown-item" href="/users">Users</a></li>
                   <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
                   <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
+                  <li><a class="dropdown-item" href="/admin/orderDashboard">Orders</a></li>
               </ul>
             </div>
           <?php endif; ?>

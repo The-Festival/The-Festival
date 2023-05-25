@@ -136,8 +136,125 @@ class AdminController{
     }
 
     public function ticketDashboard(){
-        $this->orderService->checkTicketRequests();
+             //For cases where 5 or less lines of code link to function is not used
+             switch(true){
+                case isset($_GET['ticketsOrder']):{
+                    $this->getTicketsOnOrder();
+                    break;
+                }
+                case isset($_GET['deleteTicket']) && isset($_GET['order']):{
+                    $this->deleteTicketOnOrder();
+                    break;
+                }
+                case isset($_GET['editTicket']) && isset($_GET['order']):{
+                    $ticket = $this->orderService->getTicketById($_GET['editTicket']);
+                    include __DIR__ . '/../views/admin/order/ticket/editTicket.php';
+                    break;
+                }
+                case isset($_POST['editTicket']):{
+                    $this->editTicketAction();
+                    break;
+                }
+                case isset($_GET['addYummyTicketToOrder']):{
+                    $order_id = $_GET['addYummyTicketToOrder'];
+                    $yummyEvents = $this->orderService->getAllYummyEvents();
+                    include __DIR__ . '/../views/admin/order/ticket/addYummyTicket.php';
+                    break;
+                }
+                case isset($_POST['addYummyTicketToOrder']):{
+                    $this->addYummyTicketToOrder();
+                    break;
+                }
+                case isset($_GET['addJazzTicketToOrder']):{
+                    $order_id = $_GET['addJazzTicketToOrder'];
+                    $jazzEvents = $this->orderService->getAllJazzEvents();
+                    include __DIR__ . '/../views/admin/order/ticket/addJazzTicket.php';
+                    break;
+                }
+                case isset($_POST['addJazzTicketToOrder']):{
+                    $this->addJazzTicketToOrder();
+                   break;
+                }
+                case isset($_GET['addHistoryTicketToOrder']):{
+                    $order_id = $_GET['addHistoryTicketToOrder'];
+                $historyEvents = $this->orderService->getAllHistoryEvents();
+                include __DIR__ . '/../views/admin/order/ticket/addHistoryTicket.php';
+                    break;
+                }
+                case isset($_POST['addHistoryTicketToOrder']):{
+                   
+                    break;
+                }
+                default:{
+                    echo "<h1>NO ORDER SELECTED</h1>";
+                    break;
+                }
+            }
     }
+    
+    private function addJazzTicketToOrder(){
+        $ticket = new Ticket();
+        $ticket->setOrderId($_POST['order_id']);
+        $ticket->setEventId($_POST['event_id']);
+        $ticket->setEventType("jazz");
+        $ticket->setVatPercentage($_POST['vat_percentage']);
+        $ticket->setQuantity($_POST['quantity']);
+        $ticket->setIsChecked($_POST['is_checked']);
+        $this->orderService->addTicket($ticket);
+        header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
+    }
+    private function addYummyTicketToOrder(){
+        $ticket = new Ticket();
+            $ticket->setOrderId($_POST['order_id']);
+            $ticket->setEventId($_POST['event_id']);
+            $ticket->setEventType("yummy");
+            $ticket->setVatPercentage($_POST['vat_percentage']);
+            $ticket->setQuantity($_POST['quantity']);
+            $ticket->setIsChecked($_POST['is_checked']);
+            $this->orderService->addTicket($ticket);
+            header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);   
+        }
+    private function addHistoryTicketToOrder(){ 
+        $ticket = new Ticket();
+        $ticket->setOrderId($_POST['order_id']);
+        $ticket->setEventId($_POST['event_id']);
+        $ticket->setEventType("history");
+        $ticket->setVatPercentage($_POST['vat_percentage']);
+        $ticket->setQuantity($_POST['quantity']);
+        $ticket->setIsChecked($_POST['is_checked']);
+        $this->orderService->addTicket($ticket);
+        header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
+    }
+
+    private function editTicketAction(){
+            $ticket = new Ticket();
+            $ticket->setTicketId($_POST['ticket_id']);
+            $ticket->setOrderId($_POST['order_id']);
+            $ticket->setEventId($_POST['event_id']);
+            $ticket->setEventType($_POST['event_type']);
+            $ticket->setVatPercentage($_POST['vat_percentage']);
+            $ticket->setQuantity($_POST['quantity']);
+            $ticket->setIsChecked($_POST['is_checked']);
+            $this->orderService->updateTicket($ticket);
+            header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
+    }
+
+    private function deleteTicketOnOrder(){
+        $this->orderService->deleteTicket($_GET['deleteTicket']);
+            $order_id = $_GET['order'];
+            $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
+            $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
+            $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
+            include __DIR__ . '/../views/admin/order/ticket/tickets.php';
+    }
+    private function getTicketsOnOrder(){
+        $order_id = $_GET['ticketsOrder'];
+            $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
+            $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
+            $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
+            include __DIR__ . '/../views/admin/order/ticket/tickets.php';
+    }
+
     public function editorder(){
         $this->orderService->checkRequests();
     }
@@ -150,12 +267,6 @@ class AdminController{
         $this->orderService->checkRequests();
     }
 
-    public function checkLogin()
-    {
-        if(!isset($_SESSION['user'])){
-            header('Location: /login');
-        }
-    }
     public function exportorder(){
         require __DIR__ . '/../views/admin/order/exportcsvcolomnselect.php';
     }
@@ -195,6 +306,13 @@ class AdminController{
         }
         else{
             http_response_code(404);
+        }
+    }
+    
+    public function checkLogin()
+    {
+        if(!isset($_SESSION['user'])){
+            header('Location: /login');
         }
     }
 }
