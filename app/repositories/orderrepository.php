@@ -268,14 +268,15 @@ class OrderRepository extends Repository {
             return false;
         }
     }
-
     public function getAllTicketOnTypeHistory($order_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`quantity` ,`start_location`, `price`, `ischecked`
-            FROM Ticket 
-            JOIN Tour ON Ticket.event_id = Tour.tour_id 
+            $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`quantity` ,`start_location`, `price`, `ischecked` 
+            FROM Ticket
+            JOIN Tour ON Ticket.event_id = Tour.tour_id
             JOIN Language ON Tour.tour_id = Language.tour_id
-            WHERE Ticket.event_type = 'history' AND order_id = :order_id;");
+            WHERE Ticket.event_type = 'history' AND Ticket.order_id = :order_id
+            GROUP BY Ticket.ticket_id;");
+
             $stmt->bindParam(':order_id', $order_id);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -285,8 +286,8 @@ class OrderRepository extends Repository {
             echo $e;
             return false;
         }
-
     }
+    
 
     public function getAllYummyEvents(){
         try {

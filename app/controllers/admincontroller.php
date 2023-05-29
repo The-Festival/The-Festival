@@ -130,20 +130,78 @@ class AdminController{
     }
 
     public function orderDashboard(){
-        $this->orderService->checkRequests();
+        switch (true){
+            case isset($_POST['editOrder']):{
+                $this->editOrderAction();
+                break;
+            }
+            case isset($_POST['createOrder']):{
+                $this->addOrderAction();
+                break;
+            }
+            case isset($_GET['deleteOrder']):{
+                $this->deleteOrderAction();
+                break;
+            }
+        }
         $orders = $this->orderService->getOrders();
         include __DIR__ . '/../views/admin/order/orderDashboard.php';
     }
+
+
+    private function addOrderAction(){
+        $initialTotalPrice = 0;
+        $initialTotalVat = 0;
+        $order = new Order();
+        $order->setClientName($_POST['client_name']);
+        $order->setAddress($_POST['address']);
+        $order->setEmailaddress($_POST['email']);
+        $order->setPhonenumber($_POST['phone']);
+        $order->setOrderTime($_POST['order_time']);
+        $order->setPaymentMethod($_POST['payment_method']);
+        $order->setTotalPrice($initialTotalPrice);
+        $order->setTotalVat($initialTotalVat);
+        $this->orderService->addOrder($order);
+    }
+
+    private function editOrderAction(){
+            //add data to order through contuctor
+        $order = new Order();
+        $order->setOrderId($_POST['order_id']);
+        $order->setClientName($_POST['client_name']);
+        $order->setAddress($_POST['address']);
+        $order->setEmailaddress($_POST['email']);
+        $order->setPhonenumber($_POST['phone']);
+        $order->setTotalPrice($_POST['total_price']);
+        $order->setOrderTime($_POST['order_time']);
+        $order->setPaymentMethod($_POST['payment_method']);	
+        $order->setTotalVat($_POST['total_vat']);
+        $this->orderService->updateOrder($order);
+    }
+
+    private function deleteOrderAction(){
+        if (!isset($_GET['deleteOrder'])){
+            $this->orderDashboard();
+            return;
+        }
+        $this->orderService->deleteOrderPlusAllTicketsOnOrder($_GET['deleteOrder']);
+    }
+
+    private function getOrderToEdit(){
+        $order = $this->orderService->getOrderById($_GET['editOrder']);
+            include __DIR__ . '/../views/admin/order/editOrder.php';
+    }
+
 
     public function ticketDashboard(){
              //For cases where 5 or less lines of code link to function is not used
              switch(true){
                 case isset($_GET['ticketsOrder']):{
-                    $this->getTicketsOnOrder();
+                    $this->getTicketsOnOrderAction();
                     break;
                 }
                 case isset($_GET['deleteTicket']) && isset($_GET['order']):{
-                    $this->deleteTicketOnOrder();
+                    $this->deleteTicketOnOrderAction();
                     break;
                 }
                 case isset($_GET['editTicket']) && isset($_GET['order']):{
@@ -162,7 +220,7 @@ class AdminController{
                     break;
                 }
                 case isset($_POST['addYummyTicketToOrder']):{
-                    $this->addYummyTicketToOrder();
+                    $this->addTicketToOrderAction("yummy");
                     break;
                 }
                 case isset($_GET['addJazzTicketToOrder']):{
@@ -172,7 +230,7 @@ class AdminController{
                     break;
                 }
                 case isset($_POST['addJazzTicketToOrder']):{
-                    $this->addJazzTicketToOrder();
+                    $this->addTicketToOrderAction("jazz");
                    break;
                 }
                 case isset($_GET['addHistoryTicketToOrder']):{
@@ -182,7 +240,7 @@ class AdminController{
                     break;
                 }
                 case isset($_POST['addHistoryTicketToOrder']):{
-                   
+                    $this->addTicketToOrderAction("history");
                     break;
                 }
                 default:{
@@ -190,35 +248,13 @@ class AdminController{
                     break;
                 }
             }
-    }
-    
-    private function addJazzTicketToOrder(){
+    }   
+
+    private function addTicketToOrderAction($type){
         $ticket = new Ticket();
         $ticket->setOrderId($_POST['order_id']);
         $ticket->setEventId($_POST['event_id']);
-        $ticket->setEventType("jazz");
-        $ticket->setVatPercentage($_POST['vat_percentage']);
-        $ticket->setQuantity($_POST['quantity']);
-        $ticket->setIsChecked($_POST['is_checked']);
-        $this->orderService->addTicket($ticket);
-        header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
-    }
-    private function addYummyTicketToOrder(){
-        $ticket = new Ticket();
-            $ticket->setOrderId($_POST['order_id']);
-            $ticket->setEventId($_POST['event_id']);
-            $ticket->setEventType("yummy");
-            $ticket->setVatPercentage($_POST['vat_percentage']);
-            $ticket->setQuantity($_POST['quantity']);
-            $ticket->setIsChecked($_POST['is_checked']);
-            $this->orderService->addTicket($ticket);
-            header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);   
-        }
-    private function addHistoryTicketToOrder(){ 
-        $ticket = new Ticket();
-        $ticket->setOrderId($_POST['order_id']);
-        $ticket->setEventId($_POST['event_id']);
-        $ticket->setEventType("history");
+        $ticket->setEventType($type);
         $ticket->setVatPercentage($_POST['vat_percentage']);
         $ticket->setQuantity($_POST['quantity']);
         $ticket->setIsChecked($_POST['is_checked']);
@@ -239,7 +275,7 @@ class AdminController{
             header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
     }
 
-    private function deleteTicketOnOrder(){
+    private function deleteTicketOnOrderAction(){
         $this->orderService->deleteTicket($_GET['deleteTicket']);
             $order_id = $_GET['order'];
             $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
@@ -247,7 +283,7 @@ class AdminController{
             $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
             include __DIR__ . '/../views/admin/order/ticket/tickets.php';
     }
-    private function getTicketsOnOrder(){
+    private function getTicketsOnOrderAction(){
         $order_id = $_GET['ticketsOrder'];
             $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
             $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
@@ -256,16 +292,17 @@ class AdminController{
     }
 
     public function editorder(){
-        $this->orderService->checkRequests();
+        if (!isset($_GET['editOrder'])){
+           header('Location: /admin/orderDashboard');
+        }
+        $order = $this->orderService->getOrderById($_GET['editOrder']);
+        include __DIR__ . '/../views/admin/order/editOrder.php';
     }
 
     public function createorder(){
         include __DIR__ . '/../views/admin/order/createorder.php';
     }
 
-    public function editTicket(){
-        $this->orderService->checkRequests();
-    }
 
     public function exportorder(){
         require __DIR__ . '/../views/admin/order/exportcsvcolomnselect.php';
@@ -278,6 +315,7 @@ class AdminController{
             $csvData = ob_get_clean();
             header('Content-Type: application/csv');
             header('Content-Disposition: attachment; filename="orderdata.csv";');
+            readfile("orderdata_".date('Y-m-d').".csv");
             echo $csvData;
             exit;
         }
@@ -302,7 +340,7 @@ class AdminController{
              // Capture the output generated by the PHP code and store it in a variable
              $body = ob_get_clean();
              $this->orderService->orderPdf($body, $order_id);
-             header('Location: /admin/orderDashboard');
+             
         }
         else{
             http_response_code(404);

@@ -13,48 +13,6 @@ class OrderService{
         $this->orderRepository = new OrderRepository();
     }
 
-    public function checkRequests(){
-        if (isset($_POST['editOrder'])){
-            //add data to order through contuctor
-            $order = new Order();
-            $order->setOrderId($_POST['order_id']);
-            $order->setClientName($_POST['client_name']);
-            $order->setAddress($_POST['address']);
-            $order->setEmailaddress($_POST['email']);
-            $order->setPhonenumber($_POST['phone']);
-            $order->setTotalPrice($_POST['total_price']);
-            $order->setOrderTime($_POST['order_time']);
-            $order->setPaymentMethod($_POST['payment_method']);	
-            $order->setTotalVat($_POST['total_vat']);
-            $this->updateOrder($order);
-        }
-        if(isset($_POST['createOrder'])){
-            $initialTotalPrice = 0;
-            $initialTotalVat = 0;
-            $order = new Order();
-            $order->setClientName($_POST['client_name']);
-            $order->setAddress($_POST['address']);
-            $order->setEmailaddress($_POST['email']);
-            $order->setPhonenumber($_POST['phone']);
-            $order->setOrderTime($_POST['order_time']);
-            $order->setPaymentMethod($_POST['payment_method']);
-            $order->setTotalPrice($initialTotalPrice);
-            $order->setTotalVat($initialTotalVat);
-            $this->addOrder($order);
-        }
-        if(isset($_GET['deleteOrder'])){
-            $this->deleteOrderPlusAllTicketsOnOrder($_GET['deleteOrder']);
-        }
-        if (isset($_GET['editOrder'])){
-            $order = $this->getOrderById($_GET['editOrder']);
-            include __DIR__ . '/../views/admin/order/editOrder.php';
-        }
-
-    }
-    
-    public function checkTicketRequests(){
-        
-    }
 
     public function getOrders(){
         return $this->orderRepository->getOrders();
@@ -69,7 +27,7 @@ class OrderService{
     }
 
     public function deleteTicket($ticket_id){
-        $this->calculateTotalPriceOfOrderOnTicketDelete($this->getTicketById($ticket_id));
+        $this->updatePricesOfOrder($this->getTicketById($ticket_id));
         return $this->orderRepository->deleteTicket($ticket_id);
     }
 
@@ -85,7 +43,7 @@ class OrderService{
         if($this->checkTicketQuantity($ticket)){
             
             $this->orderRepository->addTicket($ticket->getOrderId(), $ticket->getEventType(), $ticket->getEventId(), $ticket->getVatPercentage(), $ticket->getQuantity(), $ticket->getIsChecked());
-            $this->calculatePriceAndVatOfTicketOnAdd($ticket);
+            $this->updatePricesOfOrder($ticket);
             return true;
         }
         else {
@@ -98,7 +56,7 @@ class OrderService{
     }
 
     public function updateTicket($ticket){
-        $this->calculateTotalPriceOfOrderOnTicketEdit($ticket);
+        $this->updatePricesOfOrder($ticket);
         return $this->orderRepository->updateTicket($ticket);
     }
 
@@ -141,16 +99,8 @@ class OrderService{
         }
         return true;
     }
-
-    public function calculatePriceAndVatOfTicketOnAdd($ticket){
-        $this->calculateAndUpdateTotalPriceOfOrder($this->getOrderById($ticket->getOrderId()));
-    }
-
-    public function calculateTotalPriceOfOrderOnTicketDelete($ticket){
-        $this->calculateAndUpdateTotalPriceOfOrder($this->getOrderById($ticket->getOrderId()));
-    }
-
-    public function calculateTotalPriceOfOrderOnTicketEdit($ticket){
+    
+    public function updatePricesOfOrder($ticket){
         $this->calculateAndUpdateTotalPriceOfOrder($this->getOrderById($ticket->getOrderId()));
     }
 
@@ -170,15 +120,10 @@ class OrderService{
         switch ($ticket->getEventType()) {
             case "yummy":
                 return $quantityAndPrice = $this->orderRepository->getPriceAndQuantityOnYummyEvent($ticket->getEventId());
-                break;
             case "jazz":
                 return $quantityAndPrice =$this->orderRepository->getPriceAndQuantityOnJazzEvent($ticket->getEventId());
-                break;
             case "history":
                 return $quantityAndPrice =$this->orderRepository->getPriceAndQuantityOnHistoryEvent($ticket->getEventId());
-                break;
-            default:
-                break;
         }
     }
 
@@ -204,11 +149,7 @@ class OrderService{
         }
 
         fclose($file);
-
-        // Download the CSV file
-        header('Content-Type: application/csv');
-        header('Content-Disposition: attachment; filename="orderdata.csv";');
-        readfile("orderdata_".date('Y-m-d').".csv");   
+           
     }
 
     public function orderPdf($body , $order_id)

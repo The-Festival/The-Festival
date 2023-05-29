@@ -174,11 +174,11 @@
 					<td>Price</td>
 				</tr>
 
-				<?php foreach($historyItems as $historyItem){?>
+				<?php foreach($foodItems as $foodItem){?>
                     <tr class='item'>
-					    <td><?echo $historyItem['quantity']?>x <?echo $historyItem['name']?> <?echo $historyItem['start_location']?> <?echo (new DateTime($historyItem['datetime']))->format('d-m-y H:i')?> </td>
+					    <td><?echo $foodItem['quantity']?>x <?echo $foodItem['name']?> <?echo $foodItem['start_location']?> <?echo (new DateTime($foodItem['datetime']))->format('d-m-y H:i')?> </td>
 
-					    <td>€<?echo $historyItem['price']?></td>
+					    <td>€<?echo $foodItem['price']?></td>
 				        </tr>
                 <?}?>
 
