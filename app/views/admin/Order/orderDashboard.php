@@ -35,8 +35,8 @@
                     <td><?php echo $order->getEmailaddress(); ?></td>
                     <td><?php echo $order->getOrderTime(); ?></td>
                     <td><?php echo $order->getPaymentMethod(); ?></td>
-                    <td><?php echo $order->getTotalVat(); ?></td>
-                    <td><?php echo $order->getTotalPrice(); ?></td>
+                    <td>€<?php echo number_format($order->getTotalVat(), 2, '.', ''); ?></td>
+                    <td>€<?php echo number_format($order->getTotalPrice(), 2, '.', ''); ?></td>
                     <td>
                         <a href ="/admin/ticketdashboard?ticketsOrder=<?php echo $order ->getOrderId(); ?>" class = "btn btn-info">Tickets</a>
                         <a href="/admin/editorder?editOrder=<?php echo $order->getOrderId(); ?>" class="btn btn-primary">Edit</a>

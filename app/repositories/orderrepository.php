@@ -330,7 +330,7 @@ class OrderRepository extends Repository {
 
     public function getPriceAndQuantityOnHistoryEvent($event_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `available_spaces` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.tour_id = l.tour_id WHERE :event_id;");
+            $stmt = $this->connection->prepare("SELECT `available_spaces` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.tour_id = l.tour_id WHERE t.tour_id = :event_id;");
             $stmt->bindValue(':event_id', $event_id);
             $stmt->execute();
             $result = $stmt->fetch();
@@ -369,6 +369,7 @@ class OrderRepository extends Repository {
             return false;
         }
     }
+
 
     public function updateOrderPriceAndVat($order_id, $totalPrice, $totalVat){
         try {

@@ -210,7 +210,7 @@ class AdminController{
                     break;
                 }
                 case isset($_POST['editTicket']):{
-                    $this->editTicketAction();
+                    $this->editTicketOnOrderAction();
                     break;
                 }
                 case isset($_GET['addYummyTicketToOrder']):{
@@ -262,7 +262,7 @@ class AdminController{
         header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
     }
 
-    private function editTicketAction(){
+    private function editTicketOnOrderAction(){
             $ticket = new Ticket();
             $ticket->setTicketId($_POST['ticket_id']);
             $ticket->setOrderId($_POST['order_id']);

@@ -29,8 +29,7 @@
     <div class="col-md-6">
       <form action="/admin/orderdashboard" method="POST">
         <div class="mb-3">
-          <label for="ID" class="form-label">Order ID</label>
-          <input type="text" class="form-control" id="id" name="order_id" value="<?php echo $order->getOrderId(); ?>" readonly>
+          <input type="Hidden" class="form-control" id="id" name="order_id" value="<?php echo $order->getOrderId(); ?>" readonly>
         </div>
         <div class="mb-3">
           <label for="fullname" class="form-label">Client Name</label>
@@ -60,12 +59,10 @@
       </select>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Total Price</label>
-          <input type="number" step = "0.01" class="form-control" id="payment Method" name="total_price" value="<?php echo $order->getTotalPrice(); ?>" readonly>
+          <input type="hidden" step = "0.01" class="form-control" id="payment Method" name="total_price" value="<?php echo $order->getTotalPrice(); ?>" readonly>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Total Vat</label>
-          <input type="number" step = "0.01" class="form-control" id="payment Method" name="total_vat" value="<?php echo $order->getTotalVat(); ?>" readonly>
+          <input type="hidden" step = "0.01" class="form-control" id="payment Method" name="total_vat" value="<?php echo $order->getTotalVat(); ?>" readonly>
         </div>
         <button type="submit" name="editOrder" class="btn btn-primary">Submit</button>
         <button class = "btn btn-danger" onclick = "window.location.href = '/admin/orderdashboard'">Back</button>

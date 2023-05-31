@@ -185,12 +185,14 @@
 				<tr class="total">
 					<td></td>
 
-					<td>Total exl. VAT: € <?echo ($order->getTotalPrice() - $order->getTotalVat())?>,-</td>
+					<td>Total exl. VAT: € <?echo number_format(($order->getTotalPrice() - $order->getTotalVat()), 2, '.', '');?>,-</td>
+
 				</tr>
                 <tr class="total">
 					<td></td>
 
-					<td>Total: € <?echo $order->getTotalPrice()?>,-</td>
+					<td>Total: € <?echo number_format($order->getTotalPrice(), 2 ,'.', '')?>,-</td>
+
 				</tr>
 			</table>
 		</div>
