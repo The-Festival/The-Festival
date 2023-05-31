@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../services/homeservice.php');
 require_once(__DIR__ . '/../services/wzywigservice.php');
 
-class WzywigController{
+class Pagescontroller{
     private $homeService;
     private $wzywigService;
 
