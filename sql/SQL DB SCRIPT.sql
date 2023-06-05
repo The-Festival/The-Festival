@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Apr 13, 2023 at 07:51 PM
--- Server version: 10.10.3-MariaDB-1:10.10.3+maria~ubu2204
--- PHP Version: 8.1.15
+-- Generation Time: Jun 05, 2023 at 08:57 PM
+-- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `developmentdb`
 --
-CREATE DATABASE IF NOT EXISTS `developmentdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `developmentdb`;
 
 -- --------------------------------------------------------
 
@@ -41,23 +39,44 @@ CREATE TABLE `About` (
 --
 
 INSERT INTO `About` (`about_id`, `detail_id`, `type`, `about`) VALUES
-(1, 1, 'Jopen Kerk', 'Since 1992 Jopenkerk aims to promote the traditional beers of Haarlem. Two ''recipes'' were found useful for brewing again. A recipe from 1407 yielded Koyt , a gruit beer . The recipe for the beer that came on the market as Hoppenbier dates back to 1501. In 1994, both beers could be presented on the occasion of the city''s 750th anniversary.'),
+(1, 1, 'Jopen Kerk', 'Since 1992 Jopenkerk aims to promote the traditional beers of Haarlem. Two \'recipes\' were found useful for brewing again. A recipe from 1407 yielded Koyt , a gruit beer . The recipe for the beer that came on the market as Hoppenbier dates back to 1501. In 1994, both beers could be presented on the occasion of the city\'s 750th anniversary.'),
 (2, 2, 'Amsterdamse Poort', 'Created in 1355 and is the only remaining city gate from the defenses of Haarlem. Until the 17th century it was the city gate used for traffic by land eastwards towards Spaarnwoude over the Laeghe weg (now Oude weg). In 1631 the Haarlemmertrekvaart was dug, which shortened the waterway from Haarlem to\r\nAmsterdam considerably.'),
 (3, 3, 'Frans Hals Museum', 'Frans Hals Museum - Hal (formally: De Hallen Haarlem) is one of the two locations of the Frans Hals Museum, located on the Grote Markt, where modern and contemporary art is on display in alternating presentations. The emphasis is on contemporary photograph and video presentations, with the focus on Man and society. '),
 (4, 4, 'Proveniershof', 'Founded in 1707 by the city council to house elderly men. The main buildings are from the 14th century\nUnlike hofjes that were meant for poor elderly women, the homes around this courtyard are much larger, because the inhabitants were men who actually paid the rent as opposed to hofje inhabitants who had no income to spend on rent.'),
 (5, 5, 'St. Bavo Kerk', 'Reformed Protestant church and former Catholic cathedral located on the central market square (Grote Markt).\nFirst mention of a church on this spot was made in 1307, but the wooden structure burned in the 14th century. The church was rebuilt and promoted to chapter church in 1479 and only became a cathedral in 1559.'),
 (6, 6, 'Waalse Kerk', 'Oldest church in Haarlem, built in 1348. The Walloon church was a real refugee church: in the 16th century, Flemish Protestants had fled from the ruling Catholic Spaniards. The Spanish government gave them a choice: convert to the Catholic faith or leave. More than a hundred thousand Protestants chose the latter option. '),
 (7, 7, 'Molen De Adriaan', 'The windmill was built on the foundations of the Goevrouwetoren by Adriaan de Booys, an industrial producer from Amsterdam. The windmill that burnt down in 1932 and was rebuilt in 2002. The original windmill dates from 1779 and the mill has been a distinctive part of the skyline of Haarlem for centuries.'),
-(8, 8, 'Grote Markt', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers'' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church.This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
-(9, 9, 'Hof van Bakenes', 'Founded in 1395 it is the oldest hofje in the Netherlands. The earliest mention of it in town records is from the History of Haarlem by Samuel Ampzing  Initially, the hofje consisted of 13 houses for 20 women, then one of the buildings was converted into a regent''s room , after which there was still room for 12 women.'),
+(8, 8, 'Grote Markt', 'Centre of the city where there are a larger number of interesting buildings, including the quaint old Fleshers\' Hall, built by Lieven de Key in 1603, the town hall; the old Stadsdoelen, Great Church.This square is used every weekend for a market, during December for Christmas market and during summer for festivals.'),
+(9, 9, 'Hof van Bakenes', 'Founded in 1395 it is the oldest hofje in the Netherlands. The earliest mention of it in town records is from the History of Haarlem by Samuel Ampzing  Initially, the hofje consisted of 13 houses for 20 women, then one of the buildings was converted into a regent\'s room , after which there was still room for 12 women.'),
 (11, 1, 'Jopen Kerk', 'Jopen&#039;s beer is a result of the work of Stichting Haarlems Biergenootschap, which was founded in 1992. The mission of the Biergenootschap is to re-create traditional Haarlem beers and bring them to the commercial market. Two recipes were found in the Haarlem city archives that were used as a foundation for two initial beers. The first one was a recipe from 1408; the recreation of this was named Koyt, a gruit beer. '),
 (12, 1, 'Jopen Kerk', 'The name Jopen refers to the 112 litre beer barrels that were used in early times to transport the Haarlem beer. Until the end of 1996 Jopen beer was brewed in the Halve Maan brewery in Hulst, after that it was made in the La Trappe brewery in Berkel-Enschot. Since 2001, the Jopen beer brands were brewed in Ertvelde, Belgium, in brewery Van Steenberge. '),
-(13, 1, 'Jopen Kerk', 'At the end of 2005, it was announced that the old Jacobskerk, in the Raaks area in the city centre of Haarlem, would be transformed into a brewery. On November 11, 2010, the ''Jopenkerk'' (Jopen church) opened its doors for the public. Besides the brewery it also hosts a café and restaurant. Jopen won two silver medals at the 2008 World Beer Championship.'),
+(13, 1, 'Jopen Kerk', 'At the end of 2005, it was announced that the old Jacobskerk, in the Raaks area in the city centre of Haarlem, would be transformed into a brewery. On November 11, 2010, the \'Jopenkerk\' (Jopen church) opened its doors for the public. Besides the brewery it also hosts a café and restaurant. Jopen won two silver medals at the 2008 World Beer Championship.'),
 (14, 10, 'test event', 'this is slider text'),
 (15, 11, 'Thijs Moerland', ' vnbmn,m,vhcgch'),
 (16, 12, 'Thijs Moerland', 'hgv'),
 (18, 2, 'Amsterdamse Poort', 'Last remaining of 12 original city gates that formed Haarlem’s defences, this well preserved city gate dates back to 1355 and until the 17th century it was the city gate used for traffic by land eastwards towards Spaarnwoudeover the Laeghe weg (now Oude Weg).\r\nThis gate was originally called the Spaarnwouderpoort, with the new canal dug in 1631 and its towpath, the trip to Amsterdam was shorted, making possible travelling back and forth to Amsterdam on the same day. Thus the name of the gate changed to Amsterdamse Poort.'),
-(19, 2, 'Amsterdamse Poort', 'In 1865 the Haarlem government wanted to demolish the gate. A petition to pull down the gate was requested, as the gate was in a bad state of repair and was heeding the construction of a new bridge on the location just in front of the gate. However, the Haarlem government was denied their plans due to lack of funds.\r\n\r\n');
+(19, 2, 'Amsterdamse Poort', 'In 1865 the Haarlem government wanted to demolish the gate. A petition to pull down the gate was requested, as the gate was in a bad state of repair and was heeding the construction of a new bridge on the location just in front of the gate. However, the Haarlem government was denied their plans due to lack of funds.\r\n\r\n'),
+(20, 1, 'main', '<p style=\"padding-left: 40px;\">Starting on Thursday 27th July, the Festival will take place and it is all about discoveries around the city of Haarlem, where the fun is guranteed for both adults and little ones From walking tours of the city as well as culinary events, a special quest at the Teyler museum for the sherlocks to be and a jazz event in the evening: there is something to do for every family member, this years edition is guaranteed to bring you and your family an unforgettable festival experience<br><br></p>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Api_Token`
+--
+
+CREATE TABLE `Api_Token` (
+  `token_id` int(11) NOT NULL,
+  `token` varchar(512) NOT NULL,
+  `company_name` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Api_Token`
+--
+
+INSERT INTO `Api_Token` (`token_id`, `token`, `company_name`) VALUES
+(1, 'D95DD537-0969-485B-8DCA-5889EC11FB35', 'JAN PIET BV.'),
+(2, '8481AB3B-B39D-4D6B-A932-2CBF4567F0D5', 'Inholland');
 
 -- --------------------------------------------------------
 
@@ -82,17 +101,17 @@ INSERT INTO `Artist` (`artist_id`, `name`, `about`, `price`, `event_id`) VALUES
 (2, 'Evolve', 'EVOLVE is the downtempo chillout project of artist/producer Red Broad. The first album, HAPPY HOUR IN THE GENE POOL has enjoyed great success within the downtempo chillout and lounge genres with iconic tracks', 15, 1),
 (3, 'Ntjam Rosie', 'Ntjam Rosie, born as Rosie Boei, is a Dutch-Cameroonian singer/songwriter from Rotterdam, The Netherlands. Her style is a mix of pop music, jazz and soul.', 15, 1),
 (4, 'Wicked Jazz Sounds', 'Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music. Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.', 10, 1),
-(5, 'Tom Thomsom Assemble', 'Doesn''t exist?', 10, 1),
+(5, 'Tom Thomsom Assemble', 'Doesn\'t exist?', 10, 1),
 (6, 'Jonna Frazer', 'Jonna Fraser is a rapper and singer, but above all a particularly driven performer. The Rotterdam-born storyteller has been living in Zaandam for more than half his life. At age 11, he was introduced to rap and then never let go of the microphone.', 10, 1),
-(7, 'Fox & The Mayors', 'Doesn''t exist?', 15, 1),
-(8, 'Uncle Sue', 'Uncle Sue is a seven-piece Haarlem Funk and Soul Band with its own story, soul diva and swinging horn section. Quirky repertoire, from their own studio and slightly less obvious gems by our musical heroes. A sound that harks back to the 60s and 70s. That''s where Uncle Sue feels at home', 15, 1),
-(9, 'Chris Allen', 'Doesn''t exist?', 15, 1),
-(10, 'Myles Sanko', 'He began his musical career singing and rapping alongside disc jockeys in nightclubs. Since then he toured across Europe and worked with the likes of Gregory Porter, Martha High, Mousse T, Speedometer, Billy Wooten, China Mosses, Ben l''Oncle Soul, Sarah McKenzie, Miss Kelly Marie, Mo'' Horizons, Ed Meme, Chris Read, Robin Mullarkey, Ben Lamdin (Nostalgia 77) and many more.', 10, 1),
-(11, 'Ruis Soundsystem', 'Doesn''t exist?', 10, 1),
-(12, 'The Family XL', 'Doesn''t exist?', 10, 1),
+(7, 'Fox & The Mayors', 'Doesn\'t exist?', 15, 1),
+(8, 'Uncle Sue', 'Uncle Sue is a seven-piece Haarlem Funk and Soul Band with its own story, soul diva and swinging horn section. Quirky repertoire, from their own studio and slightly less obvious gems by our musical heroes. A sound that harks back to the 60s and 70s. That\'s where Uncle Sue feels at home', 15, 1),
+(9, 'Chris Allen', 'Doesn\'t exist?', 15, 1),
+(10, 'Myles Sanko', 'He began his musical career singing and rapping alongside disc jockeys in nightclubs. Since then he toured across Europe and worked with the likes of Gregory Porter, Martha High, Mousse T, Speedometer, Billy Wooten, China Mosses, Ben l\'Oncle Soul, Sarah McKenzie, Miss Kelly Marie, Mo\' Horizons, Ed Meme, Chris Read, Robin Mullarkey, Ben Lamdin (Nostalgia 77) and many more.', 10, 1),
+(11, 'Ruis Soundsystem', 'Doesn\'t exist?', 10, 1),
+(12, 'The Family XL', 'Doesn\'t exist?', 10, 1),
 (13, 'Gare du Nord', 'Gare du Nord is a Dutch-Belgian jazz band, originally consisting of Doc and Inca. Doc played guitar and Inca played saxophone, while both performed vocal duties. After the pair split up in 2013, the band continued to work and tour with a different line-up', 15, 1),
 (14, 'Rilan & The Bombadiers', 'With a sold out first clubtour, a booming festival season and tracks that have already been featured in a number of big Hollywood productions, (Netflix / HULU / FOX: Shooter, Shut Eye and Rosewood) this band has certainly been keeping busy. Both nationally and abroad.', 15, 1),
-(15, 'Soul Six', 'Doesn''t exist?', 15, 1),
+(15, 'Soul Six', 'Doesn\'t exist?', 15, 1),
 (16, 'Han Bennink', 'Drummer & visual artist Han Bennink reached the age of 80 this year and has been in the business for more than 60 years. He travelled all over the world and is now celebrating his anniversary close to home, on the border of Drenthe and Friesland, with the festival HANBENNINK80 in Fryslân. Multi-talented Han gives concerts on four different stages/galleries during his exhibitions.', 10, 1),
 (17, 'The Nordanians', 'When Oene van Geel viola, Mark Tuinstra guitar and Niti Ranjan Biswas tabla virtuoso played together for the first time there where immediately fireworks, roaring u-turns and cinematic tearjerkers. Then they started writing songs together based on traditional ragas, smashing funk and delicate chamber music.', 10, 1),
 (18, 'Lilith Merlot', 'Dutch singer and songwriter Lilith Merlot is known for her warm and deep voice with a timeless feel.', 10, 1);
@@ -172,7 +191,7 @@ CREATE TABLE `Guide` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `Guide`
+-- Dumping data for table `Guide`
 --
 
 INSERT INTO `Guide` (`guide_id`, `tour_id`, `name`) VALUES
@@ -181,7 +200,7 @@ INSERT INTO `Guide` (`guide_id`, `tour_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Language`
+-- Table structure for table `Language`
 --
 
 CREATE TABLE `Language` (
@@ -231,7 +250,6 @@ INSERT INTO `Location` (`location_id`, `detail_id`, `type`, `streetname`, `posta
 (9, 9, 'Restaurant', 'test00', 'test', 'test', '2'),
 (10, 24, 'Restaurant', 'straat', '1234AB', 'alkmaar', '34');
 
-
 -- --------------------------------------------------------
 
 --
@@ -273,7 +291,7 @@ CREATE TABLE `Order` (
 --
 
 INSERT INTO `Order` (`order_id`, `client_name`, `address`, `phonenumber`, `emailaddress`, `order_time`, `payment_method`, `total_vat`, `total_price`) VALUES
-(8, 'Bob', 'Bijdroplaan 15', '+31612345678', 'bob1234@gmail.com', '2023-10-10 12:00:00', 'paypal', 441, 2100);
+(10, 'Mark', 'bijdroplaan 5', '612345678', 'mark@gmail.com', '2023-04-25 22:36:00', 'paypal', 2.925, 32.5);
 
 -- --------------------------------------------------------
 
@@ -486,14 +504,13 @@ CREATE TABLE `Ticket` (
 --
 
 INSERT INTO `Ticket` (`ticket_id`, `order_id`, `event_type`, `event_id`, `vat_percentage`, `quantity`, `ischecked`) VALUES
-(51, 8, 'yummy', 1, 21, 10, 0),
-(52, 8, 'history', 2, 21, 15, 0),
-(53, 8, 'jazz', 2, 21, 10, 0);
+(56, 10, 'jazz', 1, 9, 1, 0),
+(57, 10, 'history', 1, 9, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `Tour`
+-- Table structure for table `Tour`
 --
 
 CREATE TABLE `Tour` (
@@ -535,7 +552,9 @@ INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registr
 (6, 'Usman', 'muttalip9801@gmail.com', '$2y$10$3a5G7f6I7Z6/XWJXLG.mrerYugDEi0DTTcK62SbBmZ/brLgRr2Pn6', 'customer', '2023-03-14'),
 (7, 'Thijs Moerland', 'Moerland8@gmail.com', '$2y$10$/hl0X1lVbEwtbuT5LwAtIuB.KjZHKK7k8gjD5ONsZY7oqp4JGbzii', 'customer', '2023-03-15'),
 (8, 'henk', 'henk@gmail.com', '$2y$10$SOk.60rek5ngz8K4ML.6T.aDppi62BvIUf6sduxAzow6kZ0dQrdiy', 'customer', '2023-03-20'),
-(9, 'luke', 'Luke@gmail.com', '$2y$10$B6juEdgRXRc49wAN6MdR3O9stnv2nUwVDYi4BZ/T27QxelERBrrji', 'customer', '2023-03-31');
+(9, 'luke', 'Luke@gmail.com', '$2y$10$B6juEdgRXRc49wAN6MdR3O9stnv2nUwVDYi4BZ/T27QxelERBrrji', 'customer', '2023-03-31'),
+(10, 'Mark', 'mark@gmail.com', '$2y$10$XRMIfWEAxNi9DzyH04vYB.EBdBsoTUOMR2jx6Pdik4DdGWPQs0fyO', 'admin', '2023-04-25'),
+(11, 'Usman', 'muttalip9801@gmail.com', '$2y$10$ImVOnTNZ5h.I49eYyb3TfOd3.UBBhMtBXt2Bxdt30lMjeXWtQyyrW', 'admin', '2023-04-25');
 
 --
 -- Indexes for dumped tables
@@ -546,6 +565,12 @@ INSERT INTO `User` (`user_id`, `fullname`, `email`, `password`, `role`, `registr
 --
 ALTER TABLE `About`
   ADD PRIMARY KEY (`about_id`);
+
+--
+-- Indexes for table `Api_Token`
+--
+ALTER TABLE `Api_Token`
+  ADD PRIMARY KEY (`token_id`);
 
 --
 -- Indexes for table `Artist`
@@ -574,7 +599,7 @@ ALTER TABLE `Guide`
   ADD KEY `tour_id` (`tour_id`);
 
 --
--- Indexen voor tabel `Language`
+-- Indexes for table `Language`
 --
 ALTER TABLE `Language`
   ADD PRIMARY KEY (`language_id`),
@@ -658,7 +683,13 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT for table `About`
 --
 ALTER TABLE `About`
-  MODIFY `about_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `about_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `Api_Token`
+--
+ALTER TABLE `Api_Token`
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `Artist`
@@ -673,7 +704,7 @@ ALTER TABLE `Event_Jazz`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT voor een tabel `Foto`
+-- AUTO_INCREMENT for table `Foto`
 --
 ALTER TABLE `Foto`
   MODIFY `foto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
@@ -706,7 +737,7 @@ ALTER TABLE `Main_Page`
 -- AUTO_INCREMENT for table `Order`
 --
 ALTER TABLE `Order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `Pass`
@@ -742,7 +773,7 @@ ALTER TABLE `Session`
 -- AUTO_INCREMENT for table `Ticket`
 --
 ALTER TABLE `Ticket`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `Tour`
@@ -754,7 +785,7 @@ ALTER TABLE `Tour`
 -- AUTO_INCREMENT for table `User`
 --
 ALTER TABLE `User`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -773,7 +804,7 @@ ALTER TABLE `Guide`
   ADD CONSTRAINT `Guide_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `Tour` (`tour_id`);
 
 --
--- Beperkingen voor tabel `Language`
+-- Constraints for table `Language`
 --
 ALTER TABLE `Language`
   ADD CONSTRAINT `FK_language_tour_id` FOREIGN KEY (`tour_id`) REFERENCES `Tour` (`tour_id`);
