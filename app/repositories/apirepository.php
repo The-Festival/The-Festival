@@ -39,11 +39,11 @@ class ApiRepository extends Repository{
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'ApiToken');
         $tokens = $stmt->fetchAll();
-        if($tokens){
-            return $tokens;
+        if($tokens != null){
+            return true;
         }
         else{
-            return "Token not available";
+            return false;
         }
 
     }

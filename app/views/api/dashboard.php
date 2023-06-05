@@ -34,7 +34,7 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col">
-                            <form action="/api/addCompany" class="p-4 border rounded-3">
+                            <form action="/api/addCompany" class="p-4 border rounded-3" method = "POST">
                                 <div class="mb-3">
                                     <input type="hidden" name = "addCompany">
                                     <label for="companyName" class="form-label">Company Name</label>

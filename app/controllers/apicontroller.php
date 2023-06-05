@@ -18,6 +18,21 @@ class ApiController {
     }
 
     function orders(){
+        if(isset($_SERVER['HTTP_AUTHORIZATION'])){
+            $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+            $token = explode(' ', $authHeader);
+
+            if(isset($token[1]) && $this->apiService->checkIfTokenExists($token[1])){
+                $data = $this->apiService->getAllOrders();
+                echo json_encode($data);
+            }
+            else{
+                $this->respond(401, "Unauthorized");
+            }
+        }
+        else{
+            $this->respond(401, "Unauthorized");
+        }
 
     }
 
@@ -43,8 +58,23 @@ class ApiController {
 
     public function deleteToken(){
         if(isset($_GET['id'])){
-            $this->apiService->deleteToken($_GET['id']);
+            $this->apiService->deleteCompany($_GET['id']);
         }
         header('Location: /api/dashboard');
     }
+
+    function respond($errorCode, $errorMessage) {
+        http_response_code($errorCode);
+
+        $errorResponse = array(
+            "error" => array(
+                "code" => $errorCode,
+                "message" => $errorMessage
+            )
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($errorResponse);
+    }
+
 }
