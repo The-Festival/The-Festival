@@ -4,7 +4,7 @@ include __DIR__ . '/../header.php';
 ?>
 
 <div>
-    <h1 class="text-center">Custom Pages</h1>
+    <h1 class="text-center">Other</h1>
 </div>
 
 <div class="container py-4 d-flex align-items-center justify-content-center" style="height: 80vh;">

@@ -69,11 +69,10 @@
           <li class="nav-item">
             <a class="nav-link" href="/kids">Kids</a>
           </li>
-            <?php if(isset($_SESSION['customPageService'])){
-                echo '<li class="nav-item">
-                        <a class="nav-link" href="/custompages">Custom Page</a>
-                      </li>';
-            }?>
+            <li class="nav-item">
+                        <a class="nav-link" href="/custompages">Other</a>
+            </li>
+
           <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
               <a href="/login/logout" class="nav-link">logout</a>
@@ -92,6 +91,7 @@
                   <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
                   <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
                   <li><a class="dropdown-item" href="/admin/orderDashboard">Orders</a></li>
+                  <li><a class="dropdown-item" href="/custompageadmin">Custom Pages</a></li>
               </ul>
             </div>
           <?php endif; ?>

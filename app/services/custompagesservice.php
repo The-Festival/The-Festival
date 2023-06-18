@@ -35,4 +35,26 @@ class CustompagesService{
     public function add($name){
         $this->custompagesRepository->add($name);
     }
+
+    public function createFile($name){
+        $myfile = fopen(__DIR__ . '/../views/custompages/pages/' . $name . '.php', "w") or die("Unable to open file!");
+
+        // prepare content to write
+        $content = "<?php\n";
+        $content .= "include __DIR__ . '/../../header.php';\n";
+        $content .= "?>\n";
+        $content .= "<?php\n";
+        $content .= "include __DIR__ . '/../../footer/footer.php';\n";
+        $content .= "?>\n";
+
+        // write to file
+        fwrite($myfile, $content);
+
+        // close the file
+        fclose($myfile);
+    }
+
+    public function deleteFile($name){
+        unlink(__DIR__ . '/../views/custompages/pages/' . $name . '.php');
+    }
 }
