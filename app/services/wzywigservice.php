@@ -8,15 +8,7 @@ class WzywigService {
         $this->homeService = new HomeService();
     }
 
-    public function checkRequests(){
-        if(isset($_POST['aboutText'])){
-            $this->homeService->updateAboutText($_POST['text']);
-        }
 
-        if(isset($_POST['events'])){
-            $this->replace_file_content(__DIR__ . "/../views/home/cards.php", $_POST['content']);
-        }
-    }
 
     function replace_file_content($filename, $new_content) {
         // Open the file for writing

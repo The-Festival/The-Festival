@@ -1,6 +1,7 @@
 <?php
-
+  include_once(__DIR__ . '/../services/custompagesservice.php');
   include_once __DIR__ . '/../models/User.php';
+
   if(isset($_SESSION['user'])){
       $user = unserialize($_SESSION['user']);
   }
@@ -68,9 +69,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/kids">Kids</a>
           </li>
-          <!--<li class="nav-item">
-          <a class="nav-link" href="/article">My Program</a>
-        </li>-->
+            <?php if(isset($_SESSION['customPageService'])){
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="/custompages">Custom Page</a>
+                      </li>';
+            }?>
           <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
               <a href="/login/logout" class="nav-link">logout</a>

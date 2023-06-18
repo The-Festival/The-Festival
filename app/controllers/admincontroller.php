@@ -194,7 +194,7 @@ class AdminController{
 
 
     public function ticketDashboard(){
-             //For cases where 5 or less lines of code link to function is not used
+             //For cases where 5 or less lines of code extra to function is not used
              switch(true){
                 case isset($_GET['ticketsOrder']):{
                     $this->getTicketsOnOrderAction();
