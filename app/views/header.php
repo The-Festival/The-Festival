@@ -92,6 +92,7 @@
                   <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
                   <li><a class="dropdown-item" href="/admin/orderDashboard">Orders</a></li>
                   <li><a class="dropdown-item" href="/custompageadmin">Custom Pages</a></li>
+                  <li><a class="dropdown-item" href="/pages">Homepage Editor</a></li>
               </ul>
             </div>
           <?php endif; ?>
