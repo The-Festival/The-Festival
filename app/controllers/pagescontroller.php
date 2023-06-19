@@ -13,12 +13,22 @@ class Pagescontroller{
 
     public function index(){
         $aboutText = $this->homeService->getAboutText();
-        $this->wzywigService->checkRequests();
+        $this->checkRequests();
         require __DIR__ . '/../views/wzywig/index.php';
     }
 
     public function upload(){
         $this->wzywigService->checkUpload();
+    }
+
+    public function checkRequests(){
+        if(isset($_POST['aboutText'])){
+            $this->homeService->updateAboutText($_POST['text']);
+        }
+
+        if(isset($_POST['events'])){
+            $this->wzywigService->replace_file_content(__DIR__ . "/../views/home/cards.php", $_POST['content']);
+        }
     }
 }
 ?>

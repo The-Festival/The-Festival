@@ -1,7 +1,9 @@
 <?php
 require __DIR__ . '/../header.php';
 ?>
-
+<h3 class = "d-flex text-center"><?php if(isset($_GET['errorMessage'])){
+    echo $_GET['errorMessage'];
+    }?></h3>
 <form action="login/loginprogress" method="POST">
   <div class="form-group">
       <label for="username">Username</label>
