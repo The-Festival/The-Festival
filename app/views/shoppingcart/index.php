@@ -20,15 +20,13 @@
           </div> -->
         </div>
 
-        <?php foreach($_SESSION['ShoppingCart'] as $ticket){ 
-          $ticket = unserialize($ticket);
-
+        <?php 
           if (isset($_SESSION['ShoppingCart'])) {
             foreach ($_SESSION['ShoppingCart'] as $cartItem) {
                 $storedItem = unserialize($cartItem);
                 echo "Item ID: " . $storedItem->getTicketId() . ", Quantity: " . $storedItem->getQuantity() . "<br>";
-            }
-        }
+            
+        
           ?>
 
         <div class="card rounded-3 mb-4">
@@ -49,7 +47,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="quantity" value="<?php echo $ticket->getQuantity(); ?>" type="number"
+                <input id="form1" min="0" name="quantity" value="<?php echo $storedItem->getQuantity(); ?>" type="number"
                   class="form-control form-control-sm" />
 
                 <button class="btn btn-link px-2"
@@ -66,7 +64,7 @@
             </div>
           </div>
         </div>
-        <?php } ?>
+        <?php }} ?>
         
         <div class="card mb-4">
           <div class="card-body p-4 d-flex flex-row">
