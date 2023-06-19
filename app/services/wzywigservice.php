@@ -28,11 +28,11 @@ class WzywigService {
       }
 
     public function checkUpload() {
-                       // Only these origins are allowed to upload images 
+        // Only these origins are allowed to upload images
         $accepted_origins = array("http://localhost", "https://www.codexworld.com", "http://192.168.1.1", "http://example.com"); 
         
         // Set the upload folder 
-        $imageFolder = "img/"; 
+        $imageFolder = "img/";
         
         if (isset($_SERVER['HTTP_ORIGIN'])) { 
             // same-origin requests won't set an origin. If the origin is set, it must be valid. 

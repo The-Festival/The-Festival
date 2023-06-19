@@ -35,7 +35,7 @@ include __DIR__ . '/../header.php';
                     <td><?php echo $customPage->getName()?></td>
                     <td>
 
-                        <a href="/custompageadmin/editpage?id=<?php echo $customPage->getId(); ?>" class="btn btn-primary">Edit</a>
+                        <a href="/custompageadmin/edit?id=<?php echo $customPage->getId(); ?>" class="btn btn-primary">Edit</a>
                         <a href="/custompageadmin/deletepage?id=<?php echo $customPage->getId(); ?>" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

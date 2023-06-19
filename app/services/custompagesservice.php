@@ -37,7 +37,7 @@ class CustompagesService{
     }
 
     public function createFile($name){
-        $myfile = fopen(__DIR__ . '/../views/custompages/pages/' . $name . '.php', "w") or die("Unable to open file!");
+        $myfile = fopen(__DIR__ . '/../views/custompages/' . $name . '.php', "w") or die("Unable to open file!");
 
         // prepare content to write
         $content = "<?php\n";
@@ -55,6 +55,11 @@ class CustompagesService{
     }
 
     public function deleteFile($name){
-        unlink(__DIR__ . '/../views/custompages/pages/' . $name . '.php');
+        unlink(__DIR__ . '/../views/custompages/' . $name . '.php');
+    }
+
+    public function getFileContent($name)
+    {
+        return file_get_contents(__DIR__ . '/../views/custompages/' . $name . '.php');
     }
 }

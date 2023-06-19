@@ -18,8 +18,9 @@ class CustompagesController {
         $this->checkid();
         $customPage = $this->custompagesService->getById($_GET['id']);
         $pageName = $customPage->getName();
-
-        require __DIR__ . '/../views/custompages/pages/' . $pageName . '.php';
+        include_once(__DIR__. '/../views/header.php');
+        require __DIR__ . '/../views/custompages/' . $pageName . '.php';
+        include_once(__DIR__. '/../views/footer/footer.php');
     }
     private function checkid(){
         if($_GET['id'] == null || $_GET['id'] == '' || $this->custompagesService->getById($_GET['id']) == null){
@@ -29,7 +30,6 @@ class CustompagesController {
     public function pageNotFound(){
         require __DIR__ . '/../views/custompages/pagenotfound.php';
     }
-
 
 
 }
