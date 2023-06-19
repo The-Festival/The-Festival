@@ -1,6 +1,7 @@
 <?php
-
+  include_once(__DIR__ . '/../services/custompagesservice.php');
   include_once __DIR__ . '/../models/User.php';
+
   if(isset($_SESSION['user'])){
       $user = unserialize($_SESSION['user']);
   }
@@ -68,9 +69,10 @@
           <li class="nav-item">
             <a class="nav-link" href="/kids">Kids</a>
           </li>
-          <!--<li class="nav-item">
-          <a class="nav-link" href="/article">My Program</a>
-        </li>-->
+            <li class="nav-item">
+                        <a class="nav-link" href="/custompages">Other</a>
+            </li>
+
           <?php if (isset($_SESSION['user'])) { ?>
             <li class="nav-item">
               <a href="/login/logout" class="nav-link">logout</a>
@@ -89,6 +91,8 @@
                   <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
                   <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
                   <li><a class="dropdown-item" href="/admin/orderDashboard">Orders</a></li>
+                  <li><a class="dropdown-item" href="/custompageadmin">Custom Pages</a></li>
+                  <li><a class="dropdown-item" href="/pages">Homepage Editor</a></li>
               </ul>
             </div>
           <?php endif; ?>
