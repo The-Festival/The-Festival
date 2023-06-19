@@ -239,7 +239,7 @@ class OrderRepository extends Repository {
             $stmt = $this->connection->prepare("SELECT `ticket_id` ,`name` , `start_datetime` , `quantity` , `price` , `ischecked` FROM Ticket t 
             JOIN Reservation r1 ON t.event_id = r1.reservation_id AND t.event_type = 'yummy' AND order_id = :order_id
             JOIN Session s ON r1.session_id = s.session_id 
-            JOIN Restraurant r ON s.restaurant_id = r.restaurant_id;");
+            JOIN Restaurant r ON s.restaurant_id = r.restaurant_id;");
             $stmt->bindParam(':order_id', $order_id);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -268,14 +268,15 @@ class OrderRepository extends Repository {
             return false;
         }
     }
-
     public function getAllTicketOnTypeHistory($order_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`quantity` ,`start_location`, `price`, `ischecked`
-            FROM Ticket 
-            JOIN Tour ON Ticket.event_id = Tour.tour_id 
+            $stmt = $this->connection->prepare("SELECT `ticket_id`,`name`,`datetime`,`quantity` ,`start_location`, `price`, `ischecked` 
+            FROM Ticket
+            JOIN Tour ON Ticket.event_id = Tour.tour_id
             JOIN Language ON Tour.tour_id = Language.tour_id
-            WHERE Ticket.event_type = 'history' AND order_id = :order_id;");
+            WHERE Ticket.event_type = 'history' AND Ticket.order_id = :order_id
+            GROUP BY Ticket.ticket_id;");
+
             $stmt->bindParam(':order_id', $order_id);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -285,12 +286,12 @@ class OrderRepository extends Repository {
             echo $e;
             return false;
         }
-
     }
+    
 
     public function getAllYummyEvents(){
         try {
-            $stmt = $this->connection->prepare("SELECT `reservation_id` , `name`, `start_datetime`,`price` FROM Reservation r JOIN Session s ON r.session_id = s.session_id JOIN Restraurant re ON s.restaurant_id = re.restaurant_id");
+            $stmt = $this->connection->prepare("SELECT `reservation_id` , `name`, `start_datetime`,`price` FROM Reservation r JOIN Session s ON r.session_id = s.session_id JOIN Restaurant re ON s.restaurant_id = re.restaurant_id");
             $stmt->execute();
             $result = $stmt->fetchAll();
             return $result;
@@ -329,7 +330,7 @@ class OrderRepository extends Repository {
 
     public function getPriceAndQuantityOnHistoryEvent($event_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `available_spaces` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.tour_id = l.tour_id WHERE :event_id;");
+            $stmt = $this->connection->prepare("SELECT `available_spaces` AS 'seats_left', `price` FROM Tour t JOIN Language l ON t.tour_id = l.tour_id WHERE t.tour_id = :event_id;");
             $stmt->bindValue(':event_id', $event_id);
             $stmt->execute();
             $result = $stmt->fetch();
@@ -357,7 +358,7 @@ class OrderRepository extends Repository {
 
     public function getPriceAndQuantityOnYummyEvent($reservation_id){
         try {
-            $stmt = $this->connection->prepare("SELECT r.reservation_fee as price, s.seats_left FROM Reservation r JOIN Session s ON r.session_id = s.session_id JOIN Restraurant re ON s.restaurant_id = re.restaurant_id WHERE r.reservation_id = :reservation_id;");
+            $stmt = $this->connection->prepare("SELECT r.reservation_fee as price, s.seats_left FROM Reservation r JOIN Session s ON r.session_id = s.session_id JOIN Restaurant re ON s.restaurant_id = re.restaurant_id WHERE r.reservation_id = :reservation_id;");
             $stmt->bindValue(':reservation_id', $reservation_id);
             $stmt->execute();
             $result = $stmt->fetch();
@@ -368,6 +369,7 @@ class OrderRepository extends Repository {
             return false;
         }
     }
+
 
     public function updateOrderPriceAndVat($order_id, $totalPrice, $totalVat){
         try {

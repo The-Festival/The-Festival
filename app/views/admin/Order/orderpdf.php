@@ -174,23 +174,25 @@
 					<td>Price</td>
 				</tr>
 
-				<?php foreach($historyItems as $historyItem){?>
+				<?php foreach($foodItems as $foodItem){?>
                     <tr class='item'>
-					    <td><?echo $historyItem['quantity']?>x <?echo $historyItem['name']?> <?echo $historyItem['start_location']?> <?echo (new DateTime($historyItem['datetime']))->format('d-m-y H:i')?> </td>
+					    <td><?echo $foodItem['quantity']?>x <?echo $foodItem['name']?> <?echo $foodItem['start_location']?> <?echo (new DateTime($foodItem['datetime']))->format('d-m-y H:i')?> </td>
 
-					    <td>€<?echo $historyItem['price']?></td>
+					    <td>€<?echo $foodItem['price']?></td>
 				        </tr>
                 <?}?>
 
 				<tr class="total">
 					<td></td>
 
-					<td>Total exl. VAT: € <?echo ($order->getTotalPrice() - $order->getTotalVat())?>,-</td>
+					<td>Total exl. VAT: € <?echo number_format(($order->getTotalPrice() - $order->getTotalVat()), 2, '.', '');?>,-</td>
+
 				</tr>
                 <tr class="total">
 					<td></td>
 
-					<td>Total: € <?echo $order->getTotalPrice()?>,-</td>
+					<td>Total: € <?echo number_format($order->getTotalPrice(), 2 ,'.', '')?>,-</td>
+
 				</tr>
 			</table>
 		</div>

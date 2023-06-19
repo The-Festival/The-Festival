@@ -29,7 +29,7 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form action="/admin/userdashboard" method="POST">
+        <form action="/users" method="POST">
           <div class="mb-3">
             <label for="fullname" class="form-label">Full Name</label>
             <input type="text" class="form-control" id="fullname" name="fullname" value="" required>

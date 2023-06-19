@@ -1,6 +1,7 @@
 <?php 
 
-class Order{
+class Order implements jsonSerializable
+{
 
     private $order_id;
 
@@ -94,6 +95,19 @@ class Order{
         $this->total_vat = $total_vat;
     }
 
-    
 
+    public function jsonSerialize():mixed
+    {
+        return [
+          'order_id' => $this->order_id,
+            'client_name' => $this->client_name,
+            'address' => $this->address,
+            'phonenumber' => $this->phonenumber,
+            'emailaddress' => $this->emailaddress,
+            'order_time' => $this->order_time,
+            'payment_method' => $this->payment_method,
+            'total_price' => $this->total_price,
+            'total_vat' => $this->total_vat
+        ];
+    }
 }

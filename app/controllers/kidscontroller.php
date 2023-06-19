@@ -7,7 +7,6 @@ class KidsController
     }
 
     public function app(){
-        session_start();
         require __DIR__ . '/../views/kids/mobile/mobileAppHomePage.php';
     }
 
