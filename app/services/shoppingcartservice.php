@@ -31,11 +31,43 @@ class ShoppingcartService{
         // }
     }
 
+    public function checkIfCartEmpty(){
+        if(!isset($_SESSION['ShoppingCart'])){
+            $_SESSION['ShoppingCart'] = array();
+        }
+    }
+
+    public function checkIfItemInCart($item_array){
+        if(!empty($_SESSION['ShoppingCart'])){
+            foreach($_SESSION['ShoppingCart'] as $key => $value){
+                if($value['event_id'] == $item_array['event_id'] && $value['event_type'] == $item_array['event_type']){
+                    return $key;
+                }
+            }
+        }
+        return null;
+    }
+
     public function addToShoppingcart(){
         $ticket = $this->orderService->getTicketByID(htmlspecialchars(53));
+        $name = "";
+        $price = "";
         if($ticket->getEventType() == "jazz"){
-            $artist = $this->artistService->getArtistByID($ticket->getEventId());
+            $eventTicket = $this->artistService->getArtistByID($ticket->getEventId());
+            $name = $eventTicket->getArtistName();
+            $price = $eventTicket->formatPrice();
         }
+
+        $item_array = array(
+            'event_id' => $ticket->getEventId(),
+            'event_type' => $ticket->getEventType(),
+            'product_name' => $name,
+            'product_price' => $price,
+            'quantity' => $ticket->getQuantity()
+        );
+
+        
+
         $_SESSION['ShoppingCart'][] = serialize($ticket);
     }
     // public function addToShoppingcart(){
