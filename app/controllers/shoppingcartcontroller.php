@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/../services/shoppingcartservice.php';
-
 class ShoppingcartController{
     private $shoppingcartService;
 
@@ -16,7 +15,7 @@ class ShoppingcartController{
         
     }
     public function add(){
-        $this->shoppingcartService->addToShoppingcart();
+        $this->shoppingcartService->addShoppingCart();
         require __DIR__ . "/../views/shoppingcart/index.php";
 
     }

@@ -22,6 +22,13 @@
 
         <?php foreach($_SESSION['ShoppingCart'] as $ticket){ 
           $ticket = unserialize($ticket);
+
+          if (isset($_SESSION['ShoppingCart'])) {
+            foreach ($_SESSION['ShoppingCart'] as $cartItem) {
+                $storedItem = unserialize($cartItem);
+                echo "Item ID: " . $storedItem->getTicketId() . ", Quantity: " . $storedItem->getQuantity() . "<br>";
+            }
+        }
           ?>
 
         <div class="card rounded-3 mb-4">

@@ -39,8 +39,9 @@ class ShoppingcartService{
 
     public function checkIfItemInCart($item_array){
         if(!empty($_SESSION['ShoppingCart'])){
-            foreach($_SESSION['ShoppingCart'] as $key => $value){
-                if($value['event_id'] == $item_array['event_id'] && $value['event_type'] == $item_array['event_type']){
+            foreach($_SESSION['ShoppingCart'] as $item){
+                
+                if($item['event_id'] == $item_array['event_id'] && $value['event_type'] == $item_array['event_type']){
                     return $key;
                 }
             }
@@ -48,29 +49,56 @@ class ShoppingcartService{
         return null;
     }
 
-    public function addToShoppingcart(){
-        $this->checkIfCartEmpty();
-        $ticket = $this->orderService->getTicketByID(htmlspecialchars(53));
-        $name = "";
-        $price = "";
-        if($ticket->getEventType() == "jazz"){
-            $eventTicket = $this->artistService->getArtistByID($ticket->getEventId());
-            $name = $eventTicket->getArtistName();
-            $price = $eventTicket->formatPrice();
+    function findCartItem($item)
+    {
+    if (isset($_SESSION['ShoppingCart'])) {
+        foreach ($_SESSION['ShoppingCart'] as $index => $cartItem) {
+            $storedItem = unserialize($cartItem);
+
+            // Compare the item in the cart with the new item
+            if ($storedItem->getTicketId() == $item->getTicketId()) {
+                return ['index' => $index, 'item' => $storedItem];
+            }
+        }
+    }
+
+    return null; // Item not found in the cart
+    }
+
+    function addShoppingCart()
+    {
+        $ticket = $this->orderService->getTicketByID(htmlspecialchars(56));
+        // 1. Check if the session shopping cart exists, if not, create a new session
+        if (!isset($_SESSION['ShoppingCart'])) {
+            $_SESSION['ShoppingCart'] = [];
         }
 
-        $item_array = array(
-            'event_id' => $ticket->getEventId(),
-            'event_type' => $ticket->getEventType(),
-            'product_name' => $name,
-            'product_price' => $price,
-            'quantity' => $ticket->getQuantity()
-        );
+        // 2. Check if the item is already in the shopping cart and increase the quantity if found
+        $existingItem = $this->findCartItem($ticket);
 
-        
+        if ($existingItem !== null) {
+            $existingIndex = $existingItem['index'];
+            $existingObject = $existingItem['item'];
 
-        $_SESSION['ShoppingCart'][] = serialize($ticket);
+            // Increase the quantity by 1 for the existing item
+            $existingObject->setQuantity($existingObject->getQuantity() + 1);
+
+            // Replace the updated item in the cart
+            $_SESSION['ShoppingCart'][$existingIndex] = serialize($existingObject);
+        } else {
+            // 3. Add the ticket to the shopping cart if it was not already in the shopping cart
+            $_SESSION['ShoppingCart'][] = serialize($ticket);
+        }
+        //currently not using this maybe later
+        // $item_array = array(
+        //     'event_id' => $ticket->getEventId(),
+        //     'event_type' => $ticket->getEventType(),
+        //     'product_name' => $name,
+        //     'product_price' => $price,
+        //     'quantity' => $ticket->getQuantity()
+        // );
     }
+    
     // public function addToShoppingcart(){
     //     $bikeID = htmlspecialchars($_GET['bikeID']);
 
