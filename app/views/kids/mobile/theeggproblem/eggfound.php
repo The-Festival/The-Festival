@@ -33,7 +33,7 @@
     </div>
     <div class="row mt-5">
         <div class = "col-6"><button onclick="window.location.href='/kids/allfacts'" class = "button">Thousands</button></div>
-        <div class = "col-6"><button id = "hundered" onclick = "makeElementWiggle('hundered')" class = "button">Hundereds</button></div>
+        <div class = "col-6"><button id = "hundered" onclick = "makeElementWiggle('hundered')" class = "button">Hundreds</button></div>
     </div>
     <div class="row mt-5">
         <div id = "" class = "col-6"><button id = "tens" onclick = "makeElementWiggle('tens')" class = "button">Tens</button></div>

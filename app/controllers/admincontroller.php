@@ -14,7 +14,6 @@ class AdminController{
     private $adminService;
     private $historyService;
     private $artistService;
-    private $userService;
     public $artists;
 
     public function __construct()
@@ -130,93 +129,181 @@ class AdminController{
         include __DIR__ . '/../views/admin/jazz.php';
     }
 
-    public function userDashboard(){
-        $this->userService = new UserService();
-        if(isset($_GET["role"])){
-            $role = $_GET["role"];
-            $users = $this->userService->getUsersOnRole($role);
-        }
-        else if (isset($_GET["id"])){
-            $id = $_GET["id"];
-            $users = $this->userService->getUserById($id);
-        }
-        else if (isset($_GET["delete"])){
-            $id = $_GET["delete"];
-            $this->userService->deleteUserbyId($id);
-            header('Location: /admin/userDashboard');
-        }
-        else if (isset($_POST["add"])){
-            $fullname = $_POST["fullname"];
-            $email = $_POST["email"];
-            $password = $_POST["password"];
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $role = $_POST["role"];
-            $dateOfRegistration = $_POST["registration_date"];
-            $this->userService->addUser($fullname, $email, $hashedPassword, $role , $dateOfRegistration);
-            $users = $this->userService->getAll();
-        }
-        else if (isset($_POST["update"])){
-            $id = $_POST["id"];
-            $fullname = $_POST["fullname"];
-            $email = $_POST["email"];
-            $role = $_POST["role"];
-            $dateOfRegistration = $_POST["registration_date"];
-            $this->userService->updateUser($id, $fullname, $email,$role , $dateOfRegistration);
-            $users = $this->userService->getAll();
-        }
-        else if (isset($_POST["search"])){
-            $search = $_POST["search"];
-            if($search == ""){
-                $users = $this->userService->getAll();
-            }
-            else{
-                $users = $this->userService->searchUserByName($search);
-            }
-        }
-        else{
-            $users = $this->userService->getAll();
-        }
-        include __DIR__ . '/../views/admin/userDashboard.php';
-    }
-
     public function orderDashboard(){
-        $this->orderService->checkRequests();
+        switch (true){
+            case isset($_POST['editOrder']):{
+                $this->editOrderAction();
+                break;
+            }
+            case isset($_POST['createOrder']):{
+                $this->addOrderAction();
+                break;
+            }
+            case isset($_GET['deleteOrder']):{
+                $this->deleteOrderAction();
+                break;
+            }
+        }
         $orders = $this->orderService->getOrders();
         include __DIR__ . '/../views/admin/order/orderDashboard.php';
     }
 
-    public function ticketDashboard(){
-        $this->orderService->checkTicketRequests();
+
+    private function addOrderAction(){
+        $initialTotalPrice = 0;
+        $initialTotalVat = 0;
+        $order = new Order();
+        $order->setClientName($_POST['client_name']);
+        $order->setAddress($_POST['address']);
+        $order->setEmailaddress($_POST['email']);
+        $order->setPhonenumber($_POST['phone']);
+        $order->setOrderTime($_POST['order_time']);
+        $order->setPaymentMethod($_POST['payment_method']);
+        $order->setTotalPrice($initialTotalPrice);
+        $order->setTotalVat($initialTotalVat);
+        $this->orderService->addOrder($order);
     }
+
+    private function editOrderAction(){
+            //add data to order through contuctor
+        $order = new Order();
+        $order->setOrderId($_POST['order_id']);
+        $order->setClientName($_POST['client_name']);
+        $order->setAddress($_POST['address']);
+        $order->setEmailaddress($_POST['email']);
+        $order->setPhonenumber($_POST['phone']);
+        $order->setTotalPrice($_POST['total_price']);
+        $order->setOrderTime($_POST['order_time']);
+        $order->setPaymentMethod($_POST['payment_method']);	
+        $order->setTotalVat($_POST['total_vat']);
+        $this->orderService->updateOrder($order);
+    }
+
+    private function deleteOrderAction(){
+        if (!isset($_GET['deleteOrder'])){
+            $this->orderDashboard();
+            return;
+        }
+        $this->orderService->deleteOrderPlusAllTicketsOnOrder($_GET['deleteOrder']);
+    }
+
+    private function getOrderToEdit(){
+        $order = $this->orderService->getOrderById($_GET['editOrder']);
+            include __DIR__ . '/../views/admin/order/editOrder.php';
+    }
+
+
+    public function ticketDashboard(){
+             //For cases where 5 or less lines of code link to function is not used
+             switch(true){
+                case isset($_GET['ticketsOrder']):{
+                    $this->getTicketsOnOrderAction();
+                    break;
+                }
+                case isset($_GET['deleteTicket']) && isset($_GET['order']):{
+                    $this->deleteTicketOnOrderAction();
+                    break;
+                }
+                case isset($_GET['editTicket']) && isset($_GET['order']):{
+                    $ticket = $this->orderService->getTicketById($_GET['editTicket']);
+                    include __DIR__ . '/../views/admin/order/ticket/editTicket.php';
+                    break;
+                }
+                case isset($_POST['editTicket']):{
+                    $this->editTicketOnOrderAction();
+                    break;
+                }
+                case isset($_GET['addYummyTicketToOrder']):{
+                    $order_id = $_GET['addYummyTicketToOrder'];
+                    $yummyEvents = $this->orderService->getAllYummyEvents();
+                    include __DIR__ . '/../views/admin/order/ticket/addYummyTicket.php';
+                    break;
+                }
+                case isset($_POST['addYummyTicketToOrder']):{
+                    $this->addTicketToOrderAction("yummy");
+                    break;
+                }
+                case isset($_GET['addJazzTicketToOrder']):{
+                    $order_id = $_GET['addJazzTicketToOrder'];
+                    $jazzEvents = $this->orderService->getAllJazzEvents();
+                    include __DIR__ . '/../views/admin/order/ticket/addJazzTicket.php';
+                    break;
+                }
+                case isset($_POST['addJazzTicketToOrder']):{
+                    $this->addTicketToOrderAction("jazz");
+                   break;
+                }
+                case isset($_GET['addHistoryTicketToOrder']):{
+                    $order_id = $_GET['addHistoryTicketToOrder'];
+                $historyEvents = $this->orderService->getAllHistoryEvents();
+                include __DIR__ . '/../views/admin/order/ticket/addHistoryTicket.php';
+                    break;
+                }
+                case isset($_POST['addHistoryTicketToOrder']):{
+                    $this->addTicketToOrderAction("history");
+                    break;
+                }
+                default:{
+                    echo "<h1>NO ORDER SELECTED</h1>";
+                    break;
+                }
+            }
+    }   
+
+    private function addTicketToOrderAction($type){
+        $ticket = new Ticket();
+        $ticket->setOrderId($_POST['order_id']);
+        $ticket->setEventId($_POST['event_id']);
+        $ticket->setEventType($type);
+        $ticket->setVatPercentage($_POST['vat_percentage']);
+        $ticket->setQuantity($_POST['quantity']);
+        $ticket->setIsChecked($_POST['is_checked']);
+        $this->orderService->addTicket($ticket);
+        header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
+    }
+
+    private function editTicketOnOrderAction(){
+            $ticket = new Ticket();
+            $ticket->setTicketId($_POST['ticket_id']);
+            $ticket->setOrderId($_POST['order_id']);
+            $ticket->setEventId($_POST['event_id']);
+            $ticket->setEventType($_POST['event_type']);
+            $ticket->setVatPercentage($_POST['vat_percentage']);
+            $ticket->setQuantity($_POST['quantity']);
+            $ticket->setIsChecked($_POST['is_checked']);
+            $this->orderService->updateTicket($ticket);
+            header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
+    }
+
+    private function deleteTicketOnOrderAction(){
+        $this->orderService->deleteTicket($_GET['deleteTicket']);
+            $order_id = $_GET['order'];
+            $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
+            $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
+            $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
+            include __DIR__ . '/../views/admin/order/ticket/tickets.php';
+    }
+    private function getTicketsOnOrderAction(){
+        $order_id = $_GET['ticketsOrder'];
+            $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
+            $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
+            $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
+            include __DIR__ . '/../views/admin/order/ticket/tickets.php';
+    }
+
     public function editorder(){
-        $this->orderService->checkRequests();
+        if (!isset($_GET['editOrder'])){
+           header('Location: /admin/orderDashboard');
+        }
+        $order = $this->orderService->getOrderById($_GET['editOrder']);
+        include __DIR__ . '/../views/admin/order/editOrder.php';
     }
 
     public function createorder(){
         include __DIR__ . '/../views/admin/order/createorder.php';
     }
 
-    public function editTicket(){
-        $this->orderService->checkRequests();
-    }
 
-    public function edituser(){
-        $this->userService = new UserService();
-        $id = $_GET["id"];
-        $user = $this->userService->getUserById($id);
-        include __DIR__ . '/../views/admin/edituser.php';
-    }
-
-    public function createuser(){
-        include __DIR__ . '/../views/admin/createuser.php';
-    }
-
-    public function checkLogin()
-    {
-        if(!isset($_SESSION['user'])){
-            header('Location: /login');
-        }
-    }
     public function exportorder(){
         require __DIR__ . '/../views/admin/order/exportcsvcolomnselect.php';
     }
@@ -228,6 +315,7 @@ class AdminController{
             $csvData = ob_get_clean();
             header('Content-Type: application/csv');
             header('Content-Disposition: attachment; filename="orderdata.csv";');
+            readfile("orderdata_".date('Y-m-d').".csv");
             echo $csvData;
             exit;
         }
@@ -252,10 +340,17 @@ class AdminController{
              // Capture the output generated by the PHP code and store it in a variable
              $body = ob_get_clean();
              $this->orderService->orderPdf($body, $order_id);
-             header('Location: /admin/orderDashboard');
+             
         }
         else{
             http_response_code(404);
+        }
+    }
+    
+    public function checkLogin()
+    {
+        if(!isset($_SESSION['user'])){
+            header('Location: /login');
         }
     }
 }

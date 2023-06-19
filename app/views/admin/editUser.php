@@ -29,7 +29,7 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form action="/admin/userdashboard" method="POST">
+        <form action="/users" method="POST">
           <div class="mb-3">
             <label for="ID" class="form-label">User ID</label>
             <input type="text" class="form-control" id="id" name="id" value="<?php echo $user->getUserId(); ?>" readonly>
@@ -55,6 +55,7 @@
             <input type="date" class="form-control" id="registration_date" name="registration_date" value="<?php echo $user->getRegistrationDate(); ?>" required>
           </div>
           <button type="submit" name="update" class="btn btn-primary">Submit</button>
+          <a href="/users" class="btn btn-danger">Cancel</a>
         </form>
       </div>
     </div>

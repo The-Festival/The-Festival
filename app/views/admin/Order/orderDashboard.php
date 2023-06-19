@@ -1,16 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link type = "text/css" rel="stylesheet" href="css/userDashboard.css">
-    <title>Order Dashboard</title>
-  </head>
-  <body>
+<?php include_once __DIR__ . "/../../header.php"?>
     <h1 class = "d-flex justify-content-center">Order</h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <div class="container">
@@ -47,8 +35,8 @@
                     <td><?php echo $order->getEmailaddress(); ?></td>
                     <td><?php echo $order->getOrderTime(); ?></td>
                     <td><?php echo $order->getPaymentMethod(); ?></td>
-                    <td><?php echo $order->getTotalVat(); ?></td>
-                    <td><?php echo $order->getTotalPrice(); ?></td>
+                    <td>€<?php echo number_format($order->getTotalVat(), 2, '.', ''); ?></td>
+                    <td>€<?php echo number_format($order->getTotalPrice(), 2, '.', ''); ?></td>
                     <td>
                         <a href ="/admin/ticketdashboard?ticketsOrder=<?php echo $order ->getOrderId(); ?>" class = "btn btn-info">Tickets</a>
                         <a href="/admin/editorder?editOrder=<?php echo $order->getOrderId(); ?>" class="btn btn-primary">Edit</a>
