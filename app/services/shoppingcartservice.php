@@ -49,6 +49,7 @@ class ShoppingcartService{
     }
 
     public function addToShoppingcart(){
+        $this->checkIfCartEmpty();
         $ticket = $this->orderService->getTicketByID(htmlspecialchars(53));
         $name = "";
         $price = "";
@@ -88,12 +89,6 @@ class ShoppingcartService{
     //     }
     // }
 
-    private function checkIfShoppingCardExists(){
-        if(isset($_SESSION['ShoppingCart'])){
-            return true;
-        }
-        return false;
-    }
     // private function checkIfItemExists($bikeID){
     //     $item_array_id = array_column($_SESSION['ShoppingCart'], 'bikeID');
     //     if(in_array($bikeID, $item_array_id)){
