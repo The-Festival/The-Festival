@@ -1,5 +1,6 @@
 <?php
 include_once (__DIR__ . '/../repositories/orderrepository.php');
+require '../vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -158,7 +159,6 @@ class OrderService{
 
     public function orderPdf($body , $order_id)
     {
-        require '../vendor/autoload.php';
             $order = $this->getOrderById($order_id);
             $dompdf = new Dompdf(["chroot" => __DIR__]);
             
