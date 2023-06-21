@@ -2,7 +2,8 @@
 include_once(__DIR__ . '/../repositories/homerepository.php');
 include_once (__DIR__ . '/../services/orderservice.php');
 include_once (__DIR__ . '/../services/artistservice.php');
-include_once (__DIR__ . '/../services/hisoryservice.php');
+include_once (__DIR__ . '/../services/historyservice.php');
+include_once (__DIR__ . '/../services/yummyService.php');
 
 class ShoppingcartService{
     
@@ -11,6 +12,10 @@ class ShoppingcartService{
     private $artistService;
     private $yummyService;
     private $historyService;
+
+    private $name = "";
+    private $price = 0;
+    private $time = "";
     
     function __CONSTRUCT(){
         $this->repository = new HomeRepository();
@@ -58,10 +63,10 @@ class ShoppingcartService{
     {
         if (isset($_SESSION['ShoppingCart'])) {
             foreach ($_SESSION['ShoppingCart'] as $index => $cartItem) {
-                $storedItem = unserialize($cartItem);
+                $storedItem = $cartItem;
 
                 // Compare the item in the cart with the new item
-                if ($storedItem->getTicketId() == $item->getTicketId()) {
+                if ($storedItem['ticket_id'] == $item->getTicketId()) {
                     return ['index' => $index, 'item' => $storedItem];
                 }
             }
@@ -78,10 +83,8 @@ class ShoppingcartService{
         if (!isset($_SESSION['ShoppingCart'])) {
             $_SESSION['ShoppingCart'] = [];
         }
-
         // 2. Check if the item is already in the shopping cart and increase the quantity if found
         $existingItem = $this->findCartItem($ticket);
-
         if ($existingItem !== null) {
             $existingIndex = $existingItem['index'];
             $existingObject = $existingItem['item'];
@@ -92,38 +95,37 @@ class ShoppingcartService{
             // Replace the updated item in the cart
             $_SESSION['ShoppingCart'][$existingIndex] = $existingObject;
         } else {
-            $name = "";
-            $price = 0;
-            $time = "";
-            if($ticket->getEventType() == "Yummy"){
+            if($ticket->getEventType() == "Yummy" || $ticket->getEventType() == "yummy"){
                 $reservation = $this->yummyService->getReservation($ticket->getEventId());
                 $Session = $this->yummyService->getSessions($ticket->getSessionId());
                 $Yummy = $this->yummyService->getyummyDetail($Session->getRestaurant_id());
-                $name = $Yummy->getName();
-                $price = $Yummy->getPrice();
-                $time = $Session->getDate() + "Duration: " + $Session->getDuration();
+                $this->name = $Yummy->getName();
+                $this->price = $Yummy->getPrice();
+                $this->time = $Session->getDate() + "Duration: " + $Session->getDuration();
             }
-            if($ticket->getEventType() == "Jazz"){
+            if($ticket->getEventType() == "Jazz" || $ticket->getEventType() == "Artist" || $ticket->getEventType() == "jazz"){
                 $Event = $this->artistService->getEventById($ticket->getEventId());
                 $artist = $this->artistService->getArtistByID($Event->getArtistID());
-                $name = $artist->getName();
-                $price = $Event->getPrice();
-                $time = $Event->getTime();
+                $this->name = $artist->getName();
+                $this->price = $Event->getPrice();
+                $this->time = $Event->getTime();
             }
-            if($ticket->getEventType() == "History"){
+            if($ticket->getEventType() == "History" || $ticket->getEventType() == "history" || $ticket->getEventType() == "History Tour" || $ticket->getEventType() == "history tour"){
                 $Tour = $this->historyService->getTourInfoById($ticket->getEventId());
-                $name = $Tour->getName();
-                $price = $Tour->getPrice();
-                $time = $Tour->getDateTime();
+                $this->name = 'History Tour';
+                $this->price = $Tour[0]->getPrice();
+                $this->time = $Tour[0]->getDateTime();
             }
             // 3. Add the ticket to the shopping cart if it was not already in the shopping cart
+    
             $newItem = [
+                'ticket_id' => $ticket->getTicketId(), // Replace with the actual ticket id variable
                 'event_id' => $ticket->getEventId(),
                 'event_type' => $ticket->getEventType(),
-                'product_name' => $name, // Replace with the actual name variable
-                'product_price' => $price, // Replace with the actual price variable
+                'product_name' => $this->name, // Replace with the actual name variable
+                'product_price' => $this->price, // Replace with the actual price variable
                 'quantity' => $ticket->getQuantity(),
-                'time' => $time
+                'time' => $this->time
             ];
             
             $_SESSION['ShoppingCart'][] = $newItem;

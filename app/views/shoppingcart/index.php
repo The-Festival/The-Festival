@@ -23,8 +23,9 @@
         <?php 
           if (isset($_SESSION['ShoppingCart'])) {
             foreach ($_SESSION['ShoppingCart'] as $cartItem) {
-                $storedItem = unserialize($cartItem);
-                echo "Item ID: " . $storedItem->getTicketId() . ", Quantity: " . $storedItem->getQuantity() . "<br>";
+                var_dump($cartItem);
+                $storedItem = $cartItem;
+                echo "Item ID: " . $storedItem['ticket_id'] . ", Quantity: " . $storedItem['quantity'] . ", name: " . $storedItem['product_name'] . "<br>";
             
         
           ?>
@@ -33,13 +34,13 @@
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
+                <!-- <img
                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
+                  class="img-fluid rounded-3" alt="Cotton T-shirt"> -->
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
+                <p class="lead fw-normal mb-2"><?php echo $storedItem['product_name'];?></p>
+                <p><?php echo $storedItem['time'];?></p>
               </div>
               <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                 <button class="btn btn-link px-2"
@@ -47,7 +48,7 @@
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="quantity" value="<?php echo $storedItem->getQuantity(); ?>" type="number"
+                <input id="form1" min="0" name="quantity" value="<?php echo $storedItem['quantity']; ?>" type="number"
                   class="form-control form-control-sm" />
 
                 <button class="btn btn-link px-2"
@@ -56,7 +57,7 @@
                 </button>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
+                <h5 class="mb-0">&euro;<?php echo $storedItem['product_price']*$storedItem['quantity']; ?></h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                 <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
@@ -78,7 +79,7 @@
 
         <div class="card">
           <div class="card-body">
-            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+            <button type="button" class="btn btn-warning btn-block btn-lg" onclick="location.href = '/payment'">Proceed to Pay</button>
           </div>
         </div>
 

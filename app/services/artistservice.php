@@ -31,7 +31,7 @@ class ArtistService
 //safget
     public function getEventById($id){
         $event_result = $this->ArtistRepository->getEventByEventId($id);
-        $event = $this->convertToEvent($event_result);
+        $event = $this->convertToEvent($event_result[0]);
         return $event;
     }
 
