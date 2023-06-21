@@ -2,6 +2,7 @@
 include_once(__DIR__ . '/../repositories/homerepository.php');
 include_once (__DIR__ . '/../services/orderservice.php');
 include_once (__DIR__ . '/../services/artistservice.php');
+include_once (__DIR__ . '/../services/hisoryservice.php');
 
 class ShoppingcartService{
     
@@ -9,12 +10,14 @@ class ShoppingcartService{
     private $orderService;
     private $artistService;
     private $yummyService;
+    private $historyService;
     
     function __CONSTRUCT(){
         $this->repository = new HomeRepository();
         $this->orderService = new OrderService();
         $this->artistService = new ArtistService();
         $this->yummyService = new yummyService();
+        $this->historyService = new HistoryService();
     }
 
     public function getTickets($id){
@@ -100,7 +103,19 @@ class ShoppingcartService{
                 $price = $Yummy->getPrice();
                 $time = $Session->getDate() + "Duration: " + $Session->getDuration();
             }
-            $name = $this->artistService->getArtistName($ticket->getArtistId());
+            if($ticket->getEventType() == "Jazz"){
+                $Event = $this->artistService->getEventById($ticket->getEventId());
+                $artist = $this->artistService->getArtistByID($Event->getArtistID());
+                $name = $artist->getName();
+                $price = $Event->getPrice();
+                $time = $Event->getTime();
+            }
+            if($ticket->getEventType() == "History"){
+                $Tour = $this->historyService->getTourInfoById($ticket->getEventId());
+                $name = $Tour->getName();
+                $price = $Tour->getPrice();
+                $time = $Tour->getDateTime();
+            }
             // 3. Add the ticket to the shopping cart if it was not already in the shopping cart
             $newItem = [
                 'event_id' => $ticket->getEventId(),

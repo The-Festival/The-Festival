@@ -32,6 +32,12 @@ class ArtistRepository extends Repository
         $result = $stmt->fetchAll();
         return $result;
     }
+    public function getEventByEventId($id){
+        $stmt = $this->connection->prepare("SELECT event_id, artist_id, hall, price, seats, seats_left, datetime FROM Event_Jazz WHERE event_id = :id");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 
     // Returns an array of Artist events
     public function getAllArtistsEvents()

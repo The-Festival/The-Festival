@@ -35,6 +35,10 @@ class HistoryService{
         return $this->historyRepository->getTourInfo();
     }
 
+    public function getTourInfoById($id){
+        return $this->historyRepository->getTourInfoById($id);
+    }
+
     public function getSliderData(){
         $poiArray = $this->historyRepository->getSliderData();
         $imgArray = $this->historyRepository->getSliderIMG();
