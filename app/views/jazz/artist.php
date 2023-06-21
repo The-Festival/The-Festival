@@ -8,7 +8,7 @@ include __DIR__ . '/../header.php';
     <div class="row">
         <article class="col-lg-6">
             <h2 class="artist-h2">About</h2>
-            <p class="artist-p">The Gumbo Kings are a five-piece band that combines the groove of New Orleans with rough delta blues and the melody of soul from ancient Memphis.</p>
+            <p class="artist-p"><?php $artist->getAbout() ?></p>
             <h2 class="artist-h2">Genre</h2>
             <p class="artist-p">Blues / Alternative / Indie</p>
             <h2 class="artist-h2">Important Tracks</h2>

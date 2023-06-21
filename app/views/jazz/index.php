@@ -38,15 +38,17 @@
     <div class="container">
         <div class="row gap-3 my-3 d-flex justify-content-center">
             <?php foreach ($artistList as $artist) : ?>
+                <?php $events = $artist->getEvents(); ?>
+                <?php $firstEvent = array_shift($events); ?>
                 <div class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
                     <div class="card-title g-0 w-100 artist-card-title"><?= $artist->getName() ?></div>
                     <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
-                        <img class="artist-image mb-3 align-self-center" src="/img/artists/<?=$artist->getName()?>/artist.png" alt="<?=$artist->getName()?>">
-                        <p><strong>Time:</strong> 20:00 - 21:00</p>
+                        <img class="artist-image mb-3 align-self-center" src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
+                        <p><strong>Time:</strong> <?= $firstEvent->getFormattedTime() ?></p>
                         <p><strong>Location:</strong> Patronaat</p>
-                        <p><strong>Hall:</strong> Main Hall</p>
-                        <p><strong>Price:</strong> <?= $artist->formatPrice() ?></p>
-                        <a href="#">Discover more!</a>
+                        <p><strong>Hall:</strong> <?= $firstEvent->getHall() ?></p>
+                        <p><strong>Price:</strong> <?= $firstEvent->getFormattedPrice() ?></p>
+                        <a href="/jazz/<?= $artist->getId() ?>">Discover more!</a>
                         <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
                     </div>
                 </div>
