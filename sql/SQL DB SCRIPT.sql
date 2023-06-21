@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jun 19, 2023 at 07:34 PM
+-- Generation Time: Jun 21, 2023 at 09:32 AM
 -- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
--- PHP Version: 8.0.25
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `developmentdb`
 --
+DROP DATABASE IF EXISTS `developmentdb`;
+CREATE DATABASE IF NOT EXISTS `developmentdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `developmentdb`;
 
 -- --------------------------------------------------------
 
@@ -87,34 +90,32 @@ INSERT INTO `Api_Token` (`token_id`, `token`, `company_name`) VALUES
 CREATE TABLE `Artist` (
   `artist_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `about` text NOT NULL,
-  `price` float NOT NULL,
-  `event_id` int(11) NOT NULL
+  `about` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Artist`
 --
 
-INSERT INTO `Artist` (`artist_id`, `name`, `about`, `price`, `event_id`) VALUES
-(1, 'Gumbo Kings', 'The Gumbo Kings are a five-piece band who combine the groove of New Orleans with rugged delta blues and the melody of soul from old Memphis. The band is their love baby, and their aim is to convey their passion for music through an energetic live show.', 15, 1),
-(2, 'Evolve', 'EVOLVE is the downtempo chillout project of artist/producer Red Broad. The first album, HAPPY HOUR IN THE GENE POOL has enjoyed great success within the downtempo chillout and lounge genres with iconic tracks', 15, 1),
-(3, 'Ntjam Rosie', 'Ntjam Rosie, born as Rosie Boei, is a Dutch-Cameroonian singer/songwriter from Rotterdam, The Netherlands. Her style is a mix of pop music, jazz and soul.', 15, 1),
-(4, 'Wicked Jazz Sounds', 'Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music. Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.', 10, 1),
-(5, 'Tom Thomsom Assemble', 'Doesn\'t exist?', 10, 1),
-(6, 'Jonna Frazer', 'Jonna Fraser is a rapper and singer, but above all a particularly driven performer. The Rotterdam-born storyteller has been living in Zaandam for more than half his life. At age 11, he was introduced to rap and then never let go of the microphone.', 10, 1),
-(7, 'Fox & The Mayors', 'Doesn\'t exist?', 15, 1),
-(8, 'Uncle Sue', 'Uncle Sue is a seven-piece Haarlem Funk and Soul Band with its own story, soul diva and swinging horn section. Quirky repertoire, from their own studio and slightly less obvious gems by our musical heroes. A sound that harks back to the 60s and 70s. That\'s where Uncle Sue feels at home', 15, 1),
-(9, 'Chris Allen', 'Doesn\'t exist?', 15, 1),
-(10, 'Myles Sanko', 'He began his musical career singing and rapping alongside disc jockeys in nightclubs. Since then he toured across Europe and worked with the likes of Gregory Porter, Martha High, Mousse T, Speedometer, Billy Wooten, China Mosses, Ben l\'Oncle Soul, Sarah McKenzie, Miss Kelly Marie, Mo\' Horizons, Ed Meme, Chris Read, Robin Mullarkey, Ben Lamdin (Nostalgia 77) and many more.', 10, 1),
-(11, 'Ruis Soundsystem', 'Doesn\'t exist?', 10, 1),
-(12, 'The Family XL', 'Doesn\'t exist?', 10, 1),
-(13, 'Gare du Nord', 'Gare du Nord is a Dutch-Belgian jazz band, originally consisting of Doc and Inca. Doc played guitar and Inca played saxophone, while both performed vocal duties. After the pair split up in 2013, the band continued to work and tour with a different line-up', 15, 1),
-(14, 'Rilan & The Bombadiers', 'With a sold out first clubtour, a booming festival season and tracks that have already been featured in a number of big Hollywood productions, (Netflix / HULU / FOX: Shooter, Shut Eye and Rosewood) this band has certainly been keeping busy. Both nationally and abroad.', 15, 1),
-(15, 'Soul Six', 'Doesn\'t exist?', 15, 1),
-(16, 'Han Bennink', 'Drummer & visual artist Han Bennink reached the age of 80 this year and has been in the business for more than 60 years. He travelled all over the world and is now celebrating his anniversary close to home, on the border of Drenthe and Friesland, with the festival HANBENNINK80 in Fryslân. Multi-talented Han gives concerts on four different stages/galleries during his exhibitions.', 10, 1),
-(17, 'The Nordanians', 'When Oene van Geel viola, Mark Tuinstra guitar and Niti Ranjan Biswas tabla virtuoso played together for the first time there where immediately fireworks, roaring u-turns and cinematic tearjerkers. Then they started writing songs together based on traditional ragas, smashing funk and delicate chamber music.', 10, 1),
-(18, 'Lilith Merlot', 'Dutch singer and songwriter Lilith Merlot is known for her warm and deep voice with a timeless feel.', 10, 1);
+INSERT INTO `Artist` (`artist_id`, `name`, `about`) VALUES
+(1, 'Gumbo Kings', 'The Gumbo Kings are a five-piece band who combine the groove of New Orleans with rugged delta blues and the melody of soul from old Memphis. The band is their love baby, and their aim is to convey their passion for music through an energetic live show.'),
+(2, 'Evolve', 'EVOLVE is the downtempo chillout project of artist/producer Red Broad. The first album, HAPPY HOUR IN THE GENE POOL has enjoyed great success within the downtempo chillout and lounge genres with iconic tracks'),
+(3, 'Ntjam Rosie', 'Ntjam Rosie, born as Rosie Boei, is a Dutch-Cameroonian singer/songwriter from Rotterdam, The Netherlands. Her style is a mix of pop music, jazz and soul.'),
+(4, 'Wicked Jazz Sounds', 'Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music. Wicked Jazz Sounds is a versatile music platform that connects the sensations of jazz with the energy of contemporary dance music.'),
+(5, 'Tom Thomsom Assemble', 'Doesn\'t exist?'),
+(6, 'Jonna Frazer', 'Jonna Fraser is a rapper and singer, but above all a particularly driven performer. The Rotterdam-born storyteller has been living in Zaandam for more than half his life. At age 11, he was introduced to rap and then never let go of the microphone.'),
+(7, 'Fox & The Mayors', 'Doesn\'t exist?'),
+(8, 'Uncle Sue', 'Uncle Sue is a seven-piece Haarlem Funk and Soul Band with its own story, soul diva and swinging horn section. Quirky repertoire, from their own studio and slightly less obvious gems by our musical heroes. A sound that harks back to the 60s and 70s. That\'s where Uncle Sue feels at home'),
+(9, 'Chris Allen', 'Doesn\'t exist?'),
+(10, 'Myles Sanko', 'He began his musical career singing and rapping alongside disc jockeys in nightclubs. Since then he toured across Europe and worked with the likes of Gregory Porter, Martha High, Mousse T, Speedometer, Billy Wooten, China Mosses, Ben l\'Oncle Soul, Sarah McKenzie, Miss Kelly Marie, Mo\' Horizons, Ed Meme, Chris Read, Robin Mullarkey, Ben Lamdin (Nostalgia 77) and many more.'),
+(11, 'Ruis Soundsystem', 'Doesn\'t exist?'),
+(12, 'The Family XL', 'Doesn\'t exist?'),
+(13, 'Gare du Nord', 'Gare du Nord is a Dutch-Belgian jazz band, originally consisting of Doc and Inca. Doc played guitar and Inca played saxophone, while both performed vocal duties. After the pair split up in 2013, the band continued to work and tour with a different line-up'),
+(14, 'Rilan & The Bombadiers', 'With a sold out first clubtour, a booming festival season and tracks that have already been featured in a number of big Hollywood productions, (Netflix / HULU / FOX: Shooter, Shut Eye and Rosewood) this band has certainly been keeping busy. Both nationally and abroad.'),
+(15, 'Soul Six', 'Doesn\'t exist?'),
+(16, 'Han Bennink', 'Drummer & visual artist Han Bennink reached the age of 80 this year and has been in the business for more than 60 years. He travelled all over the world and is now celebrating his anniversary close to home, on the border of Drenthe and Friesland, with the festival HANBENNINK80 in Fryslân. Multi-talented Han gives concerts on four different stages/galleries during his exhibitions.'),
+(17, 'The Nordanians', 'When Oene van Geel viola, Mark Tuinstra guitar and Niti Ranjan Biswas tabla virtuoso played together for the first time there where immediately fireworks, roaring u-turns and cinematic tearjerkers. Then they started writing songs together based on traditional ragas, smashing funk and delicate chamber music.'),
+(18, 'Lilith Merlot', 'Dutch singer and songwriter Lilith Merlot is known for her warm and deep voice with a timeless feel.');
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,9 @@ CREATE TABLE `Custompage` (
 CREATE TABLE `Event_Jazz` (
   `event_id` int(11) NOT NULL,
   `artist_id` int(11) NOT NULL,
-  `hall` varchar(128) NOT NULL,
+  `location` varchar(128) NOT NULL,
+  `hall` varchar(128) DEFAULT NULL,
+  `price` int(11) NOT NULL,
   `seats` int(11) NOT NULL,
   `seats_left` int(11) NOT NULL,
   `datetime` datetime NOT NULL
@@ -146,8 +149,31 @@ CREATE TABLE `Event_Jazz` (
 -- Dumping data for table `Event_Jazz`
 --
 
-INSERT INTO `Event_Jazz` (`event_id`, `artist_id`, `hall`, `seats`, `seats_left`, `datetime`) VALUES
-(1, 1, 'First Hall', 300, 300, '2020-01-01 19:00:00');
+INSERT INTO `Event_Jazz` (`event_id`, `artist_id`, `location`, `hall`, `price`, `seats`, `seats_left`, `datetime`) VALUES
+(1, 1, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-27 18:00:00'),
+(2, 2, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-27 19:30:00'),
+(3, 3, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-27 21:00:00'),
+(4, 4, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-27 18:00:00'),
+(5, 5, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-27 19:30:00'),
+(6, 6, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-27 21:00:00'),
+(7, 7, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-28 18:00:00'),
+(8, 8, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-28 19:30:00'),
+(9, 9, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-28 21:00:00'),
+(10, 10, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-28 18:00:00'),
+(11, 11, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-28 19:30:00'),
+(12, 12, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-28 21:00:00'),
+(13, 13, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-29 18:00:00'),
+(14, 14, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-29 19:30:00'),
+(15, 15, 'Patronaat', 'Main Hall', 15, 300, 300, '2023-07-29 21:00:00'),
+(16, 16, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-29 18:00:00'),
+(17, 17, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-29 19:30:00'),
+(18, 18, 'Patronaat', 'Second Hall', 10, 200, 200, '2023-07-29 21:00:00'),
+(19, 11, 'Grote Markt', '', 0, 0, 0, '2023-07-30 15:00:00'),
+(20, 4, 'Grote Markt', '', 0, 0, 0, '2023-07-30 16:00:00'),
+(21, 2, 'Grote Markt', '', 0, 0, 0, '2023-07-30 17:00:00'),
+(22, 17, 'Grote Markt', '', 0, 0, 0, '2023-07-30 18:00:00'),
+(23, 1, 'Grote Markt', '', 0, 0, 0, '2023-07-30 19:00:00'),
+(24, 13, 'Grote Markt', '', 0, 0, 0, '2023-07-30 20:00:00');
 
 -- --------------------------------------------------------
 
@@ -601,8 +627,7 @@ ALTER TABLE `Api_Token`
 -- Indexes for table `Artist`
 --
 ALTER TABLE `Artist`
-  ADD PRIMARY KEY (`artist_id`),
-  ADD KEY `event_id` (`event_id`);
+  ADD PRIMARY KEY (`artist_id`);
 
 --
 -- Indexes for table `Custompage`
@@ -738,7 +763,7 @@ ALTER TABLE `Custompage`
 -- AUTO_INCREMENT for table `Event_Jazz`
 --
 ALTER TABLE `Event_Jazz`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `Foto`
@@ -827,12 +852,6 @@ ALTER TABLE `User`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `Artist`
---
-ALTER TABLE `Artist`
-  ADD CONSTRAINT `Artist_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `Event_Jazz` (`event_id`);
 
 --
 -- Constraints for table `Guide`
