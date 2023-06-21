@@ -61,4 +61,17 @@ class ArtistService
         }
         return $artistList;
     }
+
+    public function getArtistsByDate($date)
+    {
+        if ($date == "0") {
+            return $this->getAllArtists();
+        }
+        $artist_result = $this->ArtistRepository->getArtistsByDate($date . '%');
+        $event_result = $this->ArtistRepository->getArtistsEventsByDate($date . '%');
+
+        // print data for debugging
+
+        return $this->convertToArtistList($artist_result, $event_result);
+    }
 }

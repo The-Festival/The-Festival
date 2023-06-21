@@ -33,4 +33,15 @@ class JazzController
         $artist = $this->artistService->getArtistByID($id);
         require __DIR__ . '/../views/jazz/artist.php';
     }
+
+    public function date()
+    {
+        if (!isset($_GET['date'])) {
+            $this->index();
+        }
+        $artistList = $this->artistService->getArtistsByDate($_GET['date']);
+        require __DIR__ . '/../views/jazz/index.php';
+        echo '<script>window.location.hash = "#artist-cards";</script>';
+        return;
+    }
 }
