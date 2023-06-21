@@ -29,6 +29,17 @@ class ArtistService
         return $artist;
     }
 
+    // Returns an array of Event objects with the given artist id
+    public function getEventsByArtistID($id)
+    {
+        $event_result = $this->ArtistRepository->getArtistEventsByID($id);
+        $eventList = array();
+        foreach ($event_result as $result) {
+            $eventList[] = $this->convertToEvent($result);
+        }
+        return $eventList;
+    }
+
     // Returns an array of Artist objects
     public function getAllArtists()
     {
@@ -46,7 +57,7 @@ class ArtistService
     // Converts an entry to an Event object
     private function convertToEvent($result)
     {
-        return new Event($result['event_id'], $result['artist_id'], $result['hall'], $result['price'], $result['seats'], $result['seats_left'], $result['datetime']);
+        return new Event($result['event_id'], $result['artist_id'], $result['location'], $result['hall'], $result['price'], $result['seats'], $result['seats_left'], $result['datetime']);
     }
 
     // Converts an array to an Artist object and adds events to the Artist object

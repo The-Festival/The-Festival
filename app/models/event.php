@@ -6,6 +6,7 @@ class Event
     // Properties
     private $id;
     private $artist_id;
+    private $location;
     private $hall;
     private $price;
     private $seats;
@@ -13,10 +14,11 @@ class Event
     private $time;
 
     // Constructor
-    public function __construct($id, $artist_id, $hall, $price, $seats, $seats_left, $datetime)
+    public function __construct($id, $artist_id, $location, $hall, $price, $seats, $seats_left, $datetime)
     {
         $this->id = $id;
         $this->artist_id = $artist_id;
+        $this->location = $location;
         $this->hall = $hall;
         $this->price = $price;
         $this->seats = $seats;
@@ -33,6 +35,11 @@ class Event
     public function getArtistID()
     {
         return $this->artist_id;
+    }
+
+    public function getLocation()
+    {
+        return $this->location;
     }
 
     public function getHall()
@@ -73,7 +80,6 @@ class Event
         $date = date_create($this->time);
         return date_format($date, 'H:i d F');
     }
-
 
 
     // Methods 
