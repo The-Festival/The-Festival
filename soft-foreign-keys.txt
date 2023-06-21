@@ -1,0 +1,22 @@
+Since we can't hard set foreign keys because the data is non consistent we use soft foreign keys. With soft foreign keys, we can use application-level logic to ensure that the values in the Item ID column of the Stock table correspond to valid primary key values in the appropriate tables.
+
+How to use the soft foreign keys (look a the lucid chart for reference)
+We are going to look at the Music Stock table, within the music stock table we have a column called item_type and a column called item_id. The item_type column is going to be a string that will tell us what type of item the item_id is. For example, if the item_type is "Single ticket" then we need to execute a new sql query that looks in that table with the item_id from the stock table. In that way we can collect the correct data from the right table.
+
+How it looks programmatically:
+
+sql = "SELECT * FROM stock"
+cursor.execute(sql)
+result = cursor.fetchall()
+
+if(result['item_type'] == 'Single ticket'):
+    sql = "SELECT * FROM single_ticket WHERE id = %s" % (result['item_id'])
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    print(result['price'])
+else if(result['item_type'] == 'All Access Pass')
+    sql = "SELECT * FROM all_access_pass WHERE id = %s" % (result['item_id'])
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    print(result['price'])
+
