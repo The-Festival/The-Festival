@@ -1,36 +1,56 @@
 <?php
 
-class Artist{
+class Artist
+{
 
+    // Properties
     private $id;
     private $name;
     private $about;
-    private $price;
+    private $events;
 
-    public function __construct($id, $name, $about, $price, ){
+    // Constructor
+    public function __construct($id, $name, $about)
+    {
         $this->id = $id;
         $this->name = $name;
         $this->about = $about;
-        $this->price = $price;
+        $this->events = array();
     }
 
-    public function getID(){
+    // Getters and setters
+    public function getID()
+    {
         return $this->id;
     }
-    
-    public function getName(){
+
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getAbout(){
-        return $this->about;
-    }
-    
-    public function getPrice(){
-        return $this->price;
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
-    public function formatPrice(){
-        return "€" . number_format($this->getPrice(), 2, ',', '.');
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    public function setAbout($about)
+    {
+        $this->about = $about;
+    }
+
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    public function addEvent($event)
+    {
+        array_push($this->events, $event);
     }
 }
