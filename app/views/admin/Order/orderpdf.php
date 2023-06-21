@@ -176,7 +176,7 @@
 
 				<?php foreach($foodItems as $foodItem){?>
                     <tr class='item'>
-					    <td><?echo $foodItem['quantity']?>x <?echo $foodItem['name']?> <?echo $foodItem['start_location']?> <?echo (new DateTime($foodItem['datetime']))->format('d-m-y H:i')?> </td>
+					    <td><?echo $foodItem['quantity']?>x <?echo $foodItem['name']?> <?echo (new DateTime($foodItem['datetime']))->format('d-m-y H:i')?> </td>
 
 					    <td>€<?echo $foodItem['price']?></td>
 				        </tr>

@@ -236,7 +236,7 @@ class OrderRepository extends Repository {
     
     public function getAllTicketOnTypeYummy($order_id){
         try {
-            $stmt = $this->connection->prepare("SELECT `ticket_id` ,`name` , `start_datetime` , `quantity` , `price` , `ischecked` FROM Ticket t 
+            $stmt = $this->connection->prepare("SELECT `ticket_id` ,`name` , `start_datetime` as `datetime` , `quantity` , `price` , `ischecked` FROM Ticket t 
             JOIN Reservation r1 ON t.event_id = r1.reservation_id AND t.event_type = 'yummy' AND order_id = :order_id
             JOIN Session s ON r1.session_id = s.session_id 
             JOIN Restaurant r ON s.restaurant_id = r.restaurant_id;");
