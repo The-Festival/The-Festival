@@ -2,6 +2,7 @@
 require __DIR__ . '/repository.php';
 require __DIR__ . '/../models/RestaurantDetails.php';
 require __DIR__ . '/../models/Session.php';
+require __DIR__ . '/../models/ReservationItem.php';
 
 class yummyRepository extends repository{
     private $db;
@@ -33,6 +34,21 @@ class yummyRepository extends repository{
             
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Session');
+            $result = $stmt->fetchAll();
+            return $result;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function getReservation($id){
+        try{
+            $stmt = $this->connection->prepare("SELECT `reservation_id`,`session_id`,`user_id`,`request`,`count_people`,`reservation_fee` FROM `Reservation` WHERE `reservation_id` = :id");
+            $stmt->bindParam(':id', $id);
+            
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'ReservationItem');
             $result = $stmt->fetchAll();
             return $result;
         }

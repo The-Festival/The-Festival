@@ -8,11 +8,13 @@ class ShoppingcartService{
     private $repository;
     private $orderService;
     private $artistService;
+    private $yummyService;
     
     function __CONSTRUCT(){
         $this->repository = new HomeRepository();
         $this->orderService = new OrderService();
         $this->artistService = new ArtistService();
+        $this->yummyService = new yummyService();
     }
 
     public function getTickets($id){
@@ -31,43 +33,44 @@ class ShoppingcartService{
         // }
     }
 
-    public function checkIfCartEmpty(){
-        if(!isset($_SESSION['ShoppingCart'])){
-            $_SESSION['ShoppingCart'] = array();
-        }
-    }
+    // public function checkIfCartEmpty(){
+    //     if(!isset($_SESSION['ShoppingCart'])){
+    //         $_SESSION['ShoppingCart'] = array();
+    //     }
+    // }
 
-    public function checkIfItemInCart($item_array){
-        if(!empty($_SESSION['ShoppingCart'])){
-            foreach($_SESSION['ShoppingCart'] as $item){
+    // public function checkIfItemInCart($item_array){
+    //     if(!empty($_SESSION['ShoppingCart'])){
+    //         foreach($_SESSION['ShoppingCart'] as $item){
                 
-                if($item['event_id'] == $item_array['event_id'] && $value['event_type'] == $item_array['event_type']){
-                    return $key;
-                }
-            }
-        }
-        return null;
-    }
+    //             if($item['event_id'] == $item_array['event_id'] && $value['event_type'] == $item_array['event_type']){
+    //                 return $key;
+    //             }
+    //         }
+    //     }
+    //     return null;
+    // }
 
     function findCartItem($item)
     {
-    if (isset($_SESSION['ShoppingCart'])) {
-        foreach ($_SESSION['ShoppingCart'] as $index => $cartItem) {
-            $storedItem = unserialize($cartItem);
+        if (isset($_SESSION['ShoppingCart'])) {
+            foreach ($_SESSION['ShoppingCart'] as $index => $cartItem) {
+                $storedItem = unserialize($cartItem);
 
-            // Compare the item in the cart with the new item
-            if ($storedItem->getTicketId() == $item->getTicketId()) {
-                return ['index' => $index, 'item' => $storedItem];
+                // Compare the item in the cart with the new item
+                if ($storedItem->getTicketId() == $item->getTicketId()) {
+                    return ['index' => $index, 'item' => $storedItem];
+                }
             }
         }
-    }
 
-    return null; // Item not found in the cart
+        return null; // Item not found in the cart
     }
 
     function addShoppingCart()
     {
         $ticket = $this->orderService->getTicketByID(htmlspecialchars(56));
+
         // 1. Check if the session shopping cart exists, if not, create a new session
         if (!isset($_SESSION['ShoppingCart'])) {
             $_SESSION['ShoppingCart'] = [];
@@ -81,22 +84,35 @@ class ShoppingcartService{
             $existingObject = $existingItem['item'];
 
             // Increase the quantity by 1 for the existing item
-            $existingObject->setQuantity($existingObject->getQuantity() + 1);
+            $existingObject['quantity']++;
 
             // Replace the updated item in the cart
-            $_SESSION['ShoppingCart'][$existingIndex] = serialize($existingObject);
+            $_SESSION['ShoppingCart'][$existingIndex] = $existingObject;
         } else {
+            $name = "";
+            $price = 0;
+            $time = "";
+            if($ticket->getEventType() == "Yummy"){
+                $reservation = $this->yummyService->getReservation($ticket->getEventId());
+                $Session = $this->yummyService->getSessions($ticket->getSessionId());
+                $Yummy = $this->yummyService->getyummyDetail($Session->getRestaurant_id());
+                $name = $Yummy->getName();
+                $price = $Yummy->getPrice();
+                $time = $Session->getDate() + "Duration: " + $Session->getDuration();
+            }
+            $name = $this->artistService->getArtistName($ticket->getArtistId());
             // 3. Add the ticket to the shopping cart if it was not already in the shopping cart
-            $_SESSION['ShoppingCart'][] = serialize($ticket);
+            $newItem = [
+                'event_id' => $ticket->getEventId(),
+                'event_type' => $ticket->getEventType(),
+                'product_name' => $name, // Replace with the actual name variable
+                'product_price' => $price, // Replace with the actual price variable
+                'quantity' => $ticket->getQuantity(),
+                'time' => $time
+            ];
+            
+            $_SESSION['ShoppingCart'][] = $newItem;
         }
-        //currently not using this maybe later
-        // $item_array = array(
-        //     'event_id' => $ticket->getEventId(),
-        //     'event_type' => $ticket->getEventType(),
-        //     'product_name' => $name,
-        //     'product_price' => $price,
-        //     'quantity' => $ticket->getQuantity()
-        // );
     }
     
     // public function addToShoppingcart(){
