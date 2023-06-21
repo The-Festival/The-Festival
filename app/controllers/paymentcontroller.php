@@ -10,6 +10,10 @@ class PaymentController {
         $this->paymentService = new PaymentService();
     }
 
+    public function index(){
+        require __DIR__ . '/../views/payment/payment.php';
+    }
+
 
     public function sendMail(){
         //test prupase simple get to /payment/sendmail?id=1
