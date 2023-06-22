@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../models/custompage.php';
+include_once __DIR__ . '/../models/Custompage.php';
 include_once __DIR__ . '/../repositories/custompagesrepository.php';
 class CustompagesService{
     private $custompagesRepository;

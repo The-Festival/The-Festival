@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/repository.php';
-include_once __DIR__ . '/../models/custompage.php';
+include_once __DIR__ . '/../models/Custompage.php';
 class CustompagesRepository extends Repository{
 
     public function getAll(){
