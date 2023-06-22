@@ -1,5 +1,6 @@
 <?php
 $var = 'history';
+$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 require __DIR__ . '/../header.php';
 ?>
 <div class="hero-image">
@@ -88,6 +89,20 @@ require __DIR__ . '/../header.php';
         </div>
     </div>
 
+</div>
+
+
+<div class="container-fluid text-center">
+  <div class="row justify-content-center">
+    <div class="d-flex w-50 mx-auto justify-content-center tourInfoBox align-middle p-3">
+      <div class="m-auto">
+          <p>Share this tour on social media</p>
+          <p><a href="http://reddit.com/submit?url=<?php echo $url ?>&title=Simple Share Buttons" target="_blank">Reddit</a></p>
+          <p><a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">Pinterest</a></p>
+      </div>
+    </div>
+  </div>
+              
 </div>
 
 <div class="row justify-content-center to-know-background">

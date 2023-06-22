@@ -15,7 +15,7 @@ class SigninRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
+            
             return false;
         }
     }
@@ -33,7 +33,7 @@ class SigninRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
+            
             return false;
         }
     }
