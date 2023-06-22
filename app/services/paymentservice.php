@@ -40,13 +40,13 @@ class PaymentService {
             $this->orderService->orderPdfForPayment($order->getOrderId());
             $this->orderService->ticketsPdfOnOrder($order->getOrderId());
 
-            $mail->addAttachment("../public/pdf/order_".$order->getOrderId().".pdf", 'order.pdf');
-            $mail->addAttachment("../public/pdf/tickets_".$order->getOrderId().".pdf", 'tickets.pdf');
+            $mail->addAttachment("../public/order_".$order->getOrderId().".pdf", 'order.pdf');
+            $mail->addAttachment("../public/tickets_".$order->getOrderId().".pdf", 'tickets.pdf');
 
             $mail->send();
             //remove pdf files after sending
-            unlink("../public/pdf/order_".$order->getOrderId().".pdf");
-            unlink("../public/pdf/tickets_".$order->getOrderId().".pdf");
+            unlink("../public/order_".$order->getOrderId().".pdf");
+            unlink("../public/tickets_".$order->getOrderId().".pdf");
 
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

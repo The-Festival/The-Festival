@@ -99,8 +99,7 @@ class PaymentController {
 
         // Update order status based on payment status
         if ($payment->isPaid()) {
-            $orderId = $this->createAndAddOrder($name,$address, $phone, $email,$paymentMethod)[0];
-
+            $this->createAndAddOrder($name,$address, $phone, $email,$paymentMethod);
         } elseif ($payment->isFailed()){
             header("Location: /payment/failed");
         }
@@ -146,7 +145,6 @@ class PaymentController {
         if(isset($_SESSION['ShoppingCart'])){
             unset($_SESSION['ShoppingCart']);
         }
-        
     }
 
 }
