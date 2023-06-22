@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/repository.php';
+require_once  __DIR__ . '/repository.php';
 require __DIR__ . '/../models/RestaurantDetails.php';
 require __DIR__ . '/../models/Session.php';
 require __DIR__ . '/../models/ReservationItem.php';
