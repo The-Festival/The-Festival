@@ -53,21 +53,23 @@
                     <div class="card-title g-0 w-100 artist-card-title">
                         <?= $artist->getName() ?>
                     </div>
-                    <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
-                        <img class="artist-image mb-3 align-self-center" src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
-                        <p><strong>Time:</strong>
-                            <?= $firstEvent->getFormattedTime() ?>
-                        </p>
-                        <p><strong>Location:</strong> Patronaat</p>
-                        <p><strong>Hall:</strong>
-                            <?= $firstEvent->getHall() ?>
-                        </p>
-                        <p><strong>Price:</strong>
-                            <?= $firstEvent->getFormattedPrice() ?>
-                        </p>
-                        <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
-                        <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
-                    </div>
+                    <a href="/jazz/artist?id=<?= $artist->getId() ?>">
+                        <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
+                            <img class="artist-image mb-3 align-self-center" src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
+                            <p><strong>Time:</strong>
+                                <?= $firstEvent->getFormattedTime() ?>
+                            </p>
+                            <p><strong>Location:</strong> Patronaat</p>
+                            <p><strong>Hall:</strong>
+                                <?= $firstEvent->getHall() ?>
+                            </p>
+                            <p><strong>Price:</strong>
+                                <?= $firstEvent->getFormattedPrice() ?>
+                            </p>
+                            <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
+                            <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
