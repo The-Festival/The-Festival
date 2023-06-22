@@ -32,6 +32,7 @@ class yummyService
         }
         return $restaurantList;
     }
+
     public function getyummyDetail($id)
     {
         $repository = new yummyRepository();
@@ -70,6 +71,9 @@ class yummyService
             $restaurantList[] = $this->convertToRestaurantDetails($restaurant);
         }
         return $restaurantList;
+    }
+    public function getReservation($id){
+        return $this->repository->getReservation($id);
     }
     //Reservation
     // public function makeReservation($user_id, $nrPeople, $session_id, $request){
