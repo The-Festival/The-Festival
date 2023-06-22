@@ -10,7 +10,7 @@ include_once (__DIR__ . '/../header.php');
     <div class="d-flex justify-content-center maxheigt rounded text-dark">
         <div class="d-flex w-80 bg-light p-3 justify-content-between rounded" id = "bigdiv">
             <div class="p-5 w-45 bg-purple rounded">
-                <form action="">
+                <form action="/payment/action" method = "POST">
                     <input type="hidden" name="checkoutOrder">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
@@ -22,7 +22,7 @@ include_once (__DIR__ . '/../header.php');
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="text" name="phone" id="phone" class="form-control">
+                        <input type="tel" pattern = "[0-9]{10}" name="phone" id="phone" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
@@ -31,16 +31,31 @@ include_once (__DIR__ . '/../header.php');
 
             </div>
             <div class="p-5 bg-purple w-45 rounded">
-                    <h3>Order Review</h3>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <p>Product</p>
-                        <p>Price</p>
+                <h3>Order Review</h3>
+                <hr>
+                <?php
+                foreach($shoppingCart as $cartItem):
+                    $totalPrice += $cartItem['product_price'] * $cartItem['quantity'];
+                    ?>
+                    <div class="d-flex justify-content-between align-items-baseline">
+                        <div>
+                            <?php echo $cartItem['product_name'] . " x " . $cartItem['quantity']; ?>
+                        </div>
+                        <div>
+                            <?php echo "$" . $cartItem['product_price'] * $cartItem['quantity']; ?>
+                        </div>
                     </div>
-                    <button class = "btn-pay display-1" type="submit">
-                        Pay
-                    </button>
+                <?php endforeach; ?>
 
+                <div class="d-flex justify-content-between align-items-baseline mt-3">
+                    <h4>Total Price:</h4>
+                    <h4><?php echo "$" . $totalPrice; ?></h4>
+                </div>
+
+                <button class="btn-pay display-1" type="submit">
+                    Pay
+                </button>
+                <input type="hidden" name="totalPrice" value="<?php echo $totalPrice; ?>">
                 </form>
                 <!-- Back button -->
                 <div class="d-flex justify-content-start mb-3 w-100">

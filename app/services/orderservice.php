@@ -251,6 +251,10 @@ class OrderService{
         return $body;
     }
 
+    public function getLatestOrderId()
+    {
+        return $this->orderRepository->getLatestOrderId();
+    }
 
 
 }
