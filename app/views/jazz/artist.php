@@ -5,6 +5,7 @@ include __DIR__ . '/../header.php';
 <div class="container p-5 m-5">
     <div class="row">
         <article class="col-lg-6 p-5">
+            <h1 class="artist-h1"><?= $artist->getName() ?></h1>
             <h2 class="artist-h2">About</h2>
             <p class="artist-p">
                 <?= $artist->getAbout() ?>
@@ -41,7 +42,7 @@ include __DIR__ . '/../header.php';
                     <img class="album-cover" src="/img/artists/<?= $artist->getName() ?>/album-2.png" alt="Album cover" onclick="toggleBorder(this)">
                 </button>
             </div>
-            <h2 class="mt-3 artist-h2">Listen to the artist:</h2>
+            <h2 class="mt-5 artist-h2">Listen to the artist:</h2>
             <!-- Icon with play button -->
             <div class="d-flex justify-content-center align-items-center">
                 <button id="play-button" class="text-dark" style="background: transparent; border:none;">

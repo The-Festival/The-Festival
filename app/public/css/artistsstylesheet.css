@@ -24,6 +24,15 @@
     z-index: 0;
 }
 
+.artist-h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 128.5%;
+    color: #000000;
+}
+
 .artist-h2 {
     font-family: 'Poppins';
     font-style: normal;
