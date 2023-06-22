@@ -51,6 +51,15 @@
     color: #1D3588;
 }
 
+.artist-p-strong {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 128.5%;
+    color: #1D3588;
+}
+
 p.artist-p ul li {
     font-family: 'Poppins';
     font-style: normal;
@@ -81,4 +90,49 @@ img.album-cover {
     width: 15.625rem;
     height: 15.625rem;
     border-radius: 10px;
+}
+
+.slidecontainer {
+    width: 100%;
+    /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25%;
+    height: 10px;
+    background: #6716C7;
+    outline: none;
+    opacity: 0.6;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1;
+    /* Fully shown on mouse-over */
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 30px;
+    border: 0;
+    background: url('/img/svg/slider.svg');
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 60px;
+    height: 30px;
+    border: 0;
+    background: url('/img/svg/slider.svg');
+    z-index: 1000;
+    cursor: pointer;
 }

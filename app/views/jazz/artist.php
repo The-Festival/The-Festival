@@ -72,11 +72,13 @@ include __DIR__ . '/../header.php';
                 </svg>
             </div>
             <!-- Volume slider -->
-            <input class="volume-slider" type="range" min="0" max="100" value="100" step="1" oninput="setVolume(this.value)" onchange="setVolume(this.value)">
+            <input class="slider" type="range" min="0" max="100" value="25" step="1" oninput="setVolume(this.value)" onchange="setVolume(this.value)">
+            <p class="artist-p mt-3">Volume: <strong id="volume-value" class="artist-p-strong">25</strong></p>
             <script>
                 function setVolume(volume) {
                     var audio = $('#music-player')[0];
                     audio.volume = volume / 100;
+                    $('#volume-value').text(volume);
                 }
             </script>
         </aside>
@@ -120,7 +122,7 @@ include __DIR__ . '/../header.php';
 
         playButton.click(function() {
             audio.play();
-            audio.volume = 0.5;
+            audio.volume = 0.25;
             playButton.hide();
             pauseButton.show();
         });
