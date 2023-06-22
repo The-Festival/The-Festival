@@ -2,11 +2,7 @@
 $var = 'artist';
 include __DIR__ . '/../header.php';
 ?>
-
-<div class="artist-hero"
-    style="background: url(/img/artists/<?= $artist->getName() ?>/hero.png) no-repeat center center fixed;">
-</div>
-<div class=" container">
+<div class="container">
     <div class="row">
         <article class="col-lg-6 p-5">
             <h2 class="artist-h2">About</h2>
@@ -16,7 +12,7 @@ include __DIR__ . '/../header.php';
             <h2 class="artist-h2">Time / Date / Location</h2>
             <p class="artist-p">
             <ul>
-                <?php foreach ($eventList as $event): ?>
+                <?php foreach ($eventList as $event) : ?>
                     <li>
                         <?= $event->getFormattedTime() ?> /
                         <?= $event->getLocation() ?> :
@@ -27,7 +23,7 @@ include __DIR__ . '/../header.php';
             </p>
             <h2 class="artist-h2">Price</h2>
             <ul class="artist-ul">
-                <?php foreach ($eventList as $event): ?>
+                <?php foreach ($eventList as $event) : ?>
                     <li>
                         <?= $event->getFormattedTime() ?> :
                         <?= $event->getFormattedPrice() ?>
@@ -45,10 +41,8 @@ include __DIR__ . '/../header.php';
             <!-- Icon with play button -->
             <div class="d-flex justify-content-center align-items-center">
                 <a href="#" class="text-dark">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
-                        class="bi bi-play-fill" viewBox="0 0 16 16">
-                        <path
-                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                     </svg>
                 </a>
                 <div>
