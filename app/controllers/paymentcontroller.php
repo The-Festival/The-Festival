@@ -41,11 +41,10 @@ class PaymentController {
                             "value" => "$totalPriceString"
                         ],
                     "description" => "Order for the Haarlem Festival",
-                    "redirectUrl" => "http://localhost/payment/success",
-                    "cancelUrl" => "http://localhost/payment/failed",
+                    "redirectUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/success",
+                    "cancelUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/failed",
                     "webhookUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/webhook",
                     "metadata" => [
-                        'session_id' => session_id(),
                         'name' => htmlspecialchars($_POST['name']),
                         'address' => htmlspecialchars($_POST['address']),
                         'phone' => htmlspecialchars($_POST['phone']),

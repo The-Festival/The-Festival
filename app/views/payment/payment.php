@@ -35,7 +35,7 @@ include_once (__DIR__ . '/../header.php');
                 <hr>
                 <?php
                 foreach($shoppingCart as $cartItem):
-                    $totalPrice += $cartItem['product_price'] * $cartItem['quantity'];
+
                     ?>
                     <div class="d-flex justify-content-between align-items-baseline">
                         <div>
