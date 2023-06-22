@@ -51,14 +51,14 @@ class ApiController {
 
     public function addCompany(){
         if(isset($_POST['addCompany'])){
-            $this->apiService->addCompany($_POST['companyName']);
+            $this->apiService->addCompany(htmlspecialchars($_POST['companyName']));
         }
         header('Location: /api/dashboard');
     }
 
     public function deleteToken(){
         if(isset($_GET['id'])){
-            $this->apiService->deleteCompany($_GET['id']);
+            $this->apiService->deleteCompany(htmlspecialchars($_GET['id']));
         }
         header('Location: /api/dashboard');
     }

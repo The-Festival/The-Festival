@@ -153,12 +153,12 @@ class AdminController{
         $initialTotalPrice = 0;
         $initialTotalVat = 0;
         $order = new Order();
-        $order->setClientName($_POST['client_name']);
-        $order->setAddress($_POST['address']);
-        $order->setEmailaddress($_POST['email']);
-        $order->setPhonenumber($_POST['phone']);
-        $order->setOrderTime($_POST['order_time']);
-        $order->setPaymentMethod($_POST['payment_method']);
+        $order->setClientName(htmlspecialchars($_POST['client_name']));
+        $order->setAddress(htmlspecialchars($_POST['address']));
+        $order->setEmailaddress(htmlspecialchars($_POST['email']));
+        $order->setPhonenumber(htmlspecialchars($_POST['phone']));
+        $order->setOrderTime(htmlspecialchars($_POST['order_time']));
+        $order->setPaymentMethod(htmlspecialchars($_POST['payment_method']));
         $order->setTotalPrice($initialTotalPrice);
         $order->setTotalVat($initialTotalVat);
         $this->orderService->addOrder($order);
@@ -167,15 +167,15 @@ class AdminController{
     private function editOrderAction(){
             //add data to order through contuctor
         $order = new Order();
-        $order->setOrderId($_POST['order_id']);
-        $order->setClientName($_POST['client_name']);
-        $order->setAddress($_POST['address']);
-        $order->setEmailaddress($_POST['email']);
-        $order->setPhonenumber($_POST['phone']);
-        $order->setTotalPrice($_POST['total_price']);
-        $order->setOrderTime($_POST['order_time']);
-        $order->setPaymentMethod($_POST['payment_method']);	
-        $order->setTotalVat($_POST['total_vat']);
+        $order->setOrderId(htmlspecialchars($_POST['order_id']));
+        $order->setClientName(htmlspecialchars($_POST['client_name']));
+        $order->setAddress(htmlspecialchars($_POST['address']));
+        $order->setEmailaddress(htmlspecialchars($_POST['email']));
+        $order->setPhonenumber(htmlspecialchars($_POST['phone']));
+        $order->setTotalPrice(htmlspecialchars($_POST['total_price']));
+        $order->setOrderTime(htmlspecialchars($_POST['order_time']));
+        $order->setPaymentMethod(htmlspecialchars($_POST['payment_method']));
+        $order->setTotalVat(htmlspecialchars($_POST['total_vat']));
         $this->orderService->updateOrder($order);
     }
 
@@ -184,11 +184,11 @@ class AdminController{
             $this->orderDashboard();
             return;
         }
-        $this->orderService->deleteOrderPlusAllTicketsOnOrder($_GET['deleteOrder']);
+        $this->orderService->deleteOrderPlusAllTicketsOnOrder(htmlspecialchars($_GET['deleteOrder']));
     }
 
     private function getOrderToEdit(){
-        $order = $this->orderService->getOrderById($_GET['editOrder']);
+        $order = $this->orderService->getOrderById(htmlspecialchars($_GET['editOrder']));
             include __DIR__ . '/../views/admin/order/editOrder.php';
     }
 
@@ -205,7 +205,7 @@ class AdminController{
                     break;
                 }
                 case isset($_GET['editTicket']) && isset($_GET['order']):{
-                    $ticket = $this->orderService->getTicketById($_GET['editTicket']);
+                    $ticket = $this->orderService->getTicketById(htmlspecialchars($_GET['editTicket']));
                     include __DIR__ . '/../views/admin/order/ticket/editTicket.php';
                     break;
                 }
@@ -214,7 +214,7 @@ class AdminController{
                     break;
                 }
                 case isset($_GET['addYummyTicketToOrder']):{
-                    $order_id = $_GET['addYummyTicketToOrder'];
+                    $order_id = htmlspecialchars($_GET['addYummyTicketToOrder']);
                     $yummyEvents = $this->orderService->getAllYummyEvents();
                     include __DIR__ . '/../views/admin/order/ticket/addYummyTicket.php';
                     break;
@@ -224,7 +224,7 @@ class AdminController{
                     break;
                 }
                 case isset($_GET['addJazzTicketToOrder']):{
-                    $order_id = $_GET['addJazzTicketToOrder'];
+                    $order_id = htmlspecialchars($_GET['addJazzTicketToOrder']);
                     $jazzEvents = $this->orderService->getAllJazzEvents();
                     include __DIR__ . '/../views/admin/order/ticket/addJazzTicket.php';
                     break;
@@ -234,7 +234,7 @@ class AdminController{
                    break;
                 }
                 case isset($_GET['addHistoryTicketToOrder']):{
-                    $order_id = $_GET['addHistoryTicketToOrder'];
+                    $order_id = htmlspecialchars($_GET['addHistoryTicketToOrder']);
                 $historyEvents = $this->orderService->getAllHistoryEvents();
                 include __DIR__ . '/../views/admin/order/ticket/addHistoryTicket.php';
                     break;
@@ -252,39 +252,39 @@ class AdminController{
 
     private function addTicketToOrderAction($type){
         $ticket = new Ticket();
-        $ticket->setOrderId($_POST['order_id']);
-        $ticket->setEventId($_POST['event_id']);
+        $ticket->setOrderId(htmlspecialchars($_POST['order_id']));
+        $ticket->setEventId(htmlspecialchars($_POST['event_id']));
         $ticket->setEventType($type);
-        $ticket->setVatPercentage($_POST['vat_percentage']);
-        $ticket->setQuantity($_POST['quantity']);
-        $ticket->setIsChecked($_POST['is_checked']);
+        $ticket->setVatPercentage(htmlspecialchars($_POST['vat_percentage']));
+        $ticket->setQuantity(htmlspecialchars($_POST['quantity']));
+        $ticket->setIsChecked(htmlspecialchars($_POST['is_checked']));
         $this->orderService->addTicket($ticket);
         header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
     }
 
     private function editTicketOnOrderAction(){
             $ticket = new Ticket();
-            $ticket->setTicketId($_POST['ticket_id']);
-            $ticket->setOrderId($_POST['order_id']);
-            $ticket->setEventId($_POST['event_id']);
-            $ticket->setEventType($_POST['event_type']);
-            $ticket->setVatPercentage($_POST['vat_percentage']);
-            $ticket->setQuantity($_POST['quantity']);
-            $ticket->setIsChecked($_POST['is_checked']);
+            $ticket->setTicketId(htmlspecialchars($_POST['ticket_id']));
+            $ticket->setOrderId(htmlspecialchars($_POST['order_id']));
+            $ticket->setEventId(htmlspecialchars($_POST['event_id']));
+            $ticket->setEventType(htmlspecialchars($_POST['event_type']));
+            $ticket->setVatPercentage(htmlspecialchars($_POST['vat_percentage']));
+            $ticket->setQuantity(htmlspecialchars($_POST['quantity']));
+            $ticket->setIsChecked(htmlspecialchars($_POST['is_checked']));
             $this->orderService->updateTicket($ticket);
             header("Location: /admin/ticketdashboard?ticketsOrder=" . $_POST['order_id']);
     }
 
     private function deleteTicketOnOrderAction(){
-        $this->orderService->deleteTicket($_GET['deleteTicket']);
-            $order_id = $_GET['order'];
+        $this->orderService->deleteTicket(htmlspecialchars($_GET['deleteTicket']));
+            $order_id = htmlspecialchars($_GET['order']);
             $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
             $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
             $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
             include __DIR__ . '/../views/admin/order/ticket/tickets.php';
     }
     private function getTicketsOnOrderAction(){
-        $order_id = $_GET['ticketsOrder'];
+        $order_id = htmlspecialchars($_GET['ticketsOrder']);
             $yummyTickets = $this->orderService->getAllTicketByTypeYummy($order_id);
             $jazzTickets = $this->orderService->getAllTicketByTypeJazz($order_id);
             $historyTickets = $this->orderService->getAllTicketByTypeHistory($order_id);
@@ -295,7 +295,7 @@ class AdminController{
         if (!isset($_GET['editOrder'])){
            header('Location: /admin/orderDashboard');
         }
-        $order = $this->orderService->getOrderById($_GET['editOrder']);
+        $order = $this->orderService->getOrderById(htmlspecialchars($_GET['editOrder']));
         include __DIR__ . '/../views/admin/order/editOrder.php';
     }
 

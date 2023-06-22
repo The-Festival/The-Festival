@@ -27,7 +27,7 @@ class Pagescontroller{
         }
 
         if(isset($_POST['events'])){
-            $this->wzywigService->replace_file_content(__DIR__ . "/../views/home/cards.php", $_POST['content']);
+            $this->wzywigService->replace_file_content(__DIR__ . "/../views/home/cards.php",($_POST['content']));
         }
     }
 }

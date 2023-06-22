@@ -15,7 +15,6 @@ class CustompageAdminController
 
     public function index()
     {
-
         $customPages = $this->custompageService->getAll();
         require __DIR__ . '/../views/custompageadmin/index.php';
     }
@@ -40,10 +39,10 @@ class CustompageAdminController
     public function deletepage()
     {
         if (isset($_GET['id']) && $this->custompageService->getById($_GET['id']) != null) {
-            $customPage = $this->custompageService->getById($_GET['id']);
+            $customPage = $this->custompageService->getById(htmlspecialchars($_GET['id']));
             $pageName = $customPage->getName();
             $this->custompageService->deleteFile($pageName);
-            $this->custompageService->delete($_GET['id']);
+            $this->custompageService->delete(htmlspecialchars($_GET['id']));
             header('Location: /custompageadmin');
         } else {
             header('Location: /custompage/pageNotFound');

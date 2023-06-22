@@ -14,19 +14,23 @@ include_once (__DIR__ . '/../header.php');
                     <input type="hidden" name="checkoutOrder">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" id="name" class="form-control">
+                        <span><br>e.x Jhon Doe</span>
+                        <input type="text" name="name" id="name" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" id="address" class="form-control">
+                        <span><br> e.x Bijdroplaan 15</span>
+                        <input type="text" name="address" id="address" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" pattern = "[0-9]{10}" name="phone" id="phone" class="form-control">
+                        <span><br> e.x 0612345678</span>
+                        <input type="tel" pattern = "[0-9]{10}" name="phone" id="phone" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <span><br> e.x jhondoe@festival.com</span>
+                        <input type="email" name="email" id="email" class="form-control" required>
                     </div>
 
             </div>
@@ -110,6 +114,9 @@ include_once (__DIR__ . '/../header.php');
         .rounded{
             filter: drop-shadow(10px 5px 4px #8a8f97);
             filter: drop-shadow(0 0 5px #8a8f97);
+        }
+        span{
+            font-size: 12px;
         }
     </style>
 

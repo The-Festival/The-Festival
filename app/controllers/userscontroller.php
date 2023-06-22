@@ -57,7 +57,7 @@ class UsersController{
         if(!isset($_GET["id"])){
             header('Location: /users');
         }
-        $id = $_GET["id"];
+        $id = htmlspecialchars($_GET["id"]);
         $user = $this->userService->getUserById($id);
         include __DIR__ . '/../views/admin/edituser.php';
     }
@@ -86,38 +86,38 @@ class UsersController{
 
     
     private function handleRoleAction() {
-        $role = $_GET["role"];
+        $role = htmlspecialchars($_GET["role"]);
         return $this->userService->getUsersOnRole($role);
     }
     
     private function handleIdAction() {
-        $id = $_GET["id"];
+        $id = htmlspecialchars($_GET["id"]);
         return $this->userService->getUserById($id);
     }
     
     private function handleDeleteAction() {
-        $id = $_GET["delete"];
+        $id = htmlspecialchars($_GET["delete"]);
         $this->userService->deleteUserbyId($id);
         header('Location: /users');
     }
     
     private function handleAddAction() {
-        $fullname = $_POST["fullname"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $fullname = htmlspecialchars($_POST["fullname"]);
+        $email = htmlspecialchars($_POST["email"]);
+        $password = htmlspecialchars($_POST["password"]);
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $role = $_POST["role"];
-        $dateOfRegistration = $_POST["registration_date"];
+        $role = htmlspecialchars($_POST["role"]);
+        $dateOfRegistration = htmlspecialchars($_POST["registration_date"]);
         $this->userService->addUser($fullname, $email, $hashedPassword, $role , $dateOfRegistration);
         return $this->userService->getAll();
     }
     
     private function handleUpdateAction(){
-        $id = $_POST["id"];
-        $fullname = $_POST["fullname"];
-        $email = $_POST["email"];
-        $role = $_POST["role"];
-        $dateOfRegistration = $_POST["registration_date"];
+        $id = htmlspecialchars($_POST["id"]);
+        $fullname = htmlspecialchars($_POST["fullname"]);
+        $email = htmlspecialchars($_POST["email"]);
+        $role = htmlspecialchars($_POST["role"]);
+        $dateOfRegistration = htmlspecialchars($_POST["registration_date"]);
         $this->userService->updateUser($id, $fullname, $email,$role , $dateOfRegistration);
         return $this->userService->getAll();
     }
