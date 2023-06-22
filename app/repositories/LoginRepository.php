@@ -15,7 +15,7 @@ class LoginRepository extends Repository
 
             return $result;
         } catch (PDOException $e) {
-            echo $e;
+            
         }
     }
 }

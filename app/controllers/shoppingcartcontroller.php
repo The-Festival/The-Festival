@@ -15,7 +15,8 @@ class ShoppingcartController{
         
     }
     public function add(){
-        $this->shoppingcartService->addShoppingCart();
+        $id = htmlspecialchars($_GET['id']);
+        $this->shoppingcartService->addShoppingCart($id);
         require __DIR__ . "/../views/shoppingcart/index.php";
 
     }

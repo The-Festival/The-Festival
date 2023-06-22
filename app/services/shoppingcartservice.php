@@ -31,8 +31,8 @@ class ShoppingcartService{
             $jazzTickets = $this->orderService->getAllTicketByTypeJazz($id);
             // $historyTikets = $this->orderService->getAllTicketByTypeHistory($id);
 
-            var_dump($yummyTickets);
-            var_dump($jazzTickets);
+            // var_dump($yummyTickets);
+            // var_dump($jazzTickets);
             // var_dump($historyTikets);
 
         //     return $tickets;
@@ -75,9 +75,9 @@ class ShoppingcartService{
         return null; // Item not found in the cart
     }
 
-    function addShoppingCart()
+    function addShoppingCart($id)
     {
-        $ticket = $this->orderService->getTicketByID(htmlspecialchars(56));
+        $ticket = $this->orderService->getTicketByID($id);
 
         // 1. Check if the session shopping cart exists, if not, create a new session
         if (!isset($_SESSION['ShoppingCart'])) {

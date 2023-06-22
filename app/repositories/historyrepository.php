@@ -17,7 +17,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
 
@@ -31,7 +31,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+           
         }
     }
 
@@ -45,7 +45,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
 
@@ -58,7 +58,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
 
@@ -71,7 +71,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
     public function getTourInfoById($id){
@@ -84,7 +84,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
     public function getPageBanner($id){
@@ -97,7 +97,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
 
@@ -110,7 +110,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
     public function getSliderIMG(){
@@ -122,7 +122,7 @@ class HistoryRepository extends Repository{
             
             return $result;
         }catch(PDOException $e){
-            echo $e;
+            
         }
     }
 }
