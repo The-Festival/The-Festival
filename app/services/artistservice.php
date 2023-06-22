@@ -28,6 +28,12 @@ class ArtistService
         }
         return $artist;
     }
+//safget
+    public function getEventById($id){
+        $event_result = $this->ArtistRepository->getEventByEventId($id);
+        $event = $this->convertToEvent($event_result);
+        return $event;
+    }
 
     // Returns an array of Artist objects
     public function getAllArtists()

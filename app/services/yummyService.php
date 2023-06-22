@@ -16,6 +16,7 @@ class yummyService
     {
         return $this->convertToRestaurantList($this->repository->getyummy());
     }
+    public function get
     //Restaurant en restaurantdetails zijn 2 verschillende classes
     private function convertToRestaurant($restaurant)
     {
@@ -31,6 +32,9 @@ class yummyService
             $restaurantList[] = $this->convertToRestaurant($restaurant);
         }
         return $restaurantList;
+    }
+    public function getReservation($id){
+        return $this->repository->getReservation($id);
     }
     public function getyummyDetail($id)
     {
@@ -70,6 +74,9 @@ class yummyService
             $restaurantList[] = $this->convertToRestaurantDetails($restaurant);
         }
         return $restaurantList;
+    }
+    public function getReservation($id){
+        return $this->repository->getReservation($id);
     }
     //Reservation
     // public function makeReservation($user_id, $nrPeople, $session_id, $request){
