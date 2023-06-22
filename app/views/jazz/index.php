@@ -49,28 +49,26 @@
             <?php foreach ($artistList as $artist) : ?>
                 <?php $events = $artist->getEvents(); ?>
                 <?php $firstEvent = array_shift($events); ?>
-                <div class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
+                <a href="/jazz/artist?id=<?= $artist->getId() ?>" class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
                     <div class="card-title g-0 w-100 artist-card-title">
                         <?= $artist->getName() ?>
                     </div>
-                    <a href="/jazz/artist?id=<?= $artist->getId() ?>">
-                        <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
-                            <img class="artist-image mb-3 align-self-center" src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
-                            <p><strong>Time:</strong>
-                                <?= $firstEvent->getFormattedTime() ?>
-                            </p>
-                            <p><strong>Location:</strong> Patronaat</p>
-                            <p><strong>Hall:</strong>
-                                <?= $firstEvent->getHall() ?>
-                            </p>
-                            <p><strong>Price:</strong>
-                                <?= $firstEvent->getFormattedPrice() ?>
-                            </p>
-                            <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
-                            <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
-                        </div>
-                    </a>
-                </div>
+                    <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
+                        <img class="artist-image mb-3 align-self-center" src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
+                        <p><strong>Time:</strong>
+                            <?= $firstEvent->getFormattedTime() ?>
+                        </p>
+                        <p><strong>Location:</strong> Patronaat</p>
+                        <p><strong>Hall:</strong>
+                            <?= $firstEvent->getHall() ?>
+                        </p>
+                        <p><strong>Price:</strong>
+                            <?= $firstEvent->getFormattedPrice() ?>
+                        </p>
+                        <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
+                        <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
+                    </div>
+                </a>
             <?php endforeach; ?>
         </div>
     </div>
@@ -115,7 +113,6 @@
             </div>
         </div>
     </div>
-
     <?php
     include __DIR__ . '/../footer/footer.php';
     ?>
