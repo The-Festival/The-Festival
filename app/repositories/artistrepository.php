@@ -33,7 +33,7 @@ class ArtistRepository extends Repository
         return $result;
     }
     public function getEventByEventId($id){
-        $stmt = $this->connection->prepare("SELECT event_id, artist_id, hall, price, seats, seats_left, datetime FROM Event_Jazz WHERE event_id = :id");
+        $stmt = $this->connection->prepare("SELECT event_id, artist_id, location, hall, price, seats, seats_left, datetime FROM Event_Jazz WHERE event_id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetchAll();
