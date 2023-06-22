@@ -24,7 +24,6 @@
           if (isset($_SESSION['ShoppingCart'])) {
             foreach ($_SESSION['ShoppingCart'] as $cartItem) {
                 $storedItem = $cartItem;
-                echo "Item ID: " . $storedItem['ticket_id'] . ", Quantity: " . $storedItem['quantity'] . ", name: " . $storedItem['product_name'] . "<br>";
             
         
           ?>
