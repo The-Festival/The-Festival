@@ -25,35 +25,46 @@ class PaymentController {
         }
     }
 
-    public function action(){
-        if(isset($_POST['checkoutOrder'])){
-            $totalPrice = $_POST['totalPrice'];
-            $totalPriceString = number_format($totalPrice, 2, '.', '');
+    public function action()
+    {
+        try {
+            if (isset($_POST['checkoutOrder']) ) {
+                $this->checkShoppingCartTicketsQuantity();
+                $totalPrice = htmlspecialchars($_POST['totalPrice']);
+                $totalPriceString = number_format($totalPrice, 2, '.', '');
 
-            //initializing payment system
+                //initializing payment system
 
-            $payment = $this->mollie->payments->create(
-                [
-                    "amount" =>
-                        [
-                            "currency" => "EUR",
-                            "value" => "$totalPriceString"
+                $payment = $this->mollie->payments->create(
+                    [
+                        "amount" =>
+                            [
+                                "currency" => "EUR",
+                                "value" => "$totalPriceString"
+                            ],
+                        "description" => "Order for the Haarlem Festival",
+                        "redirectUrl" => "http://localhost/payment/success",
+                        "cancelUrl" => "http://localhost/payment/failed",
+                        "webhookUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/webhook",
+                        "metadata" => [
+                            'name' => htmlspecialchars($_POST['name']),
+                            'address' => htmlspecialchars($_POST['address']),
+                            'phone' => htmlspecialchars($_POST['phone']),
+                            'email' => htmlspecialchars($_POST['email']),
                         ],
-                    "description" => "Order for the Haarlem Festival",
-                    "redirectUrl" => "http://localhost/payment/success",
-                    "cancelUrl" => "http://localhost/payment/failed",
-                    "webhookUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/webhook",
-                    "metadata" => [
-                        'name' => htmlspecialchars($_POST['name']),
-                        'address' => htmlspecialchars($_POST['address']),
-                        'phone' => htmlspecialchars($_POST['phone']),
-                        'email' => htmlspecialchars($_POST['email']),
-                    ],
-                ]
-            );
-            header("Location: " . $payment->getCheckoutUrl());
+                    ]
+                );
+                header("Location: " . $payment->getCheckoutUrl());
+            }
         }
-    }
+        catch (NotEnoughStockException $e){
+            header('Location: /payment/failed?error=' . $e->getMessage());
+        }
+        catch(Exception $e){
+            header('Location: /payment/failed');
+        }
+        }
+
 
 
     private function checkShoppingCart(){
@@ -73,6 +84,7 @@ class PaymentController {
     }
 
     public function failed(){
+        $errorMessage = $_GET['error'] ?? '';
         require __DIR__ . '/../views/payment/failed.php';
     }
 
@@ -112,6 +124,18 @@ class PaymentController {
     {
         if(isset($_SESSION['ShoppingCart'])){
             unset($_SESSION['ShoppingCart']);
+        }
+    }
+
+    /**
+     * @throws NotEnoughStockException
+     */
+    private function checkShoppingCartTicketsQuantity(){
+        $shoppingCart = $_SESSION['ShoppingCart'];
+        foreach($shoppingCart as $item){
+           if(!$this->paymentService->checkQuantity($item)){
+               throw new NotEnoughStockException();
+           }
         }
     }
 
