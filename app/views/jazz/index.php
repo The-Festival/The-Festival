@@ -68,7 +68,7 @@
                         <p><strong>Price:</strong>
                             <?= $firstEvent->getFormattedPrice() ?>
                         </p>
-                        <a href="/jazz/<?= $artist->getId() ?>">Discover more!</a>
+                        <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
                         <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
                     </div>
                 </div>
