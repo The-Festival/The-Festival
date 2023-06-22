@@ -33,6 +33,15 @@
     color: #000000;
 }
 
+.artist-h3 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 128.5%;
+    color: #000000;
+}
+
 .artist-p {
     font-family: 'Poppins';
     font-style: normal;
@@ -65,4 +74,11 @@ li {
     font-size: 21px;
     line-height: 128.5%;
     color: #1D3588;
+}
+
+img.album-cover {
+    /* max 250px x 250px */
+    width: 15.625rem;
+    height: 15.625rem;
+    border-radius: 10px;
 }
