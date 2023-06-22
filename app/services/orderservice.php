@@ -194,7 +194,7 @@ class OrderService{
 
         // Output the generated PDF to a string
         $pdfContent = $dompdf->output();
-        file_put_contents("../public/pdf/order_".$order->getOrderId().".pdf", $pdfContent);
+        file_put_contents("../public/order_".$order->getOrderId().".pdf", $pdfContent);
         return $pdfContent;
     }
 
@@ -240,7 +240,7 @@ class OrderService{
         $dompdf->render();
 
         $ticketspdf = $dompdf->output();
-        file_put_contents("../public/pdf/tickets_".$order_id.".pdf", $ticketspdf);
+        file_put_contents("../public/tickets_".$order_id.".pdf", $ticketspdf);
         return $ticketspdf;
     }
 
@@ -251,6 +251,10 @@ class OrderService{
         return $body;
     }
 
+    public function getLatestOrderId()
+    {
+        return $this->orderRepository->getLatestOrderId();
+    }
 
 
 }

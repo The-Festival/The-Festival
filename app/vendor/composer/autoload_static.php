@@ -18,6 +18,7 @@ class ComposerStaticInit998cd3dbc5de15cf491b09dd98ca3609
         ),
         'M' => 
         array (
+            'Mollie\\Api\\' => 11,
             'Masterminds\\' => 12,
         ),
         'F' => 
@@ -27,6 +28,10 @@ class ComposerStaticInit998cd3dbc5de15cf491b09dd98ca3609
         'D' => 
         array (
             'Dompdf\\' => 7,
+        ),
+        'C' => 
+        array (
+            'Composer\\CaBundle\\' => 18,
         ),
     );
 
@@ -43,6 +48,10 @@ class ComposerStaticInit998cd3dbc5de15cf491b09dd98ca3609
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
+        'Mollie\\Api\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mollie/mollie-api-php/src',
+        ),
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
@@ -54,6 +63,10 @@ class ComposerStaticInit998cd3dbc5de15cf491b09dd98ca3609
         'Dompdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
+        ),
+        'Composer\\CaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
     );
 

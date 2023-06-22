@@ -40,9 +40,13 @@ class PaymentService {
             $this->orderService->orderPdfForPayment($order->getOrderId());
             $this->orderService->ticketsPdfOnOrder($order->getOrderId());
 
-            $mail->addAttachment("../public/pdf/order_".$order->getOrderId().".pdf", 'order.pdf');
-            $mail->addAttachment("../public/pdf/tickets_".$order->getOrderId().".pdf", 'tickets.pdf');
+            $mail->addAttachment("../public/order_".$order->getOrderId().".pdf", 'order.pdf');
+            $mail->addAttachment("../public/tickets_".$order->getOrderId().".pdf", 'tickets.pdf');
+
             $mail->send();
+            //remove pdf files after sending
+            unlink("../public/order_".$order->getOrderId().".pdf");
+            unlink("../public/tickets_".$order->getOrderId().".pdf");
 
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -51,7 +55,44 @@ class PaymentService {
 
     }
 
+    public function calculateTotalPriceOfCart(mixed $shoppingCart)
+    {
+        $totalPrice = 0;
+        foreach ($shoppingCart as $item) {
+            $totalPrice += $item['product_price'] * $item['quantity'];
+        }
+        return $totalPrice;
+    }
 
+    public function createAndAddTicketToOrderForPayment($order_Id, $event_Id, $event_Type, $quantity, $vat_Percentage){
+        $ticket = new Ticket();
+        $ticket->setOrderId($order_Id);
+        $ticket->setEventId($event_Id);
+        $ticket->setEventType($event_Type);
+        $ticket->setQuantity($quantity);
+        $ticket->setVatPercentage($vat_Percentage);
+        $ticket->setIsChecked(0);
+        $this->orderService->addTicket($ticket);
+    }
+
+    public function createAndAddOrderForPayment($name, $address, $phone, $email, $paymentMethod){
+        $order = new Order();
+        $order->setClientName($name);
+        $order->setAddress($address);
+        $order->setPhonenumber($phone);
+        $order->setEmailaddress($email);
+        $order->setOrderTime(date("Y-m-d H:i:s"));
+        $order->setPaymentMethod($paymentMethod);
+        $order->setTotalPrice(0);
+        $order->setTotalVat(0);
+        $this->orderService->addOrder($order);
+        return $this->orderService->getLatestOrderId();
+    }
+
+    public function getLatestOrderId()
+    {
+        return $this->orderService->getLatestOrderId();
+    }
 
 
 }

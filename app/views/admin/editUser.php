@@ -31,8 +31,7 @@
       <div class="col-md-6">
         <form action="/users" method="POST">
           <div class="mb-3">
-            <label for="ID" class="form-label">User ID</label>
-            <input type="text" class="form-control" id="id" name="id" value="<?php echo $user->getUserId(); ?>" readonly>
+            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $user->getUserId(); ?>" readonly>
           </div>
           <div class="mb-3">
             <label for="fullname" class="form-label">Full Name</label>

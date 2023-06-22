@@ -386,16 +386,19 @@ class OrderRepository extends Repository {
         }
     }
 
-    
-
-
-
-
-
-
-
-
-
+    public function getLatestOrderId()
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT MAX(order_id) FROM `Order`;");
+            $stmt->execute();
+            $result = $stmt->fetch();
+            return $result;
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
 
 
 }

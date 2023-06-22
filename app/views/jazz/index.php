@@ -7,9 +7,7 @@
     <!-- Hero with "The Festival" and a count down timer -->
 
     <div class="hero">
-        <a href="/artists">
-            <h1 class="hero-title">The Festival</h1>
-        </a>
+        <h1 class="hero-title">The Festival</h1>
     </div>
 
     <!-- Intro -->
@@ -48,7 +46,7 @@
 
     <div class="container">
         <div class="row gap-3 my-3 d-flex justify-content-center" id="artist-cards">
-            <?php foreach ($artistList as $artist): ?>
+            <?php foreach ($artistList as $artist) : ?>
                 <?php $events = $artist->getEvents(); ?>
                 <?php $firstEvent = array_shift($events); ?>
                 <div class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
@@ -56,8 +54,7 @@
                         <?= $artist->getName() ?>
                     </div>
                     <div class="card-body w-100 d-flex align-self-start flex-column artist-card-body">
-                        <img class="artist-image mb-3 align-self-center"
-                            src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
+                        <img class="artist-image mb-3 align-self-center" src="/img/artists/<?= $artist->getName() ?>/artist.png" alt="<?= $artist->getName() ?>">
                         <p><strong>Time:</strong>
                             <?= $firstEvent->getFormattedTime() ?>
                         </p>
@@ -68,7 +65,7 @@
                         <p><strong>Price:</strong>
                             <?= $firstEvent->getFormattedPrice() ?>
                         </p>
-                        <a href="/jazz/<?= $artist->getId() ?>">Discover more!</a>
+                        <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
                         <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
                     </div>
                 </div>
@@ -76,50 +73,12 @@
         </div>
     </div>
 
-    <style>
-        .artist-card {
-            background: rgba(255, 255, 255, 0.6);
-            border: 7px solid #000000;
-            max-width: 300px;
-        }
-
-        .artist-card-title {
-            background: #6716C7;
-            border-bottom: 7px solid #000000;
-            font-family: 'Lobster Two';
-            font-weight: 400;
-            font-size: 37px;
-            text-align: center;
-            color: #FFFFFF;
-        }
-
-        .artist-card-btn {
-            background: #0C60DD;
-            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25), inset 4px 4px 7px rgba(255, 255, 255, 0.25);
-            border-radius: 20px;
-        }
-
-        .artist-image {
-            width: 100%;
-            max-width: 200px;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .artist-card-body {
-            font-family: 'Poppins';
-            font-size: 1.25rem;
-            line-height: 100%;
-        }
-    </style>
-
     <!-- End -->
 
     <!-- 4 Cards that represents the passes -->
 
-    <div class="container">
-        <div class="row gap-5">
+    <div class="container p-3 mb-3">
+        <div class="row gap-5 d-flex justify-content-center">
             <div class="card col-sm card-wrapper">
                 <div class="card-body">
                     <h4 class="card-heading">Day pass <br> Thursday</h4>
