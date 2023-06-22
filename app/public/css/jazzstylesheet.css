@@ -64,6 +64,7 @@
     background: #A8A1FF;
     box-shadow: 20px 10px 4px rgba(0, 0, 0, 0.5);
     border-radius: 83px;
+    max-width: fit-content;
 }
 
 .card-heading {
@@ -91,4 +92,44 @@
     background: #0C60DD;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25), inset 4px 4px 7px rgba(255, 255, 255, 0.25);
     border-radius: 20px;
+}
+
+.artist-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 7px solid #000000;
+    max-width: 300px;
+}
+
+.artist-card-title {
+    background: #6716C7;
+    border-bottom: 7px solid #000000;
+    font-family: 'Lobster Two';
+    font-weight: 400;
+    font-size: 37px;
+    height: 7.5rem;
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.artist-card-btn {
+    background: #0C60DD;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25), inset 4px 4px 7px rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+}
+
+.artist-image {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.artist-card-body {
+    font-family: 'Poppins';
+    font-size: 1.25rem;
+    line-height: 100%;
 }
