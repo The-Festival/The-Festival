@@ -49,7 +49,7 @@
             <?php foreach ($artistList as $artist) : ?>
                 <?php $events = $artist->getEvents(); ?>
                 <?php $firstEvent = array_shift($events); ?>
-                <a href="/jazz/artist?id=<?= $artist->getId() ?>" class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
+                <div class="card p-0 col-3 d-flex align-items-center justify-content-center artist-card">
                     <div class="card-title g-0 w-100 artist-card-title">
                         <?= $artist->getName() ?>
                     </div>
@@ -68,7 +68,7 @@
                         <a href="/jazz/artist?id=<?= $artist->getId() ?>">Discover more!</a>
                         <button class="btn btn-primary mt-3 artist-card-btn w-100">Add to Cart +</button>
                     </div>
-                </a>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>
@@ -113,6 +113,7 @@
             </div>
         </div>
     </div>
+
     <?php
     include __DIR__ . '/../footer/footer.php';
     ?>
