@@ -94,15 +94,13 @@ class PaymentService {
         return $this->orderService->getLatestOrderId();
     }
 
-    public function checkQuantity(mixed $item)
+    public function checkQuantity($event_id,$event_type,$quantity)
     {
         $ticket = new Ticket();
-        $ticket->setEventId($item['event_id']);
-        $ticket->setEventType($item['event_type']);
-        $ticket->setQuantity($item['quantity']);
-        return $this->orderService->checkTicketQuantity($item);
+        $ticket->setEventId($event_id);
+        $ticket->setEventType($event_type);
+        $ticket->setQuantity($quantity);
+        return $this->orderService->checkTicketQuantity($ticket);
     }
-
-
 
 }

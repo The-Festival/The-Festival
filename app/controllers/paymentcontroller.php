@@ -1,6 +1,7 @@
 <?php
 include_once(__DIR__ . '/../services/paymentservice.php');
 include_once(__DIR__ . '/../services/orderservice.php');
+include_once (__DIR__ . '/../exceptions/NotEnoughStockException.php');
 use Mollie\Api\MollieApiClient;
 class PaymentController {
 
@@ -45,7 +46,7 @@ class PaymentController {
                         "description" => "Order for the Haarlem Festival",
                         "redirectUrl" => "http://localhost/payment/success",
                         "cancelUrl" => "http://localhost/payment/failed",
-                        "webhookUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/webhook",
+                        "webhookUrl" => "https://d021-24-132-83-233.ngrok-free.app/payment/webhook",
                         "metadata" => [
                             'name' => htmlspecialchars($_POST['name']),
                             'address' => htmlspecialchars($_POST['address']),
@@ -133,7 +134,7 @@ class PaymentController {
     private function checkShoppingCartTicketsQuantity(){
         $shoppingCart = $_SESSION['ShoppingCart'];
         foreach($shoppingCart as $item){
-           if(!$this->paymentService->checkQuantity($item)){
+           if(!$this->paymentService->checkQuantity($item['event_id'],$item['event_type'],$item['quantity'])){
                throw new NotEnoughStockException();
            }
         }
