@@ -5,11 +5,10 @@ use Mollie\Api\MollieApiClient;
 class PaymentController {
 
     private $paymentService;
-    private $orderService;
     private $mollie;
+
     public function __construct()
     {
-        $this->orderService = new OrderService();
         $this->paymentService = new PaymentService();
         $this->mollie = new MollieApiClient();
         $this->mollie->setApiKey("test_K2nq2xy53vmbRhQpqS4fhyVudpNTSs");
@@ -45,7 +44,6 @@ class PaymentController {
                     "cancelUrl" => "http://localhost/payment/failed",
                     "webhookUrl" => "https://f76f-24-132-83-233.ngrok-free.app/payment/webhook",
                     "metadata" => [
-                        'session_id' => session_id(),
                         'name' => htmlspecialchars($_POST['name']),
                         'address' => htmlspecialchars($_POST['address']),
                         'phone' => htmlspecialchars($_POST['phone']),
@@ -58,11 +56,6 @@ class PaymentController {
     }
 
 
-    public function sendMail(){
-        //test prupase simple get to /payment/sendmail?id=1
-        $this->paymentService->sendMail($_GET['id']);
-    }
-
     private function checkShoppingCart(){
         if(isset($_SESSION['ShoppingCart']) && count($_SESSION['ShoppingCart']) > 0){
             return true;
@@ -72,7 +65,7 @@ class PaymentController {
     }
 
     public function success(){
-        $orderId = $this->orderService->getLatestOrderId()[0];
+        $orderId = $this->paymentService->getLatestOrderId()[0];
         $this->addTicketsInShoppingCartToOrder($orderId);
         $this->paymentService->sendMail($orderId);
         $this->clearShoppingCart();
@@ -84,7 +77,7 @@ class PaymentController {
     }
 
     public function webhook(){
-        $paymentId = $_POST['id'];
+        $paymentId = htmlspecialchars($_POST['id']);
 
         // Get payment object from Mollie
         $payment = $this->mollie->payments->get($paymentId);
@@ -99,7 +92,7 @@ class PaymentController {
 
         // Update order status based on payment status
         if ($payment->isPaid()) {
-            $this->createAndAddOrder($name,$address, $phone, $email,$paymentMethod);
+            $this->paymentService->createAndAddOrderForPayment($name,$address, $phone, $email,$paymentMethod);
         } elseif ($payment->isFailed()){
             header("Location: /payment/failed");
         }
@@ -107,36 +100,11 @@ class PaymentController {
         http_response_code(200);
     }
 
-    private function createAndAddOrder($name,$address, $phone, $email,$paymentMethod){
-        $order = new Order();
-        $order->setClientName($name);
-        $order->setAddress($address);
-        $order->setPhonenumber($phone);
-        $order->setEmailaddress($email);
-        $order->setOrderTime(date("Y-m-d H:i:s"));
-        $order->setPaymentMethod($paymentMethod);
-        $order->setTotalPrice(0);
-        $order->setTotalVat(0);
-        $this->orderService->addOrder($order);
-        return $this->orderService->getLatestOrderId();
-    }
-
-    private function createAndAddTicketToOrder($order_Id,$event_Id, $event_Type, $quantity, $vat_Percentage){
-        $ticket = new Ticket();
-        $ticket->setOrderId($order_Id);
-        $ticket->setEventId($event_Id);
-        $ticket->setEventType($event_Type);
-        $ticket->setQuantity($quantity);
-        $ticket->setVatPercentage($vat_Percentage);
-        $ticket->setIsChecked(0);
-        $this->orderService->addTicket($ticket);
-    }
-
     private function addTicketsInShoppingCartToOrder($order_id){
             $shoppingCart = $_SESSION['ShoppingCart'];
             foreach($shoppingCart as $item){
                 $vatPercentage = $item['event_type'] == 'yummy' ? 9 : 21;
-                $this->createAndAddTicketToOrder($order_id,$item['event_id'],$item['event_type'],$item['quantity'],$vatPercentage);
+                $this->paymentService->createAndAddTicketToOrderForPayment($order_id,$item['event_id'],$item['event_type'],$item['quantity'],$vatPercentage);
             }
     }
 

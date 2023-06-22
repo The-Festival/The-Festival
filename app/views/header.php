@@ -91,6 +91,7 @@
                   <li><a class="dropdown-item" href="/yummy/yummyDashboard">Yummy - Restaurants</a></li>
                   <!-- <li><a class="dropdown-item" href="/yummy/sessionDashboard">Yummy - Sessions</a></li> -->
                   <li><a class="dropdown-item" href="/admin/orderDashboard">Orders</a></li>
+                  <li><a class="dropdown-item" href="/api/dashboard">API</a></li>
                   <li><a class="dropdown-item" href="/custompageadmin">Custom Pages</a></li>
                   <li><a class="dropdown-item" href="/pages">Homepage Editor</a></li>
               </ul>
