@@ -42,7 +42,11 @@ class PaymentService {
 
             $mail->addAttachment("../public/pdf/order_".$order->getOrderId().".pdf", 'order.pdf');
             $mail->addAttachment("../public/pdf/tickets_".$order->getOrderId().".pdf", 'tickets.pdf');
+
             $mail->send();
+            //remove pdf files after sending
+            unlink("../public/pdf/order_".$order->getOrderId().".pdf");
+            unlink("../public/pdf/tickets_".$order->getOrderId().".pdf");
 
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -51,7 +55,14 @@ class PaymentService {
 
     }
 
-
+    public function calculateTotalPriceOfCart(mixed $shoppingCart)
+    {
+        $totalPrice = 0;
+        foreach ($shoppingCart as $item) {
+            $totalPrice += $item['product_price'] * $item['quantity'];
+        }
+        return $totalPrice;
+    }
 
 
 }
