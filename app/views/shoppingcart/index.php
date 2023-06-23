@@ -44,8 +44,8 @@
                   <i class="fas fa-minus"></i>
                 </button>
 
-                <input id="form1" min="0" name="quantity" value="<?php echo $storedItem['quantity']; ?>" type="number"
-                  class="form-control form-control-sm" />
+                <input type="number" readonly="true" value="<?php echo $storedItem['quantity']; ?>" name="quantity" min="0" class="form-control form-control-sm">
+                
 
                 <button class="btn btn-link px-2"
                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
