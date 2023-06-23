@@ -64,10 +64,18 @@ class ShoppingcartService{
         if (isset($_SESSION['ShoppingCart'])) {
             foreach ($_SESSION['ShoppingCart'] as $index => $cartItem) {
                 $storedItem = $cartItem;
-                // Compare the item in the cart with the new item
-                if ($storedItem['event_id'] == $item->getTourID()) {
-                    return ['index' => $index, 'item' => $storedItem];
+                if(isset($item->tour_ID)){
+                    if ($storedItem['event_id'] == $item->getTourID() && $storedItem['event_type'] == "history") {
+                        return ['index' => $index, 'item' => $storedItem];
+                    }
                 }
+                else {
+                    if ($storedItem['event_id'] == $item->getEventId() && $storedItem['event_type'] == "jazz") {
+                        return ['index' => $index, 'item' => $storedItem];
+                    }
+                }
+                // Compare the item in the cart with the new item
+                
             }
         }
 
