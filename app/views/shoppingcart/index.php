@@ -1,7 +1,5 @@
 <?php 
-  if(isset($_SESSION['ShoppingCart']) == false){
-    header("Location: /home");
-}
+  
   require_once __DIR__ . "/../header.php";
   
   ?>

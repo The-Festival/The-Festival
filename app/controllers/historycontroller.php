@@ -8,6 +8,7 @@ class HistoryController {
 
     function __construct(){
         $this->historyService = new HistoryService();
+
     }
 
     function index(){
@@ -21,6 +22,13 @@ class HistoryController {
         $banner = $this->historyService->getPageBanner($id);
         $pagePOI = $this->historyService->getPointOfInterestData($id);
         require __DIR__ . '/../views/history/detailpage.php';
+    }
+
+    function addTourToCart(){
+        $tourId = htmlspecialchars($_GET["id"]);
+        $this->historyService->addTourToCart($tourId);
+        header("Location: /shoppingcart");
+
     }
 
 }

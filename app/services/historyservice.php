@@ -1,11 +1,14 @@
 <?php
-require __DIR__ .'/../repositories/historyrepository.php';
+require_once __DIR__ .'/../repositories/historyrepository.php';
+require_once __DIR__ . '/../services/shoppingcartservice.php';
 
 class HistoryService{
     private $historyRepository;
+    private $shoppingcartService;
 
     function __CONSTRUCT(){
         $this->historyRepository = new HistoryRepository();
+        $this->shoppingcartService = new ShoppingcartService();
     }
 
     public function getPointOfInterestDataWithoutIMG($id){
@@ -30,6 +33,12 @@ class HistoryService{
         }
         return $poiArray;
     }
+
+    public function addTourToCart($tourId){
+        $Tour = $this->getTourInfoById($tourId);
+        $this->shoppingcartService->addTourToShoppingCart($Tour);
+    }
+
 
     public function getTourInfo(){
         return $this->historyRepository->getTourInfo();

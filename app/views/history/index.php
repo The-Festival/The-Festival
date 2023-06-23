@@ -21,15 +21,14 @@ require __DIR__ . '/../header.php';
 
   <div class="block-1 mb-5">
     
-    <div class="slideshow-container">
+    <div class="slideshow-container" style="min-height:350px;">
 
 <!-- Full-width images with number and caption text -->
       <?php for($i = 0; $i < count($slider); $i++){?>
 
-        <div class="mySlides fade">
-            <p><?php echo $slider[$i]->getText(); ?></p>
-            <img src="<?php echo $slider[$i]->getPhoto(); ?>" alt="">
-            <div class="text">Caption Text</div>
+        <div class="mySlides fade" style="box-sizing:border-box;">
+            <p style="float:left; max-width:50%"><?php echo $slider[$i]->getText(); ?></p>
+            <img style="float:right; max-width:30%; max-height:50%%;" src="<?php echo $slider[$i]->getPhoto(); ?>" alt="">
         </div>
 
       <?php } ?>
@@ -82,7 +81,7 @@ require __DIR__ . '/../header.php';
             <p>Price per person: <b>&euro;17.50</b></p>
             <p class="mb-0">Family up to 4 people: <b>&euro;60,00</b></p>
             </div>
-            <button class="tourBTN">BOOK A TOUR</button>
+            <a class="tourBTN" href="/history/addTourToCart?id=1">BOOK A TOUR</a>
           </div>
             
                 
