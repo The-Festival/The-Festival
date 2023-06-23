@@ -14,7 +14,6 @@ class HomeRepository extends Repository
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -26,7 +25,6 @@ class HomeRepository extends Repository
             $stmt->execute();
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -45,7 +43,6 @@ class HomeRepository extends Repository
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -60,7 +57,6 @@ class HomeRepository extends Repository
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
     
@@ -74,7 +70,6 @@ class HomeRepository extends Repository
 
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -88,7 +83,6 @@ class HomeRepository extends Repository
             $stmt->execute();
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 }

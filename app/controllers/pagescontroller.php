@@ -14,7 +14,7 @@ class Pagescontroller{
     public function index(){
         $aboutText = $this->homeService->getAboutText();
         $this->checkRequests();
-        require __DIR__ . '/../views/wzywig/index.php';
+        require __DIR__ . '/../views/wysiwyg/index.php';
     }
 
     public function upload(){
