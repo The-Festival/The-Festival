@@ -94,6 +94,7 @@
                   <li><a class="dropdown-item" href="/api/dashboard">API</a></li>
                   <li><a class="dropdown-item" href="/custompageadmin">Custom Pages</a></li>
                   <li><a class="dropdown-item" href="/pages">Homepage Editor</a></li>
+                  <li><a class="dropdown-item" href="/admin/historyDashboard">History</a></li>
               </ul>
             </div>
           <?php endif; ?>

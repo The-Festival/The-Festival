@@ -11,10 +11,14 @@ class ShoppingcartController{
         // $id = htmlspecialchars($_GET['id']);
 
         // $Tickets = $this->shoppingcartService->getTickets($id);
+        if(isset($_SESSION['ShoppingCart']) == false){
+            header("Location: /home");
+        }
         require __DIR__ . "/../views/shoppingcart/index.php";
         
     }
     public function add(){
+       
         $id = htmlspecialchars($_GET['id']);
         $this->shoppingcartService->addShoppingCart($id);
         require __DIR__ . "/../views/shoppingcart/index.php";

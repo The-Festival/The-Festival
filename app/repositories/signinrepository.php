@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../models/User.php');
 class SigninRepository extends Repository {
     public function checkUsernameAndEmail($username, $email){
         try {
-            $stmt = $this->connection->prepare("SELECT user_id, fullname, email, '' AS hashedPassword, role, registration_date FROM User WHERE fullname = :name OR email = :email");
+            $stmt = $this->connection->prepare("SELECT user_id, fullname, email, '' AS password, role, registration_date FROM User WHERE fullname = :name OR email = :email");
             $stmt->bindParam(':name', $username);
             $stmt->bindParam(':email', $email);
             $stmt->execute();

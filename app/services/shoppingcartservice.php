@@ -2,7 +2,7 @@
 include_once(__DIR__ . '/../repositories/homerepository.php');
 include_once (__DIR__ . '/../services/orderservice.php');
 include_once (__DIR__ . '/../services/artistservice.php');
-include_once (__DIR__ . '/../services/historyservice.php');
+// include_once (__DIR__ . '/../services/historyservice.php');
 include_once (__DIR__ . '/../services/yummyService.php');
 
 class ShoppingcartService{
@@ -11,7 +11,7 @@ class ShoppingcartService{
     private $orderService;
     private $artistService;
     private $yummyService;
-    private $historyService;
+    // private $historyService;
 
     private $name = "";
     private $price = 0;
@@ -22,7 +22,7 @@ class ShoppingcartService{
         $this->orderService = new OrderService();
         $this->artistService = new ArtistService();
         $this->yummyService = new yummyService();
-        $this->historyService = new HistoryService();
+        // $this->historyService = new HistoryService();
     }
 
     public function getTickets($id){
@@ -64,15 +64,47 @@ class ShoppingcartService{
         if (isset($_SESSION['ShoppingCart'])) {
             foreach ($_SESSION['ShoppingCart'] as $index => $cartItem) {
                 $storedItem = $cartItem;
-
                 // Compare the item in the cart with the new item
-                if ($storedItem['ticket_id'] == $item->getTicketId()) {
+                if ($storedItem['event_id'] == $item->getTourID()) {
                     return ['index' => $index, 'item' => $storedItem];
                 }
             }
         }
 
         return null; // Item not found in the cart
+    }
+
+    function addTourToShoppingCart($Tour){
+        if (!isset($_SESSION['ShoppingCart'])) {
+            $_SESSION['ShoppingCart'] = [];
+        }
+        $existingItem = $this->findCartItem($Tour[0]);
+        if($existingItem !== null){
+            $existingIndex = $existingItem['index'];
+            $existingObject = $existingItem['item'];
+
+            // Increase the quantity by 1 for the existing item
+            $existingObject['quantity']++;
+
+            // Replace the updated item in the cart
+            $_SESSION['ShoppingCart'][$existingIndex] = $existingObject;
+        }else {
+            $this->name = 'History Tour';
+            $this->price = $Tour[0]->getPrice();
+            $this->time = $Tour[0]->getDateTime();
+
+            $newItem = [
+                'event_id' => $Tour[0]->getTourID(),
+                'event_type' => "history",
+                'product_name' => $this->name, // Replace with the actual name variable
+                'product_price' => $this->price, // Replace with the actual price variable
+                'quantity' => 1,
+                'time' => $this->time
+            ];
+            
+            $_SESSION['ShoppingCart'][] = $newItem;
+        }
+
     }
 
     function addShoppingCart($id)
@@ -119,7 +151,6 @@ class ShoppingcartService{
             // 3. Add the ticket to the shopping cart if it was not already in the shopping cart
     
             $newItem = [
-                'ticket_id' => $ticket->getTicketId(), // Replace with the actual ticket id variable
                 'event_id' => $ticket->getEventId(),
                 'event_type' => $ticket->getEventType(),
                 'product_name' => $this->name, // Replace with the actual name variable
