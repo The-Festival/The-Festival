@@ -39,18 +39,9 @@
                 <p><?php echo $storedItem['time'];?></p>
               </div>
               <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
 
                 <input type="number" readonly="true" value="<?php echo $storedItem['quantity']; ?>" name="quantity" min="0" class="form-control form-control-sm">
                 
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <h5 class="mb-0">&euro;<?php echo $storedItem['product_price']*$storedItem['quantity']; ?></h5>
