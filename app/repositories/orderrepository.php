@@ -14,8 +14,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -29,8 +27,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -69,8 +65,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -85,8 +79,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -101,8 +93,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -117,8 +107,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -131,8 +119,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -148,8 +134,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -168,8 +152,6 @@ class OrderRepository extends Repository {
             $stmt->execute();
             return true;
         } catch(PDOException $e){
-            echo $e;
-            return false;
         }
         
     }
@@ -186,8 +168,6 @@ class OrderRepository extends Repository {
             $stmt->execute();
             return true;
         } catch(PDOException $e){
-            echo $e;
-            return false;
         }
         
     }
@@ -205,8 +185,6 @@ class OrderRepository extends Repository {
             $stmt->execute();
             return true;
         } catch(PDOException $e){
-            echo $e;
-            return false;
         }
         
     }
@@ -227,8 +205,6 @@ class OrderRepository extends Repository {
             
             return true;
         } catch(PDOException $e){
-            echo $e;
-            return false;
         }
         
     }
@@ -247,8 +223,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -264,8 +238,6 @@ class OrderRepository extends Repository {
 
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
     public function getAllTicketOnTypeHistory($order_id){
@@ -283,8 +255,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
     
@@ -297,8 +267,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -310,8 +278,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -323,8 +289,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -337,8 +301,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -351,8 +313,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -365,8 +325,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -381,8 +339,6 @@ class OrderRepository extends Repository {
             return true;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
@@ -395,8 +351,6 @@ class OrderRepository extends Repository {
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
-            return false;
         }
     }
 
