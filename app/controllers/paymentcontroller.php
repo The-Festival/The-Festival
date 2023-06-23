@@ -46,7 +46,7 @@ class PaymentController {
                         "description" => "Order for the Haarlem Festival",
                         "redirectUrl" => "http://localhost/payment/success",
                         "cancelUrl" => "http://localhost/payment/failed",
-                        "webhookUrl" => "http://home.lukehuisman.nl//payment/webhook",
+                        "webhookUrl" => "https://1d80-145-81-199-248.ngrok-free.app/payment/webhook",
                         "metadata" => [
                             'name' => htmlspecialchars($_POST['name']),
                             'address' => htmlspecialchars($_POST['address']),
