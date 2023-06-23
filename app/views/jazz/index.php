@@ -7,7 +7,7 @@
     <!-- Hero with "The Festival" and a count down timer -->
 
     <div class="hero">
-        <h1 class="hero-title">The Festival</h1>
+        <h1 class="hero-title"><a href="#artist-cards" style="text-decoration: none; color: white;">The Festival</a></h1>
     </div>
 
     <!-- Intro -->

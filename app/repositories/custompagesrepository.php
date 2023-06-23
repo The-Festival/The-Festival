@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/repository.php';
-include_once __DIR__ . '/../models/custompage.php';
+include_once __DIR__ . '/../models/Custompage.php';
 class CustompagesRepository extends Repository{
 
     public function getAll(){
@@ -11,7 +11,6 @@ class CustompagesRepository extends Repository{
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -25,7 +24,6 @@ class CustompagesRepository extends Repository{
             return $result;
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -36,7 +34,6 @@ class CustompagesRepository extends Repository{
             $stmt->execute();
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -48,7 +45,6 @@ class CustompagesRepository extends Repository{
             $stmt->execute();
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
@@ -59,7 +55,6 @@ class CustompagesRepository extends Repository{
             $stmt->execute();
         } catch (PDOException $e)
         {
-            echo $e;
         }
     }
 
